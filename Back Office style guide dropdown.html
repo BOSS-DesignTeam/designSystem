@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/dropdown -->
+<html class="wa-theme-shoelace wa-palette-shoelace wa-palette-orderly mac-magic svg-magic" lang="en" data-magic-ua="chrome" data-magic-ua-ver="149"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css" id="fa-auto-css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 'Font Awesome 7 Free';
+  --fa-font-regular: normal 400 1em/1 'Font Awesome 7 Free';
+  --fa-font-light: normal 300 1em/1 'Font Awesome 7 Pro';
+  --fa-font-thin: normal 100 1em/1 'Font Awesome 7 Pro';
+  --fa-font-duotone: normal 900 1em/1 'Font Awesome 7 Duotone';
+  --fa-font-duotone-regular: normal 400 1em/1 'Font Awesome 7 Duotone';
+  --fa-font-duotone-light: normal 300 1em/1 'Font Awesome 7 Duotone';
+  --fa-font-duotone-thin: normal 100 1em/1 'Font Awesome 7 Duotone';
+  --fa-font-brands: normal 400 1em/1 'Font Awesome 7 Brands';
+  --fa-font-sharp-solid: normal 900 1em/1 'Font Awesome 7 Sharp';
+  --fa-font-sharp-regular: normal 400 1em/1 'Font Awesome 7 Sharp';
+  --fa-font-sharp-light: normal 300 1em/1 'Font Awesome 7 Sharp';
+  --fa-font-sharp-thin: normal 100 1em/1 'Font Awesome 7 Sharp';
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 'Font Awesome 7 Sharp Duotone';
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 'Font Awesome 7 Sharp Duotone';
+  --fa-font-sharp-duotone-light: normal 300 1em/1 'Font Awesome 7 Sharp Duotone';
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 'Font Awesome 7 Sharp Duotone';
+  --fa-font-slab-regular: normal 400 1em/1 'Font Awesome 7 Slab';
+  --fa-font-slab-press-regular: normal 400 1em/1 'Font Awesome 7 Slab Press';
+  --fa-font-whiteboard-semibold: normal 600 1em/1 'Font Awesome 7 Whiteboard';
+  --fa-font-thumbprint-light: normal 300 1em/1 'Font Awesome 7 Thumbprint';
+  --fa-font-notdog-solid: normal 900 1em/1 'Font Awesome 7 Notdog';
+  --fa-font-notdog-duo-solid: normal 900 1em/1 'Font Awesome 7 Notdog Duo';
+  --fa-font-etch-solid: normal 900 1em/1 'Font Awesome 7 Etch';
+  --fa-font-graphite-thin: normal 100 1em/1 'Font Awesome 7 Graphite';
+  --fa-font-jelly-regular: normal 400 1em/1 'Font Awesome 7 Jelly';
+  --fa-font-jelly-fill-regular: normal 400 1em/1 'Font Awesome 7 Jelly Fill';
+  --fa-font-jelly-duo-regular: normal 400 1em/1 'Font Awesome 7 Jelly Duo';
+  --fa-font-chisel-regular: normal 400 1em/1 'Font Awesome 7 Chisel';
+  --fa-font-utility-semibold: normal 600 1em/1 'Font Awesome 7 Utility';
+  --fa-font-utility-duo-semibold: normal 600 1em/1 'Font Awesome 7 Utility Duo';
+  --fa-font-utility-fill-semibold: normal 600 1em/1 'Font Awesome 7 Utility Fill';
+}
+
+.svg-inline--fa {
+  box-sizing: content-box;
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285714em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left,
+.svg-inline--fa .fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-pull-right,
+.svg-inline--fa .fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  inset-block-start: 0.25em; /* syncing vertical alignment with Web Font rendering */
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.fa-layers .svg-inline--fa {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: calc(10 / 16 * 1em); /* converts a 10px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 10 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 10 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xs {
+  font-size: calc(12 / 16 * 1em); /* converts a 12px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 12 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 12 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-sm {
+  font-size: calc(14 / 16 * 1em); /* converts a 14px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 14 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 14 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-lg {
+  font-size: calc(20 / 16 * 1em); /* converts a 20px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 20 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 20 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xl {
+  font-size: calc(24 / 16 * 1em); /* converts a 24px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 24 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 24 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-2xl {
+  font-size: calc(32 / 16 * 1em); /* converts a 32px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 32 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 32 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-width-auto {
+  --fa-width: auto;
+}
+
+.fa-fw,
+.fa-width-fixed {
+  --fa-width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-inline-start: var(--fa-li-margin, 2.5em);
+  padding-inline-start: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+/* Heads Up: Bordered Icons will not be supported in the future!
+  - This feature will be deprecated in the next major release of Font Awesome (v8)!
+  - You may continue to use it in this version *v7), but it will not be supported in Font Awesome v8.
+*/
+/* Notes:
+* --@{v.$css-prefix}-border-width = 1/16 by default (to render as ~1px based on a 16px default font-size)
+* --@{v.$css-prefix}-border-padding =
+  ** 3/16 for vertical padding (to give ~2px of vertical whitespace around an icon considering it's vertical alignment)
+  ** 4/16 for horizontal padding (to give ~4px of horizontal whitespace around an icon)
+*/
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.0625em);
+  box-sizing: var(--fa-border-box-sizing, content-box);
+  padding: var(--fa-border-padding, 0.1875em 0.25em);
+}
+
+.fa-pull-left,
+.fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right,
+.fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+  .fa-bounce,
+  .fa-fade,
+  .fa-beat-fade,
+  .fa-flip,
+  .fa-pulse,
+  .fa-shake,
+  .fa-spin,
+  .fa-spin-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.svg-inline--fa.fa-inverse {
+  fill: var(--fa-inverse, #fff);
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  vertical-align: middle;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  --fa-width: 1.25em;
+  height: 1em;
+  width: var(--fa-width);
+}
+.svg-inline--fa.fa-stack-2x {
+  --fa-width: 2.5em;
+  height: 2em;
+  width: var(--fa-width);
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  z-index: var(--fa-stack-z-index, auto);
+}</style><style id="magiczoom-reset-css" type="text/css"></style><style type="text/css">:host,:root{--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Solid";--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Regular";--fa-font-light:normal 300 1em/1 "Font Awesome 6 Light";--fa-font-thin:normal 100 1em/1 "Font Awesome 6 Thin";--fa-font-duotone:normal 900 1em/1 "Font Awesome 6 Duotone";--fa-font-sharp-solid:normal 900 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-regular:normal 400 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-light:normal 300 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-thin:normal 100 1em/1 "Font Awesome 6 Sharp";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands"}svg:not(:host).svg-inline--fa,svg:not(:root).svg-inline--fa{overflow:visible;box-sizing:content-box}.svg-inline--fa{display:var(--fa-display,inline-block);height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-2xs{vertical-align:.1em}.svg-inline--fa.fa-xs{vertical-align:0}.svg-inline--fa.fa-sm{vertical-align:-.0714285705em}.svg-inline--fa.fa-lg{vertical-align:-.2em}.svg-inline--fa.fa-xl{vertical-align:-.25em}.svg-inline--fa.fa-2xl{vertical-align:-.3125em}.svg-inline--fa.fa-pull-left{margin-right:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-pull-right{margin-left:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-li{width:var(--fa-li-width,2em);top:.25em}.svg-inline--fa.fa-fw{width:var(--fa-fw-width,1.25em)}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:var(--fa-counter-background-color,#ff253a);border-radius:var(--fa-counter-border-radius,1em);box-sizing:border-box;color:var(--fa-inverse,#fff);line-height:var(--fa-counter-line-height,1);max-width:var(--fa-counter-max-width,5em);min-width:var(--fa-counter-min-width,1.5em);overflow:hidden;padding:var(--fa-counter-padding,.25em .5em);right:var(--fa-right,0);text-overflow:ellipsis;top:var(--fa-top,0);-webkit-transform:scale(var(--fa-counter-scale,.25));transform:scale(var(--fa-counter-scale,.25));-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:var(--fa-bottom,0);right:var(--fa-right,0);top:auto;-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:var(--fa-bottom,0);left:var(--fa-left,0);right:auto;top:auto;-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{top:var(--fa-top,0);right:var(--fa-right,0);-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:var(--fa-left,0);right:auto;top:var(--fa-top,0);-webkit-transform:scale(var(--fa-layers-scale,.25));transform:scale(var(--fa-layers-scale,.25));-webkit-transform-origin:top left;transform-origin:top left}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}.fa-xs{font-size:.75em;line-height:.0833333337em;vertical-align:.125em}.fa-sm{font-size:.875em;line-height:.0714285718em;vertical-align:.0535714295em}.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.0416666682em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.03125em;vertical-align:-.1875em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:var(--fa-li-margin,2.5em);padding-left:0}.fa-ul>li{position:relative}.fa-li{left:calc(var(--fa-li-width,2em) * -1);position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}.fa-border{border-color:var(--fa-border-color,#eee);border-radius:var(--fa-border-radius,.1em);border-style:var(--fa-border-style,solid);border-width:var(--fa-border-width,.08em);padding:var(--fa-border-padding,.2em .25em .15em)}.fa-pull-left{float:left;margin-right:var(--fa-pull-margin,.3em)}.fa-pull-right{float:right;margin-left:var(--fa-pull-margin,.3em)}.fa-beat{-webkit-animation-name:fa-beat;animation-name:fa-beat;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-bounce{-webkit-animation-name:fa-bounce;animation-name:fa-bounce;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1))}.fa-fade{-webkit-animation-name:fa-fade;animation-name:fa-fade;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-beat-fade{-webkit-animation-name:fa-beat-fade;animation-name:fa-beat-fade;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-flip{-webkit-animation-name:fa-flip;animation-name:fa-flip;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-shake{-webkit-animation-name:fa-shake;animation-name:fa-shake;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,2s);animation-duration:var(--fa-animation-duration,2s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin-reverse{--fa-animation-direction:reverse}.fa-pulse,.fa-spin-pulse{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,steps(8));animation-timing-function:var(--fa-animation-timing,steps(8))}@media (prefers-reduced-motion:reduce){.fa-beat,.fa-beat-fade,.fa-bounce,.fa-fade,.fa-flip,.fa-pulse,.fa-shake,.fa-spin,.fa-spin-pulse{-webkit-animation-delay:-1ms;animation-delay:-1ms;-webkit-animation-duration:1ms;animation-duration:1ms;-webkit-animation-iteration-count:1;animation-iteration-count:1;-webkit-transition-delay:0s;transition-delay:0s;-webkit-transition-duration:0s;transition-duration:0s}}@-webkit-keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@-webkit-keyframes fa-bounce{0%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}100%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}}@keyframes fa-bounce{0%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}100%{-webkit-transform:scale(1,1) translateY(0);transform:scale(1,1) translateY(0)}}@-webkit-keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@-webkit-keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@-webkit-keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@-webkit-keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}24%,8%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}100%,40%{-webkit-transform:rotate(0);transform:rotate(0)}}@keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}24%,8%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}100%,40%{-webkit-transform:rotate(0);transform:rotate(0)}}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}.fa-rotate-by{-webkit-transform:rotate(var(--fa-rotate-angle,0));transform:rotate(var(--fa-rotate-angle,0))}.fa-stack{display:inline-block;vertical-align:middle;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0;z-index:var(--fa-stack-z-index,auto)}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:var(--fa-inverse,#fff)}.fa-sr-only,.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.fa-sr-only-focusable:not(:focus),.sr-only-focusable:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fa-duotone.fa-inverse,.fad.fa-inverse{color:var(--fa-inverse,#fff)}</style><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+        
+        <title>Back Office</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="https://qe2.bepbackoffice.com/restaurantui/assets/BOSSLogo.png" rel="icon" type="image/x-icon">
+        <style>@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4taVIGxA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4kaVIGxA.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4saVIGxA.woff2) format('woff2');unicode-range:U+1F00-1FFF;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4jaVIGxA.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4iaVIGxA.woff2) format('woff2');unicode-range:U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B5caVIGxA.woff2) format('woff2');unicode-range:U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B5OaVIGxA.woff2) format('woff2');unicode-range:U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4vaVIGxA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4uaVIGxA.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-stretch:100%;src:url(https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVI.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style>
+        <link href="./Back Office style guide dropdown_files/roboto" rel="stylesheet">
+        <link href="./Back Office style guide dropdown_files/magiczoomplus.css" rel="stylesheet" type="text/css">
+        <script async="" crossorigin="anonymous" src="./Back Office style guide dropdown_files/fs.js"></script><script async="" src="./Back Office style guide dropdown_files/pendo-staging.js"></script><script async="" src="./Back Office style guide dropdown_files/pendo.js"></script><script defer="" src="./Back Office style guide dropdown_files/fontawesome.js"></script>
+        <script defer="" src="./Back Office style guide dropdown_files/custom-icons.js"></script>
+        <script src="./Back Office style guide dropdown_files/magiczoomplus.js" type="text/javascript"></script>
+        <script id="ze-snippet" src="./Back Office style guide dropdown_files/snippet.js"></script>
+        <script src="./Back Office style guide dropdown_files/saved_resource"></script>
+        <script>
+            (function (apiKey) {
+                (function (p, e, n, d, o) {
+                    var v, w, x, y, z;
+                    o = p[d] = p[d] || {};
+                    o._q = o._q || [];
+                    v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                    for (w = 0, x = v.length; w < x; ++w)
+                        (function (m) {
+                            o[m] =
+                                o[m] ||
+                                function () {
+                                    o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                                };
+                        })(v[w]);
+                    y = e.createElement(n);
+                    y.async = !0;
+                    y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                    z = e.getElementsByTagName(n)[0];
+                    z.parentNode.insertBefore(y, z);
+                })(window, document, 'script', 'pendo');
+            })('cdc3151b-ddb6-41ae-5a1b-08dfcbeb8678');
+        </script>
+        <script async="" src="./Back Office style guide dropdown_files/widget.js" type="text/javascript"></script>
+        <style>@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');}.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}</style>
+        <script src="./Back Office style guide dropdown_files/intuit.ipp.anywhere-1.3.2.js" type="text/javascript"></script><script type="text/javascript" src="./Back Office style guide dropdown_files/jquery.min.js"></script>
+
+        <script>
+            void 0 === window.navatticQueue &&
+                ((window.navatticQueue = []),
+                (window.navattic = new Proxy(
+                    {},
+                    {
+                        get: function n(t, u, e) {
+                            return function () {
+                                for (var n = arguments.length, t = Array(n), e = 0; e < n; e++) t[e] = arguments[e];
+                                return navatticQueue.push({ function: u, arguments: t });
+                            };
+                        },
+                    }
+                )));
+        </script>
+
+        <script async="" src="./Back Office style guide dropdown_files/sdk.js"></script>
+
+        <script>
+            (function (m, a, z, e) {
+                var s, t;
+                try {
+                    t = m.sessionStorage.getItem('maze-us');
+                } catch (err) {}
+
+                if (!t) {
+                    t = new Date().getTime();
+                    try {
+                        m.sessionStorage.setItem('maze-us', t);
+                    } catch (err) {}
+                }
+
+                s = a.createElement('script');
+                s.src = z + '?apiKey=' + e;
+                s.async = true;
+                a.getElementsByTagName('head')[0].appendChild(s);
+                m.mazeUniversalSnippetApiKey = e;
+            })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', 'f708a85c-c311-4567-a415-0d892e6da0d7');
+        </script><script src="./Back Office style guide dropdown_files/maze-universal-loader.js" async=""></script>
+    <link rel="stylesheet" href="./Back Office style guide dropdown_files/styles-44LPPLSP.css"><script src="./Back Office style guide dropdown_files/contextualScaffold.js" async=""></script><style type="text/css"></style><link rel="stylesheet" href="./Back Office style guide dropdown_files/intuit.ipp.anywhere.css" type="text/css" media="all"><!--[if IE 7]><style type='text/css'>.intuitPlatformConnectButton, .intuitPlatformReconnectButton, .intuitPlatformLoginButtonVertical, .intuitPlatformLoginButtonHorizontal, .intuitPlatformLoginButtonLogo { font-size:0; text-indent: 0; line-height: 0; overflow: hidden; }</style><![endif]--><script>window['_fs_run_in_iframe'] = true;
+            window['_fs_debug'] = false;
+            window['_fs_host'] = 'fullstory.com';
+            window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+            window['_fs_org'] = 'KSR2';
+            window['_fs_namespace'] = 'FS';
+            (function (m, n, e, t, l, o, g, y) {
+                if (e in m) {
+                    if (m.console && m.console.log) {
+                        m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');
+                    }
+                    return;
+                }
+                g = m[e] = function (a, b, s) {
+                    g.q ? g.q.push([a, b, s]) : g._api(a, b, s);
+                };
+                g.q = [];
+                o = n.createElement(t);
+                o.async = 1;
+                o.crossOrigin = 'anonymous';
+                o.src = 'https://' + _fs_script;
+                y = n.getElementsByTagName(t)[0];
+                y.parentNode.insertBefore(o, y);
+                g.identify = function (i, v, s) {
+                    g(l, { uid: i }, s);
+                    if (v) g(l, v, s);
+                };
+                g.setUserVars = function (v, s) {
+                    g(l, v, s);
+                };
+                g.event = function (i, v, s) {
+                    g('event', { n: i, p: v }, s);
+                };
+                g.anonymize = function () {
+                    g.identify(!!0);
+                };
+                g.shutdown = function () {
+                    g('rec', !1);
+                };
+                g.restart = function () {
+                    g('rec', !0);
+                };
+                g.log = function (a, b) {
+                    g('log', [a, b]);
+                };
+                g.consent = function (a) {
+                    g('consent', !arguments.length || a);
+                };
+                g.identifyAccount = function (i, v) {
+                    o = 'account';
+                    v = v || {};
+                    v.acctId = i;
+                    g(o, v);
+                };
+                g.clearUserCookie = function () {};
+                g.setVars = function (n, p) {
+                    g('setVars', [n, p]);
+                };
+                g._w = {};
+                y = 'XMLHttpRequest';
+                g._w[y] = m[y];
+                y = 'fetch';
+                g._w[y] = m[y];
+                if (m[y])
+                    m[y] = function () {
+                        return g._w[y].apply(this, arguments);
+                    };
+                g._v = '1.3.0';
+            })(window, document, window['_fs_namespace'], 'script', 'user');</script><style>.empty[_ngcontent-ng-c375097744]{content:""}.brand-main-blue[_ngcontent-ng-c375097744]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c375097744]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c375097744]{color:#23408f}.brand-grey[_ngcontent-ng-c375097744]{color:#484848}.brand-light-grey[_ngcontent-ng-c375097744]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c375097744]{color:#5f6272}.brand-black[_ngcontent-ng-c375097744]{color:#000}.brand-green[_ngcontent-ng-c375097744]{color:#00a95d}.brand-red[_ngcontent-ng-c375097744]{color:#fa9016}.brand-warn[_ngcontent-ng-c375097744]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c375097744]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c375097744]{color:#555}.marketing-light-grey[_ngcontent-ng-c375097744]{color:#999}.sub-text-grey[_ngcontent-ng-c375097744]{color:#8d919a;font-size:14px}.app-component-main-div[_ngcontent-ng-c375097744]{height:100%;width:100%;display:grid;grid-template:"sidebar content" 1fr/max-content 1fr;grid-template-rows:1fr;overflow-y:hidden;background:#f8f8fa}.app-component-inner-div[_ngcontent-ng-c375097744]{width:100%;height:100%;overflow:hidden;display:grid;grid-template-columns:max-content 1fr}.app-main-content[_ngcontent-ng-c375097744]{min-height:0;height:100vh;overflow-y:auto;grid-area:content}.app-main-content-no-sidebar[_ngcontent-ng-c375097744]{min-height:0;height:100vh;overflow-y:auto;grid-column:1/3}.orderly-sidebar-navigation[_ngcontent-ng-c375097744]{z-index:25}</style><style>.brand-main-blue[_ngcontent-ng-c1928313698]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c1928313698]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c1928313698]{color:#23408f}.brand-grey[_ngcontent-ng-c1928313698]{color:#484848}.brand-light-grey[_ngcontent-ng-c1928313698]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c1928313698]{color:#5f6272}.brand-black[_ngcontent-ng-c1928313698]{color:#000}.brand-green[_ngcontent-ng-c1928313698]{color:#00a95d}.brand-red[_ngcontent-ng-c1928313698]{color:#fa9016}.brand-warn[_ngcontent-ng-c1928313698]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c1928313698]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c1928313698]{color:#555}.marketing-light-grey[_ngcontent-ng-c1928313698]{color:#999}.sub-text-grey[_ngcontent-ng-c1928313698]{color:#8d919a;font-size:14px}.empty[_ngcontent-ng-c1928313698]{content:""}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]::part(body){max-height:75vh;max-width:75vw;width:fit-content;align-self:center}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]::part(panel){border-radius:8px}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]::part(header){height:2.938rem;display:flex;align-items:center;gap:.75rem;align-self:stretch}sl-dialog.orderly-dialog.hide-actions[_ngcontent-ng-c1928313698]::part(header-actions){display:none}sl-dialog.orderly-dialog.show-actions[_ngcontent-ng-c1928313698]::part(header-actions){display:flex;padding-right:5px}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .footer-wrapper[_ngcontent-ng-c1928313698]{display:flex;align-items:center;justify-content:space-between;gap:.5rem}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .footer-wrapper[_ngcontent-ng-c1928313698]   .mostLeftButton[_ngcontent-ng-c1928313698]{justify-self:left}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .footer-wrapper[_ngcontent-ng-c1928313698]   .rightButtonGroup[_ngcontent-ng-c1928313698]{display:flex;gap:.5rem}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .header-text[_ngcontent-ng-c1928313698]{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;flex:1 0 0;font-size:1.25rem;font-weight:500;letter-spacing:.00188rem;overflow:hidden;text-overflow:ellipsis}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .subheader-text[_ngcontent-ng-c1928313698]{margin-top:4px;font-size:.875rem;font-weight:400;letter-spacing:.00219rem}sl-dialog.orderly-dialog[_ngcontent-ng-c1928313698]   .right-buttons[_ngcontent-ng-c1928313698]{display:flex;gap:10px}sl-dialog.orderly-dialog.non-system-error[_ngcontent-ng-c1928313698]::part(base){z-index:10101}sl-dialog.orderly-dialog.system-error[_ngcontent-ng-c1928313698]::part(base){z-index:10102}</style><style>.tooltip-content[_ngcontent-ng-c578846413]{display:grid;grid-template:"icon rightContainer"/min-content auto;align-items:center}.tooltip-content[_ngcontent-ng-c578846413]   .icon-container[_ngcontent-ng-c578846413]{grid-area:icon;margin-right:12px}.tooltip-content[_ngcontent-ng-c578846413]   .right-container[_ngcontent-ng-c578846413]{grid-area:rightContainer;display:flex;flex-flow:column nowrap}</style><style>.brand-main-blue[_ngcontent-ng-c696435435]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c696435435]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c696435435]{color:#23408f}.brand-grey[_ngcontent-ng-c696435435]{color:#484848}.brand-light-grey[_ngcontent-ng-c696435435]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c696435435]{color:#5f6272}.brand-black[_ngcontent-ng-c696435435]{color:#000}.brand-green[_ngcontent-ng-c696435435]{color:#00a95d}.brand-red[_ngcontent-ng-c696435435]{color:#fa9016}.brand-warn[_ngcontent-ng-c696435435]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c696435435]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c696435435]{color:#555}.marketing-light-grey[_ngcontent-ng-c696435435]{color:#999}.sub-text-grey[_ngcontent-ng-c696435435]{color:#8d919a;font-size:14px}.recipe-warning-container[_ngcontent-ng-c696435435]{display:grid;grid-template-rows:35px auto 44px;grid-template-columns:minmax(428px,726px);font-weight:400;gap:16px;padding:0;margin:0;border-bottom:1px solid #fff2df;background-color:#fff;align-items:start;box-shadow:0 4px 12px #00000040;border-radius:8px;box-sizing:border-box}.recipe-warning-container[_ngcontent-ng-c696435435]   .recipe-warning-header[_ngcontent-ng-c696435435]{background-color:#ffc061;font-weight:500;margin-bottom:5px;padding:8px 0 8px 16px;color:#060d21;border-top:1px solid #ffc061;border-radius:8px 8px 0 0}.recipe-warning-container[_ngcontent-ng-c696435435]   .recipe-warning-message-container[_ngcontent-ng-c696435435]{margin-bottom:5px;max-height:500px;overflow:auto}.recipe-warning-container[_ngcontent-ng-c696435435]   .explanation-text[_ngcontent-ng-c696435435]{margin-bottom:8px}.recipe-warning-container[_ngcontent-ng-c696435435]   .standard-text[_ngcontent-ng-c696435435], .recipe-warning-container[_ngcontent-ng-c696435435]   .explanation-text[_ngcontent-ng-c696435435]{padding-left:14px}.recipe-warning-container[_ngcontent-ng-c696435435]   .recipe-warning-footer[_ngcontent-ng-c696435435]{display:flex;background-color:#fff2df;justify-content:flex-end;padding:8px 16px;align-items:center;border-bottom:1px solid #fff2df;border-radius:0 0 8px 8px}.recipe-warning-container[_ngcontent-ng-c696435435]   .recipe-warning-footer[_ngcontent-ng-c696435435]   button[_ngcontent-ng-c696435435]{display:flex;height:28px;font-weight:500;border-radius:4px;text-transform:none;padding-bottom:4px;line-height:12px;color:#fff;background-color:#23408f}</style><style>.brand-main-blue[_ngcontent-ng-c312980040]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c312980040]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c312980040]{color:#23408f}.brand-grey[_ngcontent-ng-c312980040]{color:#484848}.brand-light-grey[_ngcontent-ng-c312980040]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c312980040]{color:#5f6272}.brand-black[_ngcontent-ng-c312980040]{color:#000}.brand-green[_ngcontent-ng-c312980040]{color:#00a95d}.brand-red[_ngcontent-ng-c312980040]{color:#fa9016}.brand-warn[_ngcontent-ng-c312980040]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c312980040]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c312980040]{color:#555}.marketing-light-grey[_ngcontent-ng-c312980040]{color:#999}.sub-text-grey[_ngcontent-ng-c312980040]{color:#8d919a;font-size:14px}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]{box-sizing:border-box}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   i[_ngcontent-ng-c312980040]:hover{color:#fa9016}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   #invoiceAttachmentImageModalBody[_ngcontent-ng-c312980040]{display:flex;flex-flow:column nowrap;background:#fff;box-shadow:0 4px 12px #00000040;border-radius:8px;gap:8px;max-width:70vw;max-height:80vh;margin:0 1em}@media(max-height:666px){#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   #invoiceAttachmentImageModalBody[_ngcontent-ng-c312980040]{grid-template-rows:36px 500px 42px;max-height:70vh}}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   #invoiceAttachmentImageModalBody[_ngcontent-ng-c312980040]   .image-header[_ngcontent-ng-c312980040]{display:grid;grid-template-columns:auto auto;grid-template-rows:auto;justify-content:space-between;background:#23408f;font-weight:400;font-size:16px;line-height:19px;color:#fff;padding:8px 16px;border-radius:8px 8px 0 0;align-items:center}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]{overflow:auto}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]   .img[_ngcontent-ng-c312980040]{max-height:650px;max-width:518px;overflow:auto}@media(max-height:666px){#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]   .img[_ngcontent-ng-c312980040]{max-height:400px}}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]   .pdf-container[_ngcontent-ng-c312980040]{display:grid;grid-template-columns:98%;grid-template-rows:auto;justify-content:center;align-items:center;align-content:space-evenly;margin-top:1em}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]   .pdf-container[_ngcontent-ng-c312980040]   embed[_ngcontent-ng-c312980040]{height:600px;width:600px;align-self:center}@media(max-height:666px){#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .main[_ngcontent-ng-c312980040]   .pdf-container[_ngcontent-ng-c312980040]   embed[_ngcontent-ng-c312980040]{height:450px;width:450px;align-self:center}}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .pdf-footer[_ngcontent-ng-c312980040]{display:grid;align-content:center;justify-content:center}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]{display:flex;flex-flow:row nowrap;align-items:center;justify-content:center;font-weight:400;font-size:14px;line-height:16px;letter-spacing:.0125em;color:#060d21;padding-bottom:16px;gap:8px}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]   i[_ngcontent-ng-c312980040]{font-weight:900;font-size:16px;line-height:16px;letter-spacing:.0025em}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]   .divider[_ngcontent-ng-c312980040]{height:20px;width:0;border-left:1px solid #d3d8e0}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]   .left[_ngcontent-ng-c312980040]{display:grid;gap:8px;align-items:center;grid-template-columns:repeat(8,auto);grid-template-rows:auto}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]   .right[_ngcontent-ng-c312980040]{display:grid;gap:8px;align-items:center;grid-template-columns:auto auto auto;grid-template-rows:auto}#invoiceAttachmentImageModal[_ngcontent-ng-c312980040]   .image-footer[_ngcontent-ng-c312980040]   .right[_ngcontent-ng-c312980040]   i[_ngcontent-ng-c312980040]:hover{color:#fa9016;cursor:pointer}.mz-lens[_ngcontent-ng-c312980040]{z-index:9999999}</style><style>.brand-main-blue[_ngcontent-ng-c4105645340]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c4105645340]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c4105645340]{color:#23408f}.brand-grey[_ngcontent-ng-c4105645340]{color:#484848}.brand-light-grey[_ngcontent-ng-c4105645340]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c4105645340]{color:#5f6272}.brand-black[_ngcontent-ng-c4105645340]{color:#000}.brand-green[_ngcontent-ng-c4105645340]{color:#00a95d}.brand-red[_ngcontent-ng-c4105645340]{color:#fa9016}.brand-warn[_ngcontent-ng-c4105645340]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c4105645340]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c4105645340]{color:#555}.marketing-light-grey[_ngcontent-ng-c4105645340]{color:#999}.sub-text-grey[_ngcontent-ng-c4105645340]{color:#8d919a;font-size:14px}.slot-bridge[_ngcontent-ng-c4105645340]:not(:has(*)){display:none}wa-button.is-circle[_ngcontent-ng-c4105645340]::part(base){border-radius:50%}wa-button[variant=brand][appearance=outlined][_ngcontent-ng-c4105645340]{--wa-color-brand-border-loud: var(--wa-color-brand-50)}wa-button[variant=brand][appearance=plain][_ngcontent-ng-c4105645340]:hover::part(base), wa-button[variant=brand][appearance=plain][_ngcontent-ng-c4105645340]:active::part(base){background-color:#c8cfe3}</style><script data-fs-namespace="FS" async="" src="./Back Office style guide dropdown_files/integrations"></script><style>.brand-main-blue[_ngcontent-ng-c2968052278]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c2968052278]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c2968052278]{color:#23408f}.brand-grey[_ngcontent-ng-c2968052278]{color:#484848}.brand-light-grey[_ngcontent-ng-c2968052278]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c2968052278]{color:#5f6272}.brand-black[_ngcontent-ng-c2968052278]{color:#000}.brand-green[_ngcontent-ng-c2968052278]{color:#00a95d}.brand-red[_ngcontent-ng-c2968052278]{color:#fa9016}.brand-warn[_ngcontent-ng-c2968052278]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c2968052278]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c2968052278]{color:#555}.marketing-light-grey[_ngcontent-ng-c2968052278]{color:#999}.sub-text-grey[_ngcontent-ng-c2968052278]{color:#8d919a;font-size:14px}[_nghost-ng-c2968052278]{display:block;height:100%;min-height:0}.sg-shell[_ngcontent-ng-c2968052278]{display:grid;grid-template-columns:260px 1fr;height:100%;min-height:0}.sg-sidebar[_ngcontent-ng-c2968052278]{border-right:1px solid #d3d8e0;overflow-y:auto;padding:1.5rem 0;background:#f8f8fa}.sg-sidebar-header[_ngcontent-ng-c2968052278]{padding:0 1.5rem 1.5rem;border-bottom:1px solid #d3d8e0;margin-bottom:1rem}.sg-sidebar-title[_ngcontent-ng-c2968052278]{font-size:1.125rem;font-weight:600;color:#18191d}.sg-sidebar-subtitle[_ngcontent-ng-c2968052278]{font-size:.75rem;color:#5f6272;margin-top:.25rem;letter-spacing:.02em;text-transform:uppercase}.sg-sidebar-group[_ngcontent-ng-c2968052278]{margin-bottom:1.25rem}.sg-sidebar-group-header[_ngcontent-ng-c2968052278]{display:block;padding:.4rem 1.5rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#5f6272;text-decoration:none}.sg-sidebar-group-header[_ngcontent-ng-c2968052278]:hover{color:#18191d}.sg-sidebar-group-header.is-active[_ngcontent-ng-c2968052278]{color:#0071ce}.sg-sidebar-entries[_ngcontent-ng-c2968052278]{list-style:none;padding:0;margin:.25rem 0 0}.sg-sidebar-entry[_ngcontent-ng-c2968052278]{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.35rem 1.5rem .35rem 2rem;font-size:.875rem;color:#18191d;text-decoration:none;border-left:2px solid transparent}.sg-sidebar-entry[_ngcontent-ng-c2968052278]:hover{background:#f0f0f0}.sg-sidebar-entry.is-active[_ngcontent-ng-c2968052278]{background:#f2f5fd;border-left-color:#0071ce;font-weight:500}.sg-sidebar-entry-status[_ngcontent-ng-c2968052278]{font-size:.625rem;text-transform:uppercase;letter-spacing:.05em;padding:.125rem .4rem;border-radius:999px;background:#cfd1d9;color:#5e5e5e}.sg-sidebar-entry-status[data-status=experimental][_ngcontent-ng-c2968052278]{background:#fff2df;color:#b44e15}.sg-sidebar-entry-status[data-status=deprecated][_ngcontent-ng-c2968052278]{background:#fed0d0;color:#9a261c}.sg-content[_ngcontent-ng-c2968052278]{overflow-y:auto;padding:2.5rem 3rem;min-width:0}</style><style>.brand-main-blue[_ngcontent-ng-c113763685]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c113763685]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c113763685]{color:#23408f}.brand-grey[_ngcontent-ng-c113763685]{color:#484848}.brand-light-grey[_ngcontent-ng-c113763685]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c113763685]{color:#5f6272}.brand-black[_ngcontent-ng-c113763685]{color:#000}.brand-green[_ngcontent-ng-c113763685]{color:#00a95d}.brand-red[_ngcontent-ng-c113763685]{color:#fa9016}.brand-warn[_ngcontent-ng-c113763685]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c113763685]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c113763685]{color:#555}.marketing-light-grey[_ngcontent-ng-c113763685]{color:#999}.sub-text-grey[_ngcontent-ng-c113763685]{color:#8d919a;font-size:14px}[_nghost-ng-c113763685]{display:block;max-width:80rem}.doc-page-header[_ngcontent-ng-c113763685]{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid #d3d8e0}.doc-page-titles[_ngcontent-ng-c113763685]{min-width:0}.doc-page-title[_ngcontent-ng-c113763685]{margin:0;font-size:2rem;font-weight:600;color:#18191d}.doc-page-subtitle[_ngcontent-ng-c113763685]{margin:.5rem 0 0;color:#5f6272}.doc-page-meta[_ngcontent-ng-c113763685]{display:flex;align-items:center;gap:.5rem;flex-shrink:0}.doc-tag[_ngcontent-ng-c113763685]{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .6rem;border-radius:999px;font-weight:600;background:#cfd1d9;color:#484848}.doc-tag[data-tier=rich][_ngcontent-ng-c113763685]{background:#dee2ee;color:#23408f}.doc-tag[data-tier=standard][_ngcontent-ng-c113763685]{background:#f0f0f0;color:#484848}.doc-tag[data-tier=minimal][_ngcontent-ng-c113763685]{background:#f8f8fa;color:#5e5e5e}.doc-tag[data-status=experimental][_ngcontent-ng-c113763685]{background:#fff2df;color:#b44e15}.doc-tag[data-status=deprecated][_ngcontent-ng-c113763685]{background:#fed0d0;color:#9a261c}.doc-figma-link[_ngcontent-ng-c113763685]{font-size:.8rem;color:#0071ce;text-decoration:none}.doc-figma-link[_ngcontent-ng-c113763685]:hover{text-decoration:underline}.doc-page-grid[_ngcontent-ng-c113763685]{display:grid;grid-template-columns:1fr;grid-auto-rows:min-content;align-items:start;gap:2.5rem}.doc-page-grid.has-toc[_ngcontent-ng-c113763685]{grid-template-columns:minmax(0,1fr) 220px}@media(max-width:1024px){.doc-page-grid[_ngcontent-ng-c113763685], .doc-page-grid.has-toc[_ngcontent-ng-c113763685]{grid-template-columns:1fr}}.doc-page-body[_ngcontent-ng-c113763685]{min-width:0;display:flex;flex-direction:column;gap:3rem}.doc-page-toc[_ngcontent-ng-c113763685]{position:sticky;top:1rem;align-self:start;padding:.5rem 0 .5rem 1rem;border-left:1px solid #d3d8e0}@media(max-width:1024px){.doc-page-toc[_ngcontent-ng-c113763685]{display:none}}.doc-page-toc-title[_ngcontent-ng-c113763685]{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:#5f6272;margin-bottom:.5rem}.doc-page-toc-list[_ngcontent-ng-c113763685]{list-style:none;margin:0;padding:0}.doc-page-toc-list[_ngcontent-ng-c113763685]   li[_ngcontent-ng-c113763685] + li[_ngcontent-ng-c113763685]{margin-top:.1rem}.doc-page-toc-link[_ngcontent-ng-c113763685]{display:block;width:100%;text-align:left;padding:.3rem .5rem;border:none;background:transparent;border-radius:.25rem;font-size:.85rem;color:#5f6272;text-decoration:none;cursor:pointer;line-height:1.35}.doc-page-toc-link[_ngcontent-ng-c113763685]:hover{background:#f8f8fa;color:#23408f}</style><style>.brand-main-blue[_ngcontent-ng-c1256223046]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c1256223046]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c1256223046]{color:#23408f}.brand-grey[_ngcontent-ng-c1256223046]{color:#484848}.brand-light-grey[_ngcontent-ng-c1256223046]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c1256223046]{color:#5f6272}.brand-black[_ngcontent-ng-c1256223046]{color:#000}.brand-green[_ngcontent-ng-c1256223046]{color:#00a95d}.brand-red[_ngcontent-ng-c1256223046]{color:#fa9016}.brand-warn[_ngcontent-ng-c1256223046]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c1256223046]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c1256223046]{color:#555}.marketing-light-grey[_ngcontent-ng-c1256223046]{color:#999}.sub-text-grey[_ngcontent-ng-c1256223046]{color:#8d919a;font-size:14px}[_nghost-ng-c1256223046]{display:block}.doc-example-title[_ngcontent-ng-c1256223046]{margin:0 0 .5rem;font-size:1.125rem;font-weight:600;color:#18191d}.doc-example-description[_ngcontent-ng-c1256223046]{margin:0 0 1rem;color:#5f6272}.doc-example-frame[_ngcontent-ng-c1256223046]{border:1px solid #d3d8e0;border-radius:.5rem;background:#fff;padding:1.5rem;min-height:4rem}.doc-example-code-controls[_ngcontent-ng-c1256223046]{margin-top:.5rem;display:flex;justify-content:flex-end}.doc-example-code-toggle[_ngcontent-ng-c1256223046]{background:transparent;border:1px solid #d3d8e0;border-radius:.25rem;padding:.25rem .75rem;font-size:.75rem;color:#18191d;cursor:pointer}.doc-example-code-toggle[_ngcontent-ng-c1256223046]:hover{background:#f0f0f0}.doc-example-code[_ngcontent-ng-c1256223046]{margin:.5rem 0 0;padding:1rem 1.25rem;border-radius:.5rem;background:#060d21;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8rem;line-height:1.5;overflow-x:auto}</style><style>.brand-main-blue[_ngcontent-ng-c1680986562]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c1680986562]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c1680986562]{color:#23408f}.brand-grey[_ngcontent-ng-c1680986562]{color:#484848}.brand-light-grey[_ngcontent-ng-c1680986562]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c1680986562]{color:#5f6272}.brand-black[_ngcontent-ng-c1680986562]{color:#000}.brand-green[_ngcontent-ng-c1680986562]{color:#00a95d}.brand-red[_ngcontent-ng-c1680986562]{color:#fa9016}.brand-warn[_ngcontent-ng-c1680986562]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c1680986562]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c1680986562]{color:#555}.marketing-light-grey[_ngcontent-ng-c1680986562]{color:#999}.sub-text-grey[_ngcontent-ng-c1680986562]{color:#8d919a;font-size:14px}[_nghost-ng-c1680986562]{display:block}.doc-props-title[_ngcontent-ng-c1680986562]{margin:0 0 1rem;font-size:1.25rem;font-weight:600;color:#18191d}.doc-props-table[_ngcontent-ng-c1680986562]{width:100%;border-collapse:collapse;border:1px solid #d3d8e0;border-radius:.5rem;overflow:hidden;font-size:.875rem}.doc-props-table[_ngcontent-ng-c1680986562]   thead[_ngcontent-ng-c1680986562]{background:#f8f8fa}.doc-props-table[_ngcontent-ng-c1680986562]   th[_ngcontent-ng-c1680986562], .doc-props-table[_ngcontent-ng-c1680986562]   td[_ngcontent-ng-c1680986562]{padding:.65rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #d3d8e0}.doc-props-table[_ngcontent-ng-c1680986562]   th[_ngcontent-ng-c1680986562]{font-weight:600;color:#18191d}.doc-props-table[_ngcontent-ng-c1680986562]   tbody[_ngcontent-ng-c1680986562]   tr[_ngcontent-ng-c1680986562]:last-child   td[_ngcontent-ng-c1680986562]{border-bottom:none}.doc-props-name[_ngcontent-ng-c1680986562]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f0f0f0;padding:.1rem .35rem;border-radius:.25rem;color:#18191d}.doc-props-required[_ngcontent-ng-c1680986562]{margin-left:.4rem;font-size:.65rem;text-transform:uppercase;color:#fa1616}.doc-props-type[_ngcontent-ng-c1680986562]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#23408f;font-size:.8rem}.doc-props-default[_ngcontent-ng-c1680986562]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#5e5e5e;font-size:.8rem}.doc-props-empty[_ngcontent-ng-c1680986562]{color:#9a9aa3}</style><style>.brand-main-blue[_ngcontent-ng-c3680462241]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c3680462241]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c3680462241]{color:#23408f}.brand-grey[_ngcontent-ng-c3680462241]{color:#484848}.brand-light-grey[_ngcontent-ng-c3680462241]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c3680462241]{color:#5f6272}.brand-black[_ngcontent-ng-c3680462241]{color:#000}.brand-green[_ngcontent-ng-c3680462241]{color:#00a95d}.brand-red[_ngcontent-ng-c3680462241]{color:#fa9016}.brand-warn[_ngcontent-ng-c3680462241]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c3680462241]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c3680462241]{color:#555}.marketing-light-grey[_ngcontent-ng-c3680462241]{color:#999}.sub-text-grey[_ngcontent-ng-c3680462241]{color:#8d919a;font-size:14px}[_nghost-ng-c3680462241]{display:block}.doc-when-to-use-title[_ngcontent-ng-c3680462241]{margin:0 0 .75rem;font-size:1.25rem;font-weight:600;color:#18191d}.doc-when-to-use-body[_ngcontent-ng-c3680462241]{color:#18191d;line-height:1.6}.doc-when-to-use-body[_ngcontent-ng-c3680462241] > [_ngcontent-ng-c3680462241]:first-child{margin-top:0}.doc-when-to-use-body[_ngcontent-ng-c3680462241] > [_ngcontent-ng-c3680462241]:last-child{margin-bottom:0}</style><style>.brand-main-blue[_ngcontent-ng-c2227531171]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c2227531171]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c2227531171]{color:#23408f}.brand-grey[_ngcontent-ng-c2227531171]{color:#484848}.brand-light-grey[_ngcontent-ng-c2227531171]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c2227531171]{color:#5f6272}.brand-black[_ngcontent-ng-c2227531171]{color:#000}.brand-green[_ngcontent-ng-c2227531171]{color:#00a95d}.brand-red[_ngcontent-ng-c2227531171]{color:#fa9016}.brand-warn[_ngcontent-ng-c2227531171]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c2227531171]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c2227531171]{color:#555}.marketing-light-grey[_ngcontent-ng-c2227531171]{color:#999}.sub-text-grey[_ngcontent-ng-c2227531171]{color:#8d919a;font-size:14px}[_nghost-ng-c2227531171]{display:block}.doc-section[_ngcontent-ng-c2227531171]{margin:2rem 0 .5rem;padding-bottom:.5rem;border-bottom:1px solid #d3d8e0;font-size:1.25rem;font-weight:600;color:#18191d;scroll-margin-top:1rem}.doc-section-anchor[_ngcontent-ng-c2227531171]{display:inline-flex;align-items:baseline;gap:.4rem;color:inherit;text-decoration:none}.doc-section-anchor-glyph[_ngcontent-ng-c2227531171]{opacity:0;font-weight:400;color:#5f6272;transition:opacity .15s ease-out}.doc-section[_ngcontent-ng-c2227531171]:hover   .doc-section-anchor-glyph[_ngcontent-ng-c2227531171], .doc-section-anchor[_ngcontent-ng-c2227531171]:focus-visible   .doc-section-anchor-glyph[_ngcontent-ng-c2227531171]{opacity:1}</style><style>wa-dropdown[_ngcontent-ng-c2516922846]::part(menu){padding:var(--boss-menu-padding, .25em);width:var(--boss-menu-width, max-content)}</style><style>.brand-main-blue[_ngcontent-ng-c3259161575]{color:#0071ce}.moreLinkColor[_ngcontent-ng-c3259161575]{color:#698ff8}.brand-darker-blue[_ngcontent-ng-c3259161575]{color:#23408f}.brand-grey[_ngcontent-ng-c3259161575]{color:#484848}.brand-light-grey[_ngcontent-ng-c3259161575]{color:#9a9aa3}.brand-darker-grey[_ngcontent-ng-c3259161575]{color:#5f6272}.brand-black[_ngcontent-ng-c3259161575]{color:#000}.brand-green[_ngcontent-ng-c3259161575]{color:#00a95d}.brand-red[_ngcontent-ng-c3259161575]{color:#fa9016}.brand-warn[_ngcontent-ng-c3259161575]{color:#fa1616}.brand-alert-orange[_ngcontent-ng-c3259161575]{color:#ffc061}.marketing-dark-grey[_ngcontent-ng-c3259161575]{color:#555}.marketing-light-grey[_ngcontent-ng-c3259161575]{color:#999}.sub-text-grey[_ngcontent-ng-c3259161575]{color:#8d919a;font-size:14px}.bbfe-box[_ngcontent-ng-c3259161575]{height:4px;width:4px;text-align:center}.bf-box[_ngcontent-ng-c3259161575]{height:8px;width:8px}.superFriends-box[_ngcontent-ng-c3259161575]{height:12px;width:12px}.closeFriends-box[_ngcontent-ng-c3259161575]{height:16px;width:16px}.closerThanIshFriends-box[_ngcontent-ng-c3259161575]{height:20px}.closeishFriends-box[_ngcontent-ng-c3259161575]{height:24px;width:24px}.friends-box[_ngcontent-ng-c3259161575]{height:32px;width:32px}.okayFriends-box[_ngcontent-ng-c3259161575]{height:48px;width:48px}.acq-box[_ngcontent-ng-c3259161575]{height:64px;width:64px}.dist-acq-box[_ngcontent-ng-c3259161575]{height:72px;width:72px}.stranger-box[_ngcontent-ng-c3259161575]{height:128px;width:128px}[_nghost-ng-c3259161575]{display:block;width:100%}wa-combobox[_ngcontent-ng-c3259161575]{display:block}wa-combobox[_ngcontent-ng-c3259161575]   small[_ngcontent-ng-c3259161575]{padding-inline:.5rem;display:flex;flex-flow:row nowrap;align-items:center}wa-combobox[_ngcontent-ng-c3259161575]   small[_ngcontent-ng-c3259161575]   .group-header-action[_ngcontent-ng-c3259161575]{margin-left:auto;cursor:pointer;color:#23408f;font-weight:400}wa-combobox[_ngcontent-ng-c3259161575]   small[_ngcontent-ng-c3259161575]   .group-header-action[_ngcontent-ng-c3259161575]:hover{color:#002790}wa-combobox[_ngcontent-ng-c3259161575]   .footer-action[_ngcontent-ng-c3259161575]{display:block;margin:0 8px;padding:8px;cursor:pointer;color:#23408f;border-radius:3px}wa-combobox[_ngcontent-ng-c3259161575]   .footer-action.hovered[_ngcontent-ng-c3259161575]{background-color:#c8cfe3;color:#002790}wa-combobox[_ngcontent-ng-c3259161575]::part(tags){flex-wrap:nowrap;overflow:hidden}wa-combobox[_ngcontent-ng-c3259161575]::part(tag){min-width:0;overflow:hidden}wa-combobox[_ngcontent-ng-c3259161575]::part(tag__base){max-width:100%}wa-combobox[_ngcontent-ng-c3259161575]::part(tag__content){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</style><style type="text/css" scoped="scoped" class=" pendo-style-wmemqNrsWmMuDhuiJFue-mRO8ds" style="white-space: pre-wrap;"></style></head>
+    <body class="sg-v2-active">
+        <app-root ng-version="22.0.2" _nghost-ng-c375097744=""><div _ngcontent-ng-c375097744="" class="app-component-main-div"><!----><div _ngcontent-ng-c375097744="" class="app-main-content"><router-outlet _ngcontent-ng-c375097744=""></router-outlet><boss-style-guide-v2-shell _nghost-ng-c2968052278="" class="ng-star-inserted"><div _ngcontent-ng-c2968052278="" class="sg-shell"><nav _ngcontent-ng-c2968052278="" aria-label="Style guide navigation" class="sg-sidebar"><div _ngcontent-ng-c2968052278="" class="sg-sidebar-header"><div _ngcontent-ng-c2968052278="" class="sg-sidebar-title">Style Guide</div><div _ngcontent-ng-c2968052278="" class="sg-sidebar-subtitle">v2 — WebAwesome</div></div><div _ngcontent-ng-c2968052278="" class="sg-sidebar-group ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-group-header" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components"> Components </a><ul _ngcontent-ng-c2968052278="" class="sg-sidebar-entries ng-star-inserted"><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/badge"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Badge</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="stable">stable</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/button"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Button</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/checkbox"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Checkbox</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="stable">stable</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/combobox"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Combobox</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/divider"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Divider</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="stable">stable</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry is-active" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/dropdown"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Dropdown</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/input"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Input</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/split-button"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Split Button</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><li _ngcontent-ng-c2968052278="" class="ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-entry" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/components/select"><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-label">Select</span><span _ngcontent-ng-c2968052278="" class="sg-sidebar-entry-status ng-star-inserted" data-status="experimental">experimental</span><!----></a></li><!----></ul><!----></div><div _ngcontent-ng-c2968052278="" class="sg-sidebar-group ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-group-header" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/patterns"> Patterns </a><!----></div><div _ngcontent-ng-c2968052278="" class="sg-sidebar-group ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-group-header" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/uxStandards"> UX Standards </a><!----></div><div _ngcontent-ng-c2968052278="" class="sg-sidebar-group ng-star-inserted"><a _ngcontent-ng-c2968052278="" routerlinkactive="is-active" class="sg-sidebar-group-header" href="https://qe2.bepbackoffice.com/restaurantui/#/styleGuideV2/tokens"> Tokens </a><!----></div><!----></nav><main _ngcontent-ng-c2968052278="" class="sg-content"><router-outlet _ngcontent-ng-c2968052278=""></router-outlet><boss-dropdown-doc class="ng-star-inserted"><boss-doc-page name="Dropdown" status="experimental" subtitle="A bare wa-dropdown shell — you author your own trigger and boss-dropdown-item content, including arbitrary custom markup per item." tier="standard" _nghost-ng-c113763685=""><header _ngcontent-ng-c113763685="" class="doc-page-header"><div _ngcontent-ng-c113763685="" class="doc-page-titles"><h1 _ngcontent-ng-c113763685="" class="doc-page-title">Dropdown</h1><p _ngcontent-ng-c113763685="" class="doc-page-subtitle ng-star-inserted">A bare wa-dropdown shell — you author your own trigger and boss-dropdown-item content, including arbitrary custom markup per item.</p><!----></div><div _ngcontent-ng-c113763685="" class="doc-page-meta"><span _ngcontent-ng-c113763685="" class="doc-tag ng-star-inserted" data-tier="standard">standard</span><!----><span _ngcontent-ng-c113763685="" class="doc-tag ng-star-inserted" data-status="experimental">experimental</span><!----><!----></div></header><div _ngcontent-ng-c113763685="" class="doc-page-grid has-toc"><div _ngcontent-ng-c113763685="" class="doc-page-body"><boss-doc-when-to-use _nghost-ng-c3680462241=""><section _ngcontent-ng-c3680462241="" class="doc-when-to-use"><h2 _ngcontent-ng-c3680462241="" class="doc-when-to-use-title">When to use</h2><div _ngcontent-ng-c3680462241="" class="doc-when-to-use-body"><p><strong>Reach for boss-dropdown</strong> when you need a trigger-driven menu whose items are more than plain text — icons, multi-line rows, badges, anything a <code>boss-dropdown-item</code> can hold. The component only owns the <code>wa-dropdown</code> shell and its positioning; you supply the trigger (with <code>slot="trigger"</code>) and every <code>boss-dropdown-item</code> yourself. </p><p><strong>Don't use it</strong> for a simple primary-action-plus-variants menu with plain string options — <code>orderly-split-button</code> already covers that case more concisely.</p><p><strong>Known limitation:</strong> wrapping items in <code>boss-dropdown-item</code> disables arrow-key navigation between them (click/tap still work). See "Dropdown Item" below for details. </p></div></section></boss-doc-when-to-use><boss-doc-section _nghost-ng-c2227531171=""><h2 _ngcontent-ng-c2227531171="" class="doc-section" id="basic"><a _ngcontent-ng-c2227531171="" class="doc-section-anchor" href="https://qe2.bepbackoffice.com/restaurantui/#basic" aria-label="Link to Basic"><span _ngcontent-ng-c2227531171="" aria-hidden="true" class="doc-section-anchor-glyph">#</span><span _ngcontent-ng-c2227531171="" class="doc-section-anchor-label">Basic</span></a></h2></boss-doc-section><boss-doc-example description="The trigger is any element you author with slot=&#39;trigger&#39;. Each boss-dropdown-item can hold arbitrary custom markup, not just text." _nghost-ng-c1256223046=""><section _ngcontent-ng-c1256223046="" class="doc-example" id="custom-item-content"><h3 _ngcontent-ng-c1256223046="" class="doc-example-title ng-star-inserted">Custom item content</h3><!----><p _ngcontent-ng-c1256223046="" class="doc-example-description ng-star-inserted">The trigger is any element you author with slot='trigger'. Each boss-dropdown-item can hold arbitrary custom markup, not just text.</p><!----><div _ngcontent-ng-c1256223046="" class="doc-example-frame"><boss-dropdown _nghost-ng-c2516922846=""><wa-dropdown _ngcontent-ng-c2516922846="" size="m" placement="bottom-end" style="--boss-menu-padding: undefinedpx; --boss-menu-width: undefinedpx;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown --><!---->
+      <wa-popup flip="" flip-fallback-strategy="best-fit" shift="" shift-padding="10" auto-size="vertical" auto-size-padding="10" placement="bottom-end" distance="15" skidding="25"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/popup --><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div popover="manual" part="popup" class=" popup ">
+        <slot></slot>
+        <!--?lit$875551447$-->
+      </div>
+    </template>
+        <slot name="trigger" slot="anchor"></slot>
+        <div id="menu" part="menu" role="menu" tabindex="-1" aria-orientation="vertical" aria-expanded="false">
+          <slot></slot>
+        </div>
+      </wa-popup>
+    </template><orderly-button slot="trigger" variant="neutral" _nghost-ng-c4105645340="" id="wa-dropdown-trigger-VP21qbcwCyuuOuj_bk2OI" aria-haspopup="menu" aria-expanded="false"><wa-button _ngcontent-ng-c4105645340="" variant="neutral" appearance="outlined" size="medium" tabindex="0" data-cy="neutral-button" with-caret=""><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end caret" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+                <wa-icon part="caret" class="caret" library="system" name="chevron-down" variant="solid" aria-hidden="true" rotate="0" style="--rotate-angle: 0deg;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/icon --><!----><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" part="svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path fill="currentColor" d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></template></wa-icon>
+              
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Actions<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template><div style="display: flex; flex-direction: column; line-height: 1.3;"><strong>Duplicate</strong><span style="font-size: 0.85em; color: var(--wa-color-text-quiet);">Create a copy of this record</span></div></wa-dropdown-item></boss-dropdown-item><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template><div style="display: flex; flex-direction: column; line-height: 1.3;"><strong>Archive</strong><span style="font-size: 0.85em; color: var(--wa-color-text-quiet);">Hide without deleting</span></div></wa-dropdown-item></boss-dropdown-item><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="true" role="menuitem" disabled=""><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>Plain text item still works</wa-dropdown-item></boss-dropdown-item></wa-dropdown></boss-dropdown><p> Last event: <code>(none)</code></p></div><div _ngcontent-ng-c1256223046="" class="doc-example-code-controls ng-star-inserted"><button _ngcontent-ng-c1256223046="" type="button" class="doc-example-code-toggle"> Show code </button></div><!----><!----></section></boss-doc-example><boss-doc-section _nghost-ng-c2227531171=""><h2 _ngcontent-ng-c2227531171="" class="doc-section" id="placement"><a _ngcontent-ng-c2227531171="" class="doc-section-anchor" href="https://qe2.bepbackoffice.com/restaurantui/#placement" aria-label="Link to Placement"><span _ngcontent-ng-c2227531171="" aria-hidden="true" class="doc-section-anchor-glyph">#</span><span _ngcontent-ng-c2227531171="" class="doc-section-anchor-label">Placement</span></a></h2></boss-doc-section><boss-doc-example description="placement, distance, and skidding control where the menu opens, same as orderly-split-button&#39;s dropdown." _nghost-ng-c1256223046=""><section _ngcontent-ng-c1256223046="" class="doc-example" id="menu-placement"><h3 _ngcontent-ng-c1256223046="" class="doc-example-title ng-star-inserted">Menu placement</h3><!----><p _ngcontent-ng-c1256223046="" class="doc-example-description ng-star-inserted">placement, distance, and skidding control where the menu opens, same as orderly-split-button's dropdown.</p><!----><div _ngcontent-ng-c1256223046="" class="doc-example-frame"><boss-dropdown placement="top-end" _nghost-ng-c2516922846=""><wa-dropdown _ngcontent-ng-c2516922846="" size="m" placement="top-end" style="--boss-menu-padding: undefinedpx; --boss-menu-width: undefinedpx;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown --><!---->
+      <wa-popup flip="" flip-fallback-strategy="best-fit" shift="" shift-padding="10" auto-size="vertical" auto-size-padding="10" placement="top-end" distance="15" skidding="25"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/popup --><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div popover="manual" part="popup" class=" popup ">
+        <slot></slot>
+        <!--?lit$875551447$-->
+      </div>
+    </template>
+        <slot name="trigger" slot="anchor"></slot>
+        <div id="menu" part="menu" role="menu" tabindex="-1" aria-orientation="vertical" aria-expanded="false">
+          <slot></slot>
+        </div>
+      </wa-popup>
+    </template><orderly-button slot="trigger" variant="brand" _nghost-ng-c4105645340="" id="wa-dropdown-trigger-soCANFGIpV-Fw_a4B6wWI" aria-haspopup="menu" aria-expanded="false"><wa-button _ngcontent-ng-c4105645340="" variant="brand" appearance="accent" size="medium" tabindex="0" data-cy="brand-button" with-caret=""><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end caret" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+                <wa-icon part="caret" class="caret" library="system" name="chevron-down" variant="solid" aria-hidden="true" rotate="0" style="--rotate-angle: 0deg;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/icon --><!----><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" part="svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path fill="currentColor" d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></template></wa-icon>
+              
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Top-end menu<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>First item</wa-dropdown-item></boss-dropdown-item><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>Second item</wa-dropdown-item></boss-dropdown-item></wa-dropdown></boss-dropdown></div><div _ngcontent-ng-c1256223046="" class="doc-example-code-controls ng-star-inserted"><button _ngcontent-ng-c1256223046="" type="button" class="doc-example-code-toggle"> Show code </button></div><!----><!----></section></boss-doc-example><boss-doc-section _nghost-ng-c2227531171=""><h2 _ngcontent-ng-c2227531171="" class="doc-section" id="interactive-content"><a _ngcontent-ng-c2227531171="" class="doc-section-anchor" href="https://qe2.bepbackoffice.com/restaurantui/#interactive-content" aria-label="Link to Interactive content"><span _ngcontent-ng-c2227531171="" aria-hidden="true" class="doc-section-anchor-glyph">#</span><span _ngcontent-ng-c2227531171="" class="doc-section-anchor-label">Interactive content</span></a></h2></boss-doc-section><boss-doc-example description="A form doesn&#39;t belong inside a wa-dropdown-item — its click-to-select-and-close behavior would fire on every click inside the combobox. Put it in a plain div instead; wa-dropdown ignores non-wa-dropdown-item content for selection and keyboard navigation, so the dropdown stays open while the form is used. Call the dropdown&#39;s close() method (via a template reference) once the form&#39;s own action completes." _nghost-ng-c1256223046=""><section _ngcontent-ng-c1256223046="" class="doc-example" id="form-with-a-combobox"><h3 _ngcontent-ng-c1256223046="" class="doc-example-title ng-star-inserted">Form with a combobox</h3><!----><p _ngcontent-ng-c1256223046="" class="doc-example-description ng-star-inserted">A form doesn't belong inside a wa-dropdown-item — its click-to-select-and-close behavior would fire on every click inside the combobox. Put it in a plain div instead; wa-dropdown ignores non-wa-dropdown-item content for selection and keyboard navigation, so the dropdown stays open while the form is used. Call the dropdown's close() method (via a template reference) once the form's own action completes.</p><!----><div _ngcontent-ng-c1256223046="" class="doc-example-frame"><boss-dropdown placement="bottom-start" _nghost-ng-c2516922846=""><wa-dropdown _ngcontent-ng-c2516922846="" size="m" placement="bottom-start" style="--boss-menu-padding: undefinedpx; --boss-menu-width: 400px;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown --><!---->
+      <wa-popup flip="" flip-fallback-strategy="best-fit" shift="" shift-padding="10" auto-size="vertical" auto-size-padding="10" placement="bottom-start" distance="15" skidding="25"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/popup --><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div popover="manual" part="popup" class=" popup ">
+        <slot></slot>
+        <!--?lit$875551447$-->
+      </div>
+    </template>
+        <slot name="trigger" slot="anchor"></slot>
+        <div id="menu" part="menu" role="menu" tabindex="-1" aria-orientation="vertical" aria-expanded="false">
+          <slot></slot>
+        </div>
+      </wa-popup>
+    </template><orderly-button slot="trigger" variant="neutral" _nghost-ng-c4105645340="" id="wa-dropdown-trigger-qZ2WsTXAeZAOelsQSlgEN" aria-haspopup="menu" aria-expanded="false"><wa-button _ngcontent-ng-c4105645340="" variant="neutral" appearance="outlined" size="medium" tabindex="0" data-cy="neutral-button" with-caret=""><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end caret" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+                <wa-icon part="caret" class="caret" library="system" name="chevron-down" variant="solid" aria-hidden="true" rotate="0" style="--rotate-angle: 0deg;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/icon --><!----><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" part="svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path fill="currentColor" d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></template></wa-icon>
+              
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Set source type<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><div style="display: flex; flex-direction: row; gap: 16px; padding: 0.5em;"><boss-combobox placeholder="Pick a source type" _nghost-ng-c3259161575=""><wa-combobox _ngcontent-ng-c3259161575="" name="" size="m" appearance="outlined" placement="bottom"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/combobox --><!---->
+      <div part="form-control" class=" form-control ">
+        <label id="label" part="form-control-label label" class=" label " aria-hidden="true">
+          <slot name="label"><!--?lit$875551447$--></slot>
+        </label>
+
+        <div part="form-control-input" class="form-control-input">
+          <wa-popup flip="" shift="" sync="width" auto-size="vertical" auto-size-padding="10" class=" combobox-popup enabled " placement="bottom"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/popup --><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div popover="manual" part="popup" class=" popup ">
+        <slot></slot>
+        <!--?lit$875551447$-->
+      </div>
+    </template>
+            <div part="combobox" class="combobox" slot="anchor">
+              <slot part="start" name="start" class="start"></slot>
+
+              <!--?lit$875551447$-->
+                    <input part="combobox-input" class="combobox-input" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-labelledby="label" aria-describedby="hint" tabindex="0" placeholder="Pick a source type" autocorrect="off" spellcheck="true" aria-controls="wa-combobox-listbox-1" aria-expanded="false" aria-disabled="false" aria-invalid="false" autocapitalize="off" inputmode="text" enterkeyhint="enter">
+                  
+
+              <input class="value-input" type="text" tabindex="-1" aria-hidden="true">
+
+              <!--?lit$875551447$-->
+
+              <slot name="end" part="end" class="end"></slot>
+
+              <slot name="expand-icon" part="expand-icon" class="expand-icon">
+                <wa-icon library="system" name="chevron-down" variant="solid" aria-hidden="true" rotate="0" style="--rotate-angle: 0deg;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/icon --><!----><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" part="svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path fill="currentColor" d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></template></wa-icon>
+              </slot>
+            </div>
+
+            <div role="listbox" aria-labelledby="label" part="listbox" class="listbox" tabindex="-1" id="wa-combobox-listbox-1" aria-expanded="false" aria-multiselectable="false">
+              <slot></slot>
+            </div>
+          </wa-popup>
+
+          <!-- Live region for screen reader announcements -->
+          <div class="live-region" aria-live="polite" aria-atomic="true"></div>
+        </div>
+
+        <slot id="hint" name="hint" part="hint" class="  " aria-hidden="true"><!--?lit$875551447$--></slot>
+      </div>
+    </template><!----><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="AdjustingJournalEntry" aria-disabled="false" id="wa-combobox-option-2"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> AdjustingJournalEntry </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="APInvoice" aria-disabled="false" id="wa-combobox-option-3"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> APInvoice </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="APPayment" aria-disabled="false" id="wa-combobox-option-4"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> APPayment </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="BalanceBroughtForward" aria-disabled="false" id="wa-combobox-option-5"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> BalanceBroughtForward </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="BankDeposit" aria-disabled="false" id="wa-combobox-option-6"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> BankDeposit </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="BankTransfer" aria-disabled="false" id="wa-combobox-option-7"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> BankTransfer </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="BankWithdrawal" aria-disabled="false" id="wa-combobox-option-8"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> BankWithdrawal </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="CashReceiptsJournal" aria-disabled="false" id="wa-combobox-option-9"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> CashReceiptsJournal </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="HistoricalJournalEntry" aria-disabled="false" id="wa-combobox-option-10"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> HistoricalJournalEntry </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="JournalEntry" aria-disabled="false" id="wa-combobox-option-11"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> JournalEntry </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="FiscalYearEnd" aria-disabled="false" id="wa-combobox-option-12"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> FiscalYearEnd </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="Inventory" aria-disabled="false" id="wa-combobox-option-13"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> Inventory </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="OpeningUnclearedGLTxn" aria-disabled="false" id="wa-combobox-option-14"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> OpeningUnclearedGLTxn </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="PayrollJournalEntry" aria-disabled="false" id="wa-combobox-option-15"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> PayrollJournalEntry </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="RetainedEarnings" aria-disabled="false" id="wa-combobox-option-16"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> RetainedEarnings </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="StandardJournalEntry" aria-disabled="false" id="wa-combobox-option-17"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> StandardJournalEntry </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="Transfer" aria-disabled="false" id="wa-combobox-option-18"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> Transfer </wa-option><wa-option _ngcontent-ng-c3259161575="" role="option" aria-selected="false" class="ng-star-inserted" value="WasteLog" aria-disabled="false" id="wa-combobox-option-19"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/option --><!---->
+      <!--?lit$875551447$--><span part="checked-icon" class="check" aria-hidden="true"></span>
+      <slot part="start" name="start" class="start"></slot>
+      <slot part="label" class="label"></slot>
+      <slot part="end" name="end" class="end"></slot>
+    </template> WasteLog </wa-option><!----><!----><!----></wa-combobox></boss-combobox><orderly-button _nghost-ng-c4105645340=""><wa-button _ngcontent-ng-c4105645340="" variant="neutral" appearance="outlined" size="medium" tabindex="0" data-cy="default-button"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Select<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button></div></wa-dropdown></boss-dropdown><p> Selected: <code>(none)</code></p></div><div _ngcontent-ng-c1256223046="" class="doc-example-code-controls ng-star-inserted"><button _ngcontent-ng-c1256223046="" type="button" class="doc-example-code-toggle"> Show code </button></div><!----><!----></section></boss-doc-example><boss-doc-props _nghost-ng-c1680986562=""><section _ngcontent-ng-c1680986562="" class="doc-props"><h2 _ngcontent-ng-c1680986562="" class="doc-props-title">Props</h2><table _ngcontent-ng-c1680986562="" class="doc-props-table"><thead _ngcontent-ng-c1680986562=""><tr _ngcontent-ng-c1680986562=""><th _ngcontent-ng-c1680986562="">Name</th><th _ngcontent-ng-c1680986562="">Type</th><th _ngcontent-ng-c1680986562="">Default</th><th _ngcontent-ng-c1680986562="">Description</th></tr></thead><tbody _ngcontent-ng-c1680986562=""><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">placement</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end'</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">bottom-end</code><!----><!----></td><td _ngcontent-ng-c1680986562="">wa-dropdown placement of the menu relative to the trigger.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">distance</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">number</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">15</code><!----><!----></td><td _ngcontent-ng-c1680986562="">Gap (px) between the trigger and the menu.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">skidding</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">number</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">25</code><!----><!----></td><td _ngcontent-ng-c1680986562="">Offset (px) of the menu along the trigger edge.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">menuPadding</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">number</code></td><td _ngcontent-ng-c1680986562=""><!----><span _ngcontent-ng-c1680986562="" class="doc-props-empty ng-star-inserted">—</span><!----></td><td _ngcontent-ng-c1680986562="">Optional padding override on the menu, routed to wa-dropdown::part(menu). Defaults to 0.25em.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">menuWidth</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">number</code></td><td _ngcontent-ng-c1680986562=""><!----><span _ngcontent-ng-c1680986562="" class="doc-props-empty ng-star-inserted">—</span><!----></td><td _ngcontent-ng-c1680986562="">Optional width override on the menu. Defaults to WA’s max-content.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">hide</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">string</code></td><td _ngcontent-ng-c1680986562=""><!----><span _ngcontent-ng-c1680986562="" class="doc-props-empty ng-star-inserted">—</span><!----></td><td _ngcontent-ng-c1680986562="">Output. Pass-through of the native wa-hide event.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">show</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">string</code></td><td _ngcontent-ng-c1680986562=""><!----><span _ngcontent-ng-c1680986562="" class="doc-props-empty ng-star-inserted">—</span><!----></td><td _ngcontent-ng-c1680986562="">Output. Pass-through of the native wa-show event.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">close()</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">string</code></td><td _ngcontent-ng-c1680986562=""><!----><span _ngcontent-ng-c1680986562="" class="doc-props-empty ng-star-inserted">—</span><!----></td><td _ngcontent-ng-c1680986562="">Method. Closes the dropdown programmatically — for custom content (e.g. a form) that needs to dismiss the menu itself instead of relying on wa-dropdown-item click-to-close. Call via a template reference variable.</td></tr><!----></tbody></table></section></boss-doc-props><boss-doc-section _nghost-ng-c2227531171=""><h2 _ngcontent-ng-c2227531171="" class="doc-section" id="dropdown-item"><a _ngcontent-ng-c2227531171="" class="doc-section-anchor" href="https://qe2.bepbackoffice.com/restaurantui/#dropdown-item" aria-label="Link to Dropdown Item"><span _ngcontent-ng-c2227531171="" aria-hidden="true" class="doc-section-anchor-glyph">#</span><span _ngcontent-ng-c2227531171="" class="doc-section-anchor-label">Dropdown Item</span></a></h2></boss-doc-section><p><code>boss-dropdown-item</code> is a thin wrapper around <code>wa-dropdown-item</code> — it's the element you put inside a <code>boss-dropdown</code> for anything that should act as a selectable menu entry (as opposed to a plain <code>div</code>, which wa-dropdown ignores for selection and keyboard navigation — see "Interactive content" above). </p><p><strong>Known limitation:</strong><code>wa-dropdown</code> finds its menu items by checking each slotted child's tag name directly, so wrapping <code>wa-dropdown-item</code> in any Angular component — including this one — hides it from that check. Click-to-select, auto-close, and the <code>disabled</code>/<code>variant</code> styling below all work normally, but <strong>arrow-key navigation between items does not</strong>. This only affects keyboard users cycling through the menu with arrow keys; mouse and touch interaction are unaffected. </p><boss-doc-example description="variant=&#39;danger&#39; styles a destructive action; disabled greys the item out and blocks click/select." _nghost-ng-c1256223046=""><section _ngcontent-ng-c1256223046="" class="doc-example" id="variants-and-state"><h3 _ngcontent-ng-c1256223046="" class="doc-example-title ng-star-inserted">Variants and state</h3><!----><p _ngcontent-ng-c1256223046="" class="doc-example-description ng-star-inserted">variant='danger' styles a destructive action; disabled greys the item out and blocks click/select.</p><!----><div _ngcontent-ng-c1256223046="" class="doc-example-frame"><boss-dropdown _nghost-ng-c2516922846=""><wa-dropdown _ngcontent-ng-c2516922846="" size="m" placement="bottom-end" style="--boss-menu-padding: undefinedpx; --boss-menu-width: undefinedpx;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown --><!---->
+      <wa-popup flip="" flip-fallback-strategy="best-fit" shift="" shift-padding="10" auto-size="vertical" auto-size-padding="10" placement="bottom-end" distance="15" skidding="25"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/popup --><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div popover="manual" part="popup" class=" popup ">
+        <slot></slot>
+        <!--?lit$875551447$-->
+      </div>
+    </template>
+        <slot name="trigger" slot="anchor"></slot>
+        <div id="menu" part="menu" role="menu" tabindex="-1" aria-orientation="vertical" aria-expanded="false">
+          <slot></slot>
+        </div>
+      </wa-popup>
+    </template><orderly-button slot="trigger" variant="neutral" _nghost-ng-c4105645340="" id="wa-dropdown-trigger-wu0q8wgyveQEhMXmxBhxr" aria-haspopup="menu" aria-expanded="false"><wa-button _ngcontent-ng-c4105645340="" variant="neutral" appearance="outlined" size="medium" tabindex="0" data-cy="neutral-button" with-caret=""><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end caret" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+                <wa-icon part="caret" class="caret" library="system" name="chevron-down" variant="solid" aria-hidden="true" rotate="0" style="--rotate-angle: 0deg;"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/icon --><!----><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" part="svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path fill="currentColor" d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></template></wa-icon>
+              
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Row actions<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>Edit</wa-dropdown-item></boss-dropdown-item><boss-dropdown-item variant="danger"><wa-dropdown-item variant="danger" size="m" type="normal" tabindex="-1" aria-disabled="false" role="menuitem"><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>Delete</wa-dropdown-item></boss-dropdown-item><boss-dropdown-item><wa-dropdown-item variant="default" size="m" type="normal" tabindex="-1" aria-disabled="true" role="menuitem" disabled=""><template shadowrootmode="open"><!-- Web Awesome: https://webawesome.com/docs/components/dropdown-item --><!---->
+      <!--?lit$875551447$-->
+
+      <span id="icon" part="icon">
+        <slot name="icon"></slot>
+      </span>
+
+      <span id="label" part="label">
+        <slot></slot>
+      </span>
+
+      <span id="details" part="details">
+        <slot name="details"></slot>
+      </span>
+
+      <!--?lit$875551447$-->
+      <!--?lit$875551447$-->
+    </template>Archive (unavailable)</wa-dropdown-item></boss-dropdown-item></wa-dropdown></boss-dropdown></div><!----></section></boss-doc-example><boss-doc-props _nghost-ng-c1680986562=""><section _ngcontent-ng-c1680986562="" class="doc-props"><h2 _ngcontent-ng-c1680986562="" class="doc-props-title">Props</h2><table _ngcontent-ng-c1680986562="" class="doc-props-table"><thead _ngcontent-ng-c1680986562=""><tr _ngcontent-ng-c1680986562=""><th _ngcontent-ng-c1680986562="">Name</th><th _ngcontent-ng-c1680986562="">Type</th><th _ngcontent-ng-c1680986562="">Default</th><th _ngcontent-ng-c1680986562="">Description</th></tr></thead><tbody _ngcontent-ng-c1680986562=""><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">variant</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">'default' | 'danger'</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">default</code><!----><!----></td><td _ngcontent-ng-c1680986562="">wa-dropdown-item variant. Use danger for destructive actions (e.g. Delete).</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">type</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">'normal' | 'checkbox'</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">normal</code><!----><!----></td><td _ngcontent-ng-c1680986562="">Set to checkbox to render a checkable item.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">value</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">string</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted"></code><!----><!----></td><td _ngcontent-ng-c1680986562="">Optional value associated with the item, useful for checkbox-type items.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">disabled</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">boolean</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">false</code><!----><!----></td><td _ngcontent-ng-c1680986562="">Disables the item — greyed out, not focusable, does not fire click/select.</td></tr><tr _ngcontent-ng-c1680986562="" class="ng-star-inserted"><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-name">checked</code><!----></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-type">boolean</code></td><td _ngcontent-ng-c1680986562=""><code _ngcontent-ng-c1680986562="" class="doc-props-default ng-star-inserted">false</code><!----><!----></td><td _ngcontent-ng-c1680986562="">Checked state. Only meaningful when type is checkbox.</td></tr><!----></tbody></table></section></boss-doc-props></div><aside _ngcontent-ng-c113763685="" class="doc-page-toc ng-star-inserted"><div _ngcontent-ng-c113763685="" class="doc-page-toc-title">On this page</div><ul _ngcontent-ng-c113763685="" class="doc-page-toc-list"><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#basic"> Basic </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#custom-item-content"> Custom item content </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#placement"> Placement </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#menu-placement"> Menu placement </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#interactive-content"> Interactive content </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#form-with-a-combobox"> Form with a combobox </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#dropdown-item"> Dropdown Item </a></li><li _ngcontent-ng-c113763685="" class="ng-star-inserted"><a _ngcontent-ng-c113763685="" class="doc-page-toc-link" href="https://qe2.bepbackoffice.com/restaurantui/#variants-and-state"> Variants and state </a></li><!----></ul></aside><!----></div></boss-doc-page></boss-dropdown-doc><!----></main></div></boss-style-guide-v2-shell><!----></div></div><orderly-error _ngcontent-ng-c375097744=""><orderly-dialog rightbuttontext="Ok" headertext="Error" _nghost-ng-c1928313698=""><sl-dialog _ngcontent-ng-c1928313698="" class="orderly-dialog show-actions system-error" id="undefined" label="" style="--width: 31rem;"><template shadowrootmode="open"><!---->
+      <div part="base" class=" dialog dialog--has-footer " hidden="">
+        <div part="overlay" class="dialog__overlay" tabindex="-1"></div>
+
+        <div part="panel" class="dialog__panel" role="dialog" aria-modal="true" tabindex="-1" aria-hidden="true" aria-labelledby="title">
+          <!--?lit$875551447$-->
+                <header part="header" class="dialog__header">
+                  <h2 part="title" class="dialog__title" id="title">
+                    <slot name="label"> <!--?lit$875551447$-->﻿ </slot>
+                  </h2>
+                  <div part="header-actions" class="dialog__header-actions">
+                    <slot name="header-actions"></slot>
+                    <sl-icon-button part="close-button" exportparts="base:close-button__base" class="dialog__close" name="x-lg" library="system" label="Close"><template shadowrootmode="open"><!---->
+      <button part="base" class=" icon-button " type="button" role="button" aria-disabled="false" aria-label="Close" tabindex="0">
+        <sl-icon class="icon-button__icon" aria-hidden="true" name="x-lg" library="system"><template shadowrootmode="open"><!----><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" part="svg">
+      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+    </svg></template></sl-icon>
+      </button>
+    </template></sl-icon-button>
+                  </div>
+                </header>
+              
+          <!--?lit$875551447$-->
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
+
+          <footer part="footer" class="dialog__footer">
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      </div>
+    </template><div _ngcontent-ng-c1928313698="" slot="label"><div _ngcontent-ng-c1928313698="" class="header-text">Error</div><!----></div><div _ngcontent-ng-c1928313698=""><div id="error_modal">We're sorry an unexpected error occurred, please contact Back Office at <a href="mailto:team@getorderly.com">team@getorderly.com</a> if this continues. Please include the req id below in the email.</div></div><div _ngcontent-ng-c1928313698="" slot="footer" class="footer-wrapper ng-star-inserted"><div _ngcontent-ng-c1928313698="" class="mostLeftButton"><!----></div><div _ngcontent-ng-c1928313698="" class="rightButtonGroup"><!----><tooltip _ngcontent-ng-c1928313698="" _nghost-ng-c578846413="" class="ng-star-inserted"><sl-tooltip _ngcontent-ng-c578846413="" disabled="" style="--max-width: 100%;"><template shadowrootmode="open"><!---->
+      <sl-popup part="base" exportparts="
+          popup:base__popup,
+          arrow:base__arrow
+        " flip="" shift="" arrow="" hover-bridge="" class=" tooltip " placement="top" distance="8" skidding="0" strategy="fixed"><template shadowrootmode="open"><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div part="popup" class=" popup popup--fixed popup--has-arrow ">
+        <slot></slot>
+        <!--?lit$875551447$--><div part="arrow" class="popup__arrow" role="presentation"></div>
+      </div>
+    </template>
+        <!--?lit$875551447$-->
+        <slot slot="anchor" aria-describedby="tooltip"></slot>
+
+        <!--?lit$875551447$-->
+        <div part="body" id="tooltip" class="tooltip__body" role="tooltip" aria-live="off" hidden="">
+          <slot name="content"><!--?lit$875551447$--></slot>
+        </div>
+      </sl-popup>
+    </template><orderly-button _ngcontent-ng-c1928313698="" _nghost-ng-c4105645340=""><wa-button _ngcontent-ng-c4105645340="" tabindex="0" data-cy="primary-button" variant="brand" appearance="accent" size="medium"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Ok<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><div _ngcontent-ng-c578846413="" slot="content" class="tooltip-content"><!----><div _ngcontent-ng-c578846413="" class="right-container"></div></div></sl-tooltip></tooltip><!----></div></div><!----></sl-dialog></orderly-dialog></orderly-error><orderly-global-alert _ngcontent-ng-c375097744="" class="ng-star-inserted"><!----></orderly-global-alert><user-issue-omni-box _ngcontent-ng-c375097744="" class="ng-star-inserted"><div data-html2canvas-ignore="" id="issue-button" class="ng-star-inserted" style="bottom: 50px;"><span>?</span></div><!----><!----></user-issue-omni-box><!----><div _ngcontent-ng-c375097744="" id="zoom-placeholder" class="ng-star-inserted"></div><edit-pack-size-modal _ngcontent-ng-c375097744="" class="ng-star-inserted"><!----></edit-pack-size-modal><change-pack-size-link-modal _ngcontent-ng-c375097744="" class="ng-star-inserted"><orderly-dialog _nghost-ng-c1928313698=""><sl-dialog _ngcontent-ng-c1928313698="" class="orderly-dialog show-actions non-system-error" id="undefined" label="" style="--width: auto;"><template shadowrootmode="open"><!---->
+      <div part="base" class=" dialog dialog--has-footer " hidden="">
+        <div part="overlay" class="dialog__overlay" tabindex="-1"></div>
+
+        <div part="panel" class="dialog__panel" role="dialog" aria-modal="true" tabindex="-1" aria-hidden="true" aria-labelledby="title">
+          <!--?lit$875551447$-->
+                <header part="header" class="dialog__header">
+                  <h2 part="title" class="dialog__title" id="title">
+                    <slot name="label"> <!--?lit$875551447$-->﻿ </slot>
+                  </h2>
+                  <div part="header-actions" class="dialog__header-actions">
+                    <slot name="header-actions"></slot>
+                    <sl-icon-button part="close-button" exportparts="base:close-button__base" class="dialog__close" name="x-lg" library="system" label="Close"><template shadowrootmode="open"><!---->
+      <button part="base" class=" icon-button " type="button" role="button" aria-disabled="false" aria-label="Close" tabindex="0">
+        <sl-icon class="icon-button__icon" aria-hidden="true" name="x-lg" library="system"><template shadowrootmode="open"><!----><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" part="svg">
+      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+    </svg></template></sl-icon>
+      </button>
+    </template></sl-icon-button>
+                  </div>
+                </header>
+              
+          <!--?lit$875551447$-->
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
+
+          <footer part="footer" class="dialog__footer">
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      </div>
+    </template><div _ngcontent-ng-c1928313698="" slot="label"><div _ngcontent-ng-c1928313698="" class="header-text">Group undefined with:</div><!----></div><div _ngcontent-ng-c1928313698=""><div style="background-color: white; min-width: 700px;"><div style="padding: 10px;"><div style="margin-bottom: 10px;" class="ng-star-inserted"><spec-search><input placeholder="Search" type="text" style="width: 50%; padding: 5px;" class="ng-untouched ng-pristine ng-valid"><!----></spec-search></div><!----><!----><!----><div style="padding-left: 30px;"><div style="display: grid; grid-template-columns: 4fr 2fr 1fr 1fr; background-color: #23408f; padding: 3px; color: white; min-width: 500px;"><div>Description</div><div>Vendor</div><div>Last Price</div><div>Pack Size</div></div><!----><!----></div></div></div></div><div _ngcontent-ng-c1928313698="" slot="footer" class="footer-wrapper ng-star-inserted"><div _ngcontent-ng-c1928313698="" class="mostLeftButton"><!----></div><div _ngcontent-ng-c1928313698="" class="rightButtonGroup"><orderly-button _ngcontent-ng-c1928313698="" _nghost-ng-c4105645340="" class="ng-star-inserted"><wa-button _ngcontent-ng-c4105645340="" tabindex="0" data-cy="text-button" variant="brand" appearance="plain" size="medium"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Cancel<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><!----><tooltip _ngcontent-ng-c1928313698="" _nghost-ng-c578846413="" class="ng-star-inserted"><sl-tooltip _ngcontent-ng-c578846413="" disabled="" style="--max-width: 100%;"><template shadowrootmode="open"><!---->
+      <sl-popup part="base" exportparts="
+          popup:base__popup,
+          arrow:base__arrow
+        " flip="" shift="" arrow="" hover-bridge="" class=" tooltip " placement="top" distance="8" skidding="0" strategy="fixed"><template shadowrootmode="open"><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div part="popup" class=" popup popup--fixed popup--has-arrow ">
+        <slot></slot>
+        <!--?lit$875551447$--><div part="arrow" class="popup__arrow" role="presentation"></div>
+      </div>
+    </template>
+        <!--?lit$875551447$-->
+        <slot slot="anchor" aria-describedby="tooltip"></slot>
+
+        <!--?lit$875551447$-->
+        <div part="body" id="tooltip" class="tooltip__body" role="tooltip" aria-live="off" hidden="">
+          <slot name="content"><!--?lit$875551447$--></slot>
+        </div>
+      </sl-popup>
+    </template><orderly-button _ngcontent-ng-c1928313698="" _nghost-ng-c4105645340=""><wa-button _ngcontent-ng-c4105645340="" tabindex="0" data-cy="primary-button" variant="brand" appearance="accent" size="medium"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Save<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><div _ngcontent-ng-c578846413="" slot="content" class="tooltip-content"><!----><div _ngcontent-ng-c578846413="" class="right-container"></div></div></sl-tooltip></tooltip><!----></div></div><!----></sl-dialog></orderly-dialog></change-pack-size-link-modal><spec-in-recipe-warning-modal _ngcontent-ng-c375097744="" _nghost-ng-c696435435="" class="ng-star-inserted"><!----></spec-in-recipe-warning-modal><invoice-attachment-image-modal _ngcontent-ng-c375097744="" _nghost-ng-c312980040="" class="ng-star-inserted"><!----></invoice-attachment-image-modal><unsaved-changes _ngcontent-ng-c375097744="" class="ng-star-inserted"><orderly-dialog _nghost-ng-c1928313698=""><sl-dialog _ngcontent-ng-c1928313698="" class="orderly-dialog show-actions non-system-error" id="undefined" label="" style="--width: auto;"><template shadowrootmode="open"><!---->
+      <div part="base" class=" dialog dialog--has-footer " hidden="">
+        <div part="overlay" class="dialog__overlay" tabindex="-1"></div>
+
+        <div part="panel" class="dialog__panel" role="dialog" aria-modal="true" tabindex="-1" aria-hidden="true" aria-labelledby="title">
+          <!--?lit$875551447$-->
+                <header part="header" class="dialog__header">
+                  <h2 part="title" class="dialog__title" id="title">
+                    <slot name="label"> <!--?lit$875551447$-->﻿ </slot>
+                  </h2>
+                  <div part="header-actions" class="dialog__header-actions">
+                    <slot name="header-actions"></slot>
+                    <sl-icon-button part="close-button" exportparts="base:close-button__base" class="dialog__close" name="x-lg" library="system" label="Close"><template shadowrootmode="open"><!---->
+      <button part="base" class=" icon-button " type="button" role="button" aria-disabled="false" aria-label="Close" tabindex="0">
+        <sl-icon class="icon-button__icon" aria-hidden="true" name="x-lg" library="system"><template shadowrootmode="open"><!----><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" part="svg">
+      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+    </svg></template></sl-icon>
+      </button>
+    </template></sl-icon-button>
+                  </div>
+                </header>
+              
+          <!--?lit$875551447$-->
+          <div part="body" class="dialog__body" tabindex="-1"><slot></slot></div>
+
+          <footer part="footer" class="dialog__footer">
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      </div>
+    </template><div _ngcontent-ng-c1928313698="" slot="label"><div _ngcontent-ng-c1928313698="" class="header-text">Unsaved Information</div><!----></div><div _ngcontent-ng-c1928313698=""><div>If you leave this page all changes will be lost</div></div><div _ngcontent-ng-c1928313698="" slot="footer" class="footer-wrapper ng-star-inserted"><div _ngcontent-ng-c1928313698="" class="mostLeftButton"><!----></div><div _ngcontent-ng-c1928313698="" class="rightButtonGroup"><orderly-button _ngcontent-ng-c1928313698="" _nghost-ng-c4105645340="" class="ng-star-inserted"><wa-button _ngcontent-ng-c4105645340="" tabindex="0" data-cy="text-button" variant="brand" appearance="plain" size="medium"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Cancel<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><!----><tooltip _ngcontent-ng-c1928313698="" _nghost-ng-c578846413="" class="ng-star-inserted"><sl-tooltip _ngcontent-ng-c578846413="" disabled="" style="--max-width: 100%;"><template shadowrootmode="open"><!---->
+      <sl-popup part="base" exportparts="
+          popup:base__popup,
+          arrow:base__arrow
+        " flip="" shift="" arrow="" hover-bridge="" class=" tooltip " placement="top" distance="8" skidding="0" strategy="fixed"><template shadowrootmode="open"><!---->
+      <slot name="anchor"></slot>
+
+      <span part="hover-bridge" class=" popup-hover-bridge "></span>
+
+      <div part="popup" class=" popup popup--fixed popup--has-arrow ">
+        <slot></slot>
+        <!--?lit$875551447$--><div part="arrow" class="popup__arrow" role="presentation"></div>
+      </div>
+    </template>
+        <!--?lit$875551447$-->
+        <slot slot="anchor" aria-describedby="tooltip"></slot>
+
+        <!--?lit$875551447$-->
+        <div part="body" id="tooltip" class="tooltip__body" role="tooltip" aria-live="off" hidden="">
+          <slot name="content"><!--?lit$875551447$--></slot>
+        </div>
+      </sl-popup>
+    </template><orderly-button _ngcontent-ng-c1928313698="" _nghost-ng-c4105645340=""><wa-button _ngcontent-ng-c4105645340="" tabindex="0" data-cy="danger-button" variant="danger" appearance="filled" size="medium"><template shadowrootmode="open" shadowrootdelegatesfocus><!-- Web Awesome: https://webawesome.com/docs/components/button --><!---->
+      <button part="base" class="button has-label has-start has-end" type="button" title="" role="button" tabindex="0">
+        <slot name="start" part="start" class="start"></slot>
+        <slot part="label" class="label"></slot>
+        <slot name="end" part="end" class="end"></slot>
+        <!--?lit$875551447$-->
+        <!--?lit$875551447$-->
+      </button>
+    </template><span _ngcontent-ng-c4105645340="" slot="start" class="slot-bridge"></span>Leave page<span _ngcontent-ng-c4105645340="" slot="end" class="slot-bridge"></span></wa-button></orderly-button><div _ngcontent-ng-c578846413="" slot="content" class="tooltip-content"><!----><div _ngcontent-ng-c578846413="" class="right-container"></div></div></sl-tooltip></tooltip><!----></div></div><!----></sl-dialog></orderly-dialog></unsaved-changes><flag-invoice-modal _ngcontent-ng-c375097744="" class="ng-star-inserted"><!----></flag-invoice-modal><!----><div _ngcontent-ng-c375097744="" id="zendeskSSOHolder"></div></app-root>
+    <script src="./Back Office style guide dropdown_files/polyfills-5CFQRCPP.js" type="module"></script><script src="./Back Office style guide dropdown_files/scripts-WMPKJCGW.js" defer=""></script><script src="./Back Office style guide dropdown_files/main-EMDUGJIH.js" type="module"></script>
+
+<iframe data-product="web_widget" title="No content" role="presentation" tabindex="-1" allow="microphone *" aria-hidden="true" src="./Back Office style guide dropdown_files/saved_resource.html" style="width: 0px; height: 0px; border: 0px; position: absolute; top: -9999px;"></iframe><div style="visibility: hidden; opacity: 0;"><div></div><div></div></div><div class="magic-hidden-wrapper"></div><iframe name="__privateStripeMetricsController6690" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="./Back Office style guide dropdown_files/m-outer-3437aaddcdf6922d623e172c2d6f9278.html" aria-hidden="true" tabindex="-1" style="border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: initial !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe><button aria-label="Open Resource Center" data-pendo-aria-label-alert-singular="Open Resource Center, {UNSEEN_COUNT} new notification" data-pendo-aria-label-alert-plural="Open Resource Center, {UNSEEN_COUNT} new notifications" aria-expanded="false" type="button" id="_pendo-badge_B3DXXBfBZQtlUu5aitz5vw_3ROk" data-layout="badgeResourceCenter" class="_pendo-badge _pendo-resource-center-badge-container _pendo-badge_" style="border-radius: 25px; inset: auto 20px 10px auto; position: fixed; z-index: 19000; background: rgba(255, 255, 255, 0); padding: 0px; line-height: 1; min-width: auto; margin: 0px; width: 50px; height: 50px; box-shadow: rgba(0, 0, 0, 0.15) 2px 0px 6px 0px; border: 0px; float: none; vertical-align: text-bottom; cursor: pointer; display: inline-block;"><img id="pendo-image-badge-e77003c7" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCA1NiA1NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjI4IiBjeT0iMjgiIHI9IjI4IiBmaWxsPSIjMjM0MDhGIi8+CiAgICA8cGF0aCBkPSJNMTkuMzUyNiAxOS43NzVDMTkuOTk5OCAxNy45MzU0IDIxLjI3NzEgMTYuMzg0MiAyMi45NTg0IDE1LjM5NjFDMjQuNjM5NiAxNC40MDggMjYuNjE2MyAxNC4wNDY4IDI4LjUzODQgMTQuMzc2NUMzMC40NjA0IDE0LjcwNjIgMzIuMjAzOCAxNS43MDU1IDMzLjQ1OTcgMTcuMTk3M0MzNC43MTU1IDE4LjY4OTIgMzUuNDAyOSAyMC41Nzc0IDM1LjQgMjIuNTI3NkMzNS40IDI4LjAzMjcgMjcuMTQyMyAzMC43ODUyIDI3LjE0MjMgMzAuNzg1MlYzMy44NjA3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTI2Ljg5MjIgNDMuNjYyNEMyOC4xNDE0IDQzLjY2MjQgMjkuMTU0MSA0Mi42NDk3IDI5LjE1NDEgNDEuNDAwNUMyOS4xNTQxIDQwLjE1MTMgMjguMTQxNCAzOS4xMzg2IDI2Ljg5MjIgMzkuMTM4NkMyNS42NDMgMzkuMTM4NiAyNC42MzAzIDQwLjE1MTMgMjQuNjMwMyA0MS40MDA1QzI0LjYzMDMgNDIuNjQ5NyAyNS42NDMgNDMuNjYyNCAyNi44OTIyIDQzLjY2MjRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=" alt="" data-_pendo-image-1="" class="_pendo-image _pendo-badge-image _pendo-resource-center-badge-image" style="display: block; height: 50px; width: 50px; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 0px; float: none; vertical-align: baseline;"></button></body></html>
