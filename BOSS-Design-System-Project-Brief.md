@@ -8,6 +8,7 @@
 We are building **RestaurantUI** — a Figma design system for Back Office (bepbackoffice.com), a restaurant management SaaS targeting independent operators and franchise networks. The system mirrors the **WebAwesome (WA)** semantic token model used in the codebase.
 
 **Figma file key:** `B5j3nfocmShiBwqwy9dNXg`
+**Figma file URL:** https://www.figma.com/design/B5j3nfocmShiBwqwy9dNXg/Back-Office-Design-System-0.1
 **RUN_ID for idempotency tagging:** `bo-ds-2026-001`
 
 ---
@@ -21,35 +22,74 @@ Both files live in the Claude work folder / project knowledge:
 
 ---
 
-## Real WebAwesome Figma library — check this FIRST, always
+## Reference libraries — ONLY these two, never search broadly
 
-There is a real, actual WebAwesome component library available in this Figma org:
-**Web-Awesome-3-Design-Kit-v2-0-0** (library key `lk-46ccc9e51e4a78ca22bcd7c54d570a2abcb180a86
-99a396f28d23e4d3514e3b4efde5caaf5d9993f83b52f24198d3f6cc083954e8526a5e338593f5466ed4f26`). It is
-**not yet added to this file** (shows up under `libraries_available_to_add` via `get_libraries`,
-not `libraries_added_to_file`), which is why it was missed for a full day of work on Radio/
-Switch/Tooltip (2026-07-20) — those were hand-built from CSS research first, wrong, then had to
-be rebuilt from this real library after the user called it out ("why are you still building
-your own thing?").
+Exactly two Figma libraries are in scope for this project. **Every `search_design_system` call
+MUST pass `includeLibraryKeys` scoped to the two keys below — never an unscoped search.** An
+unscoped search also pulls in Material 3, every Apple OS kit (iOS/macOS/watchOS/visionOS), Ant
+Design, Blueprint, Paper Wireframe, and Simple Design System — none relevant to this project. Their
+descriptions alone (Material 3's full multi-year changelog, for one) can add tens of thousands of
+tokens to a single `get_libraries`/`search_design_system` response for zero benefit — this is
+exactly what happened during the Accordion build on 2026-07-30.
 
-**There is also a second, independent reference to the same class of resource, documented since
-the very first Button component work on 2026-07-13:** a WebAwesome Figma kit file, key
-`UAtCpcylvJ96X02SbIVSeM` (confirmed reachable — its Cover page loads fine). Both this file key
-and the library key above point at the same real WebAwesome design asset. **Neither was
-checked before hand-building Radio/Switch/Tooltip on 2026-07-20** — the file key had been sitting
-in this brief for a week, the library was one `get_libraries` call away, and both were missed
-until the user directly called it out twice ("why are you still building your own thing?" and,
-after being told the task was rated "bad" for exactly this reason, a follow-up explaining that
-the guidance had already been documented). **This is the single most important lesson in this
-entire brief — read this section before writing a single line of component geometry.**
+```js
+includeLibraryKeys: [
+  "lk-46ccc9e51e4a78ca22bcd7c54d570a2abcb180a8699a396f28d23e4d3514e3b4efde5caaf5d9993f83b52f24198d3f6cc083954e8526a5e338593f5466ed4f26", // Web-Awesome-3-Design-Kit-v2-0-0
+  "lk-890204ffe946154f7c57b4204cf9a32584d66b1f850893304b780d0f40675c0d3e90934973a0f8a16f9b0cf229ad7f5f215ccf9ee5bc421135d6264e911db065", // Back Office Design Library ("the old BOSS design system")
+]
+```
 
-**Before building or "porting" ANY component going forward:** run `get_libraries` (or
-`search_design_system` with `includeLibraryKeys` scoped to the key above) for the component
-name FIRST, and/or check the `UAtCpcylvJ96X02SbIVSeM` file directly. If it exists in either, import
-it (`figma.importComponentSetByKeyAsync` / `importComponentByKeyAsync`), create an instance of
-the needed variant, `detachInstance()`, and rebind colors to this file's own tokens — do not
-hand-draw geometry from web research or memory. Only hand-build from scratch if the component
-genuinely isn't in either (confirmed via search, not assumed).
+1. **Web-Awesome-3-Design-Kit-v2-0-0** — the real WebAwesome component library (also reachable as
+   a standalone file, key `UAtCpcylvJ96X02SbIVSeM`, confirmed reachable — its Cover page loads
+   fine). Primary reference for generic web-component structure/naming/variants (Button, Details/
+   Accordion, Progress Bar, etc.).
+2. **Back Office Design Library** — the existing "old BOSS" library, already subscribed to this
+   file (appears under `libraries_added_to_file`). Check this FIRST for anything that's a
+   BO-specific pattern rather than a generic web primitive (e.g. table-row text styles). It has
+   no entry for every component — absence here just means fall through to the WebAwesome kit.
+
+**These keys are stable — do not call `get_libraries` to rediscover them.** Only re-run
+`get_libraries` if a key above stops resolving, or to check whether a genuinely new library was
+subscribed to the file. `get_libraries` is one of the most expensive calls available in this
+project (full changelog text for every community library in the org) — treat it as a last resort,
+not a routine discovery step.
+
+**Before building or "porting" ANY component:** go straight to `search_design_system` scoped to
+the two keys above (skip `get_libraries` entirely). If the component exists in either, import it
+(`figma.importComponentSetByKeyAsync` / `importComponentByKeyAsync`), create an instance of the
+needed variant, `detachInstance()`, and rebind colors to this file's own tokens — do not hand-draw
+geometry from web research or memory. Only hand-build from scratch once absence from *both*
+libraries is confirmed via search, not assumed.
+
+**Why this rule exists:** Radio/Switch/Tooltip were hand-built from CSS research on 2026-07-20,
+wrong, then had to be rebuilt from the real WebAwesome library after the user called it out twice
+("why are you still building your own thing?") — despite both the library and the standalone file
+key (documented since Button, 2026-07-13) being available the whole time. **This is still the
+single most important lesson in this brief — read this section before writing a single line of
+component geometry.**
+
+---
+
+## Session token-efficiency rules
+
+Lessons from a 2026-07-30 usage review (the Accordion build ran unexpectedly high on tokens even
+though the chat had just been `/clear`ed — the cost was all live-session tool output, not stale
+history):
+
+- **Skip `get_libraries`.** See the library-keys block above — they're hardcoded now.
+- **Always scope `search_design_system`** to the two `includeLibraryKeys` above.
+- **Check the Variables reference tables below (Spacing/Radius/Height/Padding, and Color) before
+  querying Figma directly.** Only call `figma.variables.getLocalVariablesAsync()` /
+  `getLocalVariableCollectionsAsync()` for a token that's genuinely missing from those tables, and
+  filter to the specific collection/name needed — never dump a whole collection. A full Color-
+  collection dump during the Accordion build ran past 20KB and got truncated mid-response; that
+  single call was likely the largest line item of the session.
+- **Batch validation screenshots.** One combined `screenshot()` of a variant grid (or ComponentSet)
+  beats one screenshot per individual variant — images cost meaningfully more tokens than text,
+  and this adds up fast across an iterative build.
+- **Not reducible:** the Figma MCP tool schemas and the mandatory `figma-use`/
+  `figma-generate-library` skill docs load in full every time `use_figma` work starts, regardless
+  of `/clear`. That's a fixed cost of this workflow, not something to optimize away.
 
 ---
 
@@ -101,21 +141,137 @@ Codebase has no dark theme — dark values were designed net-new:
 - Targeted scopes: backgrounds = `FRAME_FILL/SHAPE_FILL`, text = `TEXT_FILL`, borders = `STROKE_COLOR`
 - Key semantic tokens:
 
+**Full semantic Color token reference** (verified live 2026-07-30 — supersedes any earlier partial
+table). "Light"/"Dark" columns name the **Primitives** variable each mode aliases to, not raw hex —
+look up the primitive in the Primitives list below if you need the actual value.
+
+*Surface*
+
+| Token | Light | Dark |
+|---|---|---|
+| `color/surface/default` | white | black/spec-dark |
+| `color/surface/secondary` | gray/95 | gray/10 |
+| `color/surface/drawer` | surface/drawer | gray/10 |
+| `color/surface/table-header` | surface/table-header | gray/10 |
+| `color/surface/table-hover` | surface/table-hover | gray/30 |
+| `color/surface/row-active` | surface/row-active | gray/30 |
+
+*Background*
+
 | Token | Light | Dark |
 |---|---|---|
 | `color/bg/brand/default` | blue/50 | blue/50 |
 | `color/bg/brand/hover` | blue/30 | blue/70 |
+| `color/bg/brand/subtle` | blue/95 | gray/10 |
+| `color/bg/brand/subtle-hover` | blue/90 | gray/30 |
+| `color/bg/danger/default` | red/50 | red/50 |
+| `color/bg/danger/hover` | red/40 | red/40 |
+| `color/bg/danger/subtle` | red/90 | gray/10 |
+| `color/bg/success/default` | green/50 | green/50 |
+| `color/bg/success/hover` | green/40 | green/40 |
+| `color/bg/success/subtle` | green/90 | gray/10 |
+| `color/bg/warning/default` | orange/50 | orange/50 |
+| `color/bg/warning/hover` | orange/40 | orange/40 |
+| `color/bg/warning/subtle` | orange/95 | gray/10 |
+| `color/bg/neutral/default` | gray/10 | gray/40 |
+| `color/bg/neutral/hover` | gray/30 | gray/50 |
+| `color/bg/neutral/subtle` | gray/95 | gray/10 |
+| `color/bg/neutral/subtle-hover` | gray/90 | gray/30 |
 | `color/bg/disabled` | gray/80 | gray/40 |
+| `color/bg/option-hover` | gray/option-hover | gray/30 |
+
+*Text*
+
+| Token | Light | Dark |
+|---|---|---|
+| `color/text/primary` | gray/10 | white |
+| `color/text/secondary` | gray/50 | gray/70 |
 | `color/text/on-filled` | white | white |
 | `color/text/on-disabled` | gray/60 | gray/60 |
+| `color/text/disabled` | gray/60 | gray/60 |
 | `color/text/brand` | blue/50 | blue/70 |
 | `color/text/link` | blue/70 | blue/70 |
-| `color/border/brand` | blue/50 | blue/70 |
-| `color/surface/default` | white | black/spec-dark |
+| `color/text/danger` | red/50 | red/90 ⚠️ |
+| `color/text/success` | green/50 | green/90 |
+| `color/text/warning` | orange/50 | orange/90 |
+| `color/text/table-header` | gray/50 | gray/70 |
+| `color/text/label` | gray/10 | white |
 
-**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`)
-- 26 FLOAT variables: spacing (11 steps, `spacing/0`–`spacing/10`), radius (5: `radius/xs`–`radius/xl`), control heights (5: `height/control/xs`–`xl`), control padding (5: `padding/control/xs`–`xl`)
-- Key values: `spacing/2`=8px, `padding/control/m`=14px, `radius/m`=4px, `height/control/m`=32px
+⚠️ `color/text/danger` (and `color/icon/danger` below) alias to `red/90` — a *light* tint — in Dark
+mode. That looks like a bug (danger text should stay legible-strong in dark mode, not go pale) but
+it's what's live in the file as of 2026-07-30. Flagging, not silently "fixing" — confirm with
+design team before touching it.
+
+*Border*
+
+| Token | Light | Dark |
+|---|---|---|
+| `color/border/brand` | blue/50 | blue/70 |
+| `color/border/danger` | red/50 | red/50 |
+| `color/border/success` | green/50 | green/50 |
+| `color/border/warning` | orange/50 | orange/50 |
+| `color/border/neutral` | gray/border | gray/40 |
+| `color/border/default` | gray/border | gray/30 |
+| `color/border/disabled` | gray/80 | gray/40 |
+| `color/border/focus` | blue/70 | blue/70 |
+| `color/border/select` | gray/select-border | gray/40 |
+| `color/border/select-disabled` | gray/select-disabled | gray/40 |
+
+*Icon*
+
+| Token | Light | Dark |
+|---|---|---|
+| `color/icon/brand` | blue/50 | blue/70 |
+| `color/icon/danger` | red/50 | red/90 ⚠️ (see note above) |
+| `color/icon/success` | green/50 | green/90 |
+| `color/icon/warning` | orange/50 | orange/90 |
+| `color/icon/default` | gray/50 | gray/70 |
+| `color/icon/on-filled` | white | white |
+| `color/icon/disabled` | gray/60 | gray/60 |
+
+**Primitives collection** quick name list (1 mode, `scopes=[]`, hidden from pickers) — look these up
+by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondary-hover`,
+`blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `red/90`, `red/50`, `red/40`,
+`red/30`, `orange/95`, `orange/90`, `orange/70`, `orange/50`, `orange/40`, `green/90`, `green/50`,
+`green/40`, `gray/95`, `gray/90`, `gray/border`, `gray/80`, `gray/70`, `gray/60`, `gray/50`,
+`gray/40`, `gray/30`, `gray/10`, `white`, `black`, `black/spec-dark`, `surface/drawer`,
+`surface/table`, `surface/table-header`, `surface/table-hover`, `surface/table-row-highlight`,
+`surface/row-active`, `accent/highlight`, `accent/system-blue`, `accent/magenta`,
+`gray/spec-dark`, `gray/select-border`, `gray/select-disabled`, `gray/option-hover`,
+`gray/combobox-disabled`, `gray/tooltip-bg`, `gray/tag-resting`, `blue/button-disabled`.
+
+**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — corrected 2026-07-30, verified
+live via `use_figma` (the previous `padding/control/m`=14px and `height/control/m`=32px values
+below were stale/wrong):
+
+| Category | Token | Value |
+|---|---|---|
+| Spacing | `spacing/1` | 4px |
+| Spacing | `spacing/2` | 8px |
+| Spacing | `spacing/3` | 12px |
+| Spacing | `spacing/4` | 16px |
+| Spacing | `spacing/5` | 20px |
+| Spacing | `spacing/6` | 24px |
+| Spacing | `spacing/8` | 32px |
+| Spacing | `spacing/12` | 48px |
+| Spacing | `spacing/16` | 64px |
+| Spacing | `spacing/18` | 72px |
+| Spacing | `spacing/32` | 128px |
+| Radius | `radius/s` | 3px |
+| Radius | `radius/m` | 4px |
+| Radius | `radius/l` | 8px |
+| Radius | `radius/xl` | 16px |
+| Radius | `radius/full` | 9999px |
+| Height | `height/control/xs` | 26px |
+| Height | `height/control/s` | 32px |
+| Height | `height/control/m` | 40px |
+| Height | `height/control/l` | 48px |
+| Height | `height/control/xl` | 64px |
+| Padding | `padding/control/xs` | 8px |
+| Padding | `padding/control/s` | 4px |
+| Padding | `padding/control/m` | 8px |
+| Padding | `padding/control/l` | 12px |
+| Padding | `padding/control/xl` | 24px |
 
 ### Text styles (9 total)
 All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/Medium), Subtitle/2 (14px/Medium), Body/1 (16px/Regular), Body/2 (14px/Regular), Label/Button (14px/Medium), Caption (12px/Regular), Column Header (12px/Medium).
@@ -131,6 +287,20 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
 - `741:3` Radio (Steve) — added 2026-07-20
 - `741:4` Switch (Steve) — added 2026-07-20
 - `741:5` Tooltip (Steve) — added 2026-07-20
+- `905:598` Alert (Steve) — not previously logged in this brief; found live in the file during the
+  2026-07-30 Accordion build (`figma.root.children` fan-out check). 15 variants, Intent x Size.
+- `934:6` Modal (Steve) — not previously logged in this brief; found live in the file during the
+  2026-07-30 Accordion build. Header/Footer boolean combos.
+- `942:2` Floating Action Bar (Steve decisions) — not previously logged in this brief; found live in
+  the file during the 2026-07-30 Accordion build. Not inspected in detail — flagging for a future
+  audit pass rather than describing its contents from a guess.
+- `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
+
+**Note (2026-07-30):** the three pages above (Alert, Modal, Floating Action Bar) exist and are
+built out in the live file but were absent from this brief's page list — same drift pattern as the
+Split Button ID correction on 2026-07-22. `get_metadata` with no `nodeId` also under-reported the
+page list (returned only Cover); `figma.root.children` via `use_figma` was the source that actually
+matched the file. Prefer that method over `get_metadata`'s bare page listing when auditing this file.
 
 ### Button component (page `5:4` "Button (Steve)", ComponentSet ID `455:92`)
 **NOTE (2026-07-13):** the original ComponentSet `13:2` (30 variants, described below in the
@@ -218,6 +388,57 @@ Disabled = opacity 0.6 on the Default look, same convention as Button.
 2. Caret icon is a hand-built vector chevron, not the real Font Awesome 7 Pro glyph the live
    app uses (font may not be installed in this Figma file).
 3. No hover/disabled reference existed in the Design Library — extrapolated from Button.
+
+---
+
+### Accordion component (page `1142:2` "Accordion (Steve)", ComponentSet ID `1154:512`)
+**Added 2026-07-30.** A single collapsible disclosure item. Real tag: `wa-details` — checked
+`get_libraries` FIRST per this brief's standing rule (see "Real WebAwesome Figma library" section
+above); the Back Office Design Library and BOSS_PD.md have no accordion/details spec of their own,
+so this is the one BOSS component built directly from the real WebAwesome kit (file/library key
+`lk-46ccc9e51e4a78ca22bcd7c54d570a2abcb180a86...` , component key `f13440c5b3bf248f65b6254aabd97799e6c26f64`)
+rather than from a resolved Design Library + BOSS_PD.md spec. Two throwaway reference instances of
+the real WA `Details` component were imported onto the page to study structure before building —
+relocated to a labeled "Reference only" area at x=1400 rather than deleted, per the standing
+never-delete-existing-nodes rule.
+
+**6 variants** = Open (`False`/`True`) × State (`Default`/`Hover`/`Disabled`), combined into one
+ComponentSet named `Accordion`.
+
+- **Open axis:** `False` (header only) | `True` (header + Body content panel).
+- **State axis:** `Default` | `Hover` | `Disabled` — matches the Radio/Switch/Tooltip convention
+  (no `Active`, same as Button's resolved reasoning: not defined in the library).
+- **Reduced from WA:** the real WebAwesome `Details` ComponentSet has 32 variants (`Open` ×
+  `Icon Placement` [Start/End] × `Appearance` [Outlined/Filled-outlined/Filled/Plain] × `Disabled`).
+  BOSS keeps only the bordered look and end-of-row chevron — see Known Limitations below.
+
+**Structure:** vertical auto-layout panel, `color/surface/default` fill, 1px `color/border/default`
+stroke, `radius/l` (8px) corners — this radius choice came from the Modal component's own resolved
+panel convention (`--wa-border-radius-l,8px`) in this same file, not from WA's raw Details value
+(12px), since Modal is the closer in-file precedent for a bordered/panel container. Header row:
+horizontal auto-layout, `spacing/4` (16px) padding + gap, `Subtitle/1` label text
+(`color/text/primary`), Font Awesome 7 Pro Solid chevron icon (`color/icon/default`,
+16px/"Med Solid Icon" style) — `chevron-right` (U+F054) when closed, `chevron-down` (U+F078) when
+open. Body panel (Open=True only): `spacing/4` padding, `Body/1` content text
+(`color/text/secondary`, matching Modal's body-message convention rather than WA's own
+text-normal). Hover fills the header row with `color/bg/neutral/subtle-hover`. Disabled uses
+component-level `opacity=0.6` on the Default look — same convention as Button/Split Button, not
+distinct disabled tokens.
+
+**Component properties:** `Label` (TEXT, default "Accordion Item") bound on all 6 variants;
+`Content` (TEXT, default placeholder copy) bound on the 3 `Open=True` variants only — mirrors the
+editable-instance pattern already used on Alert's `Message` property.
+
+**Known limitations (see page's own To-Do section for detail):**
+1. Appearance axis reduced to bordered-only and Icon Placement fixed at `End` — WA's
+   Filled/Filled-outlined/Plain appearances and Start-aligned chevron were dropped since nothing in
+   this file or BOSS_PD.md calls for them. Flag design team if needed.
+2. No live bepbackoffice.com style-guide page for Accordion was found or confirmed reachable this
+   session (unlike Dropdown/Split Button, which had a captured live HTML reference) — this build
+   leans on the WA kit + this file's own Modal/Alert conventions only. Verify against the live app
+   before dev handoff.
+3. Only a single collapsible item is modeled — a multi-item "Accordion Group" wrapper (matching
+   WA's own scope split) was not built.
 
 ---
 
