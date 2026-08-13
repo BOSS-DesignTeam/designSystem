@@ -158,3 +158,13 @@ key per call and produces duplicate/inconsistent properties across the set. This
 file. Icons are modeled as plain TEXT nodes set to `Font Awesome 7 Pro` Regular with a glyph-name
 string as `characters` (e.g. `"star"`, `"arrow-right"`) — the same pattern Tag already uses for its
 close (`X`) icon. Reuse this, don't introduce INSTANCE_SWAP icon slots as a new pattern.
+
+**Correction (same day):** initially skipped modeling `attention` (pulse/bounce) as a real Badge
+option because the real WA kit component doesn't expose it as a variant either — reasonable
+inference, but wrong call. The user explicitly wants "an example and option for everything" on a
+given WA docs page, which overrides matching the kit component 1:1. Added `Show Pulse`/`Show
+Bounce` booleans that render a static halo/dashed-ring proxy (animations can't be shown in a still
+frame) — document clearly in the component description that these are a static proxy, not a literal
+port, so nobody expects the Figma rendering to animate. Lesson: when a user names a specific docs
+page as the completeness bar, treat every section of that page as in-scope by default, even ones
+the "real" reference library omits — ask before dropping a section, don't infer it out of scope.
