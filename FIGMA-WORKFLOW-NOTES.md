@@ -132,3 +132,29 @@ wrapper. Every new component story should call out both categories explicitly, n
   suppressed via `outline: none`).
 - **Focus color:** `blue/70` (`#49A4DA`) — but confirmed in code only for Input/Select/Combobox/Textarea.
   Not yet confirmed for Checkbox/Radio/Switch/Button — tracked in OR-12956.
+
+---
+
+## 6. Badge rebuild (2026-08-13) — two more lessons
+
+**WA's appearance names don't match their visual weight — check the real library render, not the name.**
+Screenshotting the real `Web-Awesome-3-Design-Kit-v2-0-0` Badge component (key
+`d4083ea95a9c67e1c98799c12946850015e9f5f5`) showed `Appearance=Accent` is the bold solid-fill look
+and `Appearance=Filled` is the *lighter* tint-only look — backwards from what the names suggest.
+Would have shipped visually wrong if built from the docs page text alone. This file's old two-value
+"Filled"/"Subtle" Badge appearances turned out to already be exact matches for WA's real Accent and
+Filled-Outlined, respectively — confirmed by comparing screenshots, not by name.
+
+**Adding a shared TEXT/BOOLEAN component property to variants built via clone-then-recolor (not
+`combineAsVariants`):** mint the property once by calling `addComponentProperty` directly on the
+`ComponentSetNode` (works even after the set already exists/is combined), then set
+`componentPropertyReferences` on the corresponding child node in every variant to that same key.
+Do **not** call `addComponentProperty` separately on each variant component — that mints a different
+key per call and produces duplicate/inconsistent properties across the set. This is how Badge's new
+`Show Start Icon`/`Start Icon`/`Show End Icon`/`End Icon`/`Label` properties were wired across all
+40 variants after generating them by cloning one fully-featured template component.
+
+**Icon-in-badge convention:** no INSTANCE_SWAP icon component convention exists anywhere in this
+file. Icons are modeled as plain TEXT nodes set to `Font Awesome 7 Pro` Regular with a glyph-name
+string as `characters` (e.g. `"star"`, `"arrow-right"`) — the same pattern Tag already uses for its
+close (`X`) icon. Reuse this, don't introduce INSTANCE_SWAP icon slots as a new pattern.
