@@ -295,6 +295,7 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
   the file during the 2026-07-30 Accordion build. Not inspected in detail — flagging for a future
   audit pass rather than describing its contents from a guess.
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
+- `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal, Floating Action Bar) exist and are
 built out in the live file but were absent from this brief's page list — same drift pattern as the
@@ -439,6 +440,77 @@ editable-instance pattern already used on Alert's `Message` property.
    before dev handoff.
 3. Only a single collapsible item is modeled — a multi-item "Accordion Group" wrapper (matching
    WA's own scope split) was not built.
+
+---
+
+### Alert Banner component (page `1617:2` "Alert Banner (Steve)", ComponentSet ID `1621:156`)
+**Added 2026-08-14.** A slim, full-width, single-line notice bar — icon + message + optional
+inline action link — distinct from the card-style "Alert" component already on the `Alert
+(Steve)` page (`910:77`, Title/Message/Close pattern).
+
+**5 variants** = `Intent` (Brand/Success/Warning/Danger/Neutral), combined into one ComponentSet
+named `Alert Banner`.
+
+**Source:** the old Back Office Design Library actually has *three* distinct "Alert"-family
+components, discovered via `search_design_system` scoped to both project libraries:
+1. **Alert** (componentKey `a11fdcace6d19b459d4158f2bf5ccce0b7483525`, older) — the 993px-wide
+   Title/Message/Action/Close card, already ported into this file as `925:16`.
+2. **Alert** (componentKey `6f131d438f0bfd828865a1edffb65477c84e9e97`, newest) — turned out to be
+   an unrelated small notification-dot/badge indicator (`Alert Type`: Medium/High/Number
+   High/Number Medium/Alert Dot × `Size`: Large/Small) — confirmed by importing and screenshotting
+   it, not assumed from the name. Not relevant to this build.
+3. **Alert Banner** (componentKey `7caad3eba09b8f4e85e88b02f65a6f4ac04ca058`) — the real source for
+   this component: a slim single-line bar (icon + "Warning Text." + inline blue "Action Link."),
+   `Property 1` (Alert Banner - Non Rounded/Rounded) × `Property 2` (Medium/High/Success). Imported
+   and screenshotted to confirm before building — see reference instances left on this page's
+   `Reference only` area (x=1400) per the standing never-delete-existing-nodes convention (same
+   pattern as the Accordion build's reference instances).
+
+Also imported and inspected the real WebAwesome **Callout** component (`wa-callout`, componentKey
+`f2aa406ca85264e4b0aaa4fcc75696256fb9fd82`) as the closest WA atom — WA has no component named
+"Alert" or "Banner". Inspecting its node tree directly (not just the screenshot) confirmed its
+"circular icon badge" look is baked into the Font Awesome glyph itself (e.g. `circle-info` already
+contains a circle) — there is no separate wrapping shape. This meant the existing compact Alert
+component's icon convention (plain Font Awesome glyph text, no wrapper) already matched the real
+WA structure; no new icon pattern was introduced.
+
+**Decisions locked with the user before building (2026-08-14), since the old library source
+conflicted with this file's own established Alert conventions:**
+- **Color scope:** extended from the old library's 3 severities (Warning/Danger/Success) to all 5
+  semantic intents (Brand/Success/Warning/Danger/Neutral) — matches the compact Alert component and
+  the project brief's locked build-order note ("Alert / Banner — uses all 5 semantic colors").
+- **Corner radius:** the old library's Rounded/Non-Rounded variant axis was dropped; fixed at `0`
+  (flush/non-rounded) instead — matches the old library's own default variant and the typical
+  top-of-page/banner placement. Deliberately **not** bound to a radius token — no `radius/none`
+  token exists in this file's Spacing collection, so this is an intentional fixed-geometry
+  exception, not an oversight.
+- **Icon treatment:** flat single-color Font Awesome glyph (no wrapper), reusing the compact
+  Alert's exact glyphs and `color/icon/*` tokens for consistency: `circle-info` (Brand),
+  `circle-check` (Success), `triangle-exclamation` (Warning), `circle-exclamation` (Danger),
+  `gear` (Neutral, using `color/icon/default` — no dedicated `color/icon/neutral` token exists).
+
+**Structure:** horizontal auto-layout, `spacing/2` (8px) gap and vertical padding, `spacing/4`
+(16px) horizontal padding, background `color/bg/{intent}/subtle` (same subtle tone as the compact
+Alert, for family consistency). Message text uses `Body/2` style + `color/text/primary`. Action
+link text uses the file's own `Link` text style + `color/text/link` (`blue/70`) — kept the same
+link color regardless of severity, matching the old library reference (all three severities showed
+the same blue action link).
+
+**Component properties:** `Show Icon` (BOOLEAN, default true), `Message` (TEXT, default "Alert
+message text."), `Show Action` (BOOLEAN, default **false**), `Action Text` (TEXT, default "Action
+Link.") — added for instance editability; the old library source had no exposed properties at all
+(static text only). Wired via the Badge-established pattern: minted once via `addComponentProperty`
+on the `ComponentSetNode` after combining, then `componentPropertyReferences` set per-variant child
+— not re-minted per variant. Verified with a test instance toggling `Show Action` to `true`.
+
+**Known limitations:**
+1. No direct WebAwesome tag maps to "banner" as its own component — the closest real primitive is
+   `wa-callout`. Real dev-facing tag/prop mapping for this BOSS component is unconfirmed — flag
+   before dev handoff / Code Connect.
+2. Not yet published or Code Connect–mapped.
+3. Default variant width hugs content (178px at default text) rather than the old library's fixed
+   613px — matches this file's existing atom/molecule convention (compact Alert also hugs content);
+   intended to be set to `FILL` width when instanced into a real page layout.
 
 ---
 
@@ -665,11 +737,13 @@ Button, Split Button, Input, Select, Badge/Tag, Checkbox, Divider are done. Radi
 Tooltip are also done (2026-07-20, via the Atomic Design pass — see that section above).
 Dropdown Trigger (page `468:2`) is also built, though "Dropdown Item" on that same page is
 documented but not yet built. All 6 `(Steve)` components are now published with Code Connect
-mappings applied (see Publish & Code Connect audit section above). Remaining, now
-organism/molecule-tier rather than atoms:
+mappings applied (see Publish & Code Connect audit section above). Accordion is done
+(2026-07-30). Alert Banner is done (2026-08-14, see Alert Banner component section above) —
+uses all 5 semantic colors as planned; no `wa-alert` tag exists in the real WA kit, closest
+primitive is `wa-callout`, unconfirmed for dev handoff. Remaining, now organism/molecule-tier
+rather than atoms:
 
-1. **Alert / Banner** — uses all 5 semantic colors; WA: `wa-alert`
-2. **Modal / Dialog** — WA: `wa-dialog`
+1. **Modal / Dialog** — WA: `wa-dialog`
 
 ---
 
