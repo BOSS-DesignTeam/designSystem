@@ -519,6 +519,22 @@ Title + Message look is now the default across all 5 variants (verified via scre
 recenters correctly against the taller stack). Toggle off per-instance for the original
 single-line look.
 
+**Added `Show Close` same day**, per user feedback that both Title and Close were clearly present
+in the old card-style Alert (`925:16` — `Show close` boolean + a `"close"` Font Awesome glyph) and
+should have been carried over from the start, not just Title. New property: `Show Close` (BOOLEAN,
+default **true** — matching parity with the old card Alert's own default and with `Show Title`).
+Close icon reuses the same `"close"` Font Awesome 7 Pro glyph name as the old card Alert (renders
+as an X), but at this component's own Solid-weight/16px (`Med Solid Icon`) convention rather than
+the old card Alert's Regular/22px — kept internally consistent with Alert Banner's own leading
+icon rather than matching the card Alert 1:1. Fill bound to `color/text/primary` (severity-
+independent, matching the card Alert precedent). Positioned as the third row child, top-aligned via
+a per-child `layoutAlign` override so it doesn't follow the row's own center-aligned leading icon.
+Hit one bug along the way: setting `Copy`'s `layoutSizingHorizontal` to `FILL` (intending to push
+Close to the far right once the banner is stretched full-width) clipped the Message text, because
+`FILL` inside a HUG-width base component has no real space to fill — reverted `Copy` to `HUG`;
+FILL should be set on real page instances instead, not baked into the base variant. Verified both
+`Show Close=true` (default) and `=false` via test instances before removing them.
+
 **Known limitations:**
 1. No direct WebAwesome tag maps to "banner" as its own component — the closest real primitive is
    `wa-callout`. Real dev-facing tag/prop mapping for this BOSS component is unconfirmed — flag
