@@ -505,15 +505,19 @@ on the `ComponentSetNode` after combining, then `componentPropertyReferences` se
 
 **Updated same day (2026-08-14):** added an optional `Title` line per user request, mirroring the
 old system's card-style Alert (`925:16`), which stacks a Medium-weight Title above a Regular-weight
-Message. New properties: `Show Title` (BOOLEAN, default **false**) + `Title Text` (TEXT, default
-"Title") — `Title` uses `Subtitle/2` (14px Medium) vs `Message`'s `Body/2` (14px Regular), same
-color (`color/text/primary`) as the card Alert's Title/Message pair, one step down in scale to
-match this component's slimmer banner footprint. Structurally, `Message` + `Action` were
-re-parented into a new `Message Row` (horizontal) inside a new `Copy` (vertical) wrapper alongside
-`Title`. Both new wrapper frames needed `fills = []` set explicitly — `figma.createAutoLayout()`
-defaults to an opaque white fill (a gotcha already documented in `FIGMA-WORKFLOW-NOTES.md` §6 from
-the Badge build) — caught via screenshot verification before shipping, not left in. Default
-appearance (`Show Title=false`) is pixel-identical to the original single-line layout.
+Message. New properties: `Show Title` (BOOLEAN) + `Title Text` (TEXT, default "Title") — `Title`
+uses `Subtitle/2` (14px Medium) vs `Message`'s `Body/2` (14px Regular), same color
+(`color/text/primary`) as the card Alert's Title/Message pair, one step down in scale to match this
+component's slimmer banner footprint. Structurally, `Message` + `Action` were re-parented into a
+new `Message Row` (horizontal) inside a new `Copy` (vertical) wrapper alongside `Title`. Both new
+wrapper frames needed `fills = []` set explicitly — `figma.createAutoLayout()` defaults to an
+opaque white fill (a gotcha already documented in `FIGMA-WORKFLOW-NOTES.md` §6 from the Badge
+build) — caught via screenshot verification before shipping, not left in.
+
+**`Show Title` default flipped to `true` same day**, per follow-up user request — the two-line
+Title + Message look is now the default across all 5 variants (verified via screenshot; icon
+recenters correctly against the taller stack). Toggle off per-instance for the original
+single-line look.
 
 **Known limitations:**
 1. No direct WebAwesome tag maps to "banner" as its own component — the closest real primitive is
