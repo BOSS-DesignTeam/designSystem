@@ -535,6 +535,17 @@ Close to the far right once the banner is stretched full-width) clipped the Mess
 FILL should be set on real page instances instead, not baked into the base variant. Verified both
 `Show Close=true` (default) and `=false` via test instances before removing them.
 
+**Re-positioned same day, per follow-up user request:** Close needed to stay fixed at the banner's
+top-right corner regardless of resizing, not drift based on sibling flow width (the FILL-vs-HUG
+fix above only solved clipping, not this). Switched Close to `layoutPositioning = 'ABSOLUTE'` with
+`constraints = { horizontal: 'MAX', vertical: 'MIN' }` — the same escape-auto-layout-flow pattern
+already documented in `FIGMA-WORKFLOW-NOTES.md` §2 for Textarea's resize-grip and Checkbox's focus
+ring. `Copy`'s reserved space for Close was moved into the root row's own `paddingRight` (now `16 +
+close.width(12) + 8` gap = `36px`, a deliberate composite value, not bound to a single spacing
+token) so Title/Message/Action never render underneath the now-absolutely-positioned icon. Verified
+by resizing a test instance to `500px` wide — Close tracked to stay `16px` from the new right edge
+instead of following the text flow.
+
 **Known limitations:**
 1. No direct WebAwesome tag maps to "banner" as its own component — the closest real primitive is
    `wa-callout`. Real dev-facing tag/prop mapping for this BOSS component is unconfirmed — flag
