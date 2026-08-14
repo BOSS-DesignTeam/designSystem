@@ -168,3 +168,16 @@ frame) — document clearly in the component description that these are a static
 port, so nobody expects the Figma rendering to animate. Lesson: when a user names a specific docs
 page as the completeness bar, treat every section of that page as in-scope by default, even ones
 the "real" reference library omits — ask before dropping a section, don't infer it out of scope.
+
+**`figma.createAutoLayout()` / `figma.createFrame()` default to an opaque white fill.** Wrapping
+badge instances in helper-built row/column auto-layout frames (for the Examples section's dark
+"preview card" look) without explicitly setting `fills = []` painted a solid white bar over the
+dark card background — looked like a broken corner/notch in a screenshot, not obviously "the row
+has a fill." Any decorative-only wrapper frame needs `fills = []` set explicitly; don't assume a
+fresh frame is transparent.
+
+**Badge's real Neutral text/border token is near-black** (`color/text/primary`, designed for this
+file's light pages) — placed on a dark preview-card background (to visually match a dark-themed
+reference doc site) it goes invisible. This is a real light-vs-dark token mismatch, not a bug: fix
+it with a display-only per-instance override in the example (don't change the shared token/component
+just to satisfy one dark-background demo).
