@@ -479,11 +479,12 @@ conflicted with this file's own established Alert conventions:**
 - **Color scope:** extended from the old library's 3 severities (Warning/Danger/Success) to all 5
   semantic intents (Brand/Success/Warning/Danger/Neutral) — matches the compact Alert component and
   the project brief's locked build-order note ("Alert / Banner — uses all 5 semantic colors").
-- **Corner radius:** the old library's Rounded/Non-Rounded variant axis was dropped; fixed at `0`
-  (flush/non-rounded) instead — matches the old library's own default variant and the typical
-  top-of-page/banner placement. Deliberately **not** bound to a radius token — no `radius/none`
-  token exists in this file's Spacing collection, so this is an intentional fixed-geometry
-  exception, not an oversight.
+- **Corner radius:** the old library's Rounded/Non-Rounded variant axis was dropped in favor of a
+  single fixed value. Initially set to `0` (flush/non-rounded), matching the old library's own
+  default variant and the typical top-of-page/banner placement — **updated 2026-08-18 to `4px`**
+  per user request across all 5 variants. Deliberately **not** bound to a radius token — no
+  4px-specific radius token exists in this file's Spacing collection, so this remains an
+  intentional fixed-geometry value, not an oversight.
 - **Icon treatment:** flat single-color Font Awesome glyph (no wrapper), reusing the compact
   Alert's exact glyphs and `color/icon/*` tokens for consistency: `circle-info` (Brand),
   `circle-check` (Success), `triangle-exclamation` (Warning), `circle-exclamation` (Danger),
