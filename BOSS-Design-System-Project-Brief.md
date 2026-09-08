@@ -289,15 +289,19 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
 - `741:5` Tooltip (Steve) — added 2026-07-20
 - `905:598` Alert (Steve) — not previously logged in this brief; found live in the file during the
   2026-07-30 Accordion build (`figma.root.children` fan-out check). 15 variants, Intent x Size.
-- `934:6` Modal (Steve) — not previously logged in this brief; found live in the file during the
-  2026-07-30 Accordion build. Header/Footer boolean combos.
+- `934:6` Dialog (Steve) — not previously logged in this brief; found live in the file during the
+  2026-07-30 Accordion build. Header/Footer boolean combos. **Renamed 2026-09-08** from "Modal
+  (Steve)" (ComponentSet `934:427` renamed "Modal" → "Dialog") to match WebAwesome's own naming
+  (`wa-dialog`) ahead of the Tabs/Toast/Popover build-order additions — see the Dialog page's own
+  To-Do item 4 for the resolved `boss-dialog` tag-name note.
 - `942:2` Floating Action Bar (Steve decisions) — not previously logged in this brief; found live in
   the file during the 2026-07-30 Accordion build. Not inspected in detail — flagging for a future
   audit pass rather than describing its contents from a guess.
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 
-**Note (2026-07-30):** the three pages above (Alert, Modal, Floating Action Bar) exist and are
+**Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
+Action Bar) exist and are
 built out in the live file but were absent from this brief's page list — same drift pattern as the
 Split Button ID correction on 2026-07-22. `get_metadata` with no `nodeId` also under-reported the
 page list (returned only Cover); `figma.root.children` via `use_figma` was the source that actually
@@ -414,14 +418,14 @@ ComponentSet named `Accordion`.
   BOSS keeps only the bordered look and end-of-row chevron — see Known Limitations below.
 
 **Structure:** vertical auto-layout panel, `color/surface/default` fill, 1px `color/border/default`
-stroke, `radius/l` (8px) corners — this radius choice came from the Modal component's own resolved
+stroke, `radius/l` (8px) corners — this radius choice came from the Dialog component's own resolved
 panel convention (`--wa-border-radius-l,8px`) in this same file, not from WA's raw Details value
-(12px), since Modal is the closer in-file precedent for a bordered/panel container. Header row:
+(12px), since Dialog is the closer in-file precedent for a bordered/panel container. Header row:
 horizontal auto-layout, `spacing/4` (16px) padding + gap, `Subtitle/1` label text
 (`color/text/primary`), Font Awesome 7 Pro Solid chevron icon (`color/icon/default`,
 16px/"Med Solid Icon" style) — `chevron-right` (U+F054) when closed, `chevron-down` (U+F078) when
 open. Body panel (Open=True only): `spacing/4` padding, `Body/1` content text
-(`color/text/secondary`, matching Modal's body-message convention rather than WA's own
+(`color/text/secondary`, matching Dialog's body-message convention rather than WA's own
 text-normal). Hover fills the header row with `color/bg/neutral/subtle-hover`. Disabled uses
 component-level `opacity=0.6` on the Default look — same convention as Button/Split Button, not
 distinct disabled tokens.
@@ -436,7 +440,7 @@ editable-instance pattern already used on Alert's `Message` property.
    this file or BOSS_PD.md calls for them. Flag design team if needed.
 2. No live bepbackoffice.com style-guide page for Accordion was found or confirmed reachable this
    session (unlike Dropdown/Split Button, which had a captured live HTML reference) — this build
-   leans on the WA kit + this file's own Modal/Alert conventions only. Verify against the live app
+   leans on the WA kit + this file's own Dialog/Alert conventions only. Verify against the live app
    before dev handoff.
 3. Only a single collapsible item is modeled — a multi-item "Accordion Group" wrapper (matching
    WA's own scope split) was not built.
@@ -788,9 +792,12 @@ primitive is `wa-callout`, unconfirmed for dev handoff. Remaining, now organism/
 rather than atoms:
 
 **Drift note (2026-09-08):** this list previously had "Modal / Dialog" as item 1, but a live
-Figma pull the same day confirms Modal is already built and published (page `934:6` "Modal
-(Steve)", ComponentSet `934:427`) — same drift pattern flagged elsewhere in this brief (Alert/
-Floating Action Bar were similarly undocumented-but-built). Removed from the remaining list below.
+Figma pull the same day confirms the component is already built and published (page `934:6`,
+ComponentSet `934:427`) — same drift pattern flagged elsewhere in this brief (Alert/Floating
+Action Bar were similarly undocumented-but-built). Removed from the remaining list below. Same
+day, the page/component itself was renamed "Modal (Steve)"/"Modal" → "Dialog (Steve)"/"Dialog" to
+match WebAwesome's own naming (`wa-dialog`) — see the page list entry above and the Dialog page's
+own To-Do item 4.
 
 Added 2026-09-08 per a Figma-vs-WebAwesome component gap review — Tabs, Toast, and Popover were
 flagged as high-value gaps (all three show up constantly in a back-office app) and added to the
