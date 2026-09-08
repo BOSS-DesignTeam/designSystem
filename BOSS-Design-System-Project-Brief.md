@@ -720,18 +720,68 @@ NOT bundled onto a single shared "Atoms" page. A new divider page `--- Atoms ---
 was added instead, marking the start of the atomic-tier section in the page list.
 
 ### Radio component (page `741:3` "Radio (Steve)", ComponentSet ID `771:432`)
-**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** 6 variants
-= `Value` (Unselected/Selected) × `RadioState` (Default/Hover/Disabled). Sourced from the real
-"Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `53761025bdb44a5b9c7a4880b2568164
-6d038bf0`) via `importComponentSetByKeyAsync` — imported the Appearance=Default/Size=Medium
+**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Sourced from
+the real "Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `53761025bdb44a5b9c7a4880b25
+681646d038bf0`) via `importComponentSetByKeyAsync` — imported the Appearance=Default/Size=Medium
 variants, detached, and rebound colors to this file's tokens. 20px circle (real WA size — the
 first draft guessed 14px to match Checkbox and was wrong), 8px gap to label, 1px border
-(`gray/border` unselected, `blue/50` selected 14px dot). A "Focus Ring" element from the kit is
-present but hidden (`visible=false`), kept for future focus-state work. Hover is NOT a variant
-in the real kit — synthesized by darkening border/dot to `gray/70`/`blue/30`, matching this
-file's Checkbox convention. Disabled = 0.5 component opacity, imported directly from the kit's
-own Disabled variants. Maps to `wa-radio` / `bossRadioGroup`. Real prop mapping still inferred
-for `bossRadioGroup` specifically — flag before dev handoff.
+(`gray/border` unselected). A "Focus Ring" element from the kit is present but hidden
+(`visible=false`), kept for future focus-state work. Disabled = 0.5 component opacity, imported
+directly from the kit's own Disabled variants. Maps to `wa-radio` / `bossRadioGroup`. Real prop
+mapping still inferred for `bossRadioGroup` specifically — flag before dev handoff.
+
+**Updated 2026-09-08: Hover variant removed to match WebAwesome exactly.** Now 4 variants =
+`Value` (Unselected/Selected) × `RadioState` (Default/Disabled) — down from 6. The real WA Radio
+has no Hover variant at all (confirmed by re-importing componentKey `53761025...` fresh and
+reading its `componentPropertyDefinitions`: only `Selected` × `Disabled`, plus a `Focused` boolean
+and Appearance/Size axes this file already doesn't model). The Hover variant removed here had been
+a same-day synthesized addition (darkened border/dot), not something ported from WA — removing it
+was requested explicitly, per user direction to make Radio and Checkbox match WA's real state
+model rather than this file's own Default/Hover/Disabled convention. No instances referenced the
+removed variants (checked before deleting), so nothing else broke.
+
+**A second, undocumented legacy "Radio" ComponentSet was found on this same page** (inside a frame
+named "Radio Button", `3897:11001`, ComponentSet `3897:11002`) — an older component using its own
+`Status`/`State`/`With Text` properties, never mentioned anywhere in this brief. Its 4 Hover
+variants (`State=Hover`) were removed too, per user confirmation, for consistency with the
+canonical Radio above — same never-delete-without-confirmation rule applied (only the Hover
+variants were removed, not the whole duplicate; the duplicate itself was left in place since
+consolidating/removing it entirely wasn't what was asked). While fixing the resulting layout grid,
+caught and corrected a row-order bug introduced during this same edit (an early pass put `Status=On`
+row before `Status=Off`, which didn't match this legacy set's own pre-existing static row labels
+— "Unselected" then "Checked" — before the Hover column was removed; fixed by re-reading the
+original label positions and matching row order to them, verified via screenshot).
+
+**Confirmed color discrepancy found while inspecting the selected-state fills (not fixed, flagging
+only — out of scope for the Hover removal):** the Selected variant's dot and border are bound to
+`orange/50` (this file's Warning token), not `blue/50` as this section previously documented and
+as the real WA kit's own default suggests. Confirmed via `boundVariables` inspection, not a
+screenshot guess. Given Tabs hit an unrelated but similar orange-vs-blue mixup during its own
+build (see the Tab component section above), this is worth a dedicated pass to check whether other
+"Steve" components have similar raw-token drift — flag to design team before relying on Radio's
+selected-state color as documented.
+
+### Checkbox component (page `441:270` "Checkbox (Story Written)", ComponentSet ID `447:306`)
+Predates the "Steve" atomic-design pass (a "Story Written" page, not sourced via the WA-first
+workflow) — no full write-up exists elsewhere in this brief, so only the 2026-09-08 update is
+logged here.
+
+**Updated 2026-09-08: Hover variant removed to match WebAwesome exactly.** Now 5 variants =
+`Value` (Unchecked/Checked/Indeterminate) × `CheckboxState` (Default/Disabled) — down from 8
+(`Indeterminate × Disabled` was already missing before this change, unrelated to Hover). Confirmed
+via a fresh import of the real WA Checkbox (componentKey `3138840ee64036e9107e11fe5c466b7cbd7e2ac9`)
+that it has no Hover variant either — only `Checked`/`Indeterminate` × `Disabled`, plus a `Focused`
+boolean and Size/Hint axes this file doesn't model. No instances referenced the removed variants.
+
+**Trade-off worth flagging, not silently dropped:** this component's Hover variant wasn't
+arbitrary — its own documentation recorded that it was added specifically because "the real
+deployed styleguide shows a subtle border darken on Unchecked+Hover that the canonical Figma
+reference itself doesn't show," i.e. it was closing a real design-vs-implementation gap against
+the live app. Removing it to match WA exactly reopens that gap: the live app may still visually
+darken the checkbox border on hover, and this Figma component no longer represents that. Flagging
+for design team confirmation — if that live hover behavior should be preserved, it likely belongs
+as a dev-side CSS rule outside the design system rather than as a Figma variant, but that's a call
+for whoever owns `boss-checkbox`, not something to assume here.
 
 ### Switch component (page `741:4` "Switch (Steve)", ComponentSet ID `775:666`)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** 6 variants
