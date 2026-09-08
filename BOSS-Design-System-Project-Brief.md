@@ -408,15 +408,30 @@ the real WA `Details` component were imported onto the page to study structure b
 relocated to a labeled "Reference only" area at x=1400 rather than deleted, per the standing
 never-delete-existing-nodes rule.
 
-**6 variants** = Open (`False`/`True`) × State (`Default`/`Hover`/`Disabled`), combined into one
-ComponentSet named `Accordion`.
+**12 variants** (was 6 before 2026-09-08, see update below) = Open (`False`/`True`) × State
+(`Default`/`Hover`/`Disabled`) × IconPlacement (`Start`/`End`), combined into one ComponentSet
+named `Accordion` (ID `3929:75` as of the rebuild — was `1154:512`).
 
 - **Open axis:** `False` (header only) | `True` (header + Body content panel).
 - **State axis:** `Default` | `Hover` | `Disabled` — matches the Radio/Switch/Tooltip convention
   (no `Active`, same as Button's resolved reasoning: not defined in the library).
-- **Reduced from WA:** the real WebAwesome `Details` ComponentSet has 32 variants (`Open` ×
+- **IconPlacement axis (added 2026-09-08):** `Start` | `End` — matches WA's own real axis exactly.
+  `End` (chevron after the label) was the only option before this update; `Start` moves the chevron
+  before the label in the Header row.
+- **Still reduced from WA:** the real WebAwesome `Details` ComponentSet has 32 variants (`Open` ×
   `Icon Placement` [Start/End] × `Appearance` [Outlined/Filled-outlined/Filled/Plain] × `Disabled`).
-  BOSS keeps only the bordered look and end-of-row chevron — see Known Limitations below.
+  BOSS now covers the full `Icon Placement` axis but still keeps only the bordered `Appearance` —
+  see Known Limitations below.
+
+**Updated 2026-09-08: added Icon Placement (Start/End)**, per explicit direction to match
+WebAwesome exactly. Built the 6 `Start` variants by cloning the existing 6 (now-`End`) variants and
+reordering the Header row's children (`insertChild(0, chevron)` to move the chevron before the
+Label) — no other changes needed, since the Label already used `layoutSizingHorizontal='FILL'` and
+the Header's `itemSpacing`/padding apply the same regardless of child order. Hit the same two
+Tooltip-rebuild bugs on recombining all 12: `combineAsVariants` mangled the 6 *original* variants'
+names (fixed by renaming back, per `FIGMA-WORKFLOW-NOTES.md` §2) and the ComponentSet grew tall
+enough to overlap the page's own To-Do frame below it (caught via a page-layout check, not a
+screenshot, and fixed by repositioning To-Do below the new taller grid).
 
 **Structure:** vertical auto-layout panel, `color/surface/default` fill, 1px `color/border/default`
 stroke, `radius/l` (8px) corners — this radius choice came from the Dialog component's own resolved
@@ -431,14 +446,15 @@ text-normal). Hover fills the header row with `color/bg/neutral/subtle-hover`. D
 component-level `opacity=0.6` on the Default look — same convention as Button/Split Button, not
 distinct disabled tokens.
 
-**Component properties:** `Label` (TEXT, default "Accordion Item") bound on all 6 variants;
-`Content` (TEXT, default placeholder copy) bound on the 3 `Open=True` variants only — mirrors the
-editable-instance pattern already used on Alert's `Message` property.
+**Component properties:** `Label` (TEXT, default "Accordion Item") bound on all 12 variants;
+`Content` (TEXT, default placeholder copy) bound on the 6 `Open=True` variants only — mirrors the
+editable-instance pattern already used on Alert's `Message` property. Both properties' bindings
+carried over automatically through the clone-and-reorder process used to add IconPlacement.
 
 **Known limitations (see page's own To-Do section for detail):**
-1. Appearance axis reduced to bordered-only and Icon Placement fixed at `End` — WA's
-   Filled/Filled-outlined/Plain appearances and Start-aligned chevron were dropped since nothing in
-   this file or BOSS_PD.md calls for them. Flag design team if needed.
+1. **Resolved 2026-09-08 (Icon Placement):** Appearance axis is still reduced to bordered-only —
+   WA's Filled/Filled-outlined/Plain appearances were dropped since nothing in this file or
+   BOSS_PD.md calls for them, and remain out of scope. Flag design team if needed.
 2. No live bepbackoffice.com style-guide page for Accordion was found or confirmed reachable this
    session (unlike Dropdown/Split Button, which had a captured live HTML reference) — this build
    leans on the WA kit + this file's own Dialog/Alert conventions only. Verify against the live app
