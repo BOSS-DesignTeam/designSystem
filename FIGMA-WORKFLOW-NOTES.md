@@ -34,6 +34,22 @@ the row/column instead. Hit this on:
 **Check for this any time** a decorative/overlay element sits inside an auto-layout container and isn't
 rendering where expected.
 
+### Setting `x`/`y` before `appendChild` into a `SECTION` breaks its export bounding box
+Building a "Reference only" comparison area for Tabs (2026-09-08) as a `SECTION` with children
+positioned via `instance.x = x; instance.y = y;` **before** `refArea.appendChild(instance)` produced
+two symptoms: (1) `get_screenshot` on the section returned an export bounding box stretched back to
+the page origin (`original_width`/`height` far larger than the section's own declared `width`/
+`height`), and (2) two of the five children rendered visually overlapping on canvas even though
+`get_metadata`-style inspection of their `x`/`y` properties looked correct and non-overlapping.
+Root cause not fully isolated (sections appear to renormalize/re-anchor a child's coordinate space
+on `appendChild` in a way plain frames don't), but the fix was straightforward: **append the child
+to its parent first, then set `x`/`y`** — the same append-before-position order already required
+for `layoutPositioning = 'ABSOLUTE'` above, just for section children too. Simpler still: prefer a
+plain auto-layout `FRAME` over a `SECTION` for grouping reference/comparison content — auto-layout
+handles child spacing itself, so no manual `x`/`y` is needed at all. Always re-screenshot a newly
+built section/frame before treating it as done; the malformed bbox and the overlap were both
+visible immediately once checked, not something that would surface from metadata alone.
+
 ### `combineAsVariants` can produce malformed property names
 Renaming children to `"Type=X, State=Y"` before calling `combineAsVariants` sometimes produces junk
 property names like `"=Single Select, =Single, =Default"` instead of clean `Type`/`State` properties —

@@ -582,10 +582,19 @@ brief's standing rule. Two real candidates existed for Tab/Tab Group:
    `961065637de5f635bd8ce079f7b440f16ac165f7`, the per-tab atom, `Tab State`
    [Active/Inactive] × `Icon` boolean), and `Tab Line` (a decorative line-extension component).
 
-Both were imported and screenshotted (reference instances left in a "Reference only" section on
-this page, `3900:3`, per the standing never-delete-existing-nodes convention). **No dedicated
+Both were imported and screenshotted (reference instances kept in a "Reference only" frame on this
+page, `3907:160`, per the standing never-delete-existing-nodes convention). **No dedicated
 `Tab Panel`/panel component exists in either library** — confirmed absent via search before
 hand-building it, per this brief's standing rule.
+
+**Fixed 2026-09-08 (same day):** the reference area was originally built as a Figma `SECTION`
+(`3900:3`) with children positioned by setting `x`/`y` *before* `appendChild` — this produced a
+broken export (a `get_screenshot` of the section returned a bounding box stretched back to the
+page origin, and two of the five imports visually overlapped on canvas). Rebuilt as a plain
+vertical auto-layout frame instead, with each import in its own captioned `label + instance` row
+(auto-layout handles spacing, no manual `x`/`y`) — matches the append-before-position rule already
+documented for other absolute-positioned children in this file (see
+`FIGMA-WORKFLOW-NOTES.md` §2). Re-verified clean with a screenshot before moving on.
 
 **Decision:** built the `Tab` atom's variant axes and default color treatment from the **real WA
 kit** (Active × State, State replacing WA's plain `Disabled` boolean to reuse this file's own
@@ -609,6 +618,14 @@ minimal scope (content continues visually from the tab strip above it).
 **Structure — Tab Group (composed example):** vertical stack of a `Tab Row` (horizontal
 auto-layout, 1px `color/border/default` bottom divider) holding 4 `Tab` instances (one
 `Active=True`) + one `Tab Panel` instance below, demonstrating the pairing.
+
+**Examples section (added 2026-09-08, frame `Tab / Examples`, `3908:160`):** three realistic
+compositions beyond the base variant grid, all built from live `Tab` instances (not detached
+copies, so they stay in sync with the component) — (1) an instance of the `Tab Group` component
+itself (active tab first), (2) a hand-assembled row with the active tab in the third position, to
+confirm the active state isn't hardcoded to "first," and (3) a row mixing a `Disabled` tab in with
+`Active`/inactive ones, the combination the base variant grid doesn't show on its own. Positioned
+between Documentation and To-Do, matching the order used elsewhere in this file.
 
 **Component properties:** `Label` (TEXT, default "Tab") on the `Tab` ComponentSet, bound across
 all 4 variants; `Content` (TEXT, default placeholder copy) on `Tab Panel` — same editable-instance
