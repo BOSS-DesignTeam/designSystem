@@ -787,7 +787,18 @@ uses all 5 semantic colors as planned; no `wa-alert` tag exists in the real WA k
 primitive is `wa-callout`, unconfirmed for dev handoff. Remaining, now organism/molecule-tier
 rather than atoms:
 
-1. **Modal / Dialog** — WA: `wa-dialog`
+**Drift note (2026-09-08):** this list previously had "Modal / Dialog" as item 1, but a live
+Figma pull the same day confirms Modal is already built and published (page `934:6` "Modal
+(Steve)", ComponentSet `934:427`) — same drift pattern flagged elsewhere in this brief (Alert/
+Floating Action Bar were similarly undocumented-but-built). Removed from the remaining list below.
+
+Added 2026-09-08 per a Figma-vs-WebAwesome component gap review — Tabs, Toast, and Popover were
+flagged as high-value gaps (all three show up constantly in a back-office app) and added to the
+build order:
+
+1. **Tabs** — WA: `wa-tab` / `wa-tab-group` / `wa-tab-panel`
+2. **Toast** — WA: `wa-toast` / `wa-toast-item`
+3. **Popover** — WA: `wa-popover`
 
 ---
 
