@@ -212,3 +212,72 @@ file's light pages) — placed on a dark preview-card background (to visually ma
 reference doc site) it goes invisible. This is a real light-vs-dark token mismatch, not a bug: fix
 it with a display-only per-instance override in the example (don't change the shared token/component
 just to satisfy one dark-background demo).
+
+---
+
+## 7. Checking and fixing variant-model drift against the real WA kit
+
+Companion to the Project Brief's "Match WebAwesome's variant model, not just its geometry" rule —
+this section is the mechanical how-to. Grew out of the 2026-09-08 pass that found Hover states on
+Radio/Switch/Checkbox that WA doesn't model, Tooltip trimmed from 12 placements to 4, and
+Accordion's Icon Placement locked to one option — none individually alarming, all invisible unless
+someone actually diffed this file's variants against WA's real ones.
+
+**Note the Badge exception (§6 above) before applying this mechanically:** matching WA's variant
+model is the *default*, not an absolute rule. When the user (or a docs page named as the
+completeness bar) explicitly wants more than WA models — Badge's pulse/bounce booleans are the
+precedent — that instruction wins. The point of this section is to stop *silent, undiscussed*
+drift in either direction, not to forbid deliberate, confirmed departures from WA.
+
+**1. Get the real WA property list fresh, every time.** Don't trust this brief's own notes about
+what a WA component models — they can be stale (the Radio/Switch color-drift findings were only
+caught by re-inspecting live `boundVariables`, not by reading prior notes). Re-import and read
+directly:
+```js
+const waSet = await figma.importComponentSetByKeyAsync(COMPONENT_KEY); // no need to place it on canvas
+return waSet.componentPropertyDefinitions; // and waSet.children.map(c => c.name) for exact variant combos
+```
+
+**2. Diff against this file's live version**, not against what the brief says it should be:
+```js
+const compSet = await figma.getNodeByIdAsync(THIS_FILES_COMPSET_ID);
+return compSet.componentPropertyDefinitions;
+```
+Compare property-by-property. A property/option WA has that this file doesn't (or vice versa) is a
+real finding — decide and document which side of the Badge exception it falls on.
+
+**3. Check for instance usage before removing anything.** Never delete a variant without first
+confirming nothing on the page (or, time permitting, elsewhere in the file) references it as a
+main component — a removed variant that something still points to leaves a broken instance behind:
+```js
+const instances = page.findAllWithCriteria({ types: ['INSTANCE'] });
+for (const inst of instances) {
+  const main = await inst.getMainComponentAsync();
+  if (main && targetVariantIds.has(main.id)) { /* flag before deleting */ }
+}
+```
+
+**4. Adding a missing WA option to an existing axis (e.g. Accordion's Icon Placement, Tooltip's
+Start/End placements): clone, don't rebuild from scratch.** Clone the closest existing variant,
+make the minimal structural change (reorder auto-layout children, flip a `primaryAxisAlignItems`
+from `CENTER` to `MIN`/`MAX`), rename, and let inherited auto-layout/property bindings carry over.
+Reverse-engineering pixel offsets from the WA source is unnecessary and error-prone when the real
+component's alignment/padding properties are readable directly (see the Tooltip Start/End build:
+the "obvious" fix looked like manual arrow-position math, but the real fix was three lines reading
+`primaryAxisAlignItems`).
+
+**5. Recombining variants that were previously grouped will very likely hit the malformed-name bug
+(§2 above) — expect it, don't be surprised by it.** Every fix in this section so far (Tooltip,
+Accordion) that mixed *previously-grouped* variants with *freshly-created* ones during a
+`combineAsVariants` call reproduced this bug on the previously-grouped ones specifically. Plan for
+the rename-fix step as part of the work, not as debugging when it "goes wrong."
+
+**6. Re-check page layout after the set grows.** Adding variants makes the ComponentSet taller/wider
+— re-verify nothing below or beside it (a To-Do frame, a section boundary) now overlaps. This is a
+`page.children.map(...)` position check, not a screenshot judgment call — do it every time, it's
+caught real overlaps twice already (Tooltip's section, Accordion's To-Do frame).
+
+**7. Update the component's own on-canvas documentation text, not just this brief.** A "Known
+limitations" note that says "Icon Placement fixed at End" is actively wrong once Start is added —
+stale on-canvas docs are exactly the kind of drift this whole section exists to prevent. Grep the
+page's text nodes for the old constraint before considering the update done.

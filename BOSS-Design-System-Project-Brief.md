@@ -68,6 +68,47 @@ key (documented since Button, 2026-07-13) being available the whole time. **This
 single most important lesson in this brief — read this section before writing a single line of
 component geometry.**
 
+**Match WebAwesome's *variant model*, not just its geometry — same rule, one level deeper.**
+Sourcing a component's shapes/colors from the real WA kit isn't sufficient on its own if the
+*states and axes* it exposes get silently added to or trimmed from along the way. This exact
+pattern cost a full afternoon of retroactive fixes on 2026-09-08:
+
+- **Radio, Switch, and Checkbox** had all quietly gained a `Hover` state this file's own
+  Default/Hover/Disabled convention called for, but the real WA kit does not model (`Selected`/
+  `Checked` × `Disabled` only) — had to be removed from all three, plus an undocumented duplicate
+  legacy Radio component discovered along the way.
+- **Tooltip** had been silently reduced from WA's real 12 `Placement` options (adding Start/End to
+  each direction) down to 4, and was missing WA's `With Arrow` boolean entirely — had to be
+  expanded back to all 12 plus the boolean.
+- **Accordion** had `Icon Placement` hard-locked to `End`, dropping WA's real `Start` option —
+  had to be added back.
+- **Modal** was named and tagged inconsistently with WA's own `wa-dialog` naming — renamed to
+  `Dialog` throughout.
+
+None of these were correctness bugs in the traditional sense — every one of them "worked" and
+looked reasonable in isolation. They were **undocumented, silent deviations from WA's own
+variant/property model**, each one individually defensible ("this file already has a
+Default/Hover/Disabled convention," "4 placements covers this reference's scope") but collectively
+adding up to a component library that quietly drifted away from being an accurate WA mirror.
+
+**Going forward, treat the real WA component's `componentPropertyDefinitions` as the default scope
+for any component built or updated from it** — same variant axes, same option values, same
+boolean/text properties, unless a deviation is a **flagged, explicit decision** (recorded in that
+component's own section of this brief and, ideally, confirmed with the user first) rather than
+something that happens quietly while solving a different problem. Concretely, before calling a
+component "done" or "updated":
+1. Re-import the real WA component fresh (`importComponentSetByKeyAsync`) and read its
+   `componentPropertyDefinitions` — don't rely on memory or an old note in this brief, which can
+   itself be stale (see the Radio/Switch color-drift findings from the same day, caught the same
+   way).
+2. Diff that property list against what's actually live in this file's version.
+3. Every difference is either (a) something WA doesn't model that this file added on purpose (state
+   it and why), or (b) something WA models that this file is deliberately not building yet (state
+   it as a known limitation, don't just omit it silently).
+4. See [FIGMA-WORKFLOW-NOTES.md §7](FIGMA-WORKFLOW-NOTES.md#7-checking-and-fixing-variant-model-drift-against-the-real-wa-kit) for the mechanical how-to (cloning
+   variants, fixing the `combineAsVariants` malformed-name bug that tends to fire when doing this,
+   etc.).
+
 ---
 
 ## Session token-efficiency rules
