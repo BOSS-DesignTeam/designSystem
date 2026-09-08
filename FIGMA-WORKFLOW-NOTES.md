@@ -57,6 +57,21 @@ likely picking up a stray property from the original parent. **Fix:** after comb
 `componentPropertyDefinitions` and rename children directly if malformed. Don't assume the rename
 survived the combine.
 
+**Corollary hit during the Tooltip 12-placement rebuild (2026-09-08):** the malformed names above
+came specifically from re-combining components that had *previously* been variants of another
+ComponentSet (they carried stray parent-property baggage into the new combine) — components that
+were never previously grouped (freshly cloned/created) came out clean. If mixing "already was a
+variant somewhere" nodes with fresh ones in one `combineAsVariants` call, expect only the
+previously-grouped ones to need the rename fix.
+
+**Also hit in the same rebuild:** calling `compSet.componentPropertyDefinitions` in the *same*
+`use_figma` script as the `combineAsVariants()` that created it threw `"Component set has existing
+errors"` and rolled back the entire script (this environment's scripts are transactional — see
+"Empty ComponentSets auto-delete" below for the same rollback behavior in a different context).
+Moving that read to a separate, subsequent `use_figma` call succeeded immediately, once the
+malformed names were also fixed. Treat combine-then-immediately-read-properties as a pattern to
+avoid — split it into two calls even when nothing looks wrong yet.
+
 ### Empty ComponentSets auto-delete
 When every child/variant is removed or moved out of a `COMPONENT_SET`, Figma deletes the now-empty set
 automatically. Don't call `.remove()` on it afterward — it'll throw `node does not exist` and roll back

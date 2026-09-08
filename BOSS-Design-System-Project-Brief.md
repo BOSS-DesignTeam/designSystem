@@ -806,19 +806,62 @@ is now the **third** independent hit of the same undocumented orange/50-for-sele
 pattern (Radio's selected dot, Switch's On track, and the old Back Office library's tab-active
 stroke reviewed during the Tabs build) — see the new cross-cutting flag in Open Questions below.
 
-### Tooltip component (page `741:5` "Tooltip (Steve)", ComponentSet ID `769:16`)
-**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** 4 variants
-= `Placement` (Top/Right/Bottom/Left). Originally ported from the old Design Library's own
-Tooltip component (page "Tooltip", `14108:1490`, 12 placements) but hand-rebuilt from CSS
-research first — wrong twice (triangle-polygon arrow, then corrected-but-still-approximated
-padding/radius). Final version sourced from the real "Web-Awesome-3-Design-Kit-v2-0-0" org
-library (component key `7225dad6ddab3242ed9a0d8aaf53023f172d50f0`) — imported Top/Bottom/Left/
-Right variants, detached, rebound colors to `gray/tooltip-bg`. Real structure: a "Body" frame
-(3px corner radius — the CSS-research draft guessed 4px) plus a separate "Arrow Placement"
-frame containing an 8.48px square rotated 45° (arrow-size 6px × 0.7071 × 2, overlapping the
-body edge so only the tip shows). Simplified from the kit's 12 placements (incl. Start/End) and
-its Content INSTANCE_SWAP/With-Arrow boolean to the 4 core directions with plain text, matching
-this reference's scope. No interaction states apply. Maps to `wa-tooltip`.
+### Tooltip component (page `741:5` "Tooltip (Steve)", ComponentSet ID `3925:3223` — was `769:16`
+before the 2026-09-08 rebuild below)
+**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Originally
+ported from the old Design Library's own Tooltip component (page "Tooltip", `14108:1490`, 12
+placements) but hand-rebuilt from CSS research first — wrong twice (triangle-polygon arrow, then
+corrected-but-still-approximated padding/radius). Final version sourced from the real
+"Web-Awesome-3-Design-Kit-v2-0-0" org library (component key
+`7225dad6ddab3242ed9a0d8aaf53023f172d50f0`) — imported Top/Bottom/Left/Right variants, detached,
+rebound colors to `gray/tooltip-bg`. Real structure: a "Body" frame (3px corner radius — the
+CSS-research draft guessed 4px) plus a separate "Arrow Placement" frame containing an 8.48px
+square rotated 45° (arrow-size 6px × 0.7071 × 2, overlapping the body edge so only the tip
+shows). No interaction states apply (a tooltip has no persistent state, only shows/doesn't). Maps
+to `wa-tooltip`.
+
+**Updated 2026-09-08: expanded to all 12 real WA placements + `With Arrow`, per explicit
+direction to match WebAwesome exactly** (this component had no Hover to remove — the ask shifted
+to closing the previously-documented "simplified from 12 to 4" gap instead). Now `Placement` has
+12 options (added `Top Start`/`Top End`/`Bottom Start`/`Bottom End`/`Left Start`/`Left
+End`/`Right Start`/`Right End`) plus a `With Arrow` boolean (default true, toggles the Arrow
+Placement frame's visibility — verified by test instance: hiding the arrow correctly collapses
+component height from 35px to 29px).
+
+Built the 8 new variants by **reading the real WA kit's actual layout properties instead of
+reverse-engineering pixel offsets**: confirmed via a fresh import that "Arrow Placement" is a
+real auto-layout frame (`HORIZONTAL` for Top/Bottom, `VERTICAL` for Left/Right, 6px padding) whose
+`primaryAxisAlignItems` is `CENTER`/`MIN`/`MAX` for the base/Start/End variants respectively —
+confirmed this file's own existing Top/Bottom/Left/Right variants already carried the same
+auto-layout structure over from their original 2026-07-20 WA import. So each new variant is just a
+`clone()` of the matching base direction with `primaryAxisAlignItems` changed to `MIN`/`MAX` — no
+manual arrow-position math, and Figma's auto-layout guarantees pixel-correct results regardless of
+this file's wider placeholder text vs WA's own. Verified both a Top Start and a Left Start clone
+visually before combining everything.
+
+**Hit two bugs while recombining the 4 originals with the 8 new variants into one ComponentSet:**
+1. `combineAsVariants` produced the malformed-property-name bug already documented in
+   `FIGMA-WORKFLOW-NOTES.md` §2 — the 4 *original* variants (which had been variants of the old
+   set) came out named `=Tooltip, =Top` etc., while the 8 fresh clones stayed clean. Fixed by
+   renaming the 4 malformed children back to `Placement=Top` etc. directly, per that doc's own
+   prescribed fix.
+2. Reading `componentPropertyDefinitions` in the *same* `use_figma` call as the `combineAsVariants`
+   that produced the set threw `"Component set has existing errors"` and rolled back the entire
+   script (transactional rollback, not a partial failure) — moving that read to a separate,
+   subsequent call succeeded once the malformed names above were fixed. Worth flagging as a timing
+   quirk: don't chain a property-definition read immediately after combining variants in one script.
+3. The rebuild also left the new ComponentSet as a page-level sibling of the old "Tooltip" `SECTION`
+   instead of re-parented into it (the original had been pulled out during the rebuild and never
+   put back) — caught via a page-layout check, not a screenshot; fixed with `section.appendChild()`
+   and a section resize before it could ship looking broken.
+
+**`Content` is not exposed as a component property** — attempted adding one, but Figma rejects
+binding a TEXT property to a nested `INSTANCE`'s internal text node. Same constraint already
+applies to Radio's `Label` and Switch's `Label` (neither expose a text property either, for the
+same reason) — editing tooltip copy today means double-clicking into the instance directly.
+Flagged as a real gap, not silently worked around: detaching the Content instance would enable a
+proper `TEXT` property, but that trades away the "real WA instance, not hand-rebuilt" provenance
+for an editing convenience — a call for design team, not assumed here.
 
 **Fixed 2026-07-20 (post-build bugs, three rounds):**
 
