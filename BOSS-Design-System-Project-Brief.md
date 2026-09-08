@@ -323,7 +323,7 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
 - `5:3` --- (divider)
 - `5:4` Button (Steve)
 - `460:2` Split Button (Steve) — added 2026-07-13
-- `468:2` Dropdown (Steve) — not previously logged in this brief; found during the 2026-07-22 Code Connect audit. Only "Dropdown Trigger" (ComponentSet `472:74`) is actually built — "Dropdown Item" is documented in text on the page but was never built as a real component.
+- `468:2` Dropdown (Steve) — not previously logged in this brief; found during the 2026-07-22 Code Connect audit. "Dropdown Trigger" (ComponentSet `472:74`) was already built; "Dropdown Item" (new section, ComponentSet `3945:3188`) was built 2026-09-08 — see Dropdown component section below.
 - `741:2` --- Atoms --- (divider) — added 2026-07-20, marks the start of the atomic-design-tier section
 - `741:3` Radio (Steve) — added 2026-07-20
 - `741:4` Switch (Steve) — added 2026-07-20
@@ -392,6 +392,39 @@ Plain-hover, or Accent-hover — reused the closest existing token (`$brand-seco
 for hover surfaces, `$brand-hover-blue` for Accent's hover text) rather than inventing new
 values. Flag to design team if dedicated tokens should be added.
 
+**Audited 2026-09-08 against the real WA Button, as part of a sweep of every remaining `(Steve)`
+page.** This file's own To-Do already correctly flagged the gap ("No Active state or Pill property
+built yet, though WebAwesome's own kit defines both") — confirmed still accurate via a fresh
+import (componentKey `c7a5004eda26694c66b513124bc9169525434547`, 600 real variants: `Variant`
+Brand/Success/Warning/Danger/Neutral × `Appearance` Accent/Filled-Outlined/Filled/Outlined/Plain ×
+`Size` × `Pill` × `State` Default/Hover/**Active**/Disabled, plus Label/icon-slot/Focused
+properties). Per explicit direction, added **just** the `Active` state — now 60 variants (was 45).
+
+**Color decision for Active, confirmed with the user first:** the real WA kit derives Active
+mathematically from Default (a 20%-black overlay vs Hover's 10%) — verified directly by comparing
+`Background` frame paint stacks between WA's real Hover and Active variants across all 5
+Brand/Danger×Appearance combos (identical base colors, only the black-overlay opacity differs:
+10%→20%). Replicating that exact math would require a new primitive darker than `blue/30`, which
+this file's own palette doesn't have (`blue/30` is already documented as serving double duty for
+"Hover / pressed"). Rather than invent a new tint, Active reuses Hover's exact resolved colors —
+confirmed with the user before building, not assumed.
+
+**Built by cloning the 15 Hover variants** (one per Variant×Appearance×Size combo) and renaming to
+`State=Active` — no new colors needed given the decision above. Hit the same
+`combineAsVariants`-mangles-previously-grouped-variants bug as Tooltip/Accordion when recombining;
+fixed by identifying each of the 45 original variants via structural fingerprint (bound
+fill/stroke/label variable names + width + opacity), not by trusting an assumed array order — an
+initial attempt at positional-order fixing produced wrong names silently and had to be redone.
+Also caught, while updating this page's own doc text: a genuinely new gap, not previously flagged
+— this file's `Appearance` axis is missing WA's real `Filled-Outlined` option. Not built (out of
+scope for this pass), logged as a new item in the page's own To-Do.
+
+**Pre-existing issue found, not caused by this update:** the Button ComponentSet was already
+overlapping its own "Button / Documentation" section before this session touched anything (captured
+its pre-edit position/size and confirmed the original 411×1019 box already exceeded the
+Documentation section's bounds at the same origin). Left alone — out of scope for this audit, and
+not a regression.
+
 ---
 
 ### Split Button component (page `460:2` "Split Button (Steve)", ComponentSet ID `540:7`)
@@ -435,6 +468,67 @@ Disabled = opacity 0.6 on the Default look, same convention as Button.
 2. Caret icon is a hand-built vector chevron, not the real Font Awesome 7 Pro glyph the live
    app uses (font may not be installed in this Figma file).
 3. No hover/disabled reference existed in the Design Library — extrapolated from Button.
+
+**Audited 2026-09-08 as part of the `(Steve)`-page sweep — no real WA equivalent exists to audit
+against.** WA's real kit has no "Split Button" component (`search_design_system` returns only
+`Button` and an unrelated `Cluster` layout primitive for that query); this is a genuine BOSS-
+original composite, already documented as such above. No changes made.
+
+---
+
+### Dropdown component (page `468:2` "Dropdown (Steve)")
+
+**Dropdown Trigger** (ComponentSet `472:74`) was already built (see the 2026-07-22 Code Connect
+audit section below) — audited 2026-09-08, no real standalone WA equivalent to diff against (WA's
+"Dropdown" is a single, non-configurable component that's actually a composed *example* menu, not
+a trigger-button variant set; the trigger itself is conceptually just Button-with-caret, which
+inherits Button's own audit findings above). No changes made to Dropdown Trigger.
+
+**Dropdown Item — built 2026-09-08** (new page section "Dropdown Item", ComponentSet `3945:3188`),
+closing the gap this brief had flagged since 2026-07-22 ('"Dropdown Item" is documented in text but
+was never built as an actual Figma component'). Sourced from the real WA Dropdown Item
+(componentKey `7f2e2e8f4837cf7bfb701667c9b08397d5c1a5e6`): horizontal auto-layout row, 16px
+horizontal / 8px vertical padding (`spacing/4`/`spacing/2`), 8px gap (`spacing/2`), `radius/s`
+(3px) corners, matching WA's real geometry exactly. **6 variants** = `Variant` (Default/Danger) ×
+`State` (Default/Hover/Disabled) — `State` is this file's own established convention (Radio/
+Switch/Accordion/Tab/Dropdown Trigger precedent) layered on top of WA's real `Disabled` axis, same
+pattern as everywhere else. Plus WA's real boolean/text properties: `Label`, `Details`, `Checked`,
+`With Submenu`, `With Details`, `With Icon`, `Checkbox` — all present, matching WA's property
+surface. Leading icon, checkbox glyph, and submenu chevron are plain Font Awesome text glyphs
+(`gear`/`check`/`chevron-right` as defaults), not INSTANCE_SWAP — matches this file's established
+icon convention (Badge/Tag/Tab), not a gap.
+
+**Course-corrected mid-build after finding this page already had a detailed, research-backed spec
+for this exact component that generic WA sourcing alone didn't match.** This page's own
+Documentation text (written before Dropdown Item existed as a component) already specified real
+colors from the live style guide: hover should use the same blue family tint as Trigger/Split
+Button/Button's Outlined hover (`#c8cfe3`), not a generic gray option-hover. The first build pass
+used `color/bg/option-hover` (this file's generic dropdown/select hover token) and Roboto Regular
+labels — both wrong against this page's own spec. Fixed to `color/bg/button/brand-subtle-hover`
+(the bound token resolving to that same `#c8cfe3`, keeping "one consistent hover color across the
+whole family" as the spec requires) and Roboto Medium labels (matching "bold label" in the spec).
+**Lesson, not just a fix:** should have read this page's existing Documentation text before
+building from WA structure alone — the "inspect before creating, match existing conventions" rule
+applies to a single page's prior research notes just as much as to the whole file's token system.
+
+**Known simplification, not full parity:** `Checked` exists as a real property but doesn't yet
+visually distinguish from unchecked (the checkbox glyph is a static checkmark, not swapped based on
+`Checked`'s value) — flagged on the page's own To-Do, not silently overclaimed. Danger variant
+allows `With Details`/`With Submenu`/`With Icon` to be toggled even though the live style guide's
+own example only shows Danger as a single-line label — matches WA's own unrestricted property
+model rather than hand-locking Danger down further; flagged for design team if BO wants it
+restricted.
+
+**Layout bug found and fixed while updating this page's own documentation text (unrelated to
+Dropdown Item's structure, but caught in the process):** the Dropdown page's `desc`/`body` text
+nodes have `textAutoResize='NONE'` (a fixed-size box), unlike most other pages in this file which
+use `'HEIGHT'` (auto-grows). Appending text left `.height` completely unchanged, so a
+position/resize calculation based on that stale height concluded no fix was needed when the text
+was actually badly overlapping/clipped — caught only by opening the actual rendered screenshot, not
+by trusting reported dimensions. Fixed by forcing `textAutoResize='HEIGHT'` first to get the true
+height, then repositioning; the resulting growth cascaded into the To-Do section below it and (in
+turn) the new Dropdown Item section below *that*, requiring all three to be repositioned in
+sequence. Documented as a new gotcha in `FIGMA-WORKFLOW-NOTES.md` §2.
 
 ---
 
@@ -618,6 +712,25 @@ instead of following the text flow.
    613px — matches this file's existing atom/molecule convention (compact Alert also hugs content);
    intended to be set to `FILL` width when instanced into a real page layout.
 
+**Audited 2026-09-08 as part of the `(Steve)`-page sweep — no real WA equivalent to diff against**
+(confirmed above: closest is `wa-callout`, already documented as structurally incompatible — WA
+Callout uses `Variant`×`Appearance`×`Size` with INSTANCE_SWAP content, nothing like this
+component's Title/Message/Action/Close pattern). **Documentation drift found and corrected while
+auditing, unrelated to WA:** the live component actually has 10 variants — `Intent` × `Appearance`
+(`Filled`/`Outlined`), confirmed directly via `compSet.children` — not the 5 (`Intent` only)
+documented above and throughout this section. This wasn't caught until this pass; the `Appearance`
+axis was apparently added to the live file at some point after this write-up without an update here
+— same drift pattern this brief has hit before (Split Button's ID, Alert/Modal/Floating Action
+Bar's undocumented existence). Not investigating further or changing the component itself (out of
+scope for this pass) — flagging the discrepancy so the "5 variants, Intent only" language elsewhere
+in this section is understood as stale, not currently accurate.
+
+**Compact "Alert" component (page `905:598`, two ComponentSets `910:77` and `925:16`) and
+"Floating Action Bar" (page `942:2`) also audited 2026-09-08 — no real WA equivalent for either.**
+Alert: same `wa-callout` mismatch as Alert Banner above. Floating Action Bar: no matching WA
+component exists at all (`search_design_system` for the term returns nothing relevant). No changes
+made to either.
+
 ---
 
 ### Tab component (page `3900:2` "Tabs (Steve)", ComponentSet ID `3904:183`)
@@ -706,6 +819,11 @@ pattern as Accordion's `Label`/`Content` and Alert's `Message`.
    dev team.
 6. Not yet published or Code Connect–mapped.
 7. Focus state / focus ring not yet added (same open item as Button/Dialog).
+
+**Re-audited 2026-09-08 as part of the `(Steve)`-page sweep — confirmed still fully compliant, no
+changes needed.** Re-imported the real WA Tab fresh and diffed: `Active`/`State`
+(Default/Hover/Disabled) matches WA's `Active`/`Disabled` exactly, same established
+State-replaces-Disabled convention as Radio/Switch/Accordion/Dropdown Item.
 
 ---
 
@@ -1085,8 +1203,9 @@ source files in the RestaurantUI repo. Do this before treating any of the 6 as f
 
 Button, Split Button, Input, Select, Badge/Tag, Checkbox, Divider are done. Radio, Switch, and
 Tooltip are also done (2026-07-20, via the Atomic Design pass — see that section above).
-Dropdown Trigger (page `468:2`) is also built, though "Dropdown Item" on that same page is
-documented but not yet built. All 6 `(Steve)` components are now published with Code Connect
+Dropdown Trigger (page `468:2`) is also built; "Dropdown Item" on that same page is now built too
+(2026-09-08, see Dropdown component section above). All 6 `(Steve)` components are now published
+with Code Connect
 mappings applied (see Publish & Code Connect audit section above). Accordion is done
 (2026-07-30). Alert Banner is done (2026-08-14, see Alert Banner component section above) —
 uses all 5 semantic colors as planned; no `wa-alert` tag exists in the real WA kit, closest
@@ -1133,7 +1252,7 @@ Group, page `3900:2`). Remaining:
 - Phase 4 QA + accessibility audit pending
 - ~~Radio/Switch/Tooltip unpublished, blocking Code Connect~~ — done 2026-07-22, all 6 `(Steve)` components published and Code Connect–mapped (see Publish & Code Connect audit section)
 - Code Connect mappings for all 6 `(Steve)` components use documented tag names only — not verified against real `boss-*`/`orderly-*` source files in the RestaurantUI repo. Verify before dev handoff.
-- "Dropdown Item" (page `468:2`) is documented in text but was never built as an actual Figma component — only "Dropdown Trigger" exists
+- ~~"Dropdown Item" (page `468:2`) is documented in text but was never built as an actual Figma component — only "Dropdown Trigger" exists~~ — done 2026-09-08, see Dropdown component section
 - **New 2026-09-08 — systemic orange/50-vs-blue/50 drift on selected/active states.** Three
   independent hits now: Radio's selected dot/border, Switch's On track (both confirmed via
   `boundVariables` inspection, not screenshots — see their component sections above), and the old

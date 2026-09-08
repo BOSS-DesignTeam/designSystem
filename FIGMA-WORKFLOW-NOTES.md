@@ -294,3 +294,22 @@ is safe — if `'NONE'`, resize the frame explicitly afterward:
 ```js
 todo.resizeWithoutConstraints(todo.width, textNode.y + textNode.height + margin);
 ```
+
+**A second, sneakier variant of the same bug (found on the Dropdown page during the same 2026-09-08
+audit): the TEXT node itself can have `textAutoResize='NONE'`, not just its parent frame.** Most
+doc/To-Do text in this file uses `textAutoResize='HEIGHT'` (grows with content), but the Dropdown
+page's `desc`/`body` text nodes were `'NONE'` (fixed box) — appending text left `node.height`
+completely unchanged (reporting the old, pre-append value), so computing a sibling's new position
+from that height positioned it as if nothing had grown, and the resize check based on it concluded
+"no resize needed" when the opposite was true. **Before trusting any `textNode.height` read after
+an append, check `textNode.textAutoResize` first** — if `'NONE'`, temporarily set it to `'HEIGHT'`
+to force Figma to compute the true content height, read `.height` again, *then* do position/resize
+math with that real number:
+```js
+if (node.textAutoResize === 'NONE') node.textAutoResize = 'HEIGHT'; // now .height reflects real content
+const trueHeight = node.height;
+```
+Also: fixing one section's height can cascade — growing a Documentation section can push it past
+a To-Do section positioned right after it, which can in turn collide with whatever comes after
+*that*. After any resize, re-check the whole page's children for overlaps programmatically (a
+simple AABB overlap test), not just the two sections you touched.
