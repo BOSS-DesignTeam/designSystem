@@ -281,3 +281,16 @@ caught real overlaps twice already (Tooltip's section, Accordion's To-Do frame).
 limitations" note that says "Icon Placement fixed at End" is actively wrong once Start is added —
 stale on-canvas docs are exactly the kind of drift this whole section exists to prevent. Grep the
 page's text nodes for the old constraint before considering the update done.
+
+**Watch for silent clipping when appending to that documentation text (found during the Dialog
+boolean-conversion audit, 2026-09-08):** not every doc/To-Do frame in this file is auto-layout.
+Appending text to a `TEXT` node with `textAutoResize='HEIGHT'` grows the text node correctly, but
+if its parent frame has `layoutMode='NONE'` and `clipsContent=true` (a plain fixed-size frame, not
+an auto-layout one), the frame itself does **not** grow to match — the added text silently clips at
+the frame's old bottom edge. `get_screenshot` on the frame will report the *old*, wrong dimensions
+and look fine at a glance; only reading the actual rendered image (not just trusting the returned
+width/height) surfaces the cut-off sentence. Check `frame.layoutMode` before assuming a text append
+is safe — if `'NONE'`, resize the frame explicitly afterward:
+```js
+todo.resizeWithoutConstraints(todo.width, textNode.y + textNode.height + margin);
+```

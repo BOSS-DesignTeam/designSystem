@@ -840,6 +840,52 @@ for design team confirmation — if that live hover behavior should be preserved
 as a dev-side CSS rule outside the design system rather than as a Figma variant, but that's a call
 for whoever owns `boss-checkbox`, not something to assume here.
 
+### Dialog component (page `934:6` "Dialog (Steve)", Component ID `934:423` — was ComponentSet
+`934:427` before the 2026-09-08 rebuild below)
+No full write-up existed elsewhere in this brief before this audit (see the page-list entry above
+and the earlier Modal→Dialog rename note) — logged in full here.
+
+**Audited 2026-09-08 against the real WA Dialog per the new variant-fidelity rule (see "Reference
+libraries" section above).** Re-imported the real `wa-dialog` fresh (componentKey
+`4cdf6da8c1b7462e4e3ee6a2ae2f9aa854deef70`) and found a structural mismatch, not just a missing
+option: **the real WA Dialog is not a ComponentSet at all — it's a single Component** with
+independent boolean properties (`With Header`, `With Header Actions`, `With Footer`) plus
+INSTANCE_SWAP slots (`Header Actions`, `Footer`, `Body`, `Label`). This file's Dialog modeled the
+same 2×2 Header/Footer space as a **4-variant ComponentSet** instead (pick one of 4 pre-built
+layouts) — functionally equivalent coverage, but a different property model than what a real
+`wa-dialog` instance actually exposes.
+
+**Converted to match, per explicit user direction:** took the "Header=with-header,
+Footer=with-footer" variant (the only one with all three sections present) as the base, deleted
+the other 3 variants (confirmed zero instances referenced any of the 4 first), and added two real
+`addComponentProperty` BOOLEAN properties — `With Header` and `With Footer` — bound to the Header
+and Footer frames' `visible` via `componentPropertyReferences`. `Title`/`Message` TEXT properties
+carried over unchanged. `With Header Actions` + the INSTANCE_SWAP slots remain unmodeled — that was
+already a flagged, documented gap (page's own To-Do item 1) before this pass, not something newly
+discovered, and converting Header/Footer to booleans was the specific, scoped change confirmed —
+not a full parity rebuild.
+
+**Found and fixed a real bug surfaced by the conversion, not just a structural change:** the
+original 4-variant design had Header→Body spacing owned entirely by `Header`'s own bottom padding
+(bound to `spacing/3`, 12px). Once Header could be hidden via a boolean on the *same* Body frame
+(rather than a dedicated headerless variant with its own hand-tuned padding), hiding it left Body's
+content flush against the top edge with zero spacing — confirmed via test instance + screenshot,
+not assumed. Fixed by relocating that 12px to Body's own top padding (`paddingTop`, bound to the
+same `spacing/3` variable) and zeroing Header's bottom padding — verified the "with everything"
+total height is byte-for-byte unchanged (167px, matches the original spec) and all 4 boolean
+combinations render correctly via test instances (removed after verifying) before considering this
+done. See [FIGMA-WORKFLOW-NOTES.md §7](FIGMA-WORKFLOW-NOTES.md#7-checking-and-fixing-variant-model-drift-against-the-real-wa-kit)
+for why this kind of "spacing owned by the sibling that goes away" bug is worth checking for
+whenever a variant-driven show/hide is converted to a boolean-driven one.
+
+**Also hit and fixed a page-documentation clipping bug while updating this component's own on-canvas
+To-Do text** (unrelated to the Dialog structure itself, but found in the process): the To-Do frame
+uses `layoutMode='NONE'` with `clipsContent=true`, not auto-layout — appending text grew the text
+node but not its parent frame, silently clipping the new content at the old bottom edge.
+`get_screenshot` reported the frame's stale (too-small) dimensions and looked fine without opening
+the actual image. Fixed by resizing the frame explicitly to the text's new bottom edge + margin.
+Documented as a new gotcha in `FIGMA-WORKFLOW-NOTES.md` §7.
+
 ### Switch component (page `741:4` "Switch (Steve)", ComponentSet ID `775:666`)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Sourced from
 the real "Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `02ffbeb3bc023ecbed752329cd
@@ -862,6 +908,11 @@ On-state track is actually bound to `orange/50` — confirmed via `boundVariable
 is now the **third** independent hit of the same undocumented orange/50-for-selected/active-state
 pattern (Radio's selected dot, Switch's On track, and the old Back Office library's tab-active
 stroke reviewed during the Tabs build) — see the new cross-cutting flag in Open Questions below.
+
+**Re-audited 2026-09-08 against the real WA Switch, per the new variant-fidelity rule — found fully
+compliant, no changes needed.** `Value` × `SwitchState` (Off/On × Default/Disabled) matches WA's
+real `Checked` × `Disabled` axes exactly for the Medium size this file models (Small/Large are an
+established, documented out-of-scope decision, not a gap). No further action taken.
 
 ### Tooltip component (page `741:5` "Tooltip (Steve)", ComponentSet ID `3925:3223` — was `769:16`
 before the 2026-09-08 rebuild below)
