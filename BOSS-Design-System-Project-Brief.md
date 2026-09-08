@@ -472,7 +472,15 @@ Disabled = opacity 0.6 on the Default look, same convention as Button.
 **Audited 2026-09-08 as part of the `(Steve)`-page sweep — no real WA equivalent exists to audit
 against.** WA's real kit has no "Split Button" component (`search_design_system` returns only
 `Button` and an unrelated `Cluster` layout primitive for that query); this is a genuine BOSS-
-original composite, already documented as such above. No changes made.
+original composite, already documented as such above. No changes made to the component.
+
+**Stale To-Do item found and corrected 2026-09-08** (during a pass checking every page's To-Do
+list for staleness): item 2 claimed the caret icon was "a hand-built vector chevron... not the real
+Font Awesome 7 Pro glyph." Confirmed via direct node inspection that this is no longer true — the
+caret is already a real `Font Awesome 7 Pro` Solid glyph. This matches what this section's own
+history above already says (the caret was swapped for the real glyph when the component moved to
+its current ComponentSet, `540:7`, "FA chevron-down") — the on-canvas To-Do just never got updated
+after that fix shipped. Marked resolved on the page itself.
 
 ---
 
@@ -729,7 +737,14 @@ in this section is understood as stale, not currently accurate.
 "Floating Action Bar" (page `942:2`) also audited 2026-09-08 — no real WA equivalent for either.**
 Alert: same `wa-callout` mismatch as Alert Banner above. Floating Action Bar: no matching WA
 component exists at all (`search_design_system` for the term returns nothing relevant). No changes
-made to either.
+made to either component.
+
+**Stale To-Do item found and corrected on Floating Action Bar** while checking every page's To-Do
+list for staleness: item 7 flagged that Modal (now Dialog) needed the same `spacing/N`-resolves-to-
+`N×4px` fix applied to it and said to "revisit and fix Modal's spacing bindings for consistency."
+That's already done — Dialog's own To-Do independently records the identical fix as completed on
+2026-07-28, the same day this note was written on Floating Action Bar's page, just never
+cross-referenced back. Marked resolved on the page itself.
 
 ---
 
