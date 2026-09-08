@@ -299,6 +299,7 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
   audit pass rather than describing its contents from a guess.
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
+- `3900:2` Tabs (Steve) — added 2026-09-08, see Tab component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -562,6 +563,78 @@ instead of following the text flow.
 
 ---
 
+### Tab component (page `3900:2` "Tabs (Steve)", ComponentSet ID `3904:183`)
+**Added 2026-09-08.** Three pieces, matching WebAwesome's own three-part split: **Tab**
+(ComponentSet `3904:183`, WA: `wa-tab`), **Tab Panel** (Component `3904:186`, WA:
+`wa-tab-panel`), and **Tab Group** (Component `3904:203`, WA: `wa-tab-group`) — a composed
+example, not its own variant set (same scope decision as Accordion's Group wrapper).
+
+**Source:** checked `search_design_system` scoped to both project libraries first, per this
+brief's standing rule. Two real candidates existed for Tab/Tab Group:
+1. **Real WebAwesome kit** — `Tab` (componentKey `f29bf46e55895a85d1d3bf4505e0cfa8e6e34a66`, 3
+   variants: `Active=False/Disabled=False`, `Active=True/Disabled=False`,
+   `Active=False/Disabled=True` — no Active+Disabled combo modeled) and `Tab Group` (componentKey
+   `716807692bb148b7148c1d2807f30bc782a6abc0`, `Placement` [Top/Bottom/Start/End] ×
+   `Scrolling` [False/True]).
+2. **Old Back Office Design Library** — a full BO-specific system: `tab group` (componentKey
+   `40119ee6012c39d43b4b160c63e06f7eb8c37bdb`, real `Show Left Scroll`/`Show Right Scroll`
+   booleans + `Group Type` [Standard/Closeable]), `Tab Elements` (componentKey
+   `961065637de5f635bd8ce079f7b440f16ac165f7`, the per-tab atom, `Tab State`
+   [Active/Inactive] × `Icon` boolean), and `Tab Line` (a decorative line-extension component).
+
+Both were imported and screenshotted (reference instances left in a "Reference only" section on
+this page, `3900:3`, per the standing never-delete-existing-nodes convention). **No dedicated
+`Tab Panel`/panel component exists in either library** — confirmed absent via search before
+hand-building it, per this brief's standing rule.
+
+**Decision:** built the `Tab` atom's variant axes and default color treatment from the **real WA
+kit** (Active × State, State replacing WA's plain `Disabled` boolean to reuse this file's own
+Default/Hover/Disabled convention already established on Radio/Switch/Accordion/Dialog — Hover is
+synthesized, same as those). Did **not** port the old BO library's scroll-affordance or
+Closeable-tab behavior, or its raw active-tab color — see Known Limitations below for why each was
+left out rather than silently guessed.
+
+**Structure — Tab:** horizontal auto-layout, `spacing/4` (16px) horizontal / `spacing/3` (12px)
+vertical padding, `Subtitle/2` label text. Inactive default: `color/text/secondary`. Hover:
+`color/bg/neutral/subtle-hover` fill on the tab itself (reused directly from Accordion's header
+hover treatment). Disabled: component-level `opacity=0.6` (same convention as
+Button/Split Button/Accordion/Dialog). Active: `color/text/brand` label + a 2px bottom
+`color/border/brand` indicator bar (`layoutPositioning='ABSOLUTE'`, anchored bottom, hidden on all
+other variants) — matches the real WA Tab Group's own default blue underline styling.
+
+**Structure — Tab Panel:** vertical auto-layout, `spacing/4` (16px) padding all sides, `Body/1`
+content text in `color/text/secondary`. No border/background of its own — matches WA's real
+minimal scope (content continues visually from the tab strip above it).
+
+**Structure — Tab Group (composed example):** vertical stack of a `Tab Row` (horizontal
+auto-layout, 1px `color/border/default` bottom divider) holding 4 `Tab` instances (one
+`Active=True`) + one `Tab Panel` instance below, demonstrating the pairing.
+
+**Component properties:** `Label` (TEXT, default "Tab") on the `Tab` ComponentSet, bound across
+all 4 variants; `Content` (TEXT, default placeholder copy) on `Tab Panel` — same editable-instance
+pattern as Accordion's `Label`/`Content` and Alert's `Message`.
+
+**Known limitations (see the page's own To-Do section, `3905:164`, for full detail):**
+1. Scroll affordance (`Show Left/Right Scroll`) from the old BO library not modeled — flag if a BO
+   screen has more tabs than fit on one row.
+2. Closeable tabs (old library's `Group Type=Closeable`, per-tab close icon) not modeled.
+3. **Active-tab color deviates from the old library on purpose:** the old library's own
+   `Tab Elements` Active variant uses a raw stroke that resolves to this file's `orange/50`
+   (Warning) primitive — confirmed `accent/highlight` is actually pale yellow (`#FFFFB3`) and
+   unrelated, so this wasn't an aliased "highlight" token, just a raw orange value. Used
+   `color/border/brand` (blue/50) instead, matching the real WA kit's own default and this file's
+   established selected-state convention. Flagging for design team confirmation rather than
+   silently picking a side, in case orange was actually intentional for tabs specifically.
+4. Only `Placement=Top` is modeled — the real `wa-tab-group` also supports Bottom/Start/End and a
+   `Scrolling` variant; out of scope here, matching this file's other Medium-only/reduced-axis
+   scope decisions.
+5. Component tag name (`boss-tabs` vs `boss-tab-group`) and real prop/event names unconfirmed with
+   dev team.
+6. Not yet published or Code Connect–mapped.
+7. Focus state / focus ring not yet added (same open item as Button/Dialog).
+
+---
+
 ### Colors Foundations page (page `5:2` "Foundations", root frame `701:2`)
 **Added 2026-07-17.** A "Colors" documentation section built on the previously-empty Foundations
 page, covering 8 hue families / 42 swatches: Brand-Blue, Danger-Red, Success-Green,
@@ -801,11 +874,11 @@ own To-Do item 4.
 
 Added 2026-09-08 per a Figma-vs-WebAwesome component gap review — Tabs, Toast, and Popover were
 flagged as high-value gaps (all three show up constantly in a back-office app) and added to the
-build order:
+build order. **Tabs is done** (same day, see Tab component section above — Tab/Tab Panel/Tab
+Group, page `3900:2`). Remaining:
 
-1. **Tabs** — WA: `wa-tab` / `wa-tab-group` / `wa-tab-panel`
-2. **Toast** — WA: `wa-toast` / `wa-toast-item`
-3. **Popover** — WA: `wa-popover`
+1. **Toast** — WA: `wa-toast` / `wa-toast-item`
+2. **Popover** — WA: `wa-popover`
 
 ---
 
