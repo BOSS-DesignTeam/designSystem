@@ -784,16 +784,27 @@ as a dev-side CSS rule outside the design system rather than as a Figma variant,
 for whoever owns `boss-checkbox`, not something to assume here.
 
 ### Switch component (page `741:4` "Switch (Steve)", ComponentSet ID `775:666`)
-**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** 6 variants
-= `Value` (Off/On) × `SwitchState` (Default/Hover/Disabled). Sourced from the real
-"Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `02ffbeb3bc023ecbed752329cdc9381c
-022a5860`) — imported the Size=Medium variants, detached, rebound colors. Track: 35×20px pill
+**Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Sourced from
+the real "Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `02ffbeb3bc023ecbed752329cd
+c9381c022a5860`) — imported the Size=Medium variants, detached, rebound colors. Track: 35×20px pill
 (real WA size — the first draft guessed 36×20 and was close but not exact), 12px thumb at 4px
-inset (first draft used 16px/2px). Off = white track + `gray/70` border/thumb; On = `blue/50`
-track + white thumb. Focus Ring preserved but hidden. Hover synthesized (not a real WA variant)
-by darkening to `gray/60`/`blue/30`. Disabled = 0.5 opacity, from the kit's own Disabled
-variants. Maps to `wa-switch` — flagged as "next up" before this pass. Real prop mapping
-unconfirmed — flag before dev handoff.
+inset (first draft used 16px/2px). Off = white track + `gray/70` border/thumb. Focus Ring
+preserved but hidden. Disabled = 0.5 opacity, from the kit's own Disabled variants. Maps to
+`wa-switch` — flagged as "next up" before this pass. Real prop mapping unconfirmed — flag before
+dev handoff.
+
+**Updated 2026-09-08: Hover variant removed to match WebAwesome exactly.** Now 4 variants =
+`Value` (Off/On) × `SwitchState` (Default/Disabled) — down from 6. Confirmed via a fresh import of
+the real WA Switch (componentKey `02ffbeb3bc023ecbed752329cdc9381c022a5860`) that it has no Hover
+variant either (only `Checked` × `Disabled`, plus a `Focused` boolean and Size/Hint/Required axes
+already out of scope here). No instances referenced the removed variants.
+
+**While fixing this, also corrected a factual error in the component's own documentation text**
+(not the component itself): the description previously claimed "On = `blue/50` track," but the
+On-state track is actually bound to `orange/50` — confirmed via `boundVariables` inspection. This
+is now the **third** independent hit of the same undocumented orange/50-for-selected/active-state
+pattern (Radio's selected dot, Switch's On track, and the old Back Office library's tab-active
+stroke reviewed during the Tabs build) — see the new cross-cutting flag in Open Questions below.
 
 ### Tooltip component (page `741:5` "Tooltip (Steve)", ComponentSet ID `769:16`)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** 4 variants
@@ -972,3 +983,11 @@ Group, page `3900:2`). Remaining:
 - ~~Radio/Switch/Tooltip unpublished, blocking Code Connect~~ — done 2026-07-22, all 6 `(Steve)` components published and Code Connect–mapped (see Publish & Code Connect audit section)
 - Code Connect mappings for all 6 `(Steve)` components use documented tag names only — not verified against real `boss-*`/`orderly-*` source files in the RestaurantUI repo. Verify before dev handoff.
 - "Dropdown Item" (page `468:2`) is documented in text but was never built as an actual Figma component — only "Dropdown Trigger" exists
+- **New 2026-09-08 — systemic orange/50-vs-blue/50 drift on selected/active states.** Three
+  independent hits now: Radio's selected dot/border, Switch's On track (both confirmed via
+  `boundVariables` inspection, not screenshots — see their component sections above), and the old
+  Back Office library's tab-active stroke (reviewed, not ported, during the Tabs build). All
+  resolve to `orange/50` (this file's Warning token) where documentation or convention says
+  `blue/50` (Brand) should be there. Worth a dedicated audit pass across all "Steve" components'
+  selected/active/on states before trusting any of them as documented — this could be a single
+  root cause (e.g. a bad find-and-rebind at some point) rather than three unrelated mistakes.
