@@ -95,6 +95,24 @@ For auto-layout frames, call `.resize()` **before** setting `layoutSizingHorizon
 `primaryAxisSizingMode`/`counterAxisSizingMode` — `resize()` can reset sizing modes to `FIXED`, so setting
 modes first and resizing after can undo the mode you just set.
 
+### `Hug` outer frame + `Fixed` inner child = resize clips the child (Input, 2026-09-13)
+Input's 6 state variants (`State=Default/Focus/Filled/Disabled/Error Focused/Error`) had the outer
+component set to auto-layout **Hug** on both axes, with the inner `input` box (the visible bordered
+field) set to **Fixed** 280×40. Hug-sized components can still be resized manually as an instance
+override, but a `Fixed` child doesn't follow that resize — it stays pinned at its original size and
+gets clipped/cut off whenever the instance is resized smaller (or looks like dead space when resized
+larger). Fix, applied to all 6 variants:
+1. `node.resize(w, h)` on the outer component first (per the gotcha above), then explicitly set
+   `primaryAxisSizingMode = 'FIXED'` and `counterAxisSizingMode = 'FIXED'` on it — switching the
+   outer frame from Hug to a real, independently resizable Fixed size (same visual size as before,
+   288×88, so nothing shifts).
+2. On the inner `input` child, set `layoutSizingHorizontal = 'FILL'` and
+   `layoutSizingVertical = 'FILL'` — Fill is only a legal combination once the parent axis is no
+   longer Hug, which is why step 1 has to happen first.
+Verified by test-resizing the `Default` variant to 400×140 and screenshotting — the input box grew
+to match — then resizing back to 288×88. **Check for this pattern on any other component where an
+outer frame Hugs and a visibly-bordered inner box is Fixed** — same failure mode will reproduce.
+
 ---
 
 ## 3. Editing permissions
