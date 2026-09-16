@@ -113,6 +113,18 @@ Verified by test-resizing the `Default` variant to 400×140 and screenshotting �
 to match — then resizing back to 288×88. **Check for this pattern on any other component where an
 outer frame Hugs and a visibly-bordered inner box is Fixed** — same failure mode will reproduce.
 
+**Correction (2026-09-16):** the input box should only Fill horizontally, not vertically — the
+Medium size's 40px height is a real spec value (see the Documentation section: "Height: 32/40/48px
+(s/m/l)"), not something that should stretch when the component is resized taller. Setting
+`layoutSizingVertical = 'HUG'` looked like the obvious alternative to Fill but is also wrong: it
+recomputes height from content + padding (8px top/bottom padding + ~19px text = 35px), silently
+shrinking the box 5px below spec. The correct setting is `layoutSizingVertical = 'FIXED'` with an
+explicit `resize()` back to 40 — same "resize before setting sizing modes" ordering gotcha applies
+(resize the child first, since `resize()` resets both axes' sizing modes to `FIXED` as a side effect,
+*then* re-set `layoutSizingHorizontal = 'FILL'` after, so the horizontal Fill isn't clobbered by that
+side effect). Applied to all 6 state variants; verified by resizing `Default` to 400×140 again —
+width filled, height stayed pinned at 40.
+
 ---
 
 ## 3. Editing permissions
