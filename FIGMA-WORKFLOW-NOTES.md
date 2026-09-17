@@ -200,6 +200,18 @@ once clobbered content instead of merging it, with nothing tracking what the int
    from what the story originally described (broader, narrower, or just different), update the
    story's description to match reality before merging — don't let the ticket describe a plan the code
    no longer follows.
+5. **Transition the story's status automatically as the work moves, not just the description.**
+   Don't leave it sitting in `To Do` while a PR is already open, and don't leave it in `Code Review`
+   after merging. Move it the moment the real state changes:
+   - Starting work → `In Progress`
+   - PR opened, awaiting review → `Code Review`
+   - Merged → the repo's own next real-world step (e.g. `Merge to Main`, `Testing`/`QE2 Testing`,
+     `Ready For Prod`, or straight to `On Prod`/`PM Review` if nothing sits between merge and done —
+     use whichever transition actually matches what happens next for that repo, not a fixed one)
+   - Anything else that changes the story's real state (blocked, abandoned/dismissed, sent back for
+     more review) → the matching status, immediately, not after the fact
+   Check the issue's own available transitions rather than guessing a status name — they're
+   repo/project-specific (see the OR-12972/OR-13490 history for real examples of each of these).
 
 ---
 
