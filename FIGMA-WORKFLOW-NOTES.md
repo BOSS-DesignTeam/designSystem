@@ -132,6 +132,37 @@ Verified by test-resizing the `Default` variant to 400×140 and screenshotting �
 to match — then resizing back to 288×88. **Check for this pattern on any other component where an
 outer frame Hugs and a visibly-bordered inner box is Fixed** — same failure mode will reproduce.
 
+**Correction (2026-09-16):** the input box should only Fill horizontally, not vertically — the
+Medium size's 40px height is a real spec value (see the Documentation section: "Height: 32/40/48px
+(s/m/l)"), not something that should stretch when the component is resized taller. Setting
+`layoutSizingVertical = 'HUG'` looked like the obvious alternative to Fill but is also wrong: it
+recomputes height from content + padding (8px top/bottom padding + ~19px text = 35px), silently
+shrinking the box 5px below spec. The correct setting is `layoutSizingVertical = 'FIXED'` with an
+explicit `resize()` back to 40 — same "resize before setting sizing modes" ordering gotcha applies
+(resize the child first, since `resize()` resets both axes' sizing modes to `FIXED` as a side effect,
+*then* re-set `layoutSizingHorizontal = 'FILL'` after, so the horizontal Fill isn't clobbered by that
+side effect). Applied to all 6 state variants; verified by resizing `Default` to 400×140 again —
+width filled, height stayed pinned at 40.
+
+**Note (2026-09-17):** this correction was briefly lost from this file when a teammate's "sync from
+local copy" push (`ebe9ec5`) overwrote it with a stale local version predating the fix — a real
+instance of the exact silent-drift risk this whole file exists to catch, just happening to this
+document itself rather than a component. Re-added here after noticing the gap while adding the
+Toast note below. **If a sync/merge to this file ever looks like it dropped recent content, diff
+against the previous commit before trusting the result — don't assume a "sync" commit is additive.**
+
+### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
+Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
+height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
+fix above — but the card's outer frame needs to stay **Hug** (so it grows with wrapped text), and
+`FILL` sizing on a child is illegal against a Hug parent axis (see the Input fix's step 1: `FILL`
+only works once the parent is switched to `FIXED`). Setting the accent bar's `layoutAlign =
+'STRETCH'` instead of touching its sizing mode solved this directly: a `STRETCH`-aligned child
+matches whatever height the Hug parent resolves to from its *other* children, with no parent
+sizing-mode change needed at all. **Try `STRETCH` alignment first, before reaching for the
+Hug→Fixed→Fill dance, any time a decorative/full-height child (accent bars, dividers, side rails)
+needs to track a hug-sized sibling rather than actually drive the parent's own size.**
+
 ---
 
 ## 3. Editing permissions

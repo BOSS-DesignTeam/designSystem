@@ -1204,6 +1204,69 @@ source files in the RestaurantUI repo. Do this before treating any of the 6 as f
 
 ---
 
+### Toast component (page `4381:162` "Toast (Steve)", ComponentSet `4384:162` "Toast Item")
+
+**Added 2026-09-17.** First component in the build order built with no directly-named match in
+either project library — `search_design_system` scoped to both found an old Back Office "toast"
+component (4-value `Type`=Success/Warning/Info/Error, no Brand/Neutral, no accent-bar/progress-ring
+anatomy) and the real WA kit's closest primitive is "Callout" (no toast-specific structure at all).
+Per the "match WA's variant model, not just geometry" rule, went to the real `wa-toast-item` docs
+(https://webawesome.com/docs/components/toast-item/) and screenshotted its live rendered examples
+directly rather than building from either library match or from memory.
+
+**5 variants** = `Variant` (Neutral **[default]**/Brand/Success/Warning/Danger) — order and default
+both taken from the real component (WA defaults `variant="neutral"`), a deliberate departure from
+this file's usual Brand-first convention (Alert Banner/Callout) in favor of matching the real
+default state exactly.
+
+**Structure per variant:** colored 4px accent bar (full height, left edge) + optional leading icon +
+message text (fills remaining width) + always-visible close button. Icon and accent bar share the
+same variant color token (`color/icon/{variant}`, falling back to `color/icon/default` for Neutral —
+no `color/icon/neutral` token exists, same fallback Alert Banner uses). Close icon uses
+`color/text/primary` (severity-independent), reusing Alert Banner's exact close-icon precedent
+(Font Awesome 7 Pro Solid `"close"` glyph, `Med Solid Icon` text style).
+
+**Icon glyph correction vs. Alert Banner:** the real WA rendered example shows `Warning` using a
+*circle*-exclamation icon and `Danger` using a *triangle*-exclamation icon — the reverse of what
+Alert Banner assigned to those two intents. Toast uses the confirmed-correct (real WA) assignment;
+Alert Banner's swapped pair was not touched (out of scope for this pass, flagging only).
+
+**Component properties:** `Icon` (BOOLEAN, default true), `Progress Ring` (BOOLEAN, default true —
+a static ring drawn around the close button, proxying WA's real animated countdown ring; WA's own
+default `duration` is 5000ms, i.e. ring-visible, so this default matches), `Message` (TEXT, default
+"Your changes have been saved!"). No `Show`-prefixed names, per the boolean-naming rule in
+`FIGMA-WORKFLOW-NOTES.md` §7. Wired via the established pattern: minted once via
+`addComponentProperty` on the `ComponentSetNode`, referenced per-variant child — not re-minted per
+variant. Verified with a test instance: toggled both booleans off and overrode `Message` text: all
+three took effect correctly.
+
+**Root frame:** fixed 360px width (toasts don't stretch full-width like Alert Banner does), height
+hugs content so a wrapped multi-line `Message` grows the card. `radius/l` (8px, matching Dialog's
+card radius), `color/surface/default` background, 1px `color/border/default` stroke, and the
+existing `Elevation/Dropdown` effect style for its shadow (chosen over `Elevation/Overlay` —
+Dialog's heavier modal-backdrop shadow — since a toast is a transient, non-blocking floating
+element, closer in visual weight to a dropdown/tooltip popup).
+
+**Layout technique worth reusing:** the accent bar achieves full-height-matching-content without
+needing the root frame to be a fixed height — root stays `counterAxisSizingMode: 'AUTO'` (hug,
+so it still grows with a multi-line message) while the accent bar child is set to
+`layoutAlign = 'STRETCH'` instead of a `FILL` sizing mode. `FILL` would have required the root to
+be non-hug first (the same "Hug + Fixed child" gotcha as the Input fix); `STRETCH` sidesteps that
+entirely — the child matches whatever height the hug parent resolves to from its *other* children,
+no fixed/two-step resize dance needed. Worth trying this first any time a full-height decorative
+child (accent bars, dividers) needs to track a hug-sized sibling.
+
+**Known limitations (see the page's own To-Do section for full detail):**
+1. `Progress Ring` is a static proxy — cannot show WA's real animated countdown in a still frame.
+2. No `Size` axis modeled (WA has xs/s/m/l/xl) — matches the Alert Banner precedent of skipping
+   WA's size scale on non-form-control components; revisit if a dense/compact use case appears.
+3. `wa-toast` itself (the stacking/positioning container — placement, default `top-end`, multi-toast
+   stacking) is pure runtime behavior with no visual form of its own — intentionally not built as a
+   Figma component; documented on-canvas so it isn't mistaken for a missed piece.
+4. Not yet published or Code Connect–mapped.
+
+---
+
 ## Figma file layout conventions
 
 - Doc frames: Roboto Medium 32px title + Body/2 description, positioned above component sets
@@ -1238,10 +1301,10 @@ own To-Do item 4.
 Added 2026-09-08 per a Figma-vs-WebAwesome component gap review — Tabs, Toast, and Popover were
 flagged as high-value gaps (all three show up constantly in a back-office app) and added to the
 build order. **Tabs is done** (same day, see Tab component section above — Tab/Tab Panel/Tab
-Group, page `3900:2`). Remaining:
+Group, page `3900:2`). **Toast is done** (2026-09-17, see Toast component section above — Toast
+Item, page `4381:162`). Remaining:
 
-1. **Toast** — WA: `wa-toast` / `wa-toast-item`
-2. **Popover** — WA: `wa-popover`
+1. **Popover** — WA: `wa-popover`
 
 ---
 
