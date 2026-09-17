@@ -202,16 +202,21 @@ once clobbered content instead of merging it, with nothing tracking what the int
    no longer follows.
 5. **Transition the story's status automatically as the work moves, not just the description.**
    Don't leave it sitting in `To Do` while a PR is already open, and don't leave it in `Code Review`
-   after merging. Move it the moment the real state changes:
-   - Starting work → `In Progress`
+   after merging. For this style-guide/design-system track specifically, the real lifecycle only
+   uses seven statuses — verified against every ticket under this epic (OR-11839), not guessed.
+   This Jira instance's workflow also offers `UI Review`, `Merge to Main`, `QE2 Testing`,
+   `QE2 Verified`, `PM Review`, and `Ready For Prod`, but none of those are ever actually used here:
+   there's no PM in this loop, and UI review happens as part of the same person's own process
+   rather than a separate tracked state. Use only these seven:
+   - Not yet prioritized → `Backlog`
+   - Prioritized, not started → `To Do`
+   - Actively being worked on → `In Progress`
    - PR opened, awaiting review → `Code Review`
-   - Merged → the repo's own next real-world step (e.g. `Merge to Main`, `Testing`/`QE2 Testing`,
-     `Ready For Prod`, or straight to `On Prod`/`PM Review` if nothing sits between merge and done —
-     use whichever transition actually matches what happens next for that repo, not a fixed one)
-   - Anything else that changes the story's real state (blocked, abandoned/dismissed, sent back for
-     more review) → the matching status, immediately, not after the fact
-   Check the issue's own available transitions rather than guessing a status name — they're
-   repo/project-specific (see the OR-12972/OR-13490 history for real examples of each of these).
+   - Needs functional verification before shipping → `Testing`
+   - Merged and live → `On Prod`
+   - Abandoned, never shipping → `Dismissed` (see OR-12428, OR-12033 for real examples)
+   Check the issue's own available transitions rather than assuming every project uses every status
+   its workflow supports — this list is this epic's real, observed usage, not a generic default.
 
 ---
 
