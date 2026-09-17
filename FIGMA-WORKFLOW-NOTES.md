@@ -179,23 +179,31 @@ result should always be **one canonical version** of each component, not paralle
 
 ---
 
-## 4. Jira story required before any PR — check/draft before starting work
+## 4. Every PR needs a linked Jira story — check before opening one
 
-**Rule, effective now:** no PR opens — against this repo or the product repo — without a linked Jira
-story. This gate runs *before* any Figma or code changes start, not after:
+**Rule going forward:** before opening a PR against this repo (BOSS-DesignTeam/designSystem) or the
+product repo (orderlyapp/orderly), confirm there's a Jira story (OR project) that actually covers the
+change, and link it in the PR description/title. This applies even to small, documentation-only
+changes like this file — a note like this one exists specifically *because* an unticketed doc sync
+once clobbered content instead of merging it, with nothing tracking what the intended change even was.
 
-1. **Ask whether a story already exists** for the work about to start. If the requester has a key or
-   link, use it — link it in the PR description and proceed.
-2. **If no story exists, offer to draft one**, don't just wait for someone to make it. Draft it
-   following the conventions below, create it via the Jira connector, then send the requester the
-   new story's link so they can review, edit, or reassign it before anything else happens.
-3. **Wait for their go-ahead** on that draft before making any changes or opening a PR. A drafted
-   story isn't a green light by itself — the requester confirms it first.
-4. **The PR description must reference the story key.** No exceptions for "quick" changes — this is
-   exactly the kind of undocumented, untracked design-system drift the rest of this file exists to
-   catch after the fact (see §6 and §9). Catching it before the PR is cheaper than catching it after.
+**Procedure when no story exists yet:**
+1. **Check first.** Search Jira for an existing story that already covers the change before assuming
+   one doesn't exist — a duplicate story is its own kind of drift, same class of mistake as rebuilding
+   something that already exists locally (§1 above).
+2. **Draft one** if none exists, following the Jira story conventions in §5 below (title format,
+   `customfield_11734` Capitalization Category, parent epic OR-11839 for migration/style-guide work).
+3. **Get it confirmed** — by the user, or created outright if already authorized to do so directly —
+   before opening the PR. Don't open the PR first and backfill the ticket after; the ticket is what
+   defines the scope the PR should be reviewed against, not a formality added afterward.
+4. **Keep the ticket and the PR in sync as work progresses.** If the actual change ends up differing
+   from what the story originally described (broader, narrower, or just different), update the
+   story's description to match reality before merging — don't let the ticket describe a plan the code
+   no longer follows.
 
-### Jira story conventions (OR project, Back Office Dev)
+---
+
+## 5. Jira story conventions (OR project, Back Office Dev)
 
 Reference example: OR-12589 ("Add tag component to style guide"). Format:
 
@@ -215,7 +223,7 @@ wrapper. Every new component story should call out both categories explicitly, n
 
 ---
 
-## 5. Recurring design decisions worth remembering
+## 6. Recurring design decisions worth remembering
 
 - **Naming convention for all new/updated components:** `<boss-componentname>` — kebab-case, no
   `wa-*`/`sl-*` suffix in the visible tag (`<boss-button>`, `<boss-combobox>`, `<boss-breadcrumb>`).
@@ -250,43 +258,7 @@ wrapper. Every new component story should call out both categories explicitly, n
 
 ---
 
-## 6. Check existing layout before placing new variants
-
-**The mistake, repeatedly:** adding a new variant to an existing ComponentSet at a default/
-arbitrary position (often `(0,0)`) without first checking where existing variants already sit —
-causing new work to silently overlap old work. Hit this specifically with `Collapsed`/`Expanded`/
-`Empty` on Financial Table Read Only Cell, and again with `No Value` landing directly on top of
-`Collapsed`.
-
-**Rule going forward:** before calling `.appendChild()` or `figma.combineAsVariants()` to add a new
-variant to an existing set, always read the current children's `x`/`y`/`width` first, and position
-the new addition past the rightmost (or lay out the *whole set* fresh) rather than trusting a
-default position. A quick `cellSet.children.map(c => ({name: c.name, x: c.x, y: c.y}))` before
-placing anything new costs nothing and prevents this every time.
-
-**This also applies when extending an existing range, not just adding a brand-new variant type.**
-Hit this again 2026-09-15 adding Depth=4 to GL Child/GL Ghost Row: the new variants were appended
-without repositioning, landing off in unrelated space while the *existing* depths' grid layout
-stayed untouched — same root cause, just triggered by extending a property's range rather than
-adding a new one. Fix is the same: re-lay-out the *whole* set (all depths, not just the new one)
-in the established row/column grid after adding.
-
----
-
-## 7. Don't prefix boolean property names with "Show"
-
-Name a boolean property after the *thing it controls*, not the action of showing it — `Trailing
-Icon`, not `Show Trailing Icon`. The "show/hide" behavior is already implied by it being a
-boolean; restating it in the name is redundant and makes the properties panel noisier.
-
-**Renamed 2026-08-17:** `Show Value` → `Value`, `Show Tag` → `Tag` (Financial Table Read Only
-Cell); `Show Sort` → `Sort`, `Show Date` → `Date` (Header Cell Types); `Show Cursor` → `Cursor`
-(Financial Table Editable Cell). All 5 confirmed still working after the rename. `Show Trailing
-Icon` → `Trailing Icon` (Card Header) was the first instance of this rule being applied.
-
----
-
-## 8. Badge rebuild (2026-08-13) — lessons
+## 7. Badge rebuild (2026-08-13) — two more lessons
 
 **WA's appearance names don't match their visual weight — check the real library render, not the name.**
 Screenshotting the real `Web-Awesome-3-Design-Kit-v2-0-0` Badge component (key
@@ -335,7 +307,7 @@ just to satisfy one dark-background demo).
 
 ---
 
-## 9. Checking and fixing variant-model drift against the real WA kit
+## 8. Checking and fixing variant-model drift against the real WA kit
 
 Companion to the Project Brief's "Match WebAwesome's variant model, not just its geometry" rule —
 this section is the mechanical how-to. Grew out of the 2026-09-08 pass that found Hover states on
@@ -343,7 +315,7 @@ Radio/Switch/Checkbox that WA doesn't model, Tooltip trimmed from 12 placements 
 Accordion's Icon Placement locked to one option — none individually alarming, all invisible unless
 someone actually diffed this file's variants against WA's real ones.
 
-**Note the Badge exception (§8 above) before applying this mechanically:** matching WA's variant
+**Note the Badge exception (§7 above) before applying this mechanically:** matching WA's variant
 model is the *default*, not an absolute rule. When the user (or a docs page named as the
 completeness bar) explicitly wants more than WA models — Badge's pulse/bounce booleans are the
 precedent — that instruction wins. The point of this section is to stop *silent, undiscussed*
@@ -392,10 +364,24 @@ Accordion) that mixed *previously-grouped* variants with *freshly-created* ones 
 `combineAsVariants` call reproduced this bug on the previously-grouped ones specifically. Plan for
 the rename-fix step as part of the work, not as debugging when it "goes wrong."
 
-**6. Re-check page layout after the set grows.** Adding variants makes the ComponentSet taller/wider
-— re-verify nothing below or beside it (a To-Do frame, a section boundary) now overlaps. This is a
-`page.children.map(...)` position check, not a screenshot judgment call — do it every time, it's
-caught real overlaps twice already (Tooltip's section, Accordion's To-Do frame).
+**6. Re-check page layout after the set grows — and after extending an existing range, not just
+after adding a brand-new variant type.** Adding variants makes the ComponentSet taller/wider —
+re-verify nothing below or beside it (a To-Do frame, a section boundary) now overlaps. This is a
+`page.children.map(c => ({name: c.name, x: c.x, y: c.y}))` position check, not a screenshot judgment
+call — do it every time. Caught real overlaps repeatedly:
+- Tooltip's reference section, Accordion's To-Do frame (both from the 2026-09-08 pass above)
+- Financial Table Read Only Cell: `Collapsed`/`Expanded`/`Empty` added at a default/arbitrary
+  position (often `(0,0)`) without checking where existing variants already sat, then again with
+  `No Value` landing directly on top of `Collapsed`
+- GL Child/GL Ghost Row (2026-09-15): adding `Depth=4` appended the new variants without
+  repositioning, landing off in unrelated space while the *existing* depths' grid layout stayed
+  untouched — same root cause, just triggered by extending a property's range rather than adding a
+  new one
+
+A quick `cellSet.children.map(c => ({name: c.name, x: c.x, y: c.y}))` before placing anything new
+costs nothing and prevents this every time; when it's an existing range being extended rather than a
+new variant type, re-lay-out the *whole* set (all values, not just the new addition) in the
+established row/column grid after adding, rather than only positioning the new piece.
 
 **7. Update the component's own on-canvas documentation text, not just this brief.** A "Known
 limitations" note that says "Icon Placement fixed at End" is actively wrong once Start is added —
@@ -433,3 +419,16 @@ Also: fixing one section's height can cascade — growing a Documentation sectio
 a To-Do section positioned right after it, which can in turn collide with whatever comes after
 *that*. After any resize, re-check the whole page's children for overlaps programmatically (a
 simple AABB overlap test), not just the two sections you touched.
+
+---
+
+## 9. Don't prefix boolean property names with "Show"
+
+Name a boolean property after the *thing it controls*, not the action of showing it — `Trailing
+Icon`, not `Show Trailing Icon`. The "show/hide" behavior is already implied by it being a
+boolean; restating it in the name is redundant and makes the properties panel noisier.
+
+**Renamed 2026-08-17:** `Show Value` → `Value`, `Show Tag` → `Tag` (Financial Table Read Only
+Cell); `Show Sort` → `Sort`, `Show Date` → `Date` (Header Cell Types); `Show Cursor` → `Cursor`
+(Financial Table Editable Cell). All 5 confirmed still working after the rename. `Show Trailing
+Icon` → `Trailing Icon` (Card Header) was the first instance of this rule being applied.
