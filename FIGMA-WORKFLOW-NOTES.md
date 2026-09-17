@@ -221,6 +221,13 @@ once clobbered content instead of merging it, with nothing tracking what the int
    Check the issue's own available transitions rather than assuming every project uses every status
    its workflow supports — seven of these eight are real, observed usage for this epic; `Ready For
    Prod` is the one intended-use addition, to apply once work is done and verified but not yet live.
+6. **Skip mandatory reviewer sign-off when the PR touches only this workflow-notes file.** A pure
+   FIGMA-WORKFLOW-NOTES.md change carries no product risk, so it doesn't need a reviewer's time or
+   another round of review-agent tokens spent on it — this doc is process notes for whoever does the
+   work next, not shipped code. Points 1-5 above still apply (linked story, kept in sync, transitioned
+   through to `On Prod`) so there's still a paper trail; only the human-review gate is waived. This is
+   scoped to PRs where the workflow-notes file is the *only* file changed — a PR that bundles a
+   workflow-notes update with any actual code or component change still needs a real reviewer.
 
 ---
 
