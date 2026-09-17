@@ -202,21 +202,25 @@ once clobbered content instead of merging it, with nothing tracking what the int
    no longer follows.
 5. **Transition the story's status automatically as the work moves, not just the description.**
    Don't leave it sitting in `To Do` while a PR is already open, and don't leave it in `Code Review`
-   after merging. For this style-guide/design-system track specifically, the real lifecycle only
-   uses seven statuses — verified against every ticket under this epic (OR-11839), not guessed.
-   This Jira instance's workflow also offers `UI Review`, `Merge to Main`, `QE2 Testing`,
-   `QE2 Verified`, `PM Review`, and `Ready For Prod`, but none of those are ever actually used here:
+   after merging. For this style-guide/design-system track specifically, the real lifecycle uses
+   eight statuses. Seven of them were verified against every ticket under this epic (OR-11839);
+   `Ready For Prod` is added on top going forward even though it has no historical usage yet, since
+   the team wants a distinct "done, waiting to release" step ahead of `On Prod` rather than jumping
+   straight from `Testing` to live. This Jira instance's workflow also offers `UI Review`,
+   `Merge to Main`, `QE2 Testing`, `QE2 Verified`, and `PM Review`, but none of those are used here:
    there's no PM in this loop, and UI review happens as part of the same person's own process
-   rather than a separate tracked state. Use only these seven:
+   rather than a separate tracked state. Use only these eight:
    - Not yet prioritized → `Backlog`
    - Prioritized, not started → `To Do`
    - Actively being worked on → `In Progress`
    - PR opened, awaiting review → `Code Review`
    - Needs functional verification before shipping → `Testing`
+   - Done and verified, waiting to release → `Ready For Prod`
    - Merged and live → `On Prod`
    - Abandoned, never shipping → `Dismissed` (see OR-12428, OR-12033 for real examples)
    Check the issue's own available transitions rather than assuming every project uses every status
-   its workflow supports — this list is this epic's real, observed usage, not a generic default.
+   its workflow supports — seven of these eight are real, observed usage for this epic; `Ready For
+   Prod` is the one intended-use addition, to apply once work is done and verified but not yet live.
 
 ---
 
