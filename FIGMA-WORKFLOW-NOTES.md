@@ -6,18 +6,37 @@ specific Figma file without repeating mistakes already made once. Update it when
 
 ## 1. Check local Figma styles/variables BEFORE reaching for external docs
 
-**The mistake, twice:** building something from generic WebAwesome/Shoelace documentation instead of
-searching this file's own effect styles and variables first.
+**The mistake, three times now:** building something from generic WebAwesome/Shoelace documentation
+instead of searching this file's own effect styles, variables, and existing components first.
 
 - Assumed `color/border/focus` needed to be created — it already existed, already aliased to `blue/70`.
 - Built Checkbox's focus ring as a stroke/offset-outline based on generic WA/Shoelace docs (`outline-offset: 2px`)
   — this file already has a real `Focus/Ring` effect style (flush drop-shadow, offset 0, spread 3, `#49A4DA`
   @ 30%) already in use on Input/Select/Textarea. Had to rebuild Checkbox to match.
+- Instanced a tag component (`Base / Individual`) for a Financial Table Cell's "Show Tag" property without
+  checking it was actually **remote** (an external library component, not local to this file at all) --
+  confirmed via `component.remote === true`, `pageId === null`. Compounding the error: even the real
+  local tag component on this file's own Tag page was the wrong thing to reuse -- its own `.description`
+  explicitly says it's a "building block" documenting Select's internal rendering, not general-purpose
+  reusable content (see the rule below).
 
-**Rule going forward:** before proposing a new token, pattern, or "the WebAwesome way" of doing something,
-check `figma.variables.getLocalVariableCollectionsAsync()` and `figma.getLocalEffectStylesAsync()` /
+**Rule going forward:** before proposing a new token, pattern, component, or "the WebAwesome way" of doing
+something, check `figma.variables.getLocalVariableCollectionsAsync()` and `figma.getLocalEffectStylesAsync()` /
 `getLocalTextStylesAsync()` first. If it's not there, *then* check what real shipped code does
 (SCSS files, live app) before falling back to generic library documentation as a last resort.
+
+**Additional rule, specifically for reusing an existing component the user describes or that seems to
+match a need:**
+1. Confirm it's actually local to this file (`component.remote === false`, has a real `pageId`) -- not an
+   external/team-library component that happens to show up in search results.
+2. **Read its own `.description` field before instancing it.** Being local doesn't mean it's meant for the
+   use case at hand -- several components in this file (`Tag Base`, `.Tag Group`, `Listbox/Container`) are
+   explicitly documented as "building blocks" that illustrate what a *different* component renders
+   natively, not general-purpose content to reuse elsewhere. Reusing one for an unrelated purpose is the
+   same class of mistake as using a remote component -- wrong source, just wrong for a different reason.
+   If the description says "this is not a building block to assemble," believe it, and look for what the
+   description names as the *real* precedent instead (often: a raw HTML element used directly, hand-built
+   to match the token spec, not any wrapper component).
 
 ---
 
@@ -113,18 +132,6 @@ Verified by test-resizing the `Default` variant to 400×140 and screenshotting �
 to match — then resizing back to 288×88. **Check for this pattern on any other component where an
 outer frame Hugs and a visibly-bordered inner box is Fixed** — same failure mode will reproduce.
 
-**Correction (2026-09-16):** the input box should only Fill horizontally, not vertically — the
-Medium size's 40px height is a real spec value (see the Documentation section: "Height: 32/40/48px
-(s/m/l)"), not something that should stretch when the component is resized taller. Setting
-`layoutSizingVertical = 'HUG'` looked like the obvious alternative to Fill but is also wrong: it
-recomputes height from content + padding (8px top/bottom padding + ~19px text = 35px), silently
-shrinking the box 5px below spec. The correct setting is `layoutSizingVertical = 'FIXED'` with an
-explicit `resize()` back to 40 — same "resize before setting sizing modes" ordering gotcha applies
-(resize the child first, since `resize()` resets both axes' sizing modes to `FIXED` as a side effect,
-*then* re-set `layoutSizingHorizontal = 'FILL'` after, so the horizontal Fill isn't clobbered by that
-side effect). Applied to all 6 state variants; verified by resizing `Default` to 400×140 again —
-width filled, height stayed pinned at 40.
-
 ---
 
 ## 3. Editing permissions
@@ -141,7 +148,23 @@ result should always be **one canonical version** of each component, not paralle
 
 ---
 
-## 4. Jira story conventions (OR project, Back Office Dev)
+## 4. Jira story required before any PR — check/draft before starting work
+
+**Rule, effective now:** no PR opens — against this repo or the product repo — without a linked Jira
+story. This gate runs *before* any Figma or code changes start, not after:
+
+1. **Ask whether a story already exists** for the work about to start. If the requester has a key or
+   link, use it — link it in the PR description and proceed.
+2. **If no story exists, offer to draft one**, don't just wait for someone to make it. Draft it
+   following the conventions below, create it via the Jira connector, then send the requester the
+   new story's link so they can review, edit, or reassign it before anything else happens.
+3. **Wait for their go-ahead** on that draft before making any changes or opening a PR. A drafted
+   story isn't a green light by itself — the requester confirms it first.
+4. **The PR description must reference the story key.** No exceptions for "quick" changes — this is
+   exactly the kind of undocumented, untracked design-system drift the rest of this file exists to
+   catch after the fact (see §6 and §9). Catching it before the PR is cheaper than catching it after.
+
+### Jira story conventions (OR project, Back Office Dev)
 
 Reference example: OR-12589 ("Add tag component to style guide"). Format:
 
@@ -196,7 +219,43 @@ wrapper. Every new component story should call out both categories explicitly, n
 
 ---
 
-## 6. Badge rebuild (2026-08-13) — two more lessons
+## 6. Check existing layout before placing new variants
+
+**The mistake, repeatedly:** adding a new variant to an existing ComponentSet at a default/
+arbitrary position (often `(0,0)`) without first checking where existing variants already sit —
+causing new work to silently overlap old work. Hit this specifically with `Collapsed`/`Expanded`/
+`Empty` on Financial Table Read Only Cell, and again with `No Value` landing directly on top of
+`Collapsed`.
+
+**Rule going forward:** before calling `.appendChild()` or `figma.combineAsVariants()` to add a new
+variant to an existing set, always read the current children's `x`/`y`/`width` first, and position
+the new addition past the rightmost (or lay out the *whole set* fresh) rather than trusting a
+default position. A quick `cellSet.children.map(c => ({name: c.name, x: c.x, y: c.y}))` before
+placing anything new costs nothing and prevents this every time.
+
+**This also applies when extending an existing range, not just adding a brand-new variant type.**
+Hit this again 2026-09-15 adding Depth=4 to GL Child/GL Ghost Row: the new variants were appended
+without repositioning, landing off in unrelated space while the *existing* depths' grid layout
+stayed untouched — same root cause, just triggered by extending a property's range rather than
+adding a new one. Fix is the same: re-lay-out the *whole* set (all depths, not just the new one)
+in the established row/column grid after adding.
+
+---
+
+## 7. Don't prefix boolean property names with "Show"
+
+Name a boolean property after the *thing it controls*, not the action of showing it — `Trailing
+Icon`, not `Show Trailing Icon`. The "show/hide" behavior is already implied by it being a
+boolean; restating it in the name is redundant and makes the properties panel noisier.
+
+**Renamed 2026-08-17:** `Show Value` → `Value`, `Show Tag` → `Tag` (Financial Table Read Only
+Cell); `Show Sort` → `Sort`, `Show Date` → `Date` (Header Cell Types); `Show Cursor` → `Cursor`
+(Financial Table Editable Cell). All 5 confirmed still working after the rename. `Show Trailing
+Icon` → `Trailing Icon` (Card Header) was the first instance of this rule being applied.
+
+---
+
+## 8. Badge rebuild (2026-08-13) — lessons
 
 **WA's appearance names don't match their visual weight — check the real library render, not the name.**
 Screenshotting the real `Web-Awesome-3-Design-Kit-v2-0-0` Badge component (key
@@ -245,7 +304,7 @@ just to satisfy one dark-background demo).
 
 ---
 
-## 7. Checking and fixing variant-model drift against the real WA kit
+## 9. Checking and fixing variant-model drift against the real WA kit
 
 Companion to the Project Brief's "Match WebAwesome's variant model, not just its geometry" rule —
 this section is the mechanical how-to. Grew out of the 2026-09-08 pass that found Hover states on
@@ -253,7 +312,7 @@ Radio/Switch/Checkbox that WA doesn't model, Tooltip trimmed from 12 placements 
 Accordion's Icon Placement locked to one option — none individually alarming, all invisible unless
 someone actually diffed this file's variants against WA's real ones.
 
-**Note the Badge exception (§6 above) before applying this mechanically:** matching WA's variant
+**Note the Badge exception (§8 above) before applying this mechanically:** matching WA's variant
 model is the *default*, not an absolute rule. When the user (or a docs page named as the
 completeness bar) explicitly wants more than WA models — Badge's pulse/bounce booleans are the
 precedent — that instruction wins. The point of this section is to stop *silent, undiscussed*
