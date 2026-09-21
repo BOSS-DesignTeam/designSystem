@@ -262,6 +262,51 @@ Verified the resize lock on a separate `Default` instance via `resize(500, 300)`
 not 500×300. Applied to all 6 state variants; full component-set screenshot confirmed no regressions
 across Default/Focus/Filled/Disabled/Error Focused/Error.
 
+### Adding Trailing Icon to Button — 60-variant bulk edit, clone-the-sibling pattern (2026-09-21)
+Button already had a `Leading Icon` boolean (bound to a `leading-icon` text node) but no trailing
+equivalent. The `Button` ComponentSet is large — 60 variants (`Variant` × `Appearance` × `Size` ×
+`State`, Danger restricted to `Filled` only) — all on the page flagged `(Steve in styleguide but not
+updated)`. **Surveyed all 60 before touching anything**: every variant had the exact same
+`["leading-icon", "Button"]` child structure with identical `componentPropertyReferences` — no drift,
+unlike what the "not updated" flag might suggest. Confirming that first avoided writing a fix that
+assumed uniformity and silently skipped or mis-handled outliers.
+
+**Pattern: clone the existing sibling instead of building a new text node from scratch.**
+`leadingIcon.clone()` inherits its exact font (`Font Awesome 7 Pro Regular`), fontSize, and fill —
+including the fill's `boundVariables` alias — for free, correct per-variant automatically (icon color
+always matches that variant's text color, e.g. white on Filled, brand-blue on Outlined/Plain, muted on
+Disabled). Building a fresh text node per variant would have meant re-deriving and re-binding all of
+that per variant instead of getting it free from the clone. Then: `node.appendChild(clone)` (places it
+last in the `HORIZONTAL` auto-layout, i.e. trailing, no manual positioning needed), rename to
+`trailing-icon`, set `characters = 'arrow-right'` (distinct placeholder from leading's `'star'`, so the
+two are visually distinguishable in the unpopulated component-set view), `visible = false` to match the
+new property's default, bind `componentPropertyReferences = { visible: trailingIconKey }`.
+`addComponentProperty` called once on the `ComponentSetNode` up front (same as the Select note above —
+works fine post-hoc on an already-combined set), `Trailing Icon` defaulting to `false` so every
+existing instance's rendered appearance is unchanged.
+
+**Scale note:** ran the 58 remaining variants (2 already covered by an initial 2-variant validation
+pass) as 3 batched `use_figma` calls of ~19-20 each rather than one 60-variant call or one-call-per-
+variant — the earlier Select/Input fixes (6-12 variants) ran fine in a single call each, but scripts
+here are transactional (one uncaught error rolls back the *entire* call), so at 60 variants the
+blast radius of a late failure got large enough to be worth chunking. Validated the full batch
+afterward with a single pass checking every variant's child order, `visible`, `characters`, and
+`componentPropertyReferences` against the expected shape — zero problems found.
+
+Verified visually: default appearance unchanged (60-variant grid screenshot, pixel-identical to
+before) — plus targeted instances with `Trailing Icon: true` alone, combined with `Leading Icon: true`,
+across Filled/Outlined/Disabled/Accent/Danger to confirm the cloned styling (including the muted
+Disabled fill) tracks correctly per variant.
+
+**Not addressed, flagged only:** neither `Leading Icon` nor the new `Trailing Icon` has a paired glyph
+`TEXT` property — both icons are hardcoded characters (`star` / `arrow-right`) with only a visibility
+toggle, unlike `Left/Middle/Right End Option` on the Toggle Button Group (same file), which already
+model `Icon` as a real bindable text property alongside its boolean. Left this at parity with Leading
+Icon's existing (already-shipped) level of completeness rather than improving one side unrequested;
+worth a follow-up if editable icon glyphs are wanted on Button generally. Also didn't verify the
+`arrow-right` default or general icon-slot behavior against real shipped `wa-button` code — this page's
+own "not updated" flag means the real component may already differ from what's here.
+
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
 height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
