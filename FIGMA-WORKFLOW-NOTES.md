@@ -218,6 +218,50 @@ instance with `Show Label: false` + custom `Help Text` value, and the Error/Erro
 confirm the now-taller variants didn't overlap the listbox panel below them — both composites' outer
 frames already Hug on the height axis, so they grew cleanly with no manual fix needed there.
 
+### Width-only resize via `minHeight`/`maxHeight` lock, plus single-line ellipsis truncation (Input, 2026-09-21)
+Two related asks: (1) an instance shouldn't be manually resizable taller/shorter, only wider/narrower
+— the fixed 40px Medium input box is a real spec value, not something a designer should be able to
+drag out of shape by accident; (2) a long value/placeholder should truncate with an ellipsis instead
+of wrapping to multiple lines and blowing out the fixed height.
+
+**Width-only resize — `minHeight = maxHeight = currentHeight`, leave width unconstrained:**
+Set directly on each of the 6 variant `COMPONENT`s (`node.minHeight = node.maxHeight = 88`), not on
+instances. Confirmed by test: a **new** instance created *after* setting this on the master inherits
+`minHeight`/`maxHeight` automatically — this is a real per-frame constraint property (not a
+Figma-UI-only drag limit), and it's enforced even through a programmatic `resize()` call, not just
+manual dragging: `instance.resize(288, 200)` on a locked instance silently clamped back to height 88
+while width applied as requested. This is the correct mechanism for "only allow resizing in one
+axis" generally — leave the other axis's `minWidth`/`maxWidth` (or `minHeight`/`maxHeight`) at `null`
+to keep it free.
+
+**Truncation recipe — `textAutoResize` becomes `'TRUNCATE'` as a side effect, order matters:**
+The value text (`Placeholder` on 5 variants, `Input` on Filled — bound to the `Input Text`/
+`Placeholder` component properties) was `textAutoResize: 'HEIGHT'`, which wraps to more lines and
+grows height instead of truncating. Fix, same node, in this exact order:
+1. `node.textAutoResize = 'NONE'`
+2. `node.textTruncation = 'ENDING'` — Figma auto-flips `textAutoResize` to `'TRUNCATE'` as a
+   side effect of this assignment (confirmed by reading it back after; don't set `'TRUNCATE'`
+   directly, it's not clear from the type alone that this is the value to assign to get ellipsis
+   behavior, it's assigned *for* you).
+3. `node.resize(currentWidth, 19)` — re-asserts the single-line height. Skipping this step leaves the
+   node's height at whatever it last auto-computed (in one test, a stale multi-line 76px from before
+   truncation was enabled), so truncation looks like it silently did nothing.
+4. Since this text node is `layoutSizingHorizontal: 'FILL'` against its auto-layout `input` parent
+   (so its width still tracks the box as it's resized), step 3's `resize()` clobbers that back to
+   `FIXED` per the usual resize-resets-sizing-modes gotcha — re-set
+   `node.layoutSizingHorizontal = 'FILL'` **after** the resize call to restore it. Leave
+   `layoutSizingVertical` at the `FIXED` value `resize()` already set — that's the desired outcome
+   (single fixed-height line), no need to touch it back.
+`maxLines` stayed `null` throughout on every attempt to set it (writes silently no-op'd) — turned out
+unnecessary: `textAutoResize: 'NONE'` + a single-line-height `resize()` was sufficient for one-line
+ellipsis truncation on its own.
+
+Verified on a `Filled` instance with a long value ("This is a very long value that should truncate...")
+— rendered as `☆ This is a very long value that sho...` at the normal 288px width, then deleted.
+Verified the resize lock on a separate `Default` instance via `resize(500, 300)` — landed at 500×88,
+not 500×300. Applied to all 6 state variants; full component-set screenshot confirmed no regressions
+across Default/Focus/Filled/Disabled/Error Focused/Error.
+
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
 height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
