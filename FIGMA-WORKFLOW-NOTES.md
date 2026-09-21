@@ -177,6 +177,47 @@ wouldn't grow the inner instance, but fixing it means deciding whether the outer
 Fixed-width (matching its sibling) or stay Hug some other way — a design call, not a mechanical
 repeat of this recipe. Left alone pending that decision.
 
+### Wiring dormant Label/Helper Text nodes on Select via component properties (2026-09-21)
+Select's `Label` frame (`Label` text + `*` required asterisk) and `helper-text` node existed on all 12
+state variants (Single + Multi) already, but were hardcoded `visible: false` with **no component
+property at all** — not a toggle bug, a complete gap. Added properties to each `ComponentSetNode`
+directly (`set.addComponentProperty(...)`, callable on the set even though the general recipe says to
+add properties to variant components pre-combine — works fine post-hoc on an already-combined set) and
+bound each variant's nodes via `componentPropertyReferences`, mirroring Input's exact model (confirmed
+node-for-node against Input's `label row`/`Help Text` bindings first):
+- `Label Text` (TEXT, default `"Label"`) → the `Label` frame's inner `Label` text node's `characters`
+- `Show Label` (BOOLEAN, default `true`) → the `Label` frame's `visible`
+- `Required Field` (BOOLEAN, default `true`) → the `*` text node's `visible`
+- `Show Help Text` (BOOLEAN, default `true`) → `helper-text`'s `visible` (non-error variants only)
+- `Help Text` (TEXT, default `"Help text"`) → `helper-text`'s `characters` (non-error variants only)
+
+**Error-state helper-text is a different node shape and intentionally NOT bound to `Show Help Text`:**
+on `Error`/`Error Focused`, `helper-text` is a `FRAME` (warning icon + `message` text), not a bare
+`TEXT` node — set its `visible = true` directly (hardcoded, unbound), matching Input's own Error Text
+being unconnected to any property. Skipped adding Input's `Error Text (sample only)` TEXT property
+entirely — checked Input's copy first and found it's declared on the ComponentSet but never actually
+bound to any node (`componentPropertyReferences: {}` on the Error variant's own `Error Text` node), i.e.
+already dead/decorative there. Not worth reproducing a no-op property just for cosmetic parity; the
+`"(sample only)"` suffix on Input's version was already a signal it isn't meant to be live-editable.
+
+**Second-order bug this surfaced:** the outer variant frame's height was still `Fixed 40` (just the
+`Input` box) because Label/helper-text had never been visible before. Once wired to `visible: true`
+defaults, content (16 label + 4 gap + 40 input + 4 gap + 16 helper = 80) overflowed the 40px bounds —
+invisible in a screenshot because `clipsContent: false`, but wrong for anything measuring the
+component's actual bounding box (auto-layout parents, overlap checks). Fixed by `resize(280, 80)` on
+all 12 variants, matching Input's own pre-sized `288×80` content total (`88` outer incl. 4px
+top/bottom padding — Select has 0 padding so `80` is exact). **General lesson: making a previously-
+hidden child visible for the first time needs a height check on any `Fixed`-sizing-mode ancestor, same
+class of bug as the resize-clips-child pattern above, just triggered by a visibility change instead of
+a manual resize.**
+
+Verified with throwaway instances: default rendering (label + asterisk + input + help text), an
+instance with `Show Label: false` + custom `Help Text` value, and the Error/Error Focused variants
+(warning icon + message auto-visible) — all screenshotted correctly, then deleted. Also re-screenshotted
+`Single Select with Listbox` (`489:241`) and `Multi Select with Listbox` (`583:422`) end-to-end to
+confirm the now-taller variants didn't overlap the listbox panel below them — both composites' outer
+frames already Hug on the height axis, so they grew cleanly with no manual fix needed there.
+
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
 height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
