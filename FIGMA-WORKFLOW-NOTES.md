@@ -298,14 +298,19 @@ before) — plus targeted instances with `Trailing Icon: true` alone, combined w
 across Filled/Outlined/Disabled/Accent/Danger to confirm the cloned styling (including the muted
 Disabled fill) tracks correctly per variant.
 
-**Not addressed, flagged only:** neither `Leading Icon` nor the new `Trailing Icon` has a paired glyph
-`TEXT` property — both icons are hardcoded characters (`star` / `arrow-right`) with only a visibility
-toggle, unlike `Left/Middle/Right End Option` on the Toggle Button Group (same file), which already
-model `Icon` as a real bindable text property alongside its boolean. Left this at parity with Leading
-Icon's existing (already-shipped) level of completeness rather than improving one side unrequested;
-worth a follow-up if editable icon glyphs are wanted on Button generally. Also didn't verify the
-`arrow-right` default or general icon-slot behavior against real shipped `wa-button` code — this page's
-own "not updated" flag means the real component may already differ from what's here.
+**Follow-up (same day):** requested to make both icons editable, matching `Left/Middle/Right End
+Option`'s `Icon` TEXT-property pattern. Added `Leading Icon Glyph` (default `star`) and `Trailing Icon
+Glyph` (default `arrow-right`) to the `ComponentSetNode`, then bound `characters` on each variant's
+`leading-icon`/`trailing-icon` node **alongside** its existing `visible` ref — merge the object
+(`{ ...node.componentPropertyReferences, characters: key }`), don't reassign it outright, or the
+`visible` binding set earlier the same day gets silently clobbered. Two distinct property names were
+necessary (`Leading Icon Glyph` / `Trailing Icon Glyph`, not a shared `Icon`) since Button — unlike a
+Toggle Button option — has two independent icon slots that need independently settable glyphs. Same
+batching approach (3 calls of ~20), same full-set validation pass after (compared every variant's
+`componentPropertyReferences` against the expected shape — zero problems), verified live with
+`circle-check` / `chevron-right` overrides on a test instance. Didn't verify the `arrow-right` default
+or general icon-slot behavior against real shipped `wa-button` code — this page's own "not updated"
+flag means the real component may already differ from what's here.
 
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
