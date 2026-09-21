@@ -312,6 +312,44 @@ batching approach (3 calls of ~20), same full-set validation pass after (compare
 or general icon-slot behavior against real shipped `wa-button` code — this page's own "not updated"
 flag means the real component may already differ from what's here.
 
+### A shared TEXT property's `characters` is ONE live value across every node bound to it — not a per-variant default (Toast Item, 2026-09-21)
+Added `Close` (boolean, hide the close icon), `Icon Glyph`, and `Close Icon Glyph` (text) to Toast Item,
+following the same "bind `componentPropertyReferences`" recipe used for Button's icon glyphs earlier the
+same day. That recipe happened to be safe for Button because all 60 variants already shared the exact
+same default characters (`star`/`arrow-right`) before binding. Toast Item's 5 variants do **not** — each
+has a different default type icon (`gear`/`circle-info`/`circle-check`/`circle-exclamation`/
+`triangle-exclamation`), and binding all 5 to one shared `Icon Glyph` key **immediately overwrote every
+variant's icon to the property's last-written value** — first to the property's own default (`gear`,
+silently flattening all 5 to the same icon), then, when the per-variant restore loop set each node's
+`.characters` in turn, each write re-propagated to every OTHER node sharing that key, so the whole set
+converged on whatever was written *last* (`triangle-exclamation`, Danger's value, since it ran last in
+the loop). **A component `TEXT` property is not a per-node default with an override mechanism — it is
+one shared value, and every node bound to `characters` on that key always displays that same current
+value**, full stop. Caught by the full-set validation pass (which, this time, actually checked the
+`characters` values themselves, not just the ref shape) and a re-screenshot showing all 5 rows with the
+same icon — **the earlier "zero problems" validation on this same change only diffed
+`componentPropertyReferences` against an expected shape, which is exactly the kind of check that stays
+green through this bug** (the refs were all correctly wired; the shared *value* was still wrong).
+
+**Fix:** one dedicated TEXT property per variant that needs its own default (`Neutral Icon Glyph`,
+`Brand Icon Glyph`, `Success Icon Glyph`, `Warning Icon Glyph`, `Danger Icon Glyph` — reused the
+original property's key for Neutral via `editComponentProperty(key, {name, defaultValue})` rather than
+leaving an orphaned one), each bound only to its own variant's icon node. `Close Icon Glyph` stayed a
+single shared property across all 5 — correct there, since every variant's close button is genuinely
+meant to show the identical `xmark` glyph; no per-variant divergence needed. **Decision rule: share one
+TEXT property across variants only when they're supposed to always render the same text by design (a
+close icon, a fixed label). The moment variants need different default content for the same visual
+slot, each needs its own property — never assume `componentPropertyReferences` binding preserves
+whatever characters were already on the node.**
+
+Re-verified after the fix: full-set screenshot showing all 5 distinct icons restored, plus targeted
+instances — `Close: false` (icon hidden, Progress Ring stays independently controllable), an untouched
+`Danger` instance still showing its own icon (no leakage from editing `Success Icon Glyph` on a sibling
+instance), and a `Success Icon Glyph` override (`trophy`) rendering correctly without affecting other
+variants. Also updated the Documentation section text to note the close button is now optional — WA's
+real `wa-toast-item` always includes one, so this is flagged as an Orderly-only addition, same pattern
+as other intentional WA deviations in this file.
+
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
 height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
