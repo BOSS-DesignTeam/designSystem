@@ -151,6 +151,32 @@ document itself rather than a component. Re-added here after noticing the gap wh
 Toast note below. **If a sync/merge to this file ever looks like it dropped recent content, diff
 against the previous commit before trusting the result — don't assume a "sync" commit is additive.**
 
+### Same Hug/Fixed clip pattern reproduced on Select, both Single and Multi (2026-09-21)
+Predicted by the Input note above ("check for this pattern on any other component") — confirmed on
+the `Single Select` and `Multi Select` ComponentSets on the Select page. All 12 state variants (6 per
+set) had the inner `Input` box (the visible bordered field) `Fixed` 280×40, so resizing an instance
+wider left the box pinned and the dropdown chevron stranded mid-component instead of at the right edge.
+- **Single Select's 6 variants** (`State=Default/Expanded/Selected/Disabled/Error Focused/Error`): outer
+  frame was already auto-layout **Fixed** on both axes (not Hug, unlike Input) — only needed step 2 of
+  the Input recipe: set the `Input` child's `layoutSizingHorizontal = 'FILL'` directly, no outer mode
+  change needed since parent wasn't Hug to begin with.
+- **Multi Select's 6 variants** (`State=Default/Expanded/Multiple Tags/Disabled/Error Focused/Error`):
+  outer frame *was* Hug on both axes — full Input recipe applied: `resize(280, 40)` + set both outer
+  axes to `FIXED`, then `resize(280, 40)` + `layoutSizingHorizontal = 'FILL'` on the `Input` child
+  (vertical stays `FIXED` from the resize side-effect, matching the 40px Medium spec — see the Input
+  correction above).
+Verified by creating throwaway instances of each set's `Default`/`Expanded` variant, resizing to 500×40,
+and screenshotting — `Input` box and chevron both tracked the full width on both — then deleting the
+test instances.
+
+**Not fixed, flagged only:** `Multi Select with Listbox` (`583:422`) wraps its `Multi Select` instance
+with `layoutSizingHorizontal = 'FIXED'` inside an outer frame whose *width* axis is itself Hug (`AUTO`)
+rather than Fixed — inconsistent with its sibling `Single Select with Listbox` (`489:241`), whose
+wrapped instance is already `FILL` inside a Fixed-width outer. Resizing the Multi Select composite
+wouldn't grow the inner instance, but fixing it means deciding whether the outer should switch to
+Fixed-width (matching its sibling) or stay Hug some other way — a design call, not a mechanical
+repeat of this recipe. Left alone pending that decision.
+
 ### `STRETCH` alignment as an alternative to `FILL` sizing for hug-parent children (Toast, 2026-09-17)
 Building Toast Item's colored accent bar (needs to span the full height of the card, whatever that
 height ends up being once a multi-line `Message` wraps) looked like the same problem as the Input
