@@ -262,6 +262,24 @@ Verified the resize lock on a separate `Default` instance via `resize(500, 300)`
 not 500×300. Applied to all 6 state variants; full component-set screenshot confirmed no regressions
 across Default/Focus/Filled/Disabled/Error Focused/Error.
 
+**Correction (same day, later):** the `minHeight`/`maxHeight` lock above over-corrected — it kept the
+outer frame's height pinned at 88 even when content should shrink (e.g. `Show Label`/`Show Help Text`
+both off — real hug height is 48, just the input box + padding, but the lock held it at 88, leaving
+dead space). Asked to make height genuinely hug its content instead. Fix: `primaryAxisSizingMode =
+'AUTO'` (height is `VERTICAL`'s primary axis here) plus clearing the lock entirely
+(`minHeight = maxHeight = null`) on all 6 variants — a Hug axis and a `minHeight`/`maxHeight` clamp
+fight each other, so keeping the clamp would have defeated genuine hug responsiveness. Verified: with
+all content visible, hug recomputes to the same 88 as before (no regression); with `Show Label` +
+`Show Help Text` both off, height correctly shrinks to 48; a realistic width-only drag (`resize(500,
+currentHeight)`, mimicking a side-handle) stays at height 88 with no dead space, input box fills the
+new width. **Known, accepted tradeoff, not fixed further:** explicitly overriding *both* dimensions at
+once (`resize(500, 300)`) still lands at 500×300 with dead space below `Help Text` — the
+"Hug-sized components can still be resized manually as an instance override" gotcha from the original
+2026-09-13 note still applies, same as every other Hug component in this file (e.g. Toast Item's
+card). Not reintroducing a `minHeight`/`maxHeight` floor to guard against that, since any floor
+directly fights the "hug whatever is inside it" requirement that motivated this correction — flagged
+here rather than silently re-adding the lock.
+
 ### Adding Trailing Icon to Button — 60-variant bulk edit, clone-the-sibling pattern (2026-09-21)
 Button already had a `Leading Icon` boolean (bound to a `leading-icon` text node) but no trailing
 equivalent. The `Button` ComponentSet is large — 60 variants (`Variant` × `Appearance` × `Size` ×
