@@ -380,6 +380,20 @@ sizing-mode change needed at all. **Try `STRETCH` alignment first, before reachi
 Hug→Fixed→Fill dance, any time a decorative/full-height child (accent bars, dividers, side rails)
 needs to track a hug-sized sibling rather than actually drive the parent's own size.**
 
+### Removing outer left/right padding — no zero-value spacing token exists (Input, 2026-09-22)
+Asked to remove the Input component's left/right padding so `label row`, `input`, and `Help
+Text`/`Error Text` sit flush with the component's edges instead of inset. The outer `COMPONENT`
+(each of the 6 state variants) is a `VERTICAL` auto-layout frame with `paddingLeft`/`paddingRight`
+both bound to `var(--wa-space-2xs)` (4px) — that's the inset. Per the "always bind to real tokens"
+rule (§6), checked the `Spacing` variable collection first for a `0`-value token to bind to instead
+of a raw number; none exists (`spacing/1` through `spacing/32` start at 4). With no token to bind,
+set `paddingLeft = paddingRight = 0` as a raw (unbound) value after `setBoundVariable('paddingLeft',
+null)` / `setBoundVariable('paddingRight', null)` — same pattern as any other case where the design
+decision itself is "no spacing here," not a missed binding. `paddingTop`/`paddingBottom` (also bound
+to the same variable) were left untouched, matching the ask (left/right only). Applied to all 6
+state variants (Default/Focus/Filled/Disabled/Error Focused/Error); screenshot confirmed label,
+input box, and help/error text now reach both edges on every variant.
+
 ---
 
 ## 3. Editing permissions
