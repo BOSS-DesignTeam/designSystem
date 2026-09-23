@@ -459,6 +459,15 @@ once clobbered content instead of merging it, with nothing tracking what the int
    through to `On Prod`) so there's still a paper trail; only the human-review gate is waived. This is
    scoped to PRs where the workflow-notes file is the *only* file changed — a PR that bundles a
    workflow-notes update with any actual code or component change still needs a real reviewer.
+7. **Update `COMPONENT-STATUS.md` in the same PR that moves a component's real status.** When a
+   Figma component gets built, or a `style-guide-v2` doc page merges in `orderlyapp/orderly`, move
+   that item between buckets (Complete / In Progress — Dev / In Progress — Designer / Not Started)
+   as part of that same PR — don't leave it to a separate cleanup pass later. `COMPONENT-STATUS.md`
+   exists specifically because the build-order list it replaced had drifted stale and mismatched
+   Jira ticket status against real code; a status file nobody updates at the moment of shipping
+   drifts the exact same way. This applies across both repos — a `style-guide-v2` doc-page PR in
+   `orderlyapp/orderly` is still the kind of change that should update this file, which lives here
+   in `designSystem`, not there.
 
 ---
 
