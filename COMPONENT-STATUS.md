@@ -56,22 +56,14 @@ Figma gap):
 
 ## In Progress — Dev
 
-Design is done in Figma; RestaurantUI doc-page work is the remaining step.
+Real, active development happening right now — a real PR/ticket in motion, not just "design is
+done so it's eligible." If nobody's actually writing code for it today, it belongs in Not Started
+below instead, even if the design side is finished.
 
 - **Switch** — OR-13001, Code Review, not yet merged
 - **Tooltip** — OR-13002, Code Review, not yet merged
 - **Dialog** — OR-13003, Code Review, not yet merged
 - **Button Group** (section on the Button page) — OR-13514, Code Review, not yet merged
-- **Accordion** — design done 2026-07-30. **Discrepancy:** OR-13005 shows `Ready For Prod` in
-  Jira, but Accordion is not actually in `style-guide-v2.nav.ts` on `master` yet. Worth a status
-  check before trusting that ticket.
-- **Tabs** — design done 2026-09-08 (Tab / Tab Panel / Tab Group). No RestaurantUI nav entry, and
-  no active Jira ticket found for it — flagging as design-done/dev-not-started rather than
-  actively in progress; may need a ticket opened.
-- **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531
-  ("Add Trailing Icon…"/"Add Close icon…") read as Figma-side component edits, not RestaurantUI
-  doc-page tickets — don't mistake those for dev progress on this item. Same as Tabs: flagging as
-  design-done/dev-not-started, likely needs a ticket opened.
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -84,20 +76,30 @@ see the Not Started list below.)
 
 ## In Progress — Designer
 
-1. **Popover** — WA: `wa-popover`. The only item where the Figma design itself isn't done yet —
-   everything else in "In Progress — Dev" above already has a finished design. Added 2026-09-08
-   per a Figma-vs-WebAwesome component gap review, alongside Tabs and Toast (both now designed,
-   just waiting on dev above).
+1. **Popover** — WA: `wa-popover`. The only item where the Figma design itself isn't done yet.
+   Added 2026-09-08 per a Figma-vs-WebAwesome component gap review, alongside Tabs and Toast
+   (both now designed — see Not Started below, since dev hasn't started on either yet).
 
 ---
 
 ## Not Started
 
 Real components exist and are used in production RestaurantUI code for every item below — none
-of these are "doesn't exist," only "no style-guide-v2 doc page yet, and no Figma-brief tracking
-visibility either way." Don't assume Figma status for these without checking the Figma file
-directly — this list is dev-side only.
+of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
+**Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Tabs** — design done 2026-09-08 (Tab / Tab Panel / Tab Group). No RestaurantUI nav entry, no
+  active Jira ticket — likely needs one opened.
+- **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531
+  ("Add Trailing Icon…"/"Add Close icon…") read as Figma-side component edits, not RestaurantUI
+  doc-page tickets — don't mistake those for dev progress on this item.
+- **Accordion** — design done 2026-07-30. **Discrepancy, needs a status check:** OR-13005 shows
+  `Ready For Prod` in Jira (which usually means dev is finished, just not deployed), but Accordion
+  is not actually in `style-guide-v2.nav.ts` on `master`. Don't trust that ticket's status at face
+  value until someone confirms which is right.
+
+**No Figma-brief tracking visibility either way — don't assume Figma status without checking the
+file directly, this part of the list is dev-side only:**
 - Action Select
 - "Buttons (Standard)" — the plain native-`<button>` pattern (distinct from the Orderly Button
   wrapper, which is Complete above)
