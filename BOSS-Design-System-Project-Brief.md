@@ -1279,32 +1279,25 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
 
 ## Component build order (remaining)
 
-Button, Split Button, Input, Select, Badge/Tag, Checkbox, Divider are done. Radio, Switch, and
-Tooltip are also done (2026-07-20, via the Atomic Design pass — see that section above).
-Dropdown Trigger (page `468:2`) is also built; "Dropdown Item" on that same page is now built too
-(2026-09-08, see Dropdown component section above). All 6 `(Steve)` components are now published
-with Code Connect
-mappings applied (see Publish & Code Connect audit section above). Accordion is done
-(2026-07-30). Alert Banner is done (2026-08-14, see Alert Banner component section above) —
-uses all 5 semantic colors as planned; no `wa-alert` tag exists in the real WA kit, closest
-primitive is `wa-callout`, unconfirmed for dev handoff. Remaining, now organism/molecule-tier
-rather than atoms:
+Moved to [COMPONENT-STATUS.md](./COMPONENT-STATUS.md) — that file is now the living status
+tracker across both Figma design and RestaurantUI dev work (Complete / In Progress — Dev /
+In Progress — Designer / Not Started), kept current as part of the work that moves an item
+between buckets. This brief stays the historical record: why each component looks the way it
+does, node/page IDs, and the drift notes below on how the build-order list itself has changed
+over time.
 
-**Drift note (2026-09-08):** this list previously had "Modal / Dialog" as item 1, but a live
-Figma pull the same day confirms the component is already built and published (page `934:6`,
+**Drift note (2026-09-08):** the build order previously had "Modal / Dialog" as item 1, but a live
+Figma pull the same day confirmed the component was already built and published (page `934:6`,
 ComponentSet `934:427`) — same drift pattern flagged elsewhere in this brief (Alert/Floating
-Action Bar were similarly undocumented-but-built). Removed from the remaining list below. Same
-day, the page/component itself was renamed "Modal (Steve)"/"Modal" → "Dialog (Steve)"/"Dialog" to
-match WebAwesome's own naming (`wa-dialog`) — see the page list entry above and the Dialog page's
-own To-Do item 4.
+Action Bar were similarly undocumented-but-built). Removed from the remaining list. Same day, the
+page/component itself was renamed "Modal (Steve)"/"Modal" → "Dialog (Steve)"/"Dialog" to match
+WebAwesome's own naming (`wa-dialog`) — see the page list entry above and the Dialog page's own
+To-Do item 4.
 
-Added 2026-09-08 per a Figma-vs-WebAwesome component gap review — Tabs, Toast, and Popover were
-flagged as high-value gaps (all three show up constantly in a back-office app) and added to the
-build order. **Tabs is done** (same day, see Tab component section above — Tab/Tab Panel/Tab
-Group, page `3900:2`). **Toast is done** (2026-09-17, see Toast component section above — Toast
-Item, page `4381:162`). Remaining:
-
-1. **Popover** — WA: `wa-popover`
+Also added 2026-09-08 per a Figma-vs-WebAwesome component gap review: Tabs, Toast, and Popover were
+flagged as high-value gaps (all three show up constantly in a back-office app). Tabs and Toast are
+now done in Figma (see COMPONENT-STATUS.md — dev work on both is still pending, tracked there
+under "In Progress — Dev"); Popover is the one Figma design still remaining.
 
 ---
 
