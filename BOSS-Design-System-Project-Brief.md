@@ -1279,11 +1279,12 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
 
 ## Component build order (remaining)
 
-Moved to [COMPONENT-CHECKLIST.md](./COMPONENT-CHECKLIST.md) — that file is now the living
-"what's done, what's left" checklist (Figma build order, plus a second section on RestaurantUI
-style-guide-v2 doc coverage), kept short enough to scan in a few seconds. This brief stays the
-historical record: why each component looks the way it does, node/page IDs, and the drift notes
-below on how the build-order list itself has changed over time.
+Moved to [COMPONENT-STATUS.md](./COMPONENT-STATUS.md) — that file is now the living status
+tracker across both Figma design and RestaurantUI dev work (Complete / In Progress — Dev /
+In Progress — Designer / Not Started), kept current as part of the work that moves an item
+between buckets. This brief stays the historical record: why each component looks the way it
+does, node/page IDs, and the drift notes below on how the build-order list itself has changed
+over time.
 
 **Drift note (2026-09-08):** the build order previously had "Modal / Dialog" as item 1, but a live
 Figma pull the same day confirmed the component was already built and published (page `934:6`,
@@ -1295,7 +1296,8 @@ To-Do item 4.
 
 Also added 2026-09-08 per a Figma-vs-WebAwesome component gap review: Tabs, Toast, and Popover were
 flagged as high-value gaps (all three show up constantly in a back-office app). Tabs and Toast are
-now done (see COMPONENT-CHECKLIST.md); Popover is the one still remaining.
+now done in Figma (see COMPONENT-STATUS.md — dev work on both is still pending, tracked there
+under "In Progress — Dev"); Popover is the one Figma design still remaining.
 
 ---
 
