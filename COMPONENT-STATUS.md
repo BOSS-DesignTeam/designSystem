@@ -90,6 +90,9 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 - **Popover** — design done 2026-09-25 (Popover, 4 placements + With Arrow + Content slot; page
   `4692:164`, first page in the new "--- Base Components ---" section). WA: `wa-popover`. Figma
   story: OR-13617. No RestaurantUI nav entry, no dev ticket.
+- **Card** — design done 2026-09-25 (Card, 5 Appearances × 2 Orientations + header/media/footer/
+  action slots; page `4699:249`, Base Components section). WA: `wa-card`. Figma story: OR-13618.
+  Dev: OR-11849 (sl-card → wa-card), not started.
 - **Tabs** — design done 2026-09-08 (Tab / Tab Panel / Tab Group). No RestaurantUI nav entry, no
   active Jira ticket — likely needs one opened.
 - **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531
@@ -103,7 +106,6 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Figma design not started — WebAwesome has a matching component, Figma story filed (To Do).**
 Build these from the WA kit, not from scratch. Merged from `boss-design-system-docs/Todo.md`
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
-- **Card** — `wa-card` · Figma: [OR-13618](https://diningalliance.atlassian.net/browse/OR-13618) · Dev: OR-11849
 - **Drawers** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865. See the "quick win" above
   (doc page exists, just needs a nav entry), and reconcile with the existing "Drawer" page in the
   Figma file's To do section

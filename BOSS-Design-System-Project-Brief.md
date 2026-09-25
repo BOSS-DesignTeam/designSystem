@@ -345,6 +345,8 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
   section placed between WOrK In Progress and To do.
 - `4692:164` Popover (Steve) — added 2026-09-25, first page in the Base Components section, see
   Popover component section below.
+- `4699:249` Card (Steve) — added 2026-09-25, second page in the Base Components section, see Card
+  component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1310,6 +1312,46 @@ leaving dead space under the text.
 2. `radius/l` 8px vs WA's 12px — confirm or add a token.
 3. Fixed 372px width (WA kit default; `--max-width` in code); distance/skidding offsets not modeled.
 4. Not yet published or Code Connect–mapped.
+
+### Card component (page `4699:249` "Card (Steve)", ComponentSet `4699:883` "Card")
+
+**Added 2026-09-25 (OR-13618).** Built from the real WA kit Card (component set key
+`82956f923890fac149b2636aceaa8782791764d2`): import → `createInstance()` → `detachInstance()` →
+rebind → `createComponentFromNode()` → `combineAsVariants()`. Not hand-drawn.
+
+**Variant model matches the WA kit exactly:** `Appearance` (Outlined **[default]**/Filled-Outlined/
+Filled/Accent/Plain) × `Orientation` (Vertical **[default]**/Horizontal) = 10 variants. WA's own
+property names are kept: `With Header`/`With Media`/`With Footer`/`With Actions`/`With Footer Actions`
+(BOOLEAN, all default true) and `Header`/`Body`/`Footer`/`Actions`/`Footer Actions` (INSTANCE_SWAP).
+Horizontal has only Media + Body (+ Actions), as in the WA kit.
+
+**Token rebinding (WA var → this file):** `Surface/Default` → `color/surface/default` (Outlined);
+`Neutral/Fill/Quiet` → `color/bg/neutral/subtle` (Filled-Outlined, Filled); `Neutral/Fill/Loud` →
+`color/bg/neutral/default` (Accent, slot text overridden to `color/text/on-filled`/`color/icon/on-filled`);
+Plain has no fill. `Surface/Border` → `color/border/default` (root border on Outlined/Filled-Outlined,
+plus header/footer dividers). `Border Radius/L` and `Panel/Border Radius` (12) → `radius/l` (8, same
+deviation as Popover). `Space/L` → `spacing/6`, `Space/M` → `spacing/4`, header vertical padding
+(`Font Size/XS`, 12) → `spacing/3`. `Border Width/S` → hardcoded 1. `Shadow/S` effect → **dropped**
+(no small-shadow style in this file). Audit: zero remote variable bindings, zero remote instances.
+
+**Slots:** new local components `Card Title` (`4699:250`, Subtitle/1), `Card Content` (`4699:252`,
+Body/2), `Card Action` (`4699:254`, 40×40 Font Awesome glyph `ellipsis`, `Icon Glyph` TEXT prop) are
+the INSTANCE_SWAP defaults. The Footer and action slots also list this file's `Button` as a preferred
+value. There's no local Icon Button yet, so `Card Action` is a stand-in.
+
+**Build gotchas hit (see FIGMA-WORKFLOW-NOTES.md §2):** `swapComponent()` renames the instance
+to the new main component's name, so later name-based lookups missed the action instances. Binding
+a `mainComponent` ref also *immediately swaps* the instance to that property's default, which turned
+the actions into title instances until they were fixed. Paints built with a black base color and then bound via
+`setBoundVariableForPaint` rendered black on the detached WA frames until they were rebuilt with the resolved color.
+The `importComponentSetByKeyAsync` call also timed out repeatedly (`LiveGraph ... timed out`) for a
+few minutes, then recovered with no change.
+
+**Known limitations (see the page's own To-Do section):** radius 8 vs 12; no shadow; placeholder
+slot defaults and no real Icon Button; WA sample image still in Media; low-contrast dividers on
+Accent; relationship to the existing Financial Reports Card undecided; WA 3 slot names
+(`header-actions`/`footer-actions`) need confirming against the shipped WA version; not published or
+Code Connect–mapped.
 
 ---
 

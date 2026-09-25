@@ -394,6 +394,24 @@ to the same variable) were left untouched, matching the ask (left/right only). A
 state variants (Default/Focus/Filled/Disabled/Error Focused/Error); screenshot confirmed label,
 input box, and help/error text now reach both edges on every variant.
 
+### `swapComponent()` renames the instance, and a `mainComponent` ref swaps it immediately (Card, 2026-09-25)
+Two linked surprises while wiring Card's slots:
+1. `instance.swapComponent(x)` **renames the instance** to `x`'s name. Card's WA `Icon Button`
+   instances became `Card Action`, so a later `name === 'Icon Button'` lookup silently missed them
+   and they got bound as content slots instead. Record each instance's role (or its original name)
+   *before* swapping, or look it up by `getMainComponentAsync()` afterward, not by name.
+2. Setting `componentPropertyReferences = { mainComponent: key }` **immediately swaps the instance
+   to that INSTANCE_SWAP property's default**. The mis-bound action instances turned into
+   `Card Title` instances on the spot. To fix one: clear the refs (`= {}`), `swapComponent()` back,
+   then bind to the right property. Expect the swap to leave odd sizes behind (43×320, 14×20 here).
+   Re-`resize()` and re-set `layoutSizing*` on any instance that has been swapped more than once.
+
+**Also hit:** paints created as `{type:'SOLID', color:{r:0,g:0,b:0}}` and then bound with
+`setBoundVariableForPaint` rendered **black** on the detached WA frames, even though the binding
+itself was correct (right variable ID, no explicit modes). Rebuilding each paint with
+`variable.resolveForConsumer(node).value` as the base color fixed the render. Use the resolved
+value as the base color instead of a dummy black.
+
 ---
 
 ## 3. Editing permissions
