@@ -76,9 +76,8 @@ see the Not Started list below.)
 
 ## In Progress — Designer
 
-1. **Popover** — WA: `wa-popover`. The only item where the Figma design itself isn't done yet.
-   Added 2026-09-08 per a Figma-vs-WebAwesome component gap review, alongside Tabs and Toast
-   (both now designed — see Not Started below, since dev hasn't started on either yet).
+*(Nothing currently.)* Popover moved to Not Started 2026-09-25 — Figma design is done (page
+`4692:164`, Base Components section), dev hasn't started.
 
 ---
 
@@ -88,6 +87,9 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Popover** — design done 2026-09-25 (Popover, 4 placements + With Arrow + Content slot; page
+  `4692:164`, first page in the new "--- Base Components ---" section). WA: `wa-popover`. No
+  RestaurantUI nav entry, no active Jira ticket.
 - **Tabs** — design done 2026-09-08 (Tab / Tab Panel / Tab Group). No RestaurantUI nav entry, no
   active Jira ticket — likely needs one opened.
 - **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531

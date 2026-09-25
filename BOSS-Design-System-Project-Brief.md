@@ -341,6 +341,10 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 - `3900:2` Tabs (Steve) — added 2026-09-08, see Tab component section below.
+- `4692:163` --- Base Components --- (divider, plus `4692:162` spacer) — added 2026-09-25, new page
+  section placed between WOrK In Progress and To do.
+- `4692:164` Popover (Steve) — added 2026-09-25, first page in the Base Components section, see
+  Popover component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1267,6 +1271,48 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
 
 ---
 
+### Popover component (page `4692:164` "Popover (Steve)", ComponentSet `4692:219` "Popover")
+
+**Added 2026-09-25.** Unlike Toast, the real WA kit *does* have a directly-named match —
+`search_design_system` scoped to both libraries found "Popover" in Web-Awesome-3-Design-Kit-v2-0-0
+(component set key `bf9c977b8aaa8f46625c913668fb0d8e26fdbebb`); nothing in the old Back Office
+library. Built per the import → `createInstance()` → `detachInstance()` → rebind rule, not hand-drawn.
+
+**Variant model matches the WA kit exactly:** `Placement` (Top **[default]**/Right/Bottom/Left),
+`With Arrow` (BOOLEAN, default true → Arrow `visible`), `Content` (INSTANCE_SWAP → the Body's
+content instance). Kept WA's own order (Top/Right/Bottom/Left). Only 4 placements, because the WA
+*Figma kit* only models 4 — WA *code* supports -start/-end (12, as Tooltip models); flagged as a
+known limitation, not silently dropped. Verified via test instance: `With Arrow` off drops height
+94 → 88px and stays hidden across a Placement swap; Content defaults to the local placeholder.
+
+**Structure (unchanged from WA):** root auto-layout (`VERTICAL` for Top/Bottom, `HORIZONTAL` for
+Left/Right) with `itemSpacing = -6` so the 8.48px 45°-rotated square Arrow overlaps the Body edge;
+Arrow strokes only its two outward sides (`[0,0,1,1]`, rotation varies per placement). Body is
+fixed 372px wide, hugs height.
+
+**Token rebinding (WA var → this file):** `Surface/Default` → `color/surface/default` (Body + Arrow
+fill); `Surface/Border` → `color/border/default` (Body + Arrow stroke); `Space/L` (24) →
+`spacing/6`; `Panel/Border Radius` (12) → `radius/l` (8 — deliberate deviation, matches Toast/Dialog;
+no 12px token exists); `Panel/Border Width` → hardcoded 1; `Shadow/L` effect style →
+`Elevation/Dropdown` (same choice as Toast); `Tooltip/Arrow Size Diagonal` → hardcoded 8.48; the
+root's `itemSpacing` was also bound to a remote WA var → unbound, hardcoded -6. Audit after the
+build: zero remaining remote variable bindings, zero remote instances.
+
+**Content slot:** WA's default slot content is its remote "Text Node" component (SF Pro 16px).
+Replaced with a new local component, `Popover Content` (`4692:165`, fixed 324px = 372 − 2×24
+padding, Body/2 text, `color/text/primary`), which is the INSTANCE_SWAP default — avoids depending
+on a remote component (see FIGMA-WORKFLOW-NOTES.md §1). The slot instance needed
+`layoutSizingVertical = 'HUG'` after `swapComponent()` — it kept WA's fixed 52px height otherwise,
+leaving dead space under the text.
+
+**Known limitations (see the page's own To-Do section):**
+1. Only 4 placements (see above).
+2. `radius/l` 8px vs WA's 12px — confirm or add a token.
+3. Fixed 372px width (WA kit default; `--max-width` in code); distance/skidding offsets not modeled.
+4. Not yet published or Code Connect–mapped.
+
+---
+
 ## Figma file layout conventions
 
 - Doc frames: Roboto Medium 32px title + Body/2 description, positioned above component sets
@@ -1295,9 +1341,10 @@ WebAwesome's own naming (`wa-dialog`) — see the page list entry above and the 
 To-Do item 4.
 
 Also added 2026-09-08 per a Figma-vs-WebAwesome component gap review: Tabs, Toast, and Popover were
-flagged as high-value gaps (all three show up constantly in a back-office app). Tabs and Toast are
-now done in Figma (see COMPONENT-STATUS.md — dev work on both is still pending, tracked there
-under "In Progress — Dev"); Popover is the one Figma design still remaining.
+flagged as high-value gaps (all three show up constantly in a back-office app). All three are now
+done in Figma — Popover on 2026-09-25 (see Popover component section above; page `4692:164`, first
+page in the new "--- Base Components ---" section). Dev status for all three is tracked in
+COMPONENT-STATUS.md.
 
 ---
 
