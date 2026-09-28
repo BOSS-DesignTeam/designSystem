@@ -468,6 +468,11 @@ once clobbered content instead of merging it, with nothing tracking what the int
    drifts the exact same way. This applies across both repos — a `style-guide-v2` doc-page PR in
    `orderlyapp/orderly` is still the kind of change that should update this file, which lives here
    in `designSystem`, not there.
+8. **If the component already exists in code, name the replacement tactic before building.** The
+   story and the PR description both need an "Existing component" section that names the old
+   component, its consumer count, and which tactic from §10 applies. A reviewer should never have
+   to ask what happens to the old one; Tom had to on PR #9541 (Toggle Button Group vs. the existing
+   `button-select`).
 
 ---
 
@@ -700,3 +705,41 @@ boolean; restating it in the name is redundant and makes the properties panel no
 Cell); `Show Sort` → `Sort`, `Show Date` → `Date` (Header Cell Types); `Show Cursor` → `Cursor`
 (Financial Table Editable Cell). All 5 confirmed still working after the rename. `Show Trailing
 Icon` → `Trailing Icon` (Card Header) was the first instance of this rule being applied.
+
+---
+
+## 10. Building a component that already exists in code: pick a replacement tactic first
+
+Before building, search `RestaurantUI/src/app/components/` and the V1 style guide for a component
+that already does the same job. Search by behavior, not just by name: the Toggle Button Group's
+predecessor is `button-select` in `components/buttonToggle/`, which a search for "toggle" in
+component selectors missed.
+
+If one exists, count its consumers, note where its behavior differs from the new component, and
+pick one tactic:
+
+1. **Build new, swap every old usage in the same effort.** Only when there are few consumers and the
+   old API maps cleanly onto the new one.
+2. **Rebuild the old component's internals, keep its API.** Every existing page upgrades at once
+   with no consumer edits. Only when the old API is one the design system would keep; otherwise it
+   locks the old API in for good.
+3. **Build new, deprecate the old, migrate usages one at a time.** The default when there are many
+   consumers or the behavior differs. Deprecate following
+   `RestaurantUI/src/app/components/00_deprecated/00_deprecationGuidelines.md`: move it to
+   `00_deprecated/`, rename the selector to `DEPRECATED-<name>-DEPRECATED`, prefix the class and
+   folder with `DEPRECATED_`, and note what replaces it. Create the migration tickets at the same
+   time so the old component actually goes away.
+
+A different tactic is fine when none of these fit; write down why. Deprecation and migration change
+shared components, so they get their own tickets and branches off `master`, not the new component's
+PR (see the orderly repo's CLAUDE.md).
+
+---
+
+## 11. Code: no comments unless they explain something the code can't
+
+Tom has flagged explanatory comment blocks on nearly every design-system PR (#9541, #9586). The team
+convention: don't write comments that restate what the code does, narrate why a WebAwesome default
+was overridden, or point at the ticket. That reasoning goes in the PR description. Only comment a
+genuinely non-obvious constraint, like a workaround for a specific library bug. Strip comments
+before opening the PR, not after review.
