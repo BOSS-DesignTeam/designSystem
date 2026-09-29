@@ -347,6 +347,8 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
   Popover component section below.
 - `4699:249` Card (Steve) — added 2026-09-25, second page in the Base Components section, see Card
   component section below.
+- `4754:162` Radio Group (Steve) — added 2026-09-29, third page in the Base Components section, see
+  Radio Group component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1421,3 +1423,26 @@ COMPONENT-STATUS.md.
   `blue/50` (Brand) should be there. Worth a dedicated audit pass across all "Steve" components'
   selected/active/on states before trusting any of them as documented — this could be a single
   root cause (e.g. a bad find-and-rebind at some point) rather than three unrelated mistakes.
+
+---
+
+### Radio Group component (page `4754:162` "Radio Group (Steve)", ComponentSet `4754:381`, Radio Button `4754:176`)
+**Added 2026-09-29.** Sourced from the real WA kit's Radio Group (componentKey
+`ee33186e423937f509900ff1240a92c9480c5ffc`) and Radio (`53761025...`) property models, re-read fresh.
+- **Radio Group** — 8 variants: `Orientation` (Vertical/Horizontal) × `Appearance` (Default/Button) ×
+  `Disabled` (False/True). Properties match WA: `Label`, `Hint` (TEXT; the kit uses INSTANCE_SWAP Text
+  Nodes), `With Label` (true), `With Hint` (false), `Required` (false). Each of the 3 options is an exposed
+  nested instance, so the selected option and per-option Disabled are set from the properties panel.
+- **Radio Button** — new local building block for `wa-radio appearance="button"`: `Selected` × `Disabled`,
+  plus `Label` (TEXT) and `Focused` (BOOLEAN, Focus/Ring effect style). The existing Radio (`771:432`)
+  was deliberately **not** modified (user direction: new component, don't touch Radio).
+- **Default appearance instances the existing Radio**, so it inherits Radio's orange/50 selected color
+  drift (see the Radio section). Button appearance uses brand blue (`color/border/brand`,
+  `color/bg/brand/subtle`), so the two appearances currently disagree until Radio is fixed.
+- **Deliberate deviation:** `Size` (Small/Large) dropped, Medium only, confirmed with the user.
+- Button groups use a -1 gap (collapsed borders) + `itemReverseZIndex`, with corner radii zeroed per
+  position (outer corners only), matching the kit's joined-group rendering.
+- An Examples section covers every section of the WA docs page (initial value, hint, radio buttons,
+  disabled group / single option, orientation, required). Validation/custom validity has no visual
+  state in WA (browser-native), so it isn't modeled. The on-canvas To-Do lists the open items.
+

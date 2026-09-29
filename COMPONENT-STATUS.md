@@ -87,6 +87,10 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Radio Group** — design done 2026-09-29 (Radio Group: Orientation × Appearance Default/Button ×
+  Disabled, Medium only, plus a new Radio Button building block; page `4754:162`, Base Components
+  section). WA: `wa-radio-group` + `wa-radio appearance="button"`. No Figma story filed yet. The
+  existing Radio (Complete above) covers the single-radio atom only.
 - **Popover** — design done 2026-09-25 (Popover, 4 placements + With Arrow + Content slot; page
   `4692:164`, first page in the new "--- Base Components ---" section). WA: `wa-popover`. Figma
   story: OR-13617. No RestaurantUI nav entry, no dev ticket.
