@@ -89,7 +89,7 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
 - **Radio Group** — design done 2026-09-29 (Radio Group: Orientation × Appearance Default/Button ×
   Disabled, Medium only, plus a new Radio Button building block; page `4754:162`, Base Components
-  section). WA: `wa-radio-group` + `wa-radio appearance="button"`. No Figma story filed yet. The
+  section). WA: `wa-radio-group` + `wa-radio appearance="button"`. Figma story: [OR-13675](https://diningalliance.atlassian.net/browse/OR-13675) · Dev: OR-11860. The
   existing Radio (Complete above) covers the single-radio atom only.
 - **Popover** — design done 2026-09-25 (Popover, 4 placements + With Arrow + Content slot; page
   `4692:164`, first page in the new "--- Base Components ---" section). WA: `wa-popover`. Figma
