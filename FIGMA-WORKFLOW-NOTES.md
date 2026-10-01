@@ -485,6 +485,7 @@ Reference example: OR-12589 ("Add tag component to style guide"). Format:
 - **Required custom field:** `customfield_11734` ("Capitalization Category") must be set or issue
   creation fails. Use `{"id": "11810"}` (value: "New Feature Development") unless told otherwise.
 - **Parent epic:** OR-11839 ("Webawesome Migration Fun") for anything migration/style-guide related.
+- **Release timing:** see QA's [Release Process Quick List for UX](https://diningalliance.atlassian.net/wiki/spaces/ORQA/pages/4802969613/Release+Process+Quick+List+for+UX) for the weekly code freeze and when tickets move to Testing and On Prod (all times Eastern).
 
 **Core philosophy (from Tom Horn's comment on OR-12589), applies to every wrapper component story:**
 Our `boss-*` components are wrappers over WebAwesome's native form, not rebuilds. WA ships its own
