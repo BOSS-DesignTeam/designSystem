@@ -37,6 +37,8 @@ entries (see the "In Progress — Dev" section).
 - Select
 - Split Button
 - Tag
+- Toggle → `boss-toggle` (OR-13514, merged 2026-10-01). Replaced the legacy `button-select`, which
+  was deleted after every usage moved over
 - Alert Banner → shipped as **Callout** (OR-13111, On Prod) — flagging a caveat, not a full
   parity claim: the legacy Alert this replaces was a stateful, toast-like manager (imperative
   `showAlert()`, stacking), while the new Callout doc page reads as a static banner. Worth
@@ -63,7 +65,6 @@ below instead, even if the design side is finished.
 - **Switch** — OR-13001, Code Review, not yet merged
 - **Tooltip** — OR-13002, Code Review, not yet merged
 - **Dialog** — OR-13003, Code Review, not yet merged
-- **Button Group** (section on the Button page) — OR-13514, Code Review, not yet merged
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -103,9 +104,8 @@ file directly, this part of the list is dev-side only:**
 - Action Select
 - "Buttons (Standard)" — the plain native-`<button>` pattern (distinct from the Orderly Button
   wrapper, which is Complete above)
-- "Button Group" as its own concept (distinct from the Button Group *section on the Button page*,
-  which is In Progress — Dev above) — the plain `boss-button-group` wrapper itself has no
-  dedicated coverage
+- "Button Group" as its own concept — the plain `boss-button-group` wrapper has no dedicated
+  coverage (the segmented single-select pattern shipped separately as Toggle, Complete above)
 - Action Toast
 - Address
 - Card
@@ -134,9 +134,6 @@ file directly, this part of the list is dev-side only:**
   above)*
 - Progress Ring
 - Progress Bar
-- Toggle Buttons *(the legacy hand-rolled `button-select` component — distinct from the new
-  `boss-toggle-button-group` being built under OR-13514; still needs its own clarification on
-  whether it's superseded or coexists)*
 - 3 Button More Menu *(closest V2 concept is Dropdown, but it's a newer general-purpose
   component, not a renamed/ported version of the old `MoreOptionsMenu` — don't assume parity)*
 
