@@ -1349,11 +1349,26 @@ the actions into title instances until they were fixed. Paints built with a blac
 The `importComponentSetByKeyAsync` call also timed out repeatedly (`LiveGraph ... timed out`) for a
 few minutes, then recovered with no change.
 
-**Known limitations (see the page's own To-Do section):** radius 8 vs 12; no shadow; placeholder
-slot defaults and no real Icon Button; WA sample image still in Media; low-contrast dividers on
-Accent; relationship to the existing Financial Reports Card undecided; WA 3 slot names
-(`header-actions`/`footer-actions`) need confirming against the shipped WA version; not published or
-Code Connect–mapped.
+**Audit vs WA kit + shipped `wa-card` (2026-10-01).** Diffed all 10 variants against the WA kit
+programmatically and against `@awesome.me/webawesome@3.14.0` `card.styles`. Variant axes, property
+names/defaults, fills, layout, alignment and media radii all match. **Fixed:** header/footer dividers
+on Filled-Outlined/Filled/Accent/Plain were full 4-side boxes (the hardcoded `Border Width/S` → 1 was
+applied to every side); now bottom-only on Header and top-only on Footer on every appearance, as in
+both the kit and the CSS (`border-block-end` / `border-block-start`). **Slot names confirmed** against
+the WA docs: Figma `Actions` = `header-actions` on Vertical but `actions` on Horizontal (the kit shares
+one property for both); `Footer Actions` = `footer-actions`. Horizontal's action is bound to `With
+Actions` here (the kit leaves it unbound) — kept on purpose so it can be hidden. **Radius:** shipped CSS
+uses `--wa-panel-border-radius`, and RestaurantUI pins `--wa-border-radius-l` to 8px (token doc §4c), so
+`radius/l` (8) is likely what the app renders. The kit's 12 is WA's unpinned default. **Open:** card
+padding is `var(--wa-space-l)`, which RestaurantUI pins to **20px** (token doc §4b), not the kit's 24.
+The header's vertical padding is `--spacing / 2` (10, not 12). Undecided whether to follow the app (20/10)
+or the kit (24/12). Popover has the same `Space/L` → 24 question.
+
+**Known limitations (see the page's own To-Do section):** no shadow (`--wa-shadow-s` applies to every
+appearance except Plain in code); placeholder slot defaults and no real Icon Button (kit's is 43×43, ours
+40×40, which accounts for small height diffs); WA sample image still in Media; low-contrast dividers on
+Accent (same `Surface/Border` as the kit/CSS, so this is faithful); relationship to the existing
+Financial Reports Card undecided; spacing 24 vs 20 (above); not published or Code Connect–mapped.
 
 ---
 
