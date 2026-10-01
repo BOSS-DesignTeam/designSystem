@@ -1332,8 +1332,8 @@ Horizontal has only Media + Body (+ Actions), as in the WA kit.
 `color/bg/neutral/default` (Accent, slot text overridden to `color/text/on-filled`/`color/icon/on-filled`);
 Plain has no fill. `Surface/Border` → `color/border/default` (root border on Outlined/Filled-Outlined,
 plus header/footer dividers). `Border Radius/L` and `Panel/Border Radius` (12) → `radius/l` (8, same
-deviation as Popover). `Space/L` → `spacing/5` (20, was `spacing/6` until 2026-10-01; see audit
-below), `Space/M` → `spacing/4`, header vertical padding (`Font Size/XS`, 12) → raw 10 (was `spacing/3`). `Border Width/S` → hardcoded 1. `Shadow/S` effect → **dropped**
+deviation as Popover). `Space/L` → `spacing/6`, `Space/M` → `spacing/4`, header vertical padding
+(`Font Size/XS`, 12) → `spacing/3`. `Border Width/S` → hardcoded 1. `Shadow/S` effect → **dropped**
 (no small-shadow style in this file). Audit: zero remote variable bindings, zero remote instances.
 
 **Slots:** new local components `Card Title` (`4699:250`, Subtitle/1), `Card Content` (`4699:252`,
@@ -1360,10 +1360,10 @@ one property for both); `Footer Actions` = `footer-actions`. Horizontal's action
 Actions` here (the kit leaves it unbound) — kept on purpose so it can be hidden. **Radius:** shipped CSS
 uses `--wa-panel-border-radius`, and RestaurantUI pins `--wa-border-radius-l` to 8px (token doc §4c), so
 `radius/l` (8) is likely what the app renders. The kit's 12 is WA's unpinned default. **Padding
-switched to match the app:** card `--spacing` is `var(--wa-space-l)`, which RestaurantUI pins to **20px**
-(token doc §4b), not the kit's 24. So every Header/Body/Footer side and the Horizontal Body now use
-`spacing/5`. Header top/bottom is `--spacing / 2` = **10**, set as a raw value because there's no 10px
-token. **Popover still uses `Space/L` → 24** and has the same open question.
+stays at the kit's 24/12 on purpose (decided 2026-10-01).** Popover is the base component and uses
+`Space/L` → 24, so Card follows it. Known gap: card `--spacing` is `var(--wa-space-l)`, which RestaurantUI
+pins to 20px (token doc §4b), so the coded card renders 20/10. Card was briefly switched to 20/10, then
+reverted for consistency with Popover.
 
 **Known limitations (see the page's own To-Do section):** no shadow (`--wa-shadow-s` applies to every
 appearance except Plain in code); placeholder slot defaults and no real Icon Button (kit's is 43×43, ours
