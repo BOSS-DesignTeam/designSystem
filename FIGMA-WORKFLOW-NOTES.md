@@ -485,6 +485,11 @@ Reference example: OR-12589 ("Add tag component to style guide"). Format:
 - **Required custom field:** `customfield_11734` ("Capitalization Category") must be set or issue
   creation fails. Use `{"id": "11810"}` (value: "New Feature Development") unless told otherwise.
 - **Parent epic:** OR-11839 ("Webawesome Migration Fun") for anything migration/style-guide related.
+- **Figma link (depends on the approach):**
+  - *Design first approach:* link the Figma frame or component, including its `node-id`, before the build starts.
+  - *Code first approach:* say so on the story ("code first approach, Figma to follow"), then add the `node-id` link once the component is in Figma.
+  - Once both exist, the story links the Figma `node-id` and the PR or style guide page. The `node-id` is what lets an AI agent read the real tokens, states and variants; a screenshot is never enough.
+- **Dev LoE:** set the **Dev LoE** estimate when the story is created, and fill in **Dev LoE (Actual)** before moving it to `Testing` (Jira blocks the move without it).
 - **Release timing:** see QA's [Release Process Quick List for UX](https://diningalliance.atlassian.net/wiki/spaces/ORQA/pages/4802969613/Release+Process+Quick+List+for+UX) for the weekly code freeze and when tickets move to Testing and On Prod (all times Eastern).
 
 **Core philosophy (from Tom Horn's comment on OR-12589), applies to every wrapper component story:**
