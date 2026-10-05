@@ -281,9 +281,22 @@ by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondar
 `gray/spec-dark`, `gray/select-border`, `gray/select-disabled`, `gray/option-hover`,
 `gray/combobox-disabled`, `gray/tooltip-bg`, `gray/tag-resting`, `blue/button-disabled`.
 
-**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — corrected 2026-07-30, verified
-live via `use_figma` (the previous `padding/control/m`=14px and `height/control/m`=32px values
-below were stale/wrong):
+**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — **control height/padding re-synced
+2026-10-05** to RestaurantUI `_sizing.scss` (export from `thorn/sidebar-wa-refresh@a689fc70d03`). The
+2026-07-30 "correction" recorded here had it backwards: it overwrote the correct code values
+(m=32px height, 14px padding) with Figma's drifted ones. Fixed values: `height/control/m` 40→32,
+`height/control/l` 48→50, `padding/control/s` 4→12, `padding/control/m` 8→14, `padding/control/l`
+12→20. Each variable's description now cites its `sizing.$control-*` source.
+
+Before the value change, every misuse of the padding variables as generic spacing was rebound,
+value-neutral, so nothing else moved: `padding/control/s` (used as 4px gaps/padding) → `spacing/1`
+on Listbox `124:2` main components, Select listbox, Combobox, Textarea, and Tabbing Focus
+checkboxes; `padding/control/m` top/bottom on the Select `Input` frame (`365:130` etc.) and
+Datepicker `4540:15005` → `spacing/2`. Left/right stay on `padding/control/m` (correct use, now
+14px). **Rule going forward: `padding/control/*` is inline (left/right) padding of a control only —
+never gaps or vertical padding; use `spacing/*` for those.** Visible effects: Radio Group / Radio
+Button height 40→32 (bound to `height/control/m`); Select/Datepicker field text inset 8→14px.
+Foundations height/padding labels updated to the new values and `--boss-control-*` names.
 
 | Category | Token | Value |
 |---|---|---|
@@ -305,13 +318,13 @@ below were stale/wrong):
 | Radius | `radius/full` | 9999px |
 | Height | `height/control/xs` | 26px |
 | Height | `height/control/s` | 32px |
-| Height | `height/control/m` | 40px |
-| Height | `height/control/l` | 48px |
+| Height | `height/control/m` | 32px |
+| Height | `height/control/l` | 50px |
 | Height | `height/control/xl` | 64px |
 | Padding | `padding/control/xs` | 8px |
-| Padding | `padding/control/s` | 4px |
-| Padding | `padding/control/m` | 8px |
-| Padding | `padding/control/l` | 12px |
+| Padding | `padding/control/s` | 12px |
+| Padding | `padding/control/m` | 14px |
+| Padding | `padding/control/l` | 20px |
 | Padding | `padding/control/xl` | 24px |
 
 ### Text styles (9 total)
