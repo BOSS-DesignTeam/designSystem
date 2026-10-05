@@ -302,8 +302,21 @@ Foundations height/padding labels updated to the new values and `--boss-control-
 variant's `Input` field was a hardcoded 40px; now bound to `height/control/m` (32px) with 0
 top/bottom padding and centered content (the WA pattern — a 26px Multi Select tag wouldn't fit
 32px with 8px vertical padding). Variants switched from fixed 80px to hug height (80px after matching Input's padding, below).
-Select has no Size axis — only `m` is modeled. Button, Split Button and Dropdown don't
-bind `height/control/*` at all; their heights still need the same check against code.
+Select has no Size axis — only `m` is modeled.
+
+**Combobox, Button, Split Button, Dropdown Trigger fixed same day.** Every control in the file now
+takes its height and inline padding from the control variables, with 0 vertical padding and
+centered content:
+- **Combobox** (`749:107`, 7 variants): field 40→32 (`height/control/m`), sides `padding/control/m`,
+  plus 4px `spacing/1` outer padding to match Select/Input at 80px.
+- **Button** (`3941:32`, 60), **Split Button** (`540:7`, 18 — both `main` and `caret` segments),
+  **Dropdown Trigger** (`472:74`, 18): Small/Medium/Large heights were padding-driven 30/35/39px;
+  now `height/control/s|m|l` = 32/32/50, sides `padding/control/s|m|l` = 12/14/20 (Split Button's
+  caret keeps its 12px sides — code has no caret token). Split Button and Dropdown Trigger sets
+  resized to fit (Large grew 11px). Dropdown Item (menu row, 30px) intentionally untouched.
+- **Open:** button labels are 12/16/20px per size with no text style; code's `label-button` is
+  14px/20px. Left as-is pending dev confirmation of per-size label sizes. Priscilla's standalone
+  Datepicker field (`4540:15005`) is still 40px — left for her.
 
 **Input height fixed same day (page `50:2`, set `210:72`, 6 State variants).** Same 40px
 hardcoded field. Now: height → `height/control/m` (32px), left/right → `padding/control/m` (14px),
