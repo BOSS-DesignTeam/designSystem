@@ -413,7 +413,7 @@ result should always be **one canonical version** of each component, not paralle
 ## 4. Every PR needs a linked Jira story — check before opening one
 
 **Rule going forward:** before opening a PR against this repo (BOSS-DesignTeam/designSystem) or the
-product repo (orderlyapp/orderly), confirm there's a Jira story (OR project) that actually covers the
+product repo (orderlyapp/orderly), confirm there's a Jira story (BOPD project) that actually covers the
 change, and link it in the PR description/title. This applies even to small, documentation-only
 changes like this file — a note like this one exists specifically *because* an unticketed doc sync
 once clobbered content instead of merging it, with nothing tracking what the intended change even was.
@@ -423,7 +423,7 @@ once clobbered content instead of merging it, with nothing tracking what the int
    one doesn't exist — a duplicate story is its own kind of drift, same class of mistake as rebuilding
    something that already exists locally (§1 above).
 2. **Draft one** if none exists, following the Jira story conventions in §5 below (title format,
-   `customfield_11734` Capitalization Category, parent epic OR-11839 for migration/style-guide work).
+   `customfield_11734` Capitalization Category, parent epic BOPD-826 for migration/style-guide work).
 3. **Get it confirmed** — by the user, or created outright if already authorized to do so directly —
    before opening the PR. Don't open the PR first and backfill the ticket after; the ticket is what
    defines the scope the PR should be reviewed against, not a formality added afterward.
@@ -447,7 +447,7 @@ once clobbered content instead of merging it, with nothing tracking what the int
    - PR opened, awaiting review → `Code Review`
    - Needs functional verification before shipping → `Testing`
    - Done and verified, waiting to release → `Ready For Prod`
-   - Merged and live → `On Prod`
+   - Merged and live → `On Prod` (**BOPD: `Done`** — confirmed 2026-10-05)
    - Abandoned, never shipping → `Dismissed` (see OR-12428, OR-12033 for real examples)
    Check the issue's own available transitions rather than assuming every project uses every status
    its workflow supports — seven of these eight are real, observed usage for this epic; `Ready For
@@ -476,23 +476,33 @@ once clobbered content instead of merging it, with nothing tracking what the int
 
 ---
 
-## 5. Jira story conventions (OR project, Back Office Dev)
+## 5. Jira story conventions (BOPD project, Back Office Product Development)
 
-Reference example: OR-12589 ("Add tag component to style guide"). Format:
+**Moved from OR (Back Office Dev) to BOPD.** The epic and stories were moved and re-keyed: OR-11839
+is now BOPD-826 and OR-12589 is now BOPD-935. Older OR keys elsewhere in this repo may have moved
+too. New stories must be created in BOPD — Jira rejects a Story in OR with a BOPD parent. Verified
+2026-10-05 while creating BOPD-988. §4's status list was verified against OR's workflow; BOPD's
+differs (e.g. `Pending Release`, `Done`, `Archived`, `Testing (QE)`). Mapped so far: merged → `Done`,
+PR opened → `Code Review` (same name). The rest are not yet re-mapped.
 
-- **Title:** imperative — "Add/Update [Component] component in style guide"
+Reference example: BOPD-935 (was OR-12589, "Add tag component to style guide"). Format:
+
+- **Title:** imperative — "Add/Update [Component] component in style guide" for doc-page stories;
+  "Add [Component] component to Figma design system" for Figma-only stories (current BOPD-826 usage)
 - **Description:** short bullet list, ending with a `---` divider and a WebAwesome docs link
-- **Required custom field:** `customfield_11734` ("Capitalization Category") must be set or issue
-  creation fails. Use `{"id": "11810"}` (value: "New Feature Development") unless told otherwise.
-- **Parent epic:** OR-11839 ("Webawesome Migration Fun") for anything migration/style-guide related.
+- **Custom fields:** set `customfield_11734` ("Capitalization Category") to `{"id": "11810"}`
+  ("New Feature Development") unless told otherwise. It's optional in BOPD (it was required in OR),
+  but keep setting it. Set **QA Required** (`customfield_14241`) — `{"id": "15876"}` (No) for
+  Figma/docs-only work.
+- **Parent epic:** BOPD-826 ("Webawesome Migration Fun", was OR-11839) for anything migration/style-guide related.
 - **Figma link (depends on the approach):**
   - *Design first approach:* link the Figma frame or component, including its `node-id`, before the build starts.
   - *Code first approach:* say so on the story ("code first approach, Figma to follow"), then add the `node-id` link once the component is in Figma.
   - Once both exist, the story links the Figma `node-id` and the PR or style guide page. The `node-id` is what lets an AI agent read the real tokens, states and variants; a screenshot is never enough.
-- **Dev LoE:** set the **Dev LoE** estimate when the story is created, and fill in **Dev LoE (Actual)** before moving it to `Testing` (Jira blocks the move without it).
+- **LoE:** the BOPD Story create screen has no **Dev LoE** / **Dev LoE (Actual)** fields (those were OR fields); it has **UX LoE** (`customfield_21181`) and **QA LoE** (`customfield_17163`), both 1/2/3/5/8/13/21. Set UX LoE for design work when the estimate is known. If Jira asks for Dev LoE (Actual) on a later transition, fill it then.
 - **Release timing:** see QA's [Release Process Quick List for UX](https://diningalliance.atlassian.net/wiki/spaces/ORQA/pages/4802969613/Release+Process+Quick+List+for+UX) for the weekly code freeze and when tickets move to Testing and On Prod (all times Eastern).
 
-**Core philosophy (from Tom Horn's comment on OR-12589), applies to every wrapper component story:**
+**Core philosophy (from Tom Horn's comment on BOPD-935, was OR-12589), applies to every wrapper component story:**
 Our `boss-*` components are wrappers over WebAwesome's native form, not rebuilds. WA ships its own
 variants/appearances/sizes out of the box. Anything WA provides natively that we deliberately *don't*
 use must be **explicitly blocked** in the wrapper — otherwise the dev-facing API is confusing (options
