@@ -447,7 +447,7 @@ once clobbered content instead of merging it, with nothing tracking what the int
    - PR opened, awaiting review → `Code Review`
    - Needs functional verification before shipping → `Testing`
    - Done and verified, waiting to release → `Ready For Prod`
-   - Merged and live → `On Prod`
+   - Merged and live → `On Prod` (**BOPD: `Done`** — confirmed 2026-10-05)
    - Abandoned, never shipping → `Dismissed` (see OR-12428, OR-12033 for real examples)
    Check the issue's own available transitions rather than assuming every project uses every status
    its workflow supports — seven of these eight are real, observed usage for this epic; `Ready For
@@ -482,7 +482,8 @@ once clobbered content instead of merging it, with nothing tracking what the int
 is now BOPD-826 and OR-12589 is now BOPD-935. Older OR keys elsewhere in this repo may have moved
 too. New stories must be created in BOPD — Jira rejects a Story in OR with a BOPD parent. Verified
 2026-10-05 while creating BOPD-988. §4's status list was verified against OR's workflow; BOPD's
-differs (e.g. `Pending Release`, `Done`, `Archived`, `Testing (QE)`) — not yet re-mapped.
+differs (e.g. `Pending Release`, `Done`, `Archived`, `Testing (QE)`). Mapped so far: merged → `Done`,
+PR opened → `Code Review` (same name). The rest are not yet re-mapped.
 
 Reference example: BOPD-935 (was OR-12589, "Add tag component to style guide"). Format:
 
