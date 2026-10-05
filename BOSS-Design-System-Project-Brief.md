@@ -298,6 +298,13 @@ never gaps or vertical padding; use `spacing/*` for those.** Visible effects: Ra
 Button height 40→32 (bound to `height/control/m`); Select/Datepicker field text inset 8→14px.
 Foundations height/padding labels updated to the new values and `--boss-control-*` names.
 
+**Select height fixed same day (page `53:2`, sets `1258:149` Single / `1258:150` Multi).** Every
+variant's `Input` field was a hardcoded 40px; now bound to `height/control/m` (32px) with 0
+top/bottom padding and centered content (the WA pattern — a 26px Multi Select tag wouldn't fit
+32px with 8px vertical padding). Variants switched from fixed 80px to hug height (now 72px).
+Select has no Size axis — only `m` is modeled. Button, Input, Split Button and Dropdown don't
+bind `height/control/*` at all; their heights still need the same check against code.
+
 | Category | Token | Value |
 |---|---|---|
 | Spacing | `spacing/1` | 4px |
