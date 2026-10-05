@@ -301,7 +301,7 @@ Foundations height/padding labels updated to the new values and `--boss-control-
 **Select height fixed same day (page `53:2`, sets `1258:149` Single / `1258:150` Multi).** Every
 variant's `Input` field was a hardcoded 40px; now bound to `height/control/m` (32px) with 0
 top/bottom padding and centered content (the WA pattern — a 26px Multi Select tag wouldn't fit
-32px with 8px vertical padding). Variants switched from fixed 80px to hug height (now 72px).
+32px with 8px vertical padding). Variants switched from fixed 80px to hug height (80px after matching Input's padding, below).
 Select has no Size axis — only `m` is modeled. Button, Split Button and Dropdown don't
 bind `height/control/*` at all; their heights still need the same check against code.
 
@@ -309,8 +309,8 @@ bind `height/control/*` at all; their heights still need the same check against 
 hardcoded field. Now: height → `height/control/m` (32px), left/right → `padding/control/m` (14px),
 top/bottom 0, centered. Its padding had been bound to `Spacing/small` — a **remote** variable from
 another library's "Semantics" collection, not this file's Spacing collection — now replaced with
-local variables. Variants hug, 88→80px. Note Input variants keep 4px top/bottom padding on the
-outer frame where Select's have 0, so the two differ by 8px overall — harmless, but inconsistent.
+local variables. Variants hug, 88→80px. Select variants then given the same 4px top/bottom
+outer padding (`spacing/1`, as Input already used), so both are 80px overall with a 32px field.
 
 | Category | Token | Value |
 |---|---|---|
