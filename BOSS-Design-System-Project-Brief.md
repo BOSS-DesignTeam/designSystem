@@ -172,7 +172,7 @@ Codebase has no dark theme — dark values were designed net-new:
 
 ## What's already built in the Figma file
 
-### Variables (118 total, 0 broken aliases)
+### Variables (counts below are from 07-30; Color is now 76 — see note)
 
 **Primitives collection** (`VariableCollectionId:1:2`, mode `1:0`)
 - 42 COLOR variables, all `scopes=[]` (hidden from pickers), WA CSS var code syntax
@@ -182,6 +182,23 @@ Codebase has no dark theme — dark values were designed net-new:
 - 53 semantic COLOR variables aliased to Primitives
 - Targeted scopes: backgrounds = `FRAME_FILL/SHAPE_FILL`, text = `TEXT_FILL`, borders = `STROKE_COLOR`
 - Key semantic tokens:
+
+**Color collection now has 76 tokens (verified live 2026-10-05) — the tables below cover the
+original 53.** Checked by code-syntax name against the RestaurantUI `--boss-color-*` export: every code
+role exists in Figma and every Light value matches. The 23 added since 07-30, not in the tables:
+- Status hover/disabled: `color/bg/{danger,success,warning}/subtle-hover` (red/90, green/90,
+  orange/90), `color/bg/danger/disabled` (red/90)
+- Component roles: `color/text/label`, `color/border/select` + `select-disabled`, `color/bg/option-hover`
+  (surface/table-header), `color/text/combobox-disabled`, `color/bg/tooltip` (gray/tooltip-bg),
+  `color/bg/input/{resting,disabled}`, `color/bg/tag/{resting,disabled}`
+- Button (`678:x`/`683:x`): `color/{bg,border,text}/button/brand-*`, `brand-accent-{default,hover,disabled}`
+  (blue/link family), `color/bg/button/brand-subtle-hover`, `color/text/button/on-fill`
+
+17 of these had `ALL_SCOPES`; set to the collection's convention 2026-10-05 (bg → frame/shape fill,
+text → text fill, border → stroke). **Open (Dark mode only — code has no dark theme to copy):**
+`color/bg/input/*` and `color/bg/tag/*` Dark are raw `#ffffff`, not aliases — placeholders; and the
+status `subtle-hover` tokens alias light tints (red/90 etc.) in Dark while their `subtle` siblings use
+gray/10. Needs a design decision.
 
 **Full semantic Color token reference** (verified live 2026-07-30 — supersedes any earlier partial
 table). "Light"/"Dark" columns name the **Primitives** variable each mode aliases to, not raw hex —
