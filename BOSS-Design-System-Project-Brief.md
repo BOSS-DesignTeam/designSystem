@@ -149,7 +149,8 @@ Higher number = lighter. `50` = KEY (most saturated).
 | Primitive | Hex | Meaning |
 |---|---|---|
 | `blue/50` | `#23408f` | Brand primary (KEY) |
-| `blue/70` | `#49a4da` | Link / dark-mode brand |
+| `blue/70` | `#49a4da` | Focus ring / dark-mode brand (no longer the light-mode link) |
+| `blue/link` | `#237db1` | Link text, accent button (`$brand-link-blue`, 4.5:1) |
 | `blue/30` | `#002790` | Hover / pressed |
 | `red/50` | `#fa1616` | Danger (KEY) |
 | `orange/50` | `#fa9016` | **Warning = orange, NOT yellow** |
@@ -171,7 +172,7 @@ Codebase has no dark theme — dark values were designed net-new:
 
 ## What's already built in the Figma file
 
-### Variables (118 total, 0 broken aliases)
+### Variables (counts below are from 07-30; Color is now 76 — see note)
 
 **Primitives collection** (`VariableCollectionId:1:2`, mode `1:0`)
 - 42 COLOR variables, all `scopes=[]` (hidden from pickers), WA CSS var code syntax
@@ -181,6 +182,23 @@ Codebase has no dark theme — dark values were designed net-new:
 - 53 semantic COLOR variables aliased to Primitives
 - Targeted scopes: backgrounds = `FRAME_FILL/SHAPE_FILL`, text = `TEXT_FILL`, borders = `STROKE_COLOR`
 - Key semantic tokens:
+
+**Color collection now has 76 tokens (verified live 2026-10-05) — the tables below cover the
+original 53.** Checked by code-syntax name against the RestaurantUI `--boss-color-*` export: every code
+role exists in Figma and every Light value matches. The 23 added since 07-30, not in the tables:
+- Status hover/disabled: `color/bg/{danger,success,warning}/subtle-hover` (red/90, green/90,
+  orange/90), `color/bg/danger/disabled` (red/90)
+- Component roles: `color/text/label`, `color/border/select` + `select-disabled`, `color/bg/option-hover`
+  (surface/table-header), `color/text/combobox-disabled`, `color/bg/tooltip` (gray/tooltip-bg),
+  `color/bg/input/{resting,disabled}`, `color/bg/tag/{resting,disabled}`
+- Button (`678:x`/`683:x`): `color/{bg,border,text}/button/brand-*`, `brand-accent-{default,hover,disabled}`
+  (blue/link family), `color/bg/button/brand-subtle-hover`, `color/text/button/on-fill`
+
+17 of these had `ALL_SCOPES`; set to the collection's convention 2026-10-05 (bg → frame/shape fill,
+text → text fill, border → stroke). **Open (Dark mode only — code has no dark theme to copy):**
+`color/bg/input/*` and `color/bg/tag/*` Dark are raw `#ffffff`, not aliases — placeholders; and the
+status `subtle-hover` tokens alias light tints (red/90 etc.) in Dark while their `subtle` siblings use
+gray/10. Needs a design decision.
 
 **Full semantic Color token reference** (verified live 2026-07-30 — supersedes any earlier partial
 table). "Light"/"Dark" columns name the **Primitives** variable each mode aliases to, not raw hex —
@@ -231,12 +249,22 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/text/on-disabled` | gray/60 | gray/60 |
 | `color/text/disabled` | gray/60 | gray/60 |
 | `color/text/brand` | blue/50 | blue/70 |
-| `color/text/link` | blue/70 | blue/70 |
+| `color/text/link` | blue/link | blue/70 |
 | `color/text/danger` | red/50 | red/90 ⚠️ |
 | `color/text/success` | green/50 | green/90 |
 | `color/text/warning` | orange/50 | orange/90 |
 | `color/text/table-header` | gray/50 | gray/70 |
 | `color/text/label` | gray/10 | white |
+
+**Link color (verified live 2026-10-05):** `color/text/link` Light now aliases `blue/link`
+(`#237db1`, `$brand-link-blue`, 4.5:1 on white) instead of `blue/70` (`#49a4da`, ~2.6:1), matching
+RestaurantUI `--boss-color-text-link`. Already done in the file before this check (primitives
+`4777:162–164`, not recorded here at the time). Same family drives the link-style button text:
+`color/text/button/brand-accent-default|hover|disabled` → `blue/link|link-hover|link-disabled`
+(Dark: `blue/70` / `blue/30` / `blue/button-disabled`). Button Accent appearance and Breadcrumb
+labels confirmed bound to these. The 3 new primitives' scopes set to `[]` to match the rest of
+Primitives. Note the RestaurantUI source is the `thorn/sidebar-wa-refresh` branch — re-check if
+it changes before merging.
 
 ⚠️ `color/text/danger` (and `color/icon/danger` below) alias to `red/90` — a *light* tint — in Dark
 mode. That looks like a bug (danger text should stay legible-strong in dark mode, not go pale) but
@@ -272,7 +300,8 @@ design team before touching it.
 
 **Primitives collection** quick name list (1 mode, `scopes=[]`, hidden from pickers) — look these up
 by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondary-hover`,
-`blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `red/90`, `red/50`, `red/40`,
+`blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `blue/link`, `blue/link-hover`,
+`blue/link-disabled`, `red/90`, `red/50`, `red/40`,
 `red/30`, `orange/95`, `orange/90`, `orange/70`, `orange/50`, `orange/40`, `green/90`, `green/50`,
 `green/40`, `gray/95`, `gray/90`, `gray/border`, `gray/80`, `gray/70`, `gray/60`, `gray/50`,
 `gray/40`, `gray/30`, `gray/10`, `white`, `black`, `black/spec-dark`, `surface/drawer`,
@@ -281,9 +310,49 @@ by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondar
 `gray/spec-dark`, `gray/select-border`, `gray/select-disabled`, `gray/option-hover`,
 `gray/combobox-disabled`, `gray/tooltip-bg`, `gray/tag-resting`, `blue/button-disabled`.
 
-**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — corrected 2026-07-30, verified
-live via `use_figma` (the previous `padding/control/m`=14px and `height/control/m`=32px values
-below were stale/wrong):
+**Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — **control height/padding re-synced
+2026-10-05** to RestaurantUI `_sizing.scss` (export from `thorn/sidebar-wa-refresh@a689fc70d03`). The
+2026-07-30 "correction" recorded here had it backwards: it overwrote the correct code values
+(m=32px height, 14px padding) with Figma's drifted ones. Fixed values: `height/control/m` 40→32,
+`height/control/l` 48→50, `padding/control/s` 4→12, `padding/control/m` 8→14, `padding/control/l`
+12→20. Each variable's description now cites its `sizing.$control-*` source.
+
+Before the value change, every misuse of the padding variables as generic spacing was rebound,
+value-neutral, so nothing else moved: `padding/control/s` (used as 4px gaps/padding) → `spacing/1`
+on Listbox `124:2` main components, Select listbox, Combobox, Textarea, and Tabbing Focus
+checkboxes; `padding/control/m` top/bottom on the Select `Input` frame (`365:130` etc.) and
+Datepicker `4540:15005` → `spacing/2`. Left/right stay on `padding/control/m` (correct use, now
+14px). **Rule going forward: `padding/control/*` is inline (left/right) padding of a control only —
+never gaps or vertical padding; use `spacing/*` for those.** Visible effects: Radio Group / Radio
+Button height 40→32 (bound to `height/control/m`); Select/Datepicker field text inset 8→14px.
+Foundations height/padding labels updated to the new values and `--boss-control-*` names.
+
+**Select height fixed same day (page `53:2`, sets `1258:149` Single / `1258:150` Multi).** Every
+variant's `Input` field was a hardcoded 40px; now bound to `height/control/m` (32px) with 0
+top/bottom padding and centered content (the WA pattern — a 26px Multi Select tag wouldn't fit
+32px with 8px vertical padding). Variants switched from fixed 80px to hug height (80px after matching Input's padding, below).
+Select has no Size axis — only `m` is modeled.
+
+**Combobox, Button, Split Button, Dropdown Trigger fixed same day.** Every control in the file now
+takes its height and inline padding from the control variables, with 0 vertical padding and
+centered content:
+- **Combobox** (`749:107`, 7 variants): field 40→32 (`height/control/m`), sides `padding/control/m`,
+  plus 4px `spacing/1` outer padding to match Select/Input at 80px.
+- **Button** (`3941:32`, 60), **Split Button** (`540:7`, 18 — both `main` and `caret` segments),
+  **Dropdown Trigger** (`472:74`, 18): Small/Medium/Large heights were padding-driven 30/35/39px;
+  now `height/control/s|m|l` = 32/32/50, sides `padding/control/s|m|l` = 12/14/20 (Split Button's
+  caret keeps its 12px sides — code has no caret token). Split Button and Dropdown Trigger sets
+  resized to fit (Large grew 11px). Dropdown Item (menu row, 30px) intentionally untouched.
+- **Open:** button labels are 12/16/20px per size with no text style; code's `label-button` is
+  14px/20px. Left as-is pending dev confirmation of per-size label sizes. Priscilla's standalone
+  Datepicker field (`4540:15005`) is still 40px — left for her.
+
+**Input height fixed same day (page `50:2`, set `210:72`, 6 State variants).** Same 40px
+hardcoded field. Now: height → `height/control/m` (32px), left/right → `padding/control/m` (14px),
+top/bottom 0, centered. Its padding had been bound to `Spacing/small` — a **remote** variable from
+another library's "Semantics" collection, not this file's Spacing collection — now replaced with
+local variables. Variants hug, 88→80px. Select variants then given the same 4px top/bottom
+outer padding (`spacing/1`, as Input already used), so both are 80px overall with a 32px field.
 
 | Category | Token | Value |
 |---|---|---|
@@ -305,21 +374,29 @@ below were stale/wrong):
 | Radius | `radius/full` | 9999px |
 | Height | `height/control/xs` | 26px |
 | Height | `height/control/s` | 32px |
-| Height | `height/control/m` | 40px |
-| Height | `height/control/l` | 48px |
+| Height | `height/control/m` | 32px |
+| Height | `height/control/l` | 50px |
 | Height | `height/control/xl` | 64px |
 | Padding | `padding/control/xs` | 8px |
-| Padding | `padding/control/s` | 4px |
-| Padding | `padding/control/m` | 8px |
-| Padding | `padding/control/l` | 12px |
+| Padding | `padding/control/s` | 12px |
+| Padding | `padding/control/m` | 14px |
+| Padding | `padding/control/l` | 20px |
 | Padding | `padding/control/xl` | 24px |
 
 ### Text styles (9 total)
-All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/Medium), Subtitle/2 (14px/Medium), Body/1 (16px/Regular), Body/2 (14px/Regular), Label/Button (14px/Medium), Caption (12px/Regular), Column Header (12px/Medium).
+All Roboto. Heading/1 (36px/42px Regular — was 34px, synced to code 2026-10-05), Heading/3 (20px/Medium), Subtitle/1 (16px/Medium), Subtitle/2 (14px/Medium), Body/1 (16px/Regular), Body/2 (14px/Regular), Label/Button (14px/Medium), Caption (12px/Regular), Column Header (12px/Medium).
+
+**Typography sync (2026-10-05, verified live).** All 9 styles are bound to the `Typography`
+variable collection. Checked against RestaurantUI `_text.scss` (`--boss-font-*`): 8 already matched
+on size, line height, weight and letter spacing. Only Heading/1 differed — `font-size/2xl`
+(`4740:174`, used by Heading/1 only) changed 34→36. Foundations page now has a **Typography**
+section (`4887:162`, below Focus / Interaction States) with live-style specimens per row, spec,
+`--boss-font-*` role and usage. The file also still carries ~25 legacy unbound styles (`h1`, `Body 1`,
+`Small/Medium/Large Button`, icon styles…) from the old library — not touched, not part of the scale.
 
 ### Pages
 - `0:1` Cover
-- `5:2` Foundations — Colors documentation added 2026-07-17 (see Colors Foundations section below); Spacing documentation added 2026-07-21/22; type scale still not populated
+- `5:2` Foundations — Colors documentation added 2026-07-17 (see Colors Foundations section below); Spacing documentation added 2026-07-21/22; Typography added 2026-10-05
 - `5:3` --- (divider)
 - `5:4` Button (Steve)
 - `460:2` Split Button (Steve) — added 2026-07-13
@@ -341,6 +418,14 @@ All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 - `3900:2` Tabs (Steve) — added 2026-09-08, see Tab component section below.
+- `4692:163` --- Base Components --- (divider, plus `4692:162` spacer) — added 2026-09-25, new page
+  section placed between WOrK In Progress and To do.
+- `4692:164` Popover (Steve) — added 2026-09-25, first page in the Base Components section, see
+  Popover component section below.
+- `4699:249` Card (Steve) — added 2026-09-25, second page in the Base Components section, see Card
+  component section below.
+- `4754:162` Radio Group (Steve) — added 2026-09-29, third page in the Base Components section, see
+  Radio Group component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1267,6 +1352,104 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
 
 ---
 
+### Popover component (page `4692:164` "Popover (Steve)", ComponentSet `4692:219` "Popover")
+
+**Added 2026-09-25.** Unlike Toast, the real WA kit *does* have a directly-named match —
+`search_design_system` scoped to both libraries found "Popover" in Web-Awesome-3-Design-Kit-v2-0-0
+(component set key `bf9c977b8aaa8f46625c913668fb0d8e26fdbebb`); nothing in the old Back Office
+library. Built per the import → `createInstance()` → `detachInstance()` → rebind rule, not hand-drawn.
+
+**Variant model matches the WA kit exactly:** `Placement` (Top **[default]**/Right/Bottom/Left),
+`With Arrow` (BOOLEAN, default true → Arrow `visible`), `Content` (INSTANCE_SWAP → the Body's
+content instance). Kept WA's own order (Top/Right/Bottom/Left). Only 4 placements, because the WA
+*Figma kit* only models 4 — WA *code* supports -start/-end (12, as Tooltip models); flagged as a
+known limitation, not silently dropped. Verified via test instance: `With Arrow` off drops height
+94 → 88px and stays hidden across a Placement swap; Content defaults to the local placeholder.
+
+**Structure (unchanged from WA):** root auto-layout (`VERTICAL` for Top/Bottom, `HORIZONTAL` for
+Left/Right) with `itemSpacing = -6` so the 8.48px 45°-rotated square Arrow overlaps the Body edge;
+Arrow strokes only its two outward sides (`[0,0,1,1]`, rotation varies per placement). Body is
+fixed 372px wide, hugs height.
+
+**Token rebinding (WA var → this file):** `Surface/Default` → `color/surface/default` (Body + Arrow
+fill); `Surface/Border` → `color/border/default` (Body + Arrow stroke); `Space/L` (24) →
+`spacing/6`; `Panel/Border Radius` (12) → `radius/l` (8 — deliberate deviation, matches Toast/Dialog;
+no 12px token exists); `Panel/Border Width` → hardcoded 1; `Shadow/L` effect style →
+`Elevation/Dropdown` (same choice as Toast); `Tooltip/Arrow Size Diagonal` → hardcoded 8.48; the
+root's `itemSpacing` was also bound to a remote WA var → unbound, hardcoded -6. Audit after the
+build: zero remaining remote variable bindings, zero remote instances.
+
+**Content slot:** WA's default slot content is its remote "Text Node" component (SF Pro 16px).
+Replaced with a new local component, `Popover Content` (`4692:165`, fixed 324px = 372 − 2×24
+padding, Body/2 text, `color/text/primary`), which is the INSTANCE_SWAP default — avoids depending
+on a remote component (see FIGMA-WORKFLOW-NOTES.md §1). The slot instance needed
+`layoutSizingVertical = 'HUG'` after `swapComponent()` — it kept WA's fixed 52px height otherwise,
+leaving dead space under the text.
+
+**Known limitations (see the page's own To-Do section):**
+1. Only 4 placements (see above).
+2. `radius/l` 8px vs WA's 12px — confirm or add a token.
+3. Fixed 372px width (WA kit default; `--max-width` in code); distance/skidding offsets not modeled.
+4. Not yet published or Code Connect–mapped.
+
+### Card component (page `4699:249` "Card (Steve)", ComponentSet `4699:883` "Card")
+
+**Added 2026-09-25 (OR-13618).** Built from the real WA kit Card (component set key
+`82956f923890fac149b2636aceaa8782791764d2`): import → `createInstance()` → `detachInstance()` →
+rebind → `createComponentFromNode()` → `combineAsVariants()`. Not hand-drawn.
+
+**Variant model matches the WA kit exactly:** `Appearance` (Outlined **[default]**/Filled-Outlined/
+Filled/Accent/Plain) × `Orientation` (Vertical **[default]**/Horizontal) = 10 variants. WA's own
+property names are kept: `With Header`/`With Media`/`With Footer`/`With Actions`/`With Footer Actions`
+(BOOLEAN, all default true) and `Header`/`Body`/`Footer`/`Actions`/`Footer Actions` (INSTANCE_SWAP).
+Horizontal has only Media + Body (+ Actions), as in the WA kit.
+
+**Token rebinding (WA var → this file):** `Surface/Default` → `color/surface/default` (Outlined);
+`Neutral/Fill/Quiet` → `color/bg/neutral/subtle` (Filled-Outlined, Filled); `Neutral/Fill/Loud` →
+`color/bg/neutral/default` (Accent, slot text overridden to `color/text/on-filled`/`color/icon/on-filled`);
+Plain has no fill. `Surface/Border` → `color/border/default` (root border on Outlined/Filled-Outlined,
+plus header/footer dividers). `Border Radius/L` and `Panel/Border Radius` (12) → `radius/l` (8, same
+deviation as Popover). `Space/L` → `spacing/6`, `Space/M` → `spacing/4`, header vertical padding
+(`Font Size/XS`, 12) → `spacing/3`. `Border Width/S` → hardcoded 1. `Shadow/S` effect → **dropped**
+(no small-shadow style in this file). Audit: zero remote variable bindings, zero remote instances.
+
+**Slots:** new local components `Card Title` (`4699:250`, Subtitle/1), `Card Content` (`4699:252`,
+Body/2), `Card Action` (`4699:254`, 40×40 Font Awesome glyph `ellipsis`, `Icon Glyph` TEXT prop) are
+the INSTANCE_SWAP defaults. The Footer and action slots also list this file's `Button` as a preferred
+value. There's no local Icon Button yet, so `Card Action` is a stand-in.
+
+**Build gotchas hit (see FIGMA-WORKFLOW-NOTES.md §2):** `swapComponent()` renames the instance
+to the new main component's name, so later name-based lookups missed the action instances. Binding
+a `mainComponent` ref also *immediately swaps* the instance to that property's default, which turned
+the actions into title instances until they were fixed. Paints built with a black base color and then bound via
+`setBoundVariableForPaint` rendered black on the detached WA frames until they were rebuilt with the resolved color.
+The `importComponentSetByKeyAsync` call also timed out repeatedly (`LiveGraph ... timed out`) for a
+few minutes, then recovered with no change.
+
+**Audit vs WA kit + shipped `wa-card` (2026-10-01).** Diffed all 10 variants against the WA kit
+programmatically and against `@awesome.me/webawesome@3.14.0` `card.styles`. Variant axes, property
+names/defaults, fills, layout, alignment and media radii all match. **Fixed:** header/footer dividers
+on Filled-Outlined/Filled/Accent/Plain were full 4-side boxes (the hardcoded `Border Width/S` → 1 was
+applied to every side); now bottom-only on Header and top-only on Footer on every appearance, as in
+both the kit and the CSS (`border-block-end` / `border-block-start`). **Slot names confirmed** against
+the WA docs: Figma `Actions` = `header-actions` on Vertical but `actions` on Horizontal (the kit shares
+one property for both); `Footer Actions` = `footer-actions`. Horizontal's action is bound to `With
+Actions` here (the kit leaves it unbound) — kept on purpose so it can be hidden. **Radius:** shipped CSS
+uses `--wa-panel-border-radius`, and RestaurantUI pins `--wa-border-radius-l` to 8px (token doc §4c), so
+`radius/l` (8) is likely what the app renders. The kit's 12 is WA's unpinned default. **Padding
+stays at the kit's 24/12 on purpose (decided 2026-10-01).** Popover is the base component and uses
+`Space/L` → 24, so Card follows it. Known gap: card `--spacing` is `var(--wa-space-l)`, which RestaurantUI
+pins to 20px (token doc §4b), so the coded card renders 20/10. Card was briefly switched to 20/10, then
+reverted for consistency with Popover.
+
+**Known limitations (see the page's own To-Do section):** no shadow (`--wa-shadow-s` applies to every
+appearance except Plain in code); placeholder slot defaults and no real Icon Button (kit's is 43×43, ours
+40×40, which accounts for small height diffs); WA sample image still in Media; low-contrast dividers on
+Accent (same `Surface/Border` as the kit/CSS, so this is faithful); relationship to the existing
+Financial Reports Card undecided; not published or Code Connect–mapped.
+
+---
+
 ## Figma file layout conventions
 
 - Doc frames: Roboto Medium 32px title + Body/2 description, positioned above component sets
@@ -1295,9 +1478,10 @@ WebAwesome's own naming (`wa-dialog`) — see the page list entry above and the 
 To-Do item 4.
 
 Also added 2026-09-08 per a Figma-vs-WebAwesome component gap review: Tabs, Toast, and Popover were
-flagged as high-value gaps (all three show up constantly in a back-office app). Tabs and Toast are
-now done in Figma (see COMPONENT-STATUS.md — dev work on both is still pending, tracked there
-under "In Progress — Dev"); Popover is the one Figma design still remaining.
+flagged as high-value gaps (all three show up constantly in a back-office app). All three are now
+done in Figma — Popover on 2026-09-25 (see Popover component section above; page `4692:164`, first
+page in the new "--- Base Components ---" section). Dev status for all three is tracked in
+COMPONENT-STATUS.md.
 
 ---
 
@@ -1319,7 +1503,7 @@ under "In Progress — Dev"); Popover is the one Figma design still remaining.
 - ~~Add `size` component property~~ — done 2026-07-13: Small/Medium/Large added (not xs/xl)
 - Confirm recovery status of the original 30-variant Button ComponentSet (`13:2`), deleted in error 2026-07-13
 - Add dedicated BOSS_PD.md tokens for Outlined/Plain/Accent hover states (currently reusing `$brand-secondary-hover-blue` / `$brand-hover-blue` as stand-ins)
-- ~~Foundations page content (color swatches...) not yet populated~~ — Colors done 2026-07-17, Spacing done 2026-07-21/22 (see respective Foundations sections); type scale still not populated
+- ~~Foundations page content (color swatches...) not yet populated~~ — Colors done 2026-07-17, Spacing done 2026-07-21/22 (see respective Foundations sections); type scale done 2026-10-05
 - Phase 4 QA + accessibility audit pending
 - ~~Radio/Switch/Tooltip unpublished, blocking Code Connect~~ — done 2026-07-22, all 6 `(Steve)` components published and Code Connect–mapped (see Publish & Code Connect audit section)
 - Code Connect mappings for all 6 `(Steve)` components use documented tag names only — not verified against real `boss-*`/`orderly-*` source files in the RestaurantUI repo. Verify before dev handoff.
@@ -1332,3 +1516,26 @@ under "In Progress — Dev"); Popover is the one Figma design still remaining.
   `blue/50` (Brand) should be there. Worth a dedicated audit pass across all "Steve" components'
   selected/active/on states before trusting any of them as documented — this could be a single
   root cause (e.g. a bad find-and-rebind at some point) rather than three unrelated mistakes.
+
+---
+
+### Radio Group component (page `4754:162` "Radio Group (Steve)", ComponentSet `4754:381`, Radio Button `4754:176`)
+**Added 2026-09-29.** Sourced from the real WA kit's Radio Group (componentKey
+`ee33186e423937f509900ff1240a92c9480c5ffc`) and Radio (`53761025...`) property models, re-read fresh.
+- **Radio Group** — 8 variants: `Orientation` (Vertical/Horizontal) × `Appearance` (Default/Button) ×
+  `Disabled` (False/True). Properties match WA: `Label`, `Hint` (TEXT; the kit uses INSTANCE_SWAP Text
+  Nodes), `With Label` (true), `With Hint` (false), `Required` (false). Each of the 3 options is an exposed
+  nested instance, so the selected option and per-option Disabled are set from the properties panel.
+- **Radio Button** — new local building block for `wa-radio appearance="button"`: `Selected` × `Disabled`,
+  plus `Label` (TEXT) and `Focused` (BOOLEAN, Focus/Ring effect style). The existing Radio (`771:432`)
+  was deliberately **not** modified (user direction: new component, don't touch Radio).
+- **Default appearance instances the existing Radio**, so it inherits Radio's orange/50 selected color
+  drift (see the Radio section). Button appearance uses brand blue (`color/border/brand`,
+  `color/bg/brand/subtle`), so the two appearances currently disagree until Radio is fixed.
+- **Deliberate deviation:** `Size` (Small/Large) dropped, Medium only, confirmed with the user.
+- Button groups use a -1 gap (collapsed borders) + `itemReverseZIndex`, with corner radii zeroed per
+  position (outer corners only), matching the kit's joined-group rendering.
+- An Examples section covers every section of the WA docs page (initial value, hint, radio buttons,
+  disabled group / single option, orientation, required). Validation/custom validity has no visual
+  state in WA (browser-native), so it isn't modeled. The on-canvas To-Do lists the open items.
+
