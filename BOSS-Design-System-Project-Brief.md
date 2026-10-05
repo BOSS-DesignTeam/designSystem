@@ -367,11 +367,19 @@ outer padding (`spacing/1`, as Input already used), so both are 80px overall wit
 | Padding | `padding/control/xl` | 24px |
 
 ### Text styles (9 total)
-All Roboto. Heading/1 (34px/Regular), Heading/3 (20px/Medium), Subtitle/1 (16px/Medium), Subtitle/2 (14px/Medium), Body/1 (16px/Regular), Body/2 (14px/Regular), Label/Button (14px/Medium), Caption (12px/Regular), Column Header (12px/Medium).
+All Roboto. Heading/1 (36px/42px Regular — was 34px, synced to code 2026-10-05), Heading/3 (20px/Medium), Subtitle/1 (16px/Medium), Subtitle/2 (14px/Medium), Body/1 (16px/Regular), Body/2 (14px/Regular), Label/Button (14px/Medium), Caption (12px/Regular), Column Header (12px/Medium).
+
+**Typography sync (2026-10-05, verified live).** All 9 styles are bound to the `Typography`
+variable collection. Checked against RestaurantUI `_text.scss` (`--boss-font-*`): 8 already matched
+on size, line height, weight and letter spacing. Only Heading/1 differed — `font-size/2xl`
+(`4740:174`, used by Heading/1 only) changed 34→36. Foundations page now has a **Typography**
+section (`4887:162`, below Focus / Interaction States) with live-style specimens per row, spec,
+`--boss-font-*` role and usage. The file also still carries ~25 legacy unbound styles (`h1`, `Body 1`,
+`Small/Medium/Large Button`, icon styles…) from the old library — not touched, not part of the scale.
 
 ### Pages
 - `0:1` Cover
-- `5:2` Foundations — Colors documentation added 2026-07-17 (see Colors Foundations section below); Spacing documentation added 2026-07-21/22; type scale still not populated
+- `5:2` Foundations — Colors documentation added 2026-07-17 (see Colors Foundations section below); Spacing documentation added 2026-07-21/22; Typography added 2026-10-05
 - `5:3` --- (divider)
 - `5:4` Button (Steve)
 - `460:2` Split Button (Steve) — added 2026-07-13
@@ -1478,7 +1486,7 @@ COMPONENT-STATUS.md.
 - ~~Add `size` component property~~ — done 2026-07-13: Small/Medium/Large added (not xs/xl)
 - Confirm recovery status of the original 30-variant Button ComponentSet (`13:2`), deleted in error 2026-07-13
 - Add dedicated BOSS_PD.md tokens for Outlined/Plain/Accent hover states (currently reusing `$brand-secondary-hover-blue` / `$brand-hover-blue` as stand-ins)
-- ~~Foundations page content (color swatches...) not yet populated~~ — Colors done 2026-07-17, Spacing done 2026-07-21/22 (see respective Foundations sections); type scale still not populated
+- ~~Foundations page content (color swatches...) not yet populated~~ — Colors done 2026-07-17, Spacing done 2026-07-21/22 (see respective Foundations sections); type scale done 2026-10-05
 - Phase 4 QA + accessibility audit pending
 - ~~Radio/Switch/Tooltip unpublished, blocking Code Connect~~ — done 2026-07-22, all 6 `(Steve)` components published and Code Connect–mapped (see Publish & Code Connect audit section)
 - Code Connect mappings for all 6 `(Steve)` components use documented tag names only — not verified against real `boss-*`/`orderly-*` source files in the RestaurantUI repo. Verify before dev handoff.
