@@ -149,7 +149,8 @@ Higher number = lighter. `50` = KEY (most saturated).
 | Primitive | Hex | Meaning |
 |---|---|---|
 | `blue/50` | `#23408f` | Brand primary (KEY) |
-| `blue/70` | `#49a4da` | Link / dark-mode brand |
+| `blue/70` | `#49a4da` | Focus ring / dark-mode brand (no longer the light-mode link) |
+| `blue/link` | `#237db1` | Link text, accent button (`$brand-link-blue`, 4.5:1) |
 | `blue/30` | `#002790` | Hover / pressed |
 | `red/50` | `#fa1616` | Danger (KEY) |
 | `orange/50` | `#fa9016` | **Warning = orange, NOT yellow** |
@@ -231,12 +232,22 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/text/on-disabled` | gray/60 | gray/60 |
 | `color/text/disabled` | gray/60 | gray/60 |
 | `color/text/brand` | blue/50 | blue/70 |
-| `color/text/link` | blue/70 | blue/70 |
+| `color/text/link` | blue/link | blue/70 |
 | `color/text/danger` | red/50 | red/90 ⚠️ |
 | `color/text/success` | green/50 | green/90 |
 | `color/text/warning` | orange/50 | orange/90 |
 | `color/text/table-header` | gray/50 | gray/70 |
 | `color/text/label` | gray/10 | white |
+
+**Link color (verified live 2026-10-05):** `color/text/link` Light now aliases `blue/link`
+(`#237db1`, `$brand-link-blue`, 4.5:1 on white) instead of `blue/70` (`#49a4da`, ~2.6:1), matching
+RestaurantUI `--boss-color-text-link`. Already done in the file before this check (primitives
+`4777:162–164`, not recorded here at the time). Same family drives the link-style button text:
+`color/text/button/brand-accent-default|hover|disabled` → `blue/link|link-hover|link-disabled`
+(Dark: `blue/70` / `blue/30` / `blue/button-disabled`). Button Accent appearance and Breadcrumb
+labels confirmed bound to these. The 3 new primitives' scopes set to `[]` to match the rest of
+Primitives. Note the RestaurantUI source is the `thorn/sidebar-wa-refresh` branch — re-check if
+it changes before merging.
 
 ⚠️ `color/text/danger` (and `color/icon/danger` below) alias to `red/90` — a *light* tint — in Dark
 mode. That looks like a bug (danger text should stay legible-strong in dark mode, not go pale) but
@@ -272,7 +283,8 @@ design team before touching it.
 
 **Primitives collection** quick name list (1 mode, `scopes=[]`, hidden from pickers) — look these up
 by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondary-hover`,
-`blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `red/90`, `red/50`, `red/40`,
+`blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `blue/link`, `blue/link-hover`,
+`blue/link-disabled`, `red/90`, `red/50`, `red/40`,
 `red/30`, `orange/95`, `orange/90`, `orange/70`, `orange/50`, `orange/40`, `green/90`, `green/50`,
 `green/40`, `gray/95`, `gray/90`, `gray/border`, `gray/80`, `gray/70`, `gray/60`, `gray/50`,
 `gray/40`, `gray/30`, `gray/10`, `white`, `black`, `black/spec-dark`, `surface/drawer`,
