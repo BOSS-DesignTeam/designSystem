@@ -1,0 +1,133 @@
+{
+  "manifestVersion": 3,
+  "name": "Back Office Design System",
+  "namespace": "BackOffice",
+  "files": [
+    "assets/Logos/README.md",
+    "components/Badge/README.md",
+    "components/Breadcrumb/README.md",
+    "components/Button/README.md",
+    "components/Callout/README.md",
+    "components/Checkbox/README.md",
+    "components/Combobox/README.md",
+    "components/Details/README.md",
+    "components/Input/README.md",
+    "components/Select/README.md",
+    "components/Switch/README.md",
+    "components/Tag/README.md",
+    "components/Textarea/README.md",
+    "components/Toggle/README.md",
+    "components/Tooltip/README.md",
+    "tokens.css"
+  ],
+  "libraries": [],
+  "components": [
+    {
+      "name": "Badge",
+      "group": "Data display",
+      "summary": "Badge is a small status or count label, wrapping the Web Awesome badge as orderly-badge."
+    },
+    {
+      "name": "Breadcrumb",
+      "group": "Navigation",
+      "summary": "Breadcrumb is a trail of links showing where the user is in a hierarchy, wrapping the Web Awesome breadcrumb as boss-breadcrumb."
+    },
+    {
+      "name": "Button",
+      "group": "Actions",
+      "summary": "Button is the action control for a view, wrapping the Web Awesome button as orderly-button with Orderly variants and sizes."
+    },
+    {
+      "name": "Callout",
+      "group": "Feedback",
+      "summary": "Callout is an inline message block with an optional action and dismiss, wrapping the Web Awesome callout as boss-callout."
+    },
+    {
+      "name": "Checkbox",
+      "group": "Forms",
+      "summary": "Checkbox is the form selection control, wrapping the Web Awesome checkbox as orderly-checkbox at small size."
+    },
+    {
+      "name": "Combobox",
+      "group": "Forms",
+      "summary": "Combobox is the type-to-find list control, wrapping the Web Awesome combobox as boss-combobox (single) and boss-multi-combobox (multi)."
+    },
+    {
+      "name": "Details",
+      "group": "Layout",
+      "summary": "Details is a collapsible panel that reveals secondary content under a summary, wrapping the Web Awesome details element as boss-details."
+    },
+    {
+      "name": "Input",
+      "group": "Forms",
+      "summary": "Input is the single-line text field, wrapping the Web Awesome input as boss-input with an Orderly label, hint and masking."
+    },
+    {
+      "name": "Select",
+      "group": "Forms",
+      "summary": "Select is the pick-from-a-list control, wrapping the Web Awesome select as boss-select (single) and boss-multi-select (multi)."
+    },
+    {
+      "name": "Switch",
+      "group": "Forms",
+      "summary": "Switch is the immediate on/off control, wrapping the Web Awesome switch as boss-switch with the brand orange checked colour."
+    },
+    {
+      "name": "Tag",
+      "group": "Data display",
+      "summary": "Tag is a compact chip for filter values and multi-select selections, wrapping the Web Awesome tag as boss-tag."
+    },
+    {
+      "name": "Textarea",
+      "group": "Forms",
+      "summary": "Textarea is the multi-line text field, wrapping the Web Awesome textarea as boss-wa-textarea with an Orderly label and hint."
+    },
+    {
+      "name": "Toggle",
+      "group": "Forms",
+      "summary": "Toggle is a segmented control for choosing one of a few options, wrapping a Web Awesome radio group of button-style radios as boss-toggle."
+    },
+    {
+      "name": "Tooltip",
+      "group": "Feedback",
+      "summary": "Tooltip is a short hint bubble anchored to an element, wrapping the Web Awesome tooltip as boss-tooltip."
+    }
+  ],
+  "assetGroups": [
+    {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "back-office-wordmark.png",
+        "back-office-mark.png"
+      ],
+      "files": [
+        {
+          "path": "assets/Logos/back-office-wordmark.png",
+          "id": "16de7a3971675b8168fa43438484b228"
+        },
+        {
+          "path": "assets/Logos/back-office-mark.png",
+          "id": "7be958a144f1b1888becafb12418c0b1"
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "files": {
+      "assets/Logos/back-office-mark.png": {
+        "store": "blob",
+        "id": "7be958a144f1b1888becafb12418c0b1",
+        "bytes": 6593,
+        "type": "image/png"
+      },
+      "assets/Logos/back-office-wordmark.png": {
+        "store": "blob",
+        "id": "16de7a3971675b8168fa43438484b228",
+        "bytes": 13409,
+        "type": "image/png"
+      }
+    },
+    "blobBytesUsed": 20002
+  }
+}

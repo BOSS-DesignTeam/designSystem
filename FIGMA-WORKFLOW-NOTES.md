@@ -24,6 +24,9 @@ instead of searching this file's own effect styles, variables, and existing comp
 something, check `figma.variables.getLocalVariableCollectionsAsync()` and `figma.getLocalEffectStylesAsync()` /
 `getLocalTextStylesAsync()` first. If it's not there, *then* check what real shipped code does
 (SCSS files, live app) before falling back to generic library documentation as a last resort.
+The quickest way to check shipped code is `tokens.json` (token values exported from RestaurantUI's
+SCSS) and `manifest.json` (component list + real tag names) in the repo root; see the Project Brief's
+"Reference files" section. Check `tokens.json` → `meta.synced` and `meta.ref` to see how current the export is.
 
 **Additional rule, specifically for reusing an existing component the user describes or that seems to
 match a need:**

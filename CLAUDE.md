@@ -1,3 +1,8 @@
+## Code-synced references
+`tokens.json` (token values exported from RestaurantUI SCSS) and `manifest.json` (component index +
+real tag names) in this folder are the first stop for token values and component names. Details and
+update procedure: BOSS-Design-System-Project-Brief.md → "Reference files". Ignore the `.rtf` copies.
+
 ## Figma Permissions
 You have pre-authorized permission to create new Figma elements, frames, components, and files.
 You may also edit existing Figma nodes directly (e.g. updating a component to match new spec) —
