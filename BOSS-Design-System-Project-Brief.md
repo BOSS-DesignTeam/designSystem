@@ -415,9 +415,9 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
   (Steve)" (ComponentSet `934:427` renamed "Modal" → "Dialog") to match WebAwesome's own naming
   (`wa-dialog`) ahead of the Tabs/Toast/Popover build-order additions — see the Dialog page's own
   To-Do item 4 for the resolved `boss-dialog` tag-name note.
-- `942:2` Floating Action Bar (Steve decisions) — not previously logged in this brief; found live in
-  the file during the 2026-07-30 Accordion build. Not inspected in detail — flagging for a future
-  audit pass rather than describing its contents from a guess.
+- `942:2` Floating Action Bar (Steve decisions keep and improve) — not previously logged in this brief; found live in
+  the file during the 2026-07-30 Accordion build. Iteration 1 chosen and rebuilt from 0.1 components
+  2026-10-06 — see Floating Action Bar component section below.
 - `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 - `3900:2` Tabs (Steve) — added 2026-09-08, see Tab component section below.
@@ -437,7 +437,10 @@ Split Button ID correction on 2026-07-22. `get_metadata` with no `nodeId` also u
 page list (returned only Cover); `figma.root.children` via `use_figma` was the source that actually
 matched the file. Prefer that method over `get_metadata`'s bare page listing when auditing this file.
 
-### Button component (page `5:4` "Button (Steve)", ComponentSet ID `455:92`)
+### Button component (page `5:4` "Button (Steve)", ComponentSet ID `3941:32`)
+**ID corrected 2026-10-06:** this heading previously said `455:92`, which no longer resolves. The live
+Button ComponentSet is `3941:32` (60 variants: Variant × Appearance × Size × State, plus Leading/Trailing
+Icon + Glyph properties), confirmed via an Iteration 2 FAB instance's `mainComponent.parent`.
 **NOTE (2026-07-13):** the original ComponentSet `13:2` (30 variants, described below in the
 pre-2026-07-13 spec) was deleted in error while rebuilding this component — a violation of
 the "never delete existing Figma nodes" rule. Recovery from Figma version history is on the
@@ -625,6 +628,45 @@ by trusting reported dimensions. Fixed by forcing `textAutoResize='HEIGHT'` firs
 height, then repositioning; the resulting growth cascaded into the To-Do section below it and (in
 turn) the new Dropdown Item section below *that*, requiring all three to be repositioned in
 sequence. Documented as a new gotcha in `FIGMA-WORKFLOW-NOTES.md` §2.
+
+**Dropdown Trigger updated 2026-10-06 — Plain appearance + leading icon** (driven by the Floating
+Action Bar rebuild below, which needed both). Now **27 variants** = `Appearance` (Filled / Outlined /
+**Plain**) × `Size` × `State`. The 9 Plain variants were cloned from Outlined and restyled to match
+Button's own Plain variants token-for-token: no stroke, `color/bg/button/brand-subtle-hover` fill on
+Hover, `color/text/button/brand-default` / `brand-disabled` on label + caret. New properties
+**`Leading Icon`** (BOOLEAN, default `false`) and **`Leading Icon Glyph`** (TEXT, default `star`):
+the same names as Button's, rendered as a Font Awesome 7 Pro text glyph (`leading-icon`) at the label's
+font size and color, before the label on all 27 variants. Default off so every existing instance
+renders unchanged. Preview frame "Dropdown Trigger — Leading Icon examples" (`4930:13023`) sits right
+of the set. **Filled/Outlined tokenized the same day:** all 18 were bound to the same tokens as their Button
+counterparts (fills, strokes, label, caret, icon). Default/Hover were already the exact token values.
+The 6 Disabled variants changed color: they had used base brand `#23408f` at 60% opacity, and now use
+`color/*/button/brand-disabled` at 60% opacity, matching Button exactly. Plain Disabled was aligned to
+the same 60% opacity.
+
+---
+
+### Floating Action Bar component (page `942:2`, v0.1 rebuild section `4929:523`)
+**Iteration 1 chosen and rebuilt from 0.1 components 2026-10-06.** The page holds three earlier
+iterations (1: plain icon+label `Action Item` rows, component `942:6`; 2: button-group, `952:45`;
+3: card, `952:65`) plus old-library reference instances. All are left as-is. The new section
+"Iteration 1 — v0.1 rebuild (Button | Dropdown actions)" holds:
+- **`FAB Action`** (ComponentSet `4929:540`) is the slot component. `Type` = `Button` (nested 0.1 Button
+  `3941:32`, Small/Outlined, leading icon) or `Dropdown` (nested Dropdown Trigger `472:74`,
+  Small/Outlined). The nested instance is exposed (`isExposedInstance`), so Appearance/State/glyph/label
+  are editable from the bar. Dropdown = Dropdown Trigger, not the form Select. That was the user's call
+  (2026-10-06): action menus like the old FAB's "More Actions ▾", not value-picking fields.
+- **`Floating Action Bar`** (Component `4929:542`) uses Iteration 1's shell and tokens unchanged:
+  `color/surface/default`, `radius/m`, `Elevation/Overlay`, `spacing/4` padding, `spacing/6` between
+  groups, `spacing/2` within groups, vertical Divider `601:8`. Properties: `Count Label`,
+  `Show Secondary Actions`, `Show Primary Actions` (each hides its group + preceding divider). It has 3
+  secondary + 2 primary FAB Action slots. Default: Export, Duplicate (Buttons), Move to (Dropdown,
+  `folder-open` icon) | More Actions (Dropdown), Approve (Button, **Filled**). Brand fill on the
+  single primary action only.
+- Examples (buttons only / mixed / primary-only with 12 selected), a doc frame and a To-Do frame.
+- To-Do still open: fixed slot count (5); old
+  FAB's Metric Group / No Actions Available props not modeled; tag name (`boss-floating-action-bar`
+  vs `boss-action-bar`) undecided. No WA equivalent exists (audited 2026-09-08).
 
 ---
 
@@ -1239,6 +1281,49 @@ throughout, no more hand-approximated shapes.
 
 ---
 
+## Token-binding audit + fix pass (2026-10-06)
+
+Every component on 29 pages was walked for: raw (unbound) colors, direct Primitive bindings
+instead of semantic Color tokens, variables bound from another library, unbound padding/gap/radius,
+text with no style or a legacy style, and effects with no effect style. Nested instances were
+skipped (their own component owns them), and so were doc frames.
+
+**Scope (user decision):** core 0.1 components only. **Not edited:** Datepicker (Priscilla's WIP,
+~440 findings), Reporting Table (Chance reviewing, ~24), `[Deprecated] Drawer` (`54:62`), and FAB
+Iterations 1–3. Already clean before the pass: Accordion, Tabs, Popover, Card, Toast.
+
+**Decisions (user, 2026-10-06):**
+- **Legacy text styles → new token styles.** Body 2→Body/2, Body 1→Body/1, Subtitle 1→Subtitle/1,
+  Link→Body/2, Small Button→Caption (same Regular 12). Letter-spacing is identical. Line-height goes
+  from auto to the code values (Body/2 = 20px), so Select/Input/Textarea/Radio Group etc. grew a few px.
+- **Off-scale values snap to the nearest token:** gaps 2→4 (Select, Input, Radio Group), Switch gaps
+  7→8 and 1.6→4, Tooltip padding 3.5→4 and 7→8, Alert Banner padding 36→32 (`spacing/8`), Checkbox
+  and Drawer Body scroll-thumb radius 2→3 (`radius/s`). Every affected component was screenshotted
+  and none broke. *Gotcha:* a nearest-value snap sent Dialog's 999 pill radius to `radius/xl` (16),
+  because 999 is numerically nearer 16 than 9999. It was corrected to `radius/full`. Treat any
+  radius ≥ 100 as "full", not as a number to snap.
+- **New semantic tokens `color/bg/control/checked` + `color/border/control/checked`.** Both alias
+  `orange/50` in Light and Dark. Radio and Switch now bind to them instead of the primitive.
+  **Code has no matching `--boss-color-*` role yet**, so flag this to dev.
+
+**Rules applied:** colors with an exact semantic hex match were bound by role (text→`color/text/*`,
+strokes→`color/border/*`, fills→`color/bg|surface/*`, icons→`color/icon/*`). A component-name hint
+broke ties (Split Button → `color/*/button/*`). Horizontal padding on a control whose height is
+bound to `height/control/X` used `padding/control/X`; everything else used `spacing/*`. Button,
+Dropdown, Split Button and Badge labels have no matching text style (Medium 12/16/20), so they bind
+`font-family/body` + `font-weight/*` + `font-size/*` instead. Badge was set in **Inter** Semi Bold;
+it is now Roboto Medium via those variables. Split Button's Disabled variants had picked
+brand-default by hex (raw brand at 60% opacity), so they were moved to the `brand-disabled` tokens
+to match Button and Dropdown Trigger.
+
+**Approximate fix counts:** ~280 color, ~550 spacing, ~600 radius, ~200 text-style swaps,
+~160 text-variable binds.
+
+**Left as-is, no token exists (deliberate translucency or no local equivalent):**
+- Alert (compact, `910:77`/`925:16`): `#ffc061` warning fill on 2 layers. It came from the old
+  library's `Color/Alert/warning`, and no local token has that value.
+- Badge "Pulse Glow" `#23408f` @ 35%. Drawer Body scroll thumb `#000000` @ 25%.
+
 ## Publish & Code Connect audit (2026-07-22)
 
 **Trigger:** user asked to audit every `(Steve)`-labeled component — check that Code Connect
@@ -1258,7 +1343,7 @@ this pass (see Pages list above).
   WebAwesome custom elements/SCSS, not React+Tailwind).
 - **Publish status was the real blocker.** Radio (`771:432`), Switch (`775:666`), and Tooltip
   (`769:16`) had **never been published** — confirmed via `getPublishStatusAsync()` returning
-  `UNPUBLISHED`. Button (`455:92`) and Split Button (`540:7`) were published but `CHANGED` (local
+  `UNPUBLISHED`. Button (`455:92`, now `3941:32`) and Split Button (`540:7`) were published but `CHANGED` (local
   edits since last publish). Dropdown Trigger (`472:74`) was the only one `CURRENT`.
 - Empirically confirmed `add_code_connect_map` hard-fails on unpublished components: `"Published
   component not found. Please make sure component/component set is published before mapping."`
@@ -1274,7 +1359,7 @@ explicitly chose to skip source verification since the repo isn't checked out in
 
 | Component | Node ID | Mapped source |
 |---|---|---|
-| Button | `455:92` | `orderly-button (boss-button)` |
+| Button | `3941:32` | `orderly-button (boss-button)` |
 | Split Button | `540:7` | `orderly-split-button` |
 | Dropdown Trigger | `472:74` | `boss-dropdown + orderly-button (with-caret trigger)` |
 | Radio | `771:432` | `bossRadioGroup (wa-radio)` |
