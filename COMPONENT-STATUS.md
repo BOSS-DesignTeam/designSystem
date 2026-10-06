@@ -70,8 +70,8 @@ below instead, even if the design side is finished.
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
 one line away from being live, not a from-scratch build. `AGENTS.md` even treats it as the
 reference example for future doc-page authors, but it's currently unreachable in the actual UI.
-(Not listed as its own bucket item since "Drawers" itself has no Figma-brief tracking either —
-see the Not Started list below.)
+(Not listed as its own bucket item here since Drawer Figma work is now tracked under
+"In Progress — Designer" below.)
 
 ---
 
@@ -84,9 +84,20 @@ see the Not Started list below.)
   (`boss-floating-action-bar` vs `boss-action-bar`) and whether the old Metric Group / No Actions
   options are needed. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) (To Do), linked to the Figma story.
   Iterations 2–3 on the same page are superseded, not deleted.
-
-Popover moved to Not Started 2026-09-25 — Figma design is done (page `4692:164`, Base Components
-section), dev hasn't started.
+- **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already
+  existed under "Not Started," merged from `boss-design-system-docs/Todo.md` 2026-09-25 — moved
+  here now that real Figma work is underway). Figma build in progress, started 2026-10-05. Built
+  so far: **Drawer Header** (Large/Medium/Small variants — editable Title/Subtitle text
+  properties, Font Awesome icon glyphs exposed as TEXT properties, Icon Group/Header Subtext
+  1/Header Subtext 2/Tag each independently togglable via BOOLEAN properties defaulting to
+  **hidden**, responsive wrap on Large/Medium with title truncation, all text tied to shared text
+  styles — Heading/3, Body/1, Body/2 — rather than raw overrides); **Drawer Body**
+  (Large/Medium/Small, clipped/scrollable content area with a scroll-thumb affordance); and a
+  composed **Drawer** panel (Header + Body stacked, `Elevation/Overlay` shadow) for all three
+  sizes. Not yet built: the real `placement` (start/end/top/bottom) and `type` (primary/stacked)
+  axes from the actual `boss-drawer` code spec (`restaurantui-token-system-for-ux.md` — type
+  changes Medium/Large width, e.g. primary large = 95vw vs stacked large = 90vw). No RestaurantUI
+  dev-side doc-page work has started (see the "quick win" note under "In Progress — Dev" above).
 
 ---
 
@@ -119,9 +130,6 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Figma design not started — WebAwesome has a matching component, Figma story filed (To Do).**
 Build these from the WA kit, not from scratch. Merged from `boss-design-system-docs/Todo.md`
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
-- **Drawers** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865. See the "quick win" above
-  (doc page exists, just needs a nav entry), and reconcile with the existing "Drawer" page in the
-  Figma file's To do section
 - **File Upload** — `wa-file-input` (Pro) · Figma: [OR-13620](https://diningalliance.atlassian.net/browse/OR-13620). Confirm the WA Pro license
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
