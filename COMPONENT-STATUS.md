@@ -77,8 +77,16 @@ see the Not Started list below.)
 
 ## In Progress — Designer
 
-*(Nothing currently.)* Popover moved to Not Started 2026-09-25 — Figma design is done (page
-`4692:164`, Base Components section), dev hasn't started.
+- **Floating Action Bar** — Figma story [BOPD-1042](https://diningalliance.atlassian.net/browse/BOPD-1042) (In Progress).
+  Iteration 1 was chosen and rebuilt from 0.1 components on 2026-10-06 (page `942:2`, section
+  "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or a Dropdown Trigger, all Plain,
+  with no Filled primary button. No WebAwesome equivalent. Still open: the tag name
+  (`boss-floating-action-bar` vs `boss-action-bar`) and whether the old Metric Group / No Actions
+  options are needed. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) (To Do), linked to the Figma story.
+  Iterations 2–3 on the same page are superseded, not deleted.
+
+Popover moved to Not Started 2026-09-25 — Figma design is done (page `4692:164`, Base Components
+section), dev hasn't started.
 
 ---
 
@@ -98,12 +106,6 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 - **Card** — design done 2026-09-25 (Card, 5 Appearances × 2 Orientations + header/media/footer/
   action slots; page `4699:249`, Base Components section). WA: `wa-card`. Figma story: OR-13618.
   Dev: OR-11849 (sl-card → wa-card), not started.
-- **Floating Action Bar** — design done 2026-10-06. Iteration 1 was chosen and rebuilt from 0.1
-  components (page `942:2`, section "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or
-  a Dropdown Trigger, all Plain, with no Filled primary button. No WebAwesome equivalent. Tag
-  name not yet decided (`boss-floating-action-bar` vs `boss-action-bar`). Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897)
-  (To Do). No separate Figma story found. Iterations 2–3 on the same page are superseded, not
-  deleted.
 - **Tabs** — design done 2026-09-08 (Tab / Tab Panel / Tab Group). No RestaurantUI nav entry, no
   active Jira ticket — likely needs one opened.
 - **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531
