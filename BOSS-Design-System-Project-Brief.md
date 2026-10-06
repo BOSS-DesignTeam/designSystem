@@ -1288,6 +1288,8 @@ throughout, no more hand-approximated shapes.
 
 ## Token-binding audit + fix pass (2026-10-06)
 
+**Jira:** [BOPD-1043](https://diningalliance.atlassian.net/browse/BOPD-1043) (Done). It relates to BOPD-929, which compares variable values against code, and to BOPD-1041, which tracks the code roles for the new control/checked tokens.
+
 Every component on 29 pages was walked for: raw (unbound) colors, direct Primitive bindings
 instead of semantic Color tokens, variables bound from another library, unbound padding/gap/radius,
 text with no style or a legacy style, and effects with no effect style. Nested instances were
@@ -1309,7 +1311,7 @@ Iterations 1–3. Already clean before the pass: Accordion, Tabs, Popover, Card,
   radius ≥ 100 as "full", not as a number to snap.
 - **New semantic tokens `color/bg/control/checked` + `color/border/control/checked`.** Both alias
   `orange/50` in Light and Dark. Radio and Switch now bind to them instead of the primitive.
-  **Code has no matching `--boss-color-*` role yet**, so flag this to dev.
+  **Code has no matching `--boss-color-*` role yet.** Tracked in BOPD-1041.
 
 **Rules applied:** colors with an exact semantic hex match were bound by role (text→`color/text/*`,
 strokes→`color/border/*`, fills→`color/bg|surface/*`, icons→`color/icon/*`). A component-name hint
