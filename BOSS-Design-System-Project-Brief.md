@@ -652,8 +652,8 @@ iterations (1: plain icon+label `Action Item` rows, component `942:6`; 2: button
 3: card, `952:65`) plus old-library reference instances. All are left as-is. The new section
 "Iteration 1 — v0.1 rebuild (Button | Dropdown actions)" holds:
 - **`FAB Action`** (ComponentSet `4929:540`) is the slot component. `Type` = `Button` (nested 0.1 Button
-  `3941:32`, Small/Outlined, leading icon) or `Dropdown` (nested Dropdown Trigger `472:74`,
-  Small/Outlined). The nested instance is exposed (`isExposedInstance`), so Appearance/State/glyph/label
+  `3941:32`, Small/**Plain**, leading icon) or `Dropdown` (nested Dropdown Trigger `472:74`,
+  Small/**Plain**). The nested instance is exposed (`isExposedInstance`), so Appearance/State/glyph/label
   are editable from the bar. Dropdown = Dropdown Trigger, not the form Select. That was the user's call
   (2026-10-06): action menus like the old FAB's "More Actions ▾", not value-picking fields.
 - **`Floating Action Bar`** (Component `4929:542`) uses Iteration 1's shell and tokens unchanged:
@@ -661,8 +661,13 @@ iterations (1: plain icon+label `Action Item` rows, component `942:6`; 2: button
   groups, `spacing/2` within groups, vertical Divider `601:8`. Properties: `Count Label`,
   `Show Secondary Actions`, `Show Primary Actions` (each hides its group + preceding divider). It has 3
   secondary + 2 primary FAB Action slots. Default: Export, Duplicate (Buttons), Move to (Dropdown,
-  `folder-open` icon) | More Actions (Dropdown), Approve (Button, **Filled**). Brand fill on the
-  single primary action only.
+  `folder-open` icon) | More Actions (Dropdown), Approve (Button).
+- **All actions Plain, with no Filled primary button (user decision, 2026-10-06).** The bar floats
+  over table content, so the actions stay quiet and the selection count leads. This replaced the
+  first-pass Outlined slots with one Filled "Approve". *Gotcha hit while switching:* changing the
+  nested instance's `Appearance` (a variant swap) reset every slot's label and icon overrides on the
+  bar and its instances. They were restored explicitly. `findOne` also skips the children of a
+  group hidden by a boolean property, so the slots in a hidden group need separate handling.
 - Examples (buttons only / mixed / primary-only with 12 selected), a doc frame and a To-Do frame.
 - To-Do still open: fixed slot count (5); old
   FAB's Metric Group / No Actions Available props not modeled; tag name (`boss-floating-action-bar`
