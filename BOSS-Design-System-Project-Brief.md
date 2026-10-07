@@ -238,6 +238,7 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/bg/neutral/default` | gray/10 | gray/40 |
 | `color/bg/neutral/hover` | gray/30 | gray/50 |
 | `color/bg/neutral/subtle` | gray/95 | gray/10 |
+| `color/bg/control/checked` | orange/50 | orange/50 |
 | `color/bg/neutral/subtle-hover` | gray/90 | gray/30 |
 | `color/bg/disabled` | gray/80 | gray/40 |
 | `color/bg/option-hover` | gray/option-hover | gray/30 |
@@ -288,6 +289,7 @@ design team before touching it.
 | `color/border/focus` | blue/70 | blue/70 |
 | `color/border/select` | gray/select-border | gray/40 |
 | `color/border/select-disabled` | gray/select-disabled | gray/40 |
+| `color/border/control/checked` | orange/50 | orange/50 |
 
 *Icon*
 
@@ -962,6 +964,9 @@ pattern as Accordion's `Label`/`Content` and Alert's `Message`.
    `color/border/brand` (blue/50) instead, matching the real WA kit's own default and this file's
    established selected-state convention. Flagging for design team confirmation rather than
    silently picking a side, in case orange was actually intentional for tabs specifically.
+   **Update 2026-10-07:** the orange-vs-blue question was resolved for Radio/Switch (orange/50 is the
+   checked color, see Open Questions). That ruling covers form-control checked states only; Tabs stay
+   on `color/border/brand` (blue/50) and were not changed.
 4. Only `Placement=Top` is modeled — the real `wa-tab-group` also supports Bottom/Start/End and a
    `Scrolling` variant; out of scope here, matching this file's other Medium-only/reduced-axis
    scope decisions.
@@ -1077,14 +1082,13 @@ row before `Status=Off`, which didn't match this legacy set's own pre-existing s
 — "Unselected" then "Checked" — before the Hover column was removed; fixed by re-reading the
 original label positions and matching row order to them, verified via screenshot).
 
-**Confirmed color discrepancy found while inspecting the selected-state fills (not fixed, flagging
-only — out of scope for the Hover removal):** the Selected variant's dot and border are bound to
-`orange/50` (this file's Warning token), not `blue/50` as this section previously documented and
-as the real WA kit's own default suggests. Confirmed via `boundVariables` inspection, not a
-screenshot guess. Given Tabs hit an unrelated but similar orange-vs-blue mixup during its own
-build (see the Tab component section above), this is worth a dedicated pass to check whether other
-"Steve" components have similar raw-token drift — flag to design team before relying on Radio's
-selected-state color as documented.
+**Selected-state color: `orange/50` is correct (resolved 2026-10-07).** Found 2026-09-08: the
+Selected variant's dot and border were bound to `orange/50` (this file's Warning token), not
+`blue/50` as this section previously documented. Confirmed via `boundVariables` inspection. The
+user ruled 2026-10-07 that **orange/50 wins** — it is the intended checked color for form controls,
+not drift. Radio now binds `color/bg/control/checked` + `color/border/control/checked` (both alias
+`orange/50`, added in the 2026-10-06 token audit) instead of the primitive. Documentation that says
+`blue/50` for Radio's selected state is wrong.
 
 ### Checkbox component (page `441:270` "Checkbox (Story Written)", ComponentSet ID `447:306`)
 Predates the "Steve" atomic-design pass (a "Story Written" page, not sourced via the WA-first
@@ -1172,10 +1176,9 @@ already out of scope here). No instances referenced the removed variants.
 
 **While fixing this, also corrected a factual error in the component's own documentation text**
 (not the component itself): the description previously claimed "On = `blue/50` track," but the
-On-state track is actually bound to `orange/50` — confirmed via `boundVariables` inspection. This
-is now the **third** independent hit of the same undocumented orange/50-for-selected/active-state
-pattern (Radio's selected dot, Switch's On track, and the old Back Office library's tab-active
-stroke reviewed during the Tabs build) — see the new cross-cutting flag in Open Questions below.
+On-state track is actually bound to `orange/50` — confirmed via `boundVariables` inspection.
+**Resolved 2026-10-07: orange/50 is the intended On color** (user ruling; see Open Questions). The
+track now binds `color/bg/control/checked`, which aliases `orange/50`.
 
 **Re-audited 2026-09-08 against the real WA Switch, per the new variant-fidelity rule — found fully
 compliant, no changes needed.** `Value` × `SwitchState` (Off/On × Default/Disabled) matches WA's
@@ -1603,14 +1606,15 @@ COMPONENT-STATUS.md.
 - ~~Radio/Switch/Tooltip unpublished, blocking Code Connect~~ — done 2026-07-22, all 6 `(Steve)` components published and Code Connect–mapped (see Publish & Code Connect audit section)
 - Code Connect mappings for all 6 `(Steve)` components use documented tag names only — not verified against real `boss-*`/`orderly-*` source files in the RestaurantUI repo. Verify before dev handoff.
 - ~~"Dropdown Item" (page `468:2`) is documented in text but was never built as an actual Figma component — only "Dropdown Trigger" exists~~ — done 2026-09-08, see Dropdown component section
-- **New 2026-09-08 — systemic orange/50-vs-blue/50 drift on selected/active states.** Three
-  independent hits now: Radio's selected dot/border, Switch's On track (both confirmed via
-  `boundVariables` inspection, not screenshots — see their component sections above), and the old
-  Back Office library's tab-active stroke (reviewed, not ported, during the Tabs build). All
-  resolve to `orange/50` (this file's Warning token) where documentation or convention says
-  `blue/50` (Brand) should be there. Worth a dedicated audit pass across all "Steve" components'
-  selected/active/on states before trusting any of them as documented — this could be a single
-  root cause (e.g. a bad find-and-rebind at some point) rather than three unrelated mistakes.
+- ~~**New 2026-09-08 — systemic orange/50-vs-blue/50 drift on selected/active states.**~~ **Resolved
+  2026-10-07: orange/50 wins** (user ruling). Radio's selected dot/border and Switch's On track are
+  intentionally `orange/50`; they bind the semantic `color/bg/control/checked` and
+  `color/border/control/checked` tokens added in the 2026-10-06 token audit. Not drift, no fix needed in
+  Figma. Remaining work: code has no matching `--boss-color-*` role yet (BOPD-1041). Tabs' active
+  state stays blue (`color/border/brand`) and is a separate decision. The old library's orange
+  tab-active stroke was reviewed, not ported.
+- Radio Group's Button appearance uses brand blue while Default appearance uses orange checked;
+  decide whether to align them.
 
 ---
 
@@ -1624,9 +1628,10 @@ COMPONENT-STATUS.md.
 - **Radio Button** — new local building block for `wa-radio appearance="button"`: `Selected` × `Disabled`,
   plus `Label` (TEXT) and `Focused` (BOOLEAN, Focus/Ring effect style). The existing Radio (`771:432`)
   was deliberately **not** modified (user direction: new component, don't touch Radio).
-- **Default appearance instances the existing Radio**, so it inherits Radio's orange/50 selected color
-  drift (see the Radio section). Button appearance uses brand blue (`color/border/brand`,
-  `color/bg/brand/subtle`), so the two appearances currently disagree until Radio is fixed.
+- **Default appearance instances the existing Radio**, so it inherits Radio's `orange/50` checked
+  color (intended, see the Radio section). Button appearance uses brand blue (`color/border/brand`,
+  `color/bg/brand/subtle`), so the two appearances currently disagree on selected color. Open: decide
+  whether Button appearance should move to the checked tokens to match.
 - **Deliberate deviation:** `Size` (Small/Large) dropped, Medium only, confirmed with the user.
 - Button groups use a -1 gap (collapsed borders) + `itemReverseZIndex`, with corner radii zeroed per
   position (outer corners only), matching the kit's joined-group rendering.
