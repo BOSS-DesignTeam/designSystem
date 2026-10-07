@@ -431,8 +431,10 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
   component section below.
 - `4754:162` Radio Group (Steve) — added 2026-09-29, third page in the Base Components section, see
   Radio Group component section below.
-- `5012:162` File Upload (Steve) — added 2026-10-07, fourth page in the Base Components section, see
-  File Upload component section below.
+- `5012:162` File Upload (Steve) — added 2026-10-07, placed right after Radio Group, which now sits in
+  the "--- Ready to be Picked Up ---" section (not Base Components). See File Upload component section below.
+- `5027:162` BOSS Table (Steve) — added 2026-10-07 in the "--- WOrK In Progress ---" section, right after
+  Reporting Table (Chance). See BOSS Table component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1692,4 +1694,88 @@ COMPONENT-STATUS.md.
   (32); the restrictions caption 10px → `Caption` (12, uppercase). The Dragging fill is
   `color/surface/secondary` (gray/95), a little darker than the old library's near-white hover.
 - Not yet done: Code Connect mapping (RestaurantUI wrapper not yet identified), Jira story status.
+
+---
+
+### BOSS Table component (page `5027:162` "BOSS Table (Steve)", ComponentSet `5034:1377`)
+**Started 2026-10-07.** Figma story [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). WA: `wa-data-grid` (**Pro**, marked Experimental). WebAwesome Pro
+3.11 already ships in RestaurantUI (`dist/components/data-grid` copied by `angular.json`), but nothing
+uses `wa-data-grid` yet.
+
+**Goal (user decision):** one table for every use, switching between list screens and financial reports,
+that can do everything the current tables do. Decisions 2026-10-07: build a new component from the
+Reporting Table (Chance) components and edit those afterwards; design toward `wa-data-grid`; the switch is
+`Size` = **Standard** / **Report**.
+
+**What the code actually has (research 2026-10-07, `orderly` repo):**
+- `boss-table` (`RestaurantUI/src/app/components/bossTable/`, about 93 files) is built on **TanStack
+  Table**, not ag-Grid. ag-Grid (Community 34.3) survives only in the deprecated `orderly-table` wrapper
+  (6 screens).
+- Financial statements (P&L, Balance Sheet, Cash Flow, Budget, Custom) use a separate native-`<table>` kit in
+  `pages/reports/financialReports/shared/`. The Reporting Table page is mapped to this kit.
+- `boss-table` features in use: money/right-aligned columns, row selection (incl. disabled with tooltip),
+  expand + detail panel, nested tables inside rows, tree sub-rows, footer totals (17 screens), pagination
+  (default 100 rows, no page-size picker), column hiding and pinning, header sub-text / info tooltip /
+  group header, global search, CSV export, row actions, kebab menus, and **inline editing** (Input, Select,
+  Date, Checkbox, Switch, Combobox; about 17 finance entry screens). Column filter UI exists but no screen
+  turns it on. No loading/empty/error states, no keyboard navigation, no column resize.
+
+**`wa-data-grid` gaps for BOSS (need a dev conversation):** no inline editing; no headers spanning
+columns (every report groups $ and % under a period); no subtotal or ghost rows mid-table (only group
+aggregates and column footers).
+
+**Built:**
+- **BOSS Table** (`5034:1377`): `Size` (Standard / Report) × `State` (Default / Loading / Empty /
+  No Results). Booleans `Toolbar` (false), `Footer` (true), `Pagination` (false). 918px wide. Standard is
+  built from the new Table Row; Report is built from the Reporting Table's `Column Header Row` and
+  `GL Row` instances (one period group, title cell FILL, same settings as Chance's P&L example). The
+  Reporting Table components were **not edited**.
+- Standard building blocks (section `5029:266`):
+  - **Table Header Cell** (`5029:267`): Type Text (Align Left/Right/Center) / Checkbox / Expand / Empty.
+    Properties Label, Sub Text Value (TEXT), Sub Text, Sort, Info, Filter, Column Menu (BOOLEAN). Sort is an
+    exposed instance of the Reporting Table's `Sort`. Min height 33px.
+  - **Table Cell** (`5029:268`): 17 types: Text (3 alignments), Text + Sub Text, Money, Percent, Link,
+    No Value, Tag, Checkbox, Collapsed, Expanded, Actions, More, Input, Select, Switch. Form controls are
+    exposed instances of the real Checkbox, Tag, Input, Single Select and Switch. Min height 43px.
+  - **Table Row** (`5031:451`): Type Header / Default / Parent / Child / Footer / Detail × State Default /
+    Hover / Selected. Cells overlap by -1px like the Reporting Table; the Supplier column fills.
+  - **Table Toolbar** (`5033:354`): Search, Bulk Actions, Columns, Export booleans.
+  - **Table Pager** (`5033:380`): row count, first/prev/"Page X of Y"/next/last, optional Page Size.
+  - **Table State Panel** (`5033:408`): Loading / Empty / No Results (the grid's loading, empty and
+    no-results slots).
+
+**Second pass, same day (user decisions 2026-10-07):** "go with your choices, only use gray for the
+header, allow inline editing and links to drawers or other pages, fix multi-period alignment, do
+everything the Reporting Table asks for." Done:
+- **Colors:** gray only in header rows. Hover = `color/surface/table-hover` (#edf6fb) in both sizes;
+  Selected = `color/bg/brand/subtle-hover` (blue/90, #dee2ee). Not `color/bg/brand/subtle`: despite the
+  name it resolves to blue/95 = #f8f8fa, which reads as gray. BOSS Table is 1145px wide (was 918) so three
+  periods fit.
+- **Table Cell:** new `Link` axis (No / Yes) on Text, Text + Sub Text, Money, Percent, with `Link Icon`
+  + `Link Icon Glyph` properties (default `arrow-up-right-from-square`, for links to another page); the
+  old `Type=Link` variant became `Type=Text, Link=Yes`. New editors `Type=Date` (Input with calendar icon)
+  and `Type=Combobox` (Combobox / Field). `Focused` on checkbox / chevron cells. Now 24 variants.
+- **Table Header Cell:** `Resize Handle` (2px `color/border/focus` bar) and `Focused` (2px focus ring).
+- **Reporting Table components (Chance's, edited with authorization):**
+  - GL Row Total / Subtotal rows used an **orphaned** `Combo Cell/Subtotal` instance (main no longer
+    exists) that was 3px wider and not wired to Second / Third Group, so multi-period tables could not
+    line up. Swapped to `Combo Cell State=Subtotal`, reordered, and wired like the other rows. Combo Cell
+    Total Line / Subtotal states normalized from 190 to 187px.
+  - Title cells: `minWidth` 439 / 80 / 103 → **300** everywhere (code's `max(20vw, 300px)`).
+  - Header Cell Types: `Filter`, `Column Menu` (glyphs copied from Priscilla's Data Grid page),
+    `Resize Handle`, `Focused`. Read Only Cell: `Type=Checkbox`, `Focused`. GL Row: `Selectable`,
+    `Variance`, `Type=Collapsed Total`. Column Header Row: `Selectable`, `Variance`. All default off.
+    Period groups 2 and 3 are wrapped in `group-2` / `group-3` frames; an empty hidden
+    `group-1 (empty, unused)` frame remains in each (left rather than deleted).
+  - Hover examples were bound to the old remote library's `Color/Table/row-active` (30 fills) and Editable
+    Cell Active to `color/surface/row-active`: all rebound to `color/surface/table-hover`.
+  - README updated with an "UPDATED 2026-10-07" section and the new hover token.
+- **Examples section** (`5048:1621`): pinned columns + horizontal scroll (Report, every option on,
+  half-checked parent), header interactions (focus, filter + column menu, tooltip, resize, both sizes),
+  links to a drawer / page, inline editing (Standard editors + Report Combo Cell Input).
+
+**Still open:** whether to archive the Data Grid (Priscilla) page now that its additions live in the
+Reporting Table components; later merging Standard and Report cells into one set with a Size axis;
+Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
+(inline editing, spanning headers, subtotal rows).
 

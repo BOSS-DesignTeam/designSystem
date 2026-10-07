@@ -415,6 +415,29 @@ itself was correct (right variable ID, no explicit modes). Rebuilding each paint
 `variable.resolveForConsumer(node).value` as the base color fixed the render. Use the resolved
 value as the base color instead of a dummy black.
 
+### Cloning a variant drops its component property bindings (BOSS Table, 2026-10-07)
+`variant.clone()` inside the same ComponentSet keeps the layers but **not** their
+`componentPropertyReferences`. GL Row's new `Collapsed Total` variant, cloned from `Children`, lost the
+Selectable / Second Group / Third Group / Variance bindings: hidden layers stayed hidden forever and the
+row shifted columns. After cloning a variant, walk it and re-apply every binding by comparing against
+the source variant (and re-check any layer you hid or showed by hand).
+
+### Instances don't list hidden children (2026-10-07)
+`instance.children` (and `findAll` from the instance) **omit layers that are hidden** in that instance,
+so child indexes on an instance don't match the main component. Look children up by name (or
+`getMainComponentAsync()` + id), never by index, on instances. Same reason an empty auto-layout wrapper
+showed up as a 187px gap: its only child was hidden by an instance override, and a hug frame with no
+visible children kept its old width. Don't wrap an always-visible layer just to group it.
+
+### `deleteCharacters(start, end)` takes an end index, not a length (2026-10-07)
+`text.deleteCharacters(i, i + old.length)`, then `insertCharacters(i, newText)`. Passing a length throws
+`deleteCharacters must have (start <= end)` once `i` is larger than the length.
+
+### Screenshots can lag a fresh edit
+`get_screenshot` right after a write sometimes returns the pre-edit render (Radio Group colors, Chance's
+P&L header gap). If a screenshot contradicts the node data, read the data (positions, bindings) and
+re-screenshot a smaller node before "fixing" anything.
+
 ---
 
 ## 3. Editing permissions

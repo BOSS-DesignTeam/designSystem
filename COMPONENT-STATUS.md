@@ -84,6 +84,16 @@ reference example for future doc-page authors, but it's currently unreachable in
   (`boss-floating-action-bar` vs `boss-action-bar`) and whether the old Metric Group / No Actions
   options are needed. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) (To Do), linked to the Figma story.
   Iterations 2–3 on the same page are superseded, not deleted.
+- **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
+  [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
+  `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,
+  built from the Reporting Table components) × State Default / Loading / Empty / No Results, plus
+  Standard header cell, cell, row, toolbar, pager and state-panel building blocks, and an Examples
+  section. Second pass the same day: links and inline editors in cells, focus / resize / filter /
+  column-menu headers, multi-period + variance alignment fixed in the Reporting Table components, row
+  selection, collapsed-total rows, gray only in headers. Open: archive the Data Grid (Priscilla) page?,
+  merge Standard and Report cells into one set, and a dev conversation on `wa-data-grid` gaps (inline
+  editing, spanning headers, subtotal rows).
 - **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already
   existed under "Not Started," merged from `boss-design-system-docs/Todo.md` 2026-09-25 — moved
   here now that real Figma work is underway). Figma build in progress, started 2026-10-05. Built
@@ -150,9 +160,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
 - **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019
 - **Progress Bar** — `wa-progress-bar` · Figma: [OR-13628](https://diningalliance.atlassian.net/browse/OR-13628) · Dev: OR-12018
-- **BOSS Table** — `wa-data-grid` (Pro) · Figma: [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Check the existing Reporting Table
-  and Data Grid Figma pages first; the GL/P&L financial reporting table is separate (OR-13482).
-  Confirm the WA Pro license
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
   Runtime-only, so the story covers documentation, not a new component
