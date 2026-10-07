@@ -1813,8 +1813,19 @@ Column Header Row defaulted Second/Third to true, so instances got their values 
 - Still used from the archived page, inside the merged pieces: Combo Cell ($ + % pair), GL Parent / Ghost
   Row / GL Child (title indentation) and Sort.
 
-**Still open:** move Combo Cell, the GL Parent / Ghost / Child title cells and Sort into BOSS Table too
-(then the archived page has no live dependencies);
+**Last pieces moved (2026-10-07).** New sets in BOSS Table / Building Blocks: **Table Cell Pair**
+(`5071:3268`, was Combo Cell, same 7 states), **Table Tree Cell** (`5071:3354`, GL Child's State × Depth plus
+GL Ghost Row as `State=Ghost`, Depth 1-4) and **Table Sort** (`5071:3365`, was Sort). 382 instances switched
+(218 archived page, 164 BOSS page), 0 errors, 0 overrides needed restoring; before/after screenshots of six
+views (P&L, budget, hover examples, BOSS Report table, pinned and header examples) are pixel-identical.
+Method worth reusing: snapshot each instance's full subtree by **instance sublayer IDs** (`I<instance>;<main
+child>;...`, built from the main component tree, which reaches hidden layers that `instance.children`
+omits), swap, then restore visibility / text / nested main / fill wherever they differ.
+BOSS Table no longer depends on the archived page. The originals there are unused except by Priscilla's
+archived Data Grid page (6) and orphaned components no longer in the document (9). GL Parent was not moved
+(only Priscilla's page uses it).
+
+**Still open:**
 Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
 (inline editing, spanning headers, subtotal rows).
 
