@@ -91,7 +91,7 @@ reference example for future doc-page authors, but it's currently unreachable in
   Standard header cell, cell, row, toolbar, pager and state-panel building blocks, and an Examples
   section. Second pass the same day: links and inline editors in cells, focus / resize / filter /
   column-menu headers, multi-period + variance alignment fixed in the Reporting Table components, row
-  selection, collapsed-total rows, gray only in headers. Open: archive the Data Grid (Priscilla) page?,
+  selection, collapsed-total rows, gray only in headers. Reporting Table and Data Grid pages archived 2026-10-07 (BOSS Table's Report size still uses the Reporting Table components). Open:
   merge Standard and Report cells into one set, and a dev conversation on `wa-data-grid` gaps (inline
   editing, spanning headers, subtotal rows).
 - **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already

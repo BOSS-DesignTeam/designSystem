@@ -433,8 +433,13 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
   Radio Group component section below.
 - `5012:162` File Upload (Steve) — added 2026-10-07, placed right after Radio Group, which now sits in
   the "--- Ready to be Picked Up ---" section (not Base Components). See File Upload component section below.
-- `5027:162` BOSS Table (Steve) — added 2026-10-07 in the "--- WOrK In Progress ---" section, right after
-  Reporting Table (Chance). See BOSS Table component section below.
+- `5027:162` BOSS Table (Steve) — added 2026-10-07 in the "--- WOrK In Progress ---" section. See BOSS
+  Table component section below.
+- **Archived 2026-10-07 (user decision):** `1483:112` "Reporting Table (Chance) [Archived]" (moved from
+  the WIP section to the end of the Archive section) and `3101:5065` "Data Grid (Priscilla's Experiment)
+  [Archived]" (already in the Archive section, renamed). BOSS Table replaces both. Note: BOSS Table's Report
+  size is still built from instances of the Reporting Table components, so they live on an archived page
+  but must not be deleted until they are merged into BOSS Table's own building blocks.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1774,8 +1779,7 @@ everything the Reporting Table asks for." Done:
   half-checked parent), header interactions (focus, filter + column menu, tooltip, resize, both sizes),
   links to a drawer / page, inline editing (Standard editors + Report Combo Cell Input).
 
-**Still open:** whether to archive the Data Grid (Priscilla) page now that its additions live in the
-Reporting Table components; later merging Standard and Report cells into one set with a Size axis;
+**Still open:** later merging Standard and Report cells into one set with a Size axis;
 Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
 (inline editing, spanning headers, subtotal rows).
 
