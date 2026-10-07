@@ -1613,8 +1613,8 @@ COMPONENT-STATUS.md.
   Figma. Remaining work: code has no matching `--boss-color-*` role yet (BOPD-1041). Tabs' active
   state stays blue (`color/border/brand`) and is a separate decision. The old library's orange
   tab-active stroke was reviewed, not ported.
-- Radio Group's Button appearance uses brand blue while Default appearance uses orange checked;
-  decide whether to align them.
+- ~~Radio Group's Button appearance uses brand blue while Default appearance uses orange checked.~~
+  Aligned 2026-10-07: Button appearance now uses the checked tokens.
 
 ---
 
@@ -1629,9 +1629,12 @@ COMPONENT-STATUS.md.
   plus `Label` (TEXT) and `Focused` (BOOLEAN, Focus/Ring effect style). The existing Radio (`771:432`)
   was deliberately **not** modified (user direction: new component, don't touch Radio).
 - **Default appearance instances the existing Radio**, so it inherits Radio's `orange/50` checked
-  color (intended, see the Radio section). Button appearance uses brand blue (`color/border/brand`,
-  `color/bg/brand/subtle`), so the two appearances currently disagree on selected color. Open: decide
-  whether Button appearance should move to the checked tokens to match.
+  color (intended, see the Radio section). **Button appearance moved to the checked tokens
+  2026-10-07** (user decision): Radio Button's two Selected variants (`4754:170`, `4754:173`, plus
+  their hidden Focus Ring rects) now bind `color/bg/control/checked` fill + `color/border/control/checked`
+  stroke, replacing `color/bg/brand/subtle` + `color/border/brand`. The selected button is therefore a
+  solid orange fill with `color/text/primary` label (the Disabled variant renders the same at reduced
+  opacity). Both appearances now agree. The page's on-canvas To-Do items 1, 3 and 4 were reworded to match.
 - **Deliberate deviation:** `Size` (Small/Large) dropped, Medium only, confirmed with the user.
 - Button groups use a -1 gap (collapsed borders) + `itemReverseZIndex`, with corner radii zeroed per
   position (outer corners only), matching the kit's joined-group rendering.
