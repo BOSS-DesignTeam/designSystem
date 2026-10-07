@@ -431,6 +431,8 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
   component section below.
 - `4754:162` Radio Group (Steve) — added 2026-09-29, third page in the Base Components section, see
   Radio Group component section below.
+- `5012:162` File Upload (Steve) — added 2026-10-07, fourth page in the Base Components section, see
+  File Upload component section below.
 
 **Note (2026-07-30):** the three pages above (Alert, Modal — renamed Dialog 2026-09-08, Floating
 Action Bar) exist and are
@@ -1642,4 +1644,37 @@ COMPONENT-STATUS.md.
 - An Examples section covers every section of the WA docs page (initial value, hint, radio buttons,
   disabled group / single option, orientation, required). Validation/custom validity has no visual
   state in WA (browser-native), so it isn't modeled. The on-canvas To-Do lists the open items.
+
+---
+
+### File Upload component (page `5012:162` "File Upload (Steve)", ComponentSet `5013:340`, File Upload Row `5013:185`)
+**Added 2026-10-07.** Figma story [OR-13620](https://diningalliance.atlassian.net/browse/OR-13620). WA: `wa-file-input` (**Pro**).
+- **No kit component to diff against.** `wa-file-input` is Pro and is not in the Web Awesome 3 Design
+  Kit (`search_design_system` on both scoped libraries found no file input, and the standalone kit file
+  has no matching page). The variant model comes from the `wa-file-input` docs page (label, hint,
+  withLabel, withHint, required, disabled, dragging, size, `:state(blank)`); the geometry comes from the
+  old Back Office library's File Upload (`wdwwm6VbBU89GFViEvcfkY`, page `4173:3451`: `.file upload
+  container`, `.file upload summary`, restrictions text), rebuilt on this file's tokens rather than
+  imported. Confirm the WA Pro license before dev starts.
+- **File Upload** — 6 variants: `State` (Default / Dragging / Disabled) × `Files` (Blank / With
+  Files). Properties: `Label`, `Hint` (TEXT), `With Label` (true), `With Hint` (false), `Required`
+  (false), `Dropzone Text`, `Restrictions` (TEXT). The dropzone is a dashed `color/border/default`
+  box (fill `color/surface/default`; Dragging uses `color/surface/secondary`; Disabled uses the
+  `color/*/disabled` roles and the Disabled Button variant) holding a Font Awesome `file-invoice` glyph,
+  the dropzone text, "or", a Button instance (Brand / Outlined / Medium, label "Browse Files" as a text
+  override) and the restrictions caption. With Files adds a bordered list: a `color/surface/table-header`
+  header plus **File Upload Row** instances.
+- **File Upload Row** — new building block: `File Name` (TEXT) plus a Font Awesome `xmark` remove cell
+  (`color/icon/brand`), separated by `color/border/default`.
+- **Deliberate deviations from `wa-file-input`:** Medium only (`size` xs/s/l/xl dropped, per the
+  Medium-only form-control decision). WA's two booleans `dragging` and `disabled` are collapsed into one
+  `State` axis because they can never both be true. Per-file size and image thumbnail (WA `file-size`,
+  `file-thumbnail` parts) are not modeled; the list follows the old library (name + remove).
+- **Validation errors:** `wa-file-input` has `:state(user-invalid)` but no visual of its own, so errors
+  use an Alert Banner (Danger, Outlined) under the dropzone, as in the old library (see Examples). The
+  old library's separate `.file upload error alert` component was not ported.
+- **Off-scale values snapped (token audit rule):** dropzone padding and gap 40 and 32 → `spacing/8`
+  (32); the restrictions caption 10px → `Caption` (12, uppercase). The Dragging fill is
+  `color/surface/secondary` (gray/95), a little darker than the old library's near-white hover.
+- Not yet done: Code Connect mapping (RestaurantUI wrapper not yet identified), Jira story status.
 

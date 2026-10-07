@@ -111,6 +111,11 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
   Disabled, Medium only, plus a new Radio Button building block; page `4754:162`, Base Components
   section). WA: `wa-radio-group` + `wa-radio appearance="button"`. Figma story: [OR-13675](https://diningalliance.atlassian.net/browse/OR-13675) · Dev: OR-11860. The
   existing Radio (Complete above) covers the single-radio atom only.
+- **File Upload** — design done 2026-10-07 (File Upload: State Default/Dragging/Disabled × Files
+  Blank/With Files, plus a File Upload Row building block; Medium only; page `5012:162`, Base
+  Components section). WA: `wa-file-input` (Pro, not in the kit; built from the old library's File
+  Upload). Figma story: [OR-13620](https://diningalliance.atlassian.net/browse/OR-13620). No RestaurantUI nav entry, no dev ticket
+  found. Confirm the WA Pro license before dev starts.
 - **Popover** — design done 2026-09-25 (Popover, 4 placements + With Arrow + Content slot; page
   `4692:164`, first page in the new "--- Base Components ---" section). WA: `wa-popover`. Figma
   story: OR-13617. No RestaurantUI nav entry, no dev ticket.
@@ -130,7 +135,6 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Figma design not started — WebAwesome has a matching component, Figma story filed (To Do).**
 Build these from the WA kit, not from scratch. Merged from `boss-design-system-docs/Todo.md`
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
-- **File Upload** — `wa-file-input` (Pro) · Figma: [OR-13620](https://diningalliance.atlassian.net/browse/OR-13620). Confirm the WA Pro license
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
 - **Loading Spinner** — `wa-spinner` · Figma: [OR-13623](https://diningalliance.atlassian.net/browse/OR-13623) · Dev: OR-12020
