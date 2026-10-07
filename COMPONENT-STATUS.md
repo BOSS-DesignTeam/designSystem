@@ -91,7 +91,7 @@ reference example for future doc-page authors, but it's currently unreachable in
   Standard header cell, cell, row, toolbar, pager and state-panel building blocks, and an Examples
   section. Second pass the same day: links and inline editors in cells, focus / resize / filter /
   column-menu headers, multi-period + variance alignment fixed in the Reporting Table components, row
-  selection, collapsed-total rows, gray only in headers. Reporting Table and Data Grid pages archived 2026-10-07. Cells merged the same day: Table Cell and Table Header Cell now have Size = Standard | Report, and all instances use them (the Reporting Table rows still live on the archived page). Open: merge the Reporting Table rows into Table Row, and a dev conversation on `wa-data-grid` gaps (inline
+  selection, collapsed-total rows, gray only in headers. Reporting Table and Data Grid pages archived 2026-10-07. Cells merged the same day: Table Cell and Table Header Cell now have Size = Standard | Report, and all instances use them (the Reporting Table rows still live on the archived page). Rows merged the same day (Table Row has Size = Standard | Report). Open: move Combo Cell, the GL title cells and Sort over too, and a dev conversation on `wa-data-grid` gaps (inline
   editing, spanning headers, subtotal rows).
 - **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already
   existed under "Not Started," merged from `boss-design-system-docs/Todo.md` 2026-09-25 — moved

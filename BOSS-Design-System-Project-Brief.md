@@ -1798,7 +1798,23 @@ everything the Reporting Table asks for." Done:
 - Gotcha: overrides on an instance nested inside a swapped cell (the checkbox inside the Selection Cell)
   are lost on swap; the pinned example's half-checked / checked rows had to be re-set.
 
-**Still open:** merging the Reporting Table rows into BOSS Table's own Table Row (Size axis);
+**Rows merged too (2026-10-07, user request).** `Table Row` (`5031:451`) now has `Size` (Standard / Report)
+and four shared booleans: `Second Group`, `Third Group`, `Selectable`, `Variance` (all default false; the old
+Column Header Row defaulted Second/Third to true, so instances got their values re-applied).
+- Report types: Header (was Column Header Row), Default (No Children), Parent (Children), Ghost, Child,
+  Subtotal, Total, Collapsed Total. New: Hover (`color/surface/table-hover`) and Selected
+  (`color/bg/brand/subtle-hover`, row checkbox checked) for Report Default / Parent / Child, matching Standard.
+- Same clone-and-swap method: 140 direct instances (111 archived page, 29 BOSS page) swapped, 0 errors,
+  0 instances of the old GL Row / Column Header Row left. Before/after screenshots of Chance's P&L and
+  budget examples, the BOSS Report table, the pinned example and the header example are pixel-identical.
+- One regression found and fixed: expanded parent rows in Chance's P&L / hover examples lost their "blank
+  values" overrides (they lived on cells nested inside the row, from the cell merge). Hidden again on the 16
+  affected rows.
+- Still used from the archived page, inside the merged pieces: Combo Cell ($ + % pair), GL Parent / Ghost
+  Row / GL Child (title indentation) and Sort.
+
+**Still open:** move Combo Cell, the GL Parent / Ghost / Child title cells and Sort into BOSS Table too
+(then the archived page has no live dependencies);
 Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
 (inline editing, spanning headers, subtotal rows).
 
