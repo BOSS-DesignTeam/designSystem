@@ -126,7 +126,9 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
   active Jira ticket — likely needs one opened.
 - **Toast** — design done 2026-09-17 (Toast Item). No RestaurantUI nav entry. OR-13530/OR-13531
   ("Add Trailing Icon…"/"Add Close icon…") read as Figma-side component edits, not RestaurantUI
-  doc-page tickets — don't mistake those for dev progress on this item.
+  doc-page tickets — don't mistake those for dev progress on this item. **Action Toast
+  ([OR-13630](https://diningalliance.atlassian.net/browse/OR-13630)) designed 2026-10-07** as an `Actions` option on this Toast Item (one or two small
+  Buttons under the message), so it is no longer a separate not-started item.
 - **Accordion** — design done 2026-07-30. **Discrepancy, needs a status check:** OR-13005 shows
   `Ready For Prod` in Jira (which usually means dev is finished, just not deployed), but Accordion
   is not actually in `style-guide-v2.nav.ts` on `master`. Don't trust that ticket's status at face
@@ -137,7 +139,12 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Loading Spinner** — `wa-spinner` · Figma: [OR-13623](https://diningalliance.atlassian.net/browse/OR-13623) · Dev: OR-12020
+- **Loading Spinner** — `wa-spinner` · Figma: [OR-13623](https://diningalliance.atlassian.net/browse/OR-13623) · Dev: OR-12020. **Parked 2026-10-07**
+  pending a scope decision. The old library's Loading Screens page is not a spinner: it is a branded
+  loading card (orange mixing bowl, "Digging in the back pantry..." after 500ms, a list of rotating
+  kitchen messages) plus skeleton loading. The WA 3 Design Kit has no Spinner page (it does have
+  Skeleton, Progress Ring and Progress Bar), so a generic spinner would be hand-built from the docs.
+  Options were: generic spinner only, spinner + branded card, branded card only.
 - **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
 - **Quantity Selector** — `wa-number-input` · Figma: [OR-13625](https://diningalliance.atlassian.net/browse/OR-13625)
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
@@ -146,8 +153,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **BOSS Table** — `wa-data-grid` (Pro) · Figma: [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Check the existing Reporting Table
   and Data Grid Figma pages first; the GL/P&L financial reporting table is separate (OR-13482).
   Confirm the WA Pro license
-- **Action Toast** — `wa-toast-item` · Figma: [OR-13630](https://diningalliance.atlassian.net/browse/OR-13630). An action-button option on the
-  existing Toast Item, not a new component
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
   Runtime-only, so the story covers documentation, not a new component

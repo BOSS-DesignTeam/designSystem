@@ -1451,6 +1451,21 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
    Figma component; documented on-canvas so it isn't mistaken for a missed piece.
 4. Not yet published or Code Connect–mapped.
 
+**Actions option added 2026-10-07** ([OR-13630](https://diningalliance.atlassian.net/browse/OR-13630) "Action Toast", an edit to this component, not a new one).
+- **Source decision (user):** `wa-toast-item` has no action attribute, slot or event; its docs example
+  slots buttons into the default content, **below the message text**, with the close button staying on
+  the right. That layout wins over the old Back Office library's inline link-style "Action" on the right
+  (which also had a bold header line; **not modeled**, user decision). WA's own CSS centers the icon and
+  close button vertically in a taller toast, which is what the Figma layout does.
+- **Structure:** in all 5 variants the `Message` text moved into a new vertical `Body` frame
+  (`spacing/2` gap) with an `Actions` row under it: `Primary Action` (Button, Brand / Filled / Small,
+  label "Action") and `Secondary Action` (Button, Brand / Outlined / Small, label "Dismiss"). Both
+  are exposed instances. Our Button has no Neutral variant, so WA's neutral "filled" secondary button is
+  shown as Outlined (flagged on the page's To-Do item 5).
+- **New component properties:** `Actions` (BOOLEAN, default false, so every existing toast is unchanged
+  at 360x58) and `Secondary Action` (BOOLEAN, default true). `Message` kept its property link.
+- Three example toasts (Brand, Success with one action, Danger) sit under the variant row.
+
 ---
 
 ### Popover component (page `4692:164` "Popover (Steve)", ComponentSet `4692:219` "Popover")
