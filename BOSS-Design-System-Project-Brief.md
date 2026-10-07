@@ -964,9 +964,10 @@ pattern as Accordion's `Label`/`Content` and Alert's `Message`.
    `color/border/brand` (blue/50) instead, matching the real WA kit's own default and this file's
    established selected-state convention. Flagging for design team confirmation rather than
    silently picking a side, in case orange was actually intentional for tabs specifically.
-   **Update 2026-10-07:** the orange-vs-blue question was resolved for Radio/Switch (orange/50 is the
-   checked color, see Open Questions). That ruling covers form-control checked states only; Tabs stay
-   on `color/border/brand` (blue/50) and were not changed.
+   **Resolved 2026-10-07 (user decision): Tabs stay blue.** Orange/50 is the checked color for
+   Radio/Switch (see Open Questions), but that covers form-control checked states only. Tabs' active
+   state stays on `color/border/brand` (blue/50), so the old library's orange tab-active stroke is
+   deliberately not ported. No change needed in Figma.
 4. Only `Placement=Top` is modeled — the real `wa-tab-group` also supports Bottom/Start/End and a
    `Scrolling` variant; out of scope here, matching this file's other Medium-only/reduced-axis
    scope decisions.
@@ -1611,7 +1612,7 @@ COMPONENT-STATUS.md.
   intentionally `orange/50`; they bind the semantic `color/bg/control/checked` and
   `color/border/control/checked` tokens added in the 2026-10-06 token audit. Not drift, no fix needed in
   Figma. Remaining work: code has no matching `--boss-color-*` role yet (BOPD-1041). Tabs' active
-  state stays blue (`color/border/brand`) and is a separate decision. The old library's orange
+  state stays blue (`color/border/brand`), confirmed by the user 2026-10-07. The old library's orange
   tab-active stroke was reviewed, not ported.
 - ~~Radio Group's Button appearance uses brand blue while Default appearance uses orange checked.~~
   Aligned 2026-10-07: Button appearance now uses the checked tokens.
