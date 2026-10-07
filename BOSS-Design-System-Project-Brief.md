@@ -1779,7 +1779,26 @@ everything the Reporting Table asks for." Done:
   half-checked parent), header interactions (focus, filter + column menu, tooltip, resize, both sizes),
   links to a drawer / page, inline editing (Standard editors + Report Combo Cell Input).
 
-**Still open:** later merging Standard and Report cells into one set with a Size axis;
+**Cells merged into one set (2026-10-07, user request).** `Table Cell` (`5029:268`, 39 variants) and
+`Table Header Cell` (`5029:267`, 11 variants) now have a `Size` axis (Standard / Report).
+- Method: the Reporting Table's Read Only Cell, Editable Cell and Header Cell Types variants were
+  **cloned** into the BOSS sets as `Size=Report` (not moved: moving would empty and auto-delete Chance's
+  sets). Every direct instance (177) was swapped to the clones and every instance on the archived page
+  (757 incl. nested) had its settings re-applied; 0 errors. Chance's P&L example rendered pixel-identical
+  before and after.
+- Mapping: Text / Dollar→Money / Percent / Total each get Link = No / Yes (replacing the Static + Link
+  boolean pair); Empty, No Value, Collapsed, Expanded, Checkbox; Editable and Editable (Active) with new
+  `Value`, `Typed Value`, `Cursor` properties; new `Tag` boolean. Header: Title→Type=Text (label and date
+  now drive the `Label` / `Sub Text Value` properties), Checkbox, Empty, Collapsed, Expanded; Date→`Sub
+  Text`. Standard header `Type=Expand` was renamed `Type=Expanded` to match.
+- Not merged yet: the Reporting Table's rows (GL Row, Combo Cell, GL Parent / Ghost / Child, Column Header
+  Row) stay on the archived page, now built from the merged cells. The original cell sets stay too: 31
+  instances still point at them (18 in Priscilla's archived examples, 13 inside orphaned components that
+  are no longer in the document tree). Delete them only after those are dealt with.
+- Gotcha: overrides on an instance nested inside a swapped cell (the checkbox inside the Selection Cell)
+  are lost on swap; the pinned example's half-checked / checked rows had to be re-set.
+
+**Still open:** merging the Reporting Table rows into BOSS Table's own Table Row (Size axis);
 Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
 (inline editing, spanning headers, subtotal rows).
 
