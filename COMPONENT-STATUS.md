@@ -180,7 +180,8 @@ directly before assuming status):**
   wrapper, which is Complete above)
 - "Button Group" as its own concept — the plain `boss-button-group` wrapper has no dedicated
   coverage (the segmented single-select pattern shipped separately as Toggle, Complete above).
-  WA has `wa-button-group`
+  WA has `wa-button-group`. **Deprioritized 2026-10-07: do this last, after everything else on
+  this list** (the product doesn't use it much on the site).
 
 **DatePicker** was flagged in an earlier hand-typed list as "In Progress — Designer" — not
 verified here either way. It's absent from the Figma brief's tracked build-order list by name,
