@@ -175,7 +175,7 @@ Codebase has no dark theme — dark values were designed net-new:
 
 ## What's already built in the Figma file
 
-### Variables (counts below are from 07-30; Color is now 76 — see note)
+### Variables (Primitives 60, Color 91 as of 2026-10-08; table counts below are from 07-30)
 
 **Primitives collection** (`VariableCollectionId:1:2`, mode `1:0`)
 - 42 COLOR variables, all `scopes=[]` (hidden from pickers), WA CSS var code syntax
@@ -203,6 +203,10 @@ text → text fill, border → stroke). **Open (Dark mode only — code has no d
 status `subtle-hover` tokens alias light tints (red/90 etc.) in Dark while their `subtle` siblings use
 gray/10. Needs a design decision.
 
+**2026-10-08 colour role review: +10 Primitives (50 → 60), +13 Color variables (78 → 91), and 2 Light
+value changes** (`color/text/danger`, `color/text/warning`). They are folded into the tables below; details in
+"Colour role review (2026-10-08)".
+
 **Full semantic Color token reference** (verified live 2026-07-30 — supersedes any earlier partial
 table). "Light"/"Dark" columns name the **Primitives** variable each mode aliases to, not raw hex —
 look up the primitive in the Primitives list below if you need the actual value.
@@ -217,6 +221,7 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/surface/table-header` | surface/table-header | gray/10 |
 | `color/surface/table-hover` | surface/table-hover | gray/30 |
 | `color/surface/row-active` | surface/row-active | gray/30 |
+| `color/surface/table-expanded` | surface/table | gray/10 |
 
 *Background*
 
@@ -242,6 +247,9 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/bg/neutral/subtle-hover` | gray/90 | gray/30 |
 | `color/bg/disabled` | gray/80 | gray/40 |
 | `color/bg/option-hover` | gray/option-hover | gray/30 |
+| `color/bg/overlay/default` | alpha/black-50 | alpha/black-50 |
+| `color/bg/overlay/loading` | alpha/white-60 | alpha/black-50 |
+| `color/bg/on-filled-subtle` | alpha/white-20 | alpha/white-20 |
 
 *Text*
 
@@ -249,14 +257,15 @@ look up the primitive in the Primitives list below if you need the actual value.
 |---|---|---|
 | `color/text/primary` | gray/10 | white |
 | `color/text/secondary` | gray/50 | gray/70 |
+| `color/text/tertiary` | gray/55 | gray/60 |
 | `color/text/on-filled` | white | white |
 | `color/text/on-disabled` | gray/60 | gray/60 |
 | `color/text/disabled` | gray/60 | gray/60 |
 | `color/text/brand` | blue/50 | blue/70 |
 | `color/text/link` | blue/link | blue/70 |
-| `color/text/danger` | red/50 | red/90 ⚠️ |
+| `color/text/danger` | red/30 (was red/50 until 2026-10-08) | red/90 ⚠️ |
 | `color/text/success` | green/50 | green/90 |
-| `color/text/warning` | orange/50 | orange/90 |
+| `color/text/warning` | orange/30 (was orange/50 until 2026-10-08) | orange/90 |
 | `color/text/table-header` | gray/50 | gray/70 |
 | `color/text/label` | gray/10 | white |
 
@@ -273,7 +282,8 @@ it changes before merging.
 ⚠️ `color/text/danger` (and `color/icon/danger` below) alias to `red/90` — a *light* tint — in Dark
 mode. That looks like a bug (danger text should stay legible-strong in dark mode, not go pale) but
 it's what's live in the file as of 2026-07-30. Flagging, not silently "fixing" — confirm with
-design team before touching it.
+design team before touching it. **2026-10-08:** `color/text/danger` Light moved to red/30 (#9a261c, 7.87:1)
+for contrast. `color/icon/danger` Light is still red/50, and the Dark red/90 question is still open.
 
 *Border*
 
@@ -290,6 +300,9 @@ design team before touching it.
 | `color/border/select` | gray/select-border | gray/40 |
 | `color/border/select-disabled` | gray/select-disabled | gray/40 |
 | `color/border/control/checked` | orange/50 | orange/50 |
+| `color/border/strong` | gray/10 | gray/70 |
+| `color/border/secondary` | gray/70 | gray/50 |
+| `color/border/inverse` | white | gray/10 |
 
 *Icon*
 
@@ -303,6 +316,16 @@ design team before touching it.
 | `color/icon/on-filled` | white | white |
 | `color/icon/disabled` | gray/60 | gray/60 |
 
+*Shadow* (added 2026-10-08, scope `EFFECT_COLOR`, same in both modes; no effect styles yet)
+
+| Token | Light | Dark |
+|---|---|---|
+| `color/shadow/sm` | alpha/black-10 | alpha/black-10 |
+| `color/shadow/md` | alpha/black-25 | alpha/black-25 |
+| `color/shadow/lg` | alpha/black-30 | alpha/black-30 |
+| `color/shadow/focus` | alpha/focus-40 | alpha/focus-40 |
+| `color/shadow/focus-danger` | alpha/danger-30 | alpha/danger-30 |
+
 **Primitives collection** quick name list (1 mode, `scopes=[]`, hidden from pickers) — look these up
 by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondary-hover`,
 `blue/light-bluish-grey`, `blue/70`, `blue/60`, `blue/50`, `blue/30`, `blue/link`, `blue/link-hover`,
@@ -314,6 +337,10 @@ by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondar
 `surface/row-active`, `accent/highlight`, `accent/system-blue`, `accent/magenta`,
 `gray/spec-dark`, `gray/select-border`, `gray/select-disabled`, `gray/option-hover`,
 `gray/combobox-disabled`, `gray/tooltip-bg`, `gray/tag-resting`, `blue/button-disabled`.
+Added 2026-10-08: `orange/30` #a85800 (warning text), `gray/55` #737380 (tertiary text). Their code syntax holds
+proposed SCSS names (`$brand-warning-text-orange`, `$brand-tertiary-grey`) that are not yet in `_colors.scss`.
+Alpha primitives: `alpha/black-10|25|30|50`, `alpha/white-20|60`, `alpha/focus-40` (#49a4da),
+`alpha/danger-30` (#fa1616).
 
 **Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — **control height/padding re-synced
 2026-10-05** to RestaurantUI `_sizing.scss` (export from `thorn/sidebar-wa-refresh@a689fc70d03`). The
@@ -400,19 +427,26 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
 `Small/Medium/Large Button`, icon styles…) from the old library — not touched, not part of the scale.
 
 ### Pages
+**2026-10-08:** every page in the `1065:721` "--- In Style Guide V2 ---" section had its
+parenthetical owner/status note stripped (e.g. "Button (Steve in styleguide but not updated)" →
+"Button") and the section was alphabetized: Accordion, Alert, Breadcrumb, Button, Checkbox,
+Combobox, Dialog, Divider, Dropdown, Input, Radio, Select, Split Button, Switch, Tabbing Focus State
+Guidelines, Tag, Textarea, Toggle, Tooltip. Page IDs are unchanged. The list below is the older
+build log and does not reflect current section order.
+
 - `0:1` Cover
 - `5:2` Foundations — Colors documentation added 2026-07-17 (see Colors Foundations section below); Spacing documentation added 2026-07-21/22; Typography added 2026-10-05
 - `5:3` --- (divider)
-- `5:4` Button (Steve)
-- `460:2` Split Button (Steve) — added 2026-07-13
-- `468:2` Dropdown (Steve) — not previously logged in this brief; found during the 2026-07-22 Code Connect audit. "Dropdown Trigger" (ComponentSet `472:74`) was already built; "Dropdown Item" (new section, ComponentSet `3945:3188`) was built 2026-09-08 — see Dropdown component section below.
+- `5:4` Button
+- `460:2` Split Button — added 2026-07-13
+- `468:2` Dropdown — not previously logged in this brief; found during the 2026-07-22 Code Connect audit. "Dropdown Trigger" (ComponentSet `472:74`) was already built; "Dropdown Item" (new section, ComponentSet `3945:3188`) was built 2026-09-08 — see Dropdown component section below.
 - `741:2` --- Atoms --- (divider) — added 2026-07-20, marks the start of the atomic-design-tier section
-- `741:3` Radio (Steve) — added 2026-07-20
-- `741:4` Switch (Steve) — added 2026-07-20
-- `741:5` Tooltip (Steve) — added 2026-07-20
-- `905:598` Alert (Steve) — not previously logged in this brief; found live in the file during the
+- `741:3` Radio — added 2026-07-20
+- `741:4` Switch — added 2026-07-20
+- `741:5` Tooltip — added 2026-07-20
+- `905:598` Alert — not previously logged in this brief; found live in the file during the
   2026-07-30 Accordion build (`figma.root.children` fan-out check). 15 variants, Intent x Size.
-- `934:6` Dialog (Steve) — not previously logged in this brief; found live in the file during the
+- `934:6` Dialog — not previously logged in this brief; found live in the file during the
   2026-07-30 Accordion build. Header/Footer boolean combos. **Renamed 2026-09-08** from "Modal
   (Steve)" (ComponentSet `934:427` renamed "Modal" → "Dialog") to match WebAwesome's own naming
   (`wa-dialog`) ahead of the Tabs/Toast/Popover build-order additions — see the Dialog page's own
@@ -420,7 +454,7 @@ section (`4887:162`, below Focus / Interaction States) with live-style specimens
 - `942:2` Floating Action Bar (Steve decisions keep and improve) — not previously logged in this brief; found live in
   the file during the 2026-07-30 Accordion build. Iteration 1 chosen and rebuilt from 0.1 components
   2026-10-06 — see Floating Action Bar component section below.
-- `1142:2` Accordion (Steve) — added 2026-07-30, see Accordion component section below.
+- `1142:2` Accordion — added 2026-07-30, see Accordion component section below.
 - `1617:2` Alert Banner (Steve) — added 2026-08-14, see Alert Banner component section below.
 - `3900:2` Tabs (Steve) — added 2026-09-08, see Tab component section below.
 - `4692:163` --- Base Components --- (divider, plus `4692:162` spacer) — added 2026-09-25, new page
@@ -448,7 +482,7 @@ Split Button ID correction on 2026-07-22. `get_metadata` with no `nodeId` also u
 page list (returned only Cover); `figma.root.children` via `use_figma` was the source that actually
 matched the file. Prefer that method over `get_metadata`'s bare page listing when auditing this file.
 
-### Button component (page `5:4` "Button (Steve)", ComponentSet ID `3941:32`)
+### Button component (page `5:4` "Button", ComponentSet ID `3941:32`)
 **ID corrected 2026-10-06:** this heading previously said `455:92`, which no longer resolves. The live
 Button ComponentSet is `3941:32` (60 variants: Variant × Appearance × Size × State, plus Leading/Trailing
 Icon + Glyph properties), confirmed via an Iteration 2 FAB instance's `mainComponent.parent`.
@@ -529,7 +563,7 @@ not a regression.
 
 ---
 
-### Split Button component (page `460:2` "Split Button (Steve)", ComponentSet ID `540:7`)
+### Split Button component (page `460:2` "Split Button", ComponentSet ID `540:7`)
 **Added 2026-07-13.** **ID correction (2026-07-22):** this brief previously listed the ComponentSet
 ID as `461:110`. That node no longer exists — confirmed via direct lookup during the Code Connect
 audit. The live component now lives at `540:7` ("Split Button (FA chevron-down)" section), created
@@ -586,7 +620,7 @@ after that fix shipped. Marked resolved on the page itself.
 
 ---
 
-### Dropdown component (page `468:2` "Dropdown (Steve)")
+### Dropdown component (page `468:2` "Dropdown")
 
 **Dropdown Trigger** (ComponentSet `472:74`) was already built (see the 2026-07-22 Code Connect
 audit section below) — audited 2026-09-08, no real standalone WA equivalent to diff against (WA's
@@ -680,13 +714,25 @@ iterations (1: plain icon+label `Action Item` rows, component `942:6`; 2: button
   bar and its instances. They were restored explicitly. `findOne` also skips the children of a
   group hidden by a boolean property, so the slots in a hidden group need separate handling.
 - Examples (buttons only / mixed / primary-only with 12 selected), a doc frame and a To-Do frame.
-- To-Do still open: fixed slot count (5); old
-  FAB's Metric Group / No Actions Available props not modeled; tag name (`boss-floating-action-bar`
-  vs `boss-action-bar`) undecided. No WA equivalent exists (audited 2026-09-08).
+- **Decisions 2026-10-08:** tag name is `boss-floating-action-bar`. The old FAB's Metric Group is
+  still required. Dev ticket BOPD-897 is ready to be picked up and assigned to Hung.
+- **Metric Group + No Actions Available added 2026-10-08**, rebuilt from the old library's
+  `floating action bar` (`.metric group`, `.metric`, `.no actions`):
+  - **`FAB Metric`** (Component `5105:321`) is the metric slot: Caption label
+    (`color/text/secondary`) over a Body/2 value (`color/text/primary`), `spacing/1` gap. Properties:
+    `Label`, `Value`, `Leading Icon` (off) + `Leading Icon Glyph` (Font Awesome, default `star`).
+  - On the bar: `Show Metric Group` (off by default) shows a divider + `Metric Group` (4 FAB Metric
+    instances, `spacing/6` gap) after the count. `No Actions Available` (off by default) shows a
+    divider + a Body/2 "No Actions Available" message. Like the old FAB, it doesn't hide the action
+    groups by itself: turn off Show Secondary/Primary Actions with it.
+  - Two new examples: metric group (4 invoices, Subtotal/Tax/Total, primary actions only) and
+    no actions available.
+- To-Do still open: fixed slot count (5 actions, 4 metrics). No WA equivalent exists
+  (audited 2026-09-08).
 
 ---
 
-### Accordion component (page `1142:2` "Accordion (Steve)", ComponentSet ID `1154:512`)
+### Accordion component (page `1142:2` "Accordion", ComponentSet ID `1154:512`)
 **Added 2026-07-30.** A single collapsible disclosure item. Real tag: `wa-details` — checked
 `get_libraries` FIRST per this brief's standing rule (see "Real WebAwesome Figma library" section
 above); the Back Office Design Library and BOSS_PD.md have no accordion/details spec of their own,
@@ -755,8 +801,8 @@ carried over automatically through the clone-and-reorder process used to add Ico
 
 ### Alert Banner component (page `1617:2` "Alert Banner (Steve)", ComponentSet ID `1621:156`)
 **Added 2026-08-14.** A slim, full-width, single-line notice bar — icon + message + optional
-inline action link — distinct from the card-style "Alert" component already on the `Alert
-(Steve)` page (`910:77`, Title/Message/Close pattern).
+inline action link — distinct from the card-style "Alert" component already on the "Alert"
+page (`910:77`, Title/Message/Close pattern).
 
 **5 variants** = `Intent` (Brand/Success/Warning/Danger/Neutral), combined into one ComponentSet
 named `Alert Banner`.
@@ -883,7 +929,9 @@ in this section is understood as stale, not currently accurate.
 "Floating Action Bar" (page `942:2`) also audited 2026-09-08 — no real WA equivalent for either.**
 Alert: same `wa-callout` mismatch as Alert Banner above. Floating Action Bar: no matching WA
 component exists at all (`search_design_system` for the term returns nothing relevant). No changes
-made to either component.
+made to either component. **2026-10-08:** `910:77` no longer exists. In `925:16`, Type=Warning's top stroke and
+icon moved from the old library's `Color/Alert/warning` to `color/bg/warning/default` / `color/icon/warning`, and the
+Type=Error icon moved from `color/text/danger` to `color/icon/danger`. See "Colour role review (2026-10-08)".
 
 **Stale To-Do item found and corrected on Floating Action Bar** while checking every page's To-Do
 list for staleness: item 7 flagged that Modal (now Dialog) needed the same `spacing/N`-resolves-to-
@@ -1059,7 +1107,7 @@ one-page-per-component convention — Button, Checkbox, Input, etc. each have th
 NOT bundled onto a single shared "Atoms" page. A new divider page `--- Atoms ---` (`741:2`)
 was added instead, marking the start of the atomic-tier section in the page list.
 
-### Radio component (page `741:3` "Radio (Steve)", ComponentSet ID `771:432`)
+### Radio component (page `741:3` "Radio", ComponentSet ID `771:432`)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Sourced from
 the real "Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `53761025bdb44a5b9c7a4880b25
 681646d038bf0`) via `importComponentSetByKeyAsync` — imported the Appearance=Default/Size=Medium
@@ -1122,7 +1170,7 @@ for design team confirmation — if that live hover behavior should be preserved
 as a dev-side CSS rule outside the design system rather than as a Figma variant, but that's a call
 for whoever owns `boss-checkbox`, not something to assume here.
 
-### Dialog component (page `934:6` "Dialog (Steve)", Component ID `934:423` — was ComponentSet
+### Dialog component (page `934:6` "Dialog", Component ID `934:423` — was ComponentSet
 `934:427` before the 2026-09-08 rebuild below)
 No full write-up existed elsewhere in this brief before this audit (see the page-list entry above
 and the earlier Modal→Dialog rename note) — logged in full here.
@@ -1168,7 +1216,7 @@ node but not its parent frame, silently clipping the new content at the old bott
 the actual image. Fixed by resizing the frame explicitly to the text's new bottom edge + margin.
 Documented as a new gotcha in `FIGMA-WORKFLOW-NOTES.md` §7.
 
-### Switch component (page `741:4` "Switch (Steve)", ComponentSet ID `775:666`)
+### Switch component (page `741:4` "Switch", ComponentSet ID `775:666`)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Sourced from
 the real "Web-Awesome-3-Design-Kit-v2-0-0" org library (component key `02ffbeb3bc023ecbed752329cd
 c9381c022a5860`) — imported the Size=Medium variants, detached, rebound colors. Track: 35×20px pill
@@ -1195,7 +1243,7 @@ compliant, no changes needed.** `Value` × `SwitchState` (Off/On × Default/Disa
 real `Checked` × `Disabled` axes exactly for the Medium size this file models (Small/Large are an
 established, documented out-of-scope decision, not a gap). No further action taken.
 
-### Tooltip component (page `741:5` "Tooltip (Steve)", ComponentSet ID `3925:3223` — was `769:16`
+### Tooltip component (page `741:5` "Tooltip", ComponentSet ID `3925:3223` — was `769:16`
 before the 2026-09-08 rebuild below)
 **Added 2026-07-20, rebuilt from the real WebAwesome library same day (see below).** Originally
 ported from the old Design Library's own Tooltip component (page "Tooltip", `14108:1490`, 12
@@ -1340,9 +1388,50 @@ to match Button and Dropdown Trigger.
 ~160 text-variable binds.
 
 **Left as-is, no token exists (deliberate translucency or no local equivalent):**
-- Alert (compact, `910:77`/`925:16`): `#ffc061` warning fill on 2 layers. It came from the old
-  library's `Color/Alert/warning`, and no local token has that value.
+- ~~Alert (compact, `910:77`/`925:16`): `#ffc061` warning fill on 2 layers. It came from the old
+  library's `Color/Alert/warning`, and no local token has that value.~~ **Resolved 2026-10-08**: rebound to the
+  warning roles (colour role review Q2: yellow folds into orange warning). `910:77` no longer exists.
 - Badge "Pulse Glow" `#23408f` @ 35%. Drawer Body scroll thumb `#000000` @ 25%.
+
+## Colour role review (2026-10-08)
+
+**Source:** engineering's `designer-role-review.md` (RestaurantUI colours with no `--boss-color-*` role). It was
+answered in `~/Downloads/designer-role-review-decisions.md` and `.csv` (190 rows: 155 fold, 15 new, 10 merge, 9 keep,
+1 delete), with the original's Decision column filled in. The decision boards are in Figma file
+`nUcfpYzFFnK5yM6P60J7TQ` ("designer-role-review-decisions"), one page per question.
+
+**The 7 designer decisions:**
+1. **Contrast: darken text role values** rather than adding `*-strong` roles. Danger text → red/30, warning text
+   → orange/30 (#a85800), tertiary → gray/55 (#737380). Only the text roles change; bg, border and icon keep the
+   vivid values.
+2. **Warning yellow #ffc061 folds into the orange warning family.** No caution roles.
+3. **#0071ce folds by purpose** (link / brand / focus). No info status family and no Info Callout variant.
+4. **Payroll status:** colour only where action is needed. Finished → text-secondary, late (both) → danger, due
+   today → warning, not due → tertiary.
+5. **Divider:** brand-subtle retired, `border/secondary` = #9a9aa3.
+6. **`$marketing-*` palette: KEEP everywhere** (designer chose this over the recommendation to fold it in
+   product screens). The eight colours stay raw and outside the role system.
+7. **`border/strong` = #18191d** (same primitive as `text/primary`), not #000000.
+
+**Applied in this file:** Primitives and Color additions plus the two value changes listed in the Variables
+section. Divider and Alert edits are below.
+
+**Divider (`601:9`):** added a `Color` variant property: Default (`color/border/neutral`, matching code default
+`BrandColors.DarkGreyBorderGrey` #d3d8e0; previously `color/border/select` #d7d8dc), Strong, Secondary and Inverse,
+giving 8 variants. In code these are `colorInput` values, not variants. brand-subtle was never a Figma variant,
+so nothing was deleted. The 9 existing instances map to Default. A locked dark backdrop rectangle sits behind the
+Inverse row in the Divider section, for documentation only. The component description is updated.
+
+**Open:**
+- Add `orange/30` / `gray/55` to `_colors.scss` and the new `--boss-color-*` roles to `_roles.scss`
+  (engineering).
+- `color/shadow/*` have no effect styles yet. Offsets and blur for sm/md/lg still need defining.
+- Dark values of the 13 new variables are best guesses (no dark theme in code).
+- Other icons in the file may be bound to `color/text/danger` or `color/text/warning` and turned darker on
+  2026-10-08. Only the Alert was checked and fixed; a file-wide scan has not been run.
+- Not yet published.
+
+---
 
 ## Publish & Code Connect audit (2026-07-22)
 
@@ -1640,6 +1729,8 @@ COMPONENT-STATUS.md.
   tab-active stroke was reviewed, not ported.
 - ~~Radio Group's Button appearance uses brand blue while Default appearance uses orange checked.~~
   Aligned 2026-10-07: Button appearance now uses the checked tokens.
+- **New 2026-10-08 — colour role review follow-ups:** shadow effect styles, a file-wide scan for icons bound to
+  text danger/warning roles, the new primitives' SCSS names, and publishing. See "Colour role review (2026-10-08)".
 
 ---
 
