@@ -1427,8 +1427,13 @@ Inverse row in the Divider section, for documentation only. The component descri
   (engineering).
 - `color/shadow/*` have no effect styles yet. Offsets and blur for sm/md/lg still need defining.
 - Dark values of the 13 new variables are best guesses (no dark theme in code).
-- Other icons in the file may be bound to `color/text/danger` or `color/text/warning` and turned darker on
-  2026-10-08. Only the Alert was checked and fixed; a file-wide scan has not been run.
+- ~~File-wide scan for icons bound to `color/text/danger|warning`~~. **Done 2026-10-08** (52 pages): 39 icons, all
+  in main components. The 6 Select/Combobox Error-state warning icons were rebound to `color/icon/danger`. Code
+  has no icon there; `boss-select`/`boss-combobox` `.invalid` colours border, focus ring and hint with raw
+  `$brand-warn` #fa1616. The 33 Badge (Warning/Danger Start/End icons) and Dropdown Item (Variant=Danger)
+  icons stay on the text roles on purpose: they sit inline with their label, which in code they likely
+  match via `currentColor` (not verified in the Badge/Dropdown code). **Discrepancy, not resolved:** Figma's
+  Select/Combobox Error states show a warning icon that the code components don't render.
 - Not yet published.
 
 ---
@@ -1729,8 +1734,8 @@ COMPONENT-STATUS.md.
   tab-active stroke was reviewed, not ported.
 - ~~Radio Group's Button appearance uses brand blue while Default appearance uses orange checked.~~
   Aligned 2026-10-07: Button appearance now uses the checked tokens.
-- **New 2026-10-08 — colour role review follow-ups:** shadow effect styles, a file-wide scan for icons bound to
-  text danger/warning roles, the new primitives' SCSS names, and publishing. See "Colour role review (2026-10-08)".
+- **New 2026-10-08 — colour role review follow-ups:** shadow effect styles, the new primitives' SCSS names, the
+  Select/Combobox error-icon discrepancy, and publishing. See "Colour role review (2026-10-08)".
 
 ---
 
