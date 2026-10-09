@@ -65,6 +65,16 @@ below instead, even if the design side is finished.
 - **Switch** — OR-13001, Code Review, not yet merged
 - **Tooltip** — OR-13002, Code Review, not yet merged
 - **Dialog** — OR-13003, Code Review, not yet merged
+- **Spinner** — `boss-spinner` wraps `wa-spinner` · Dev: [PR #9722](https://github.com/orderlyapp/orderly/pull/9722)
+  (BOPD-836), Testing (QE), not yet merged (includes the style-guide-v2 doc page) · Figma:
+  [BOPD-878](https://diningalliance.atlassian.net/browse/BOPD-878) (Done 2026-10-09), **design built 2026-10-08** on page
+  "Spinner (Steve)" `5135:162` in Base Components, set `5135:179`: Size Inline (16px, 2px track, Color
+  Default / Brand / On Filled, track = arc at 25%) / Section (64px, 4px track, brand arc on gray/90).
+  Built from the spec (the WA 3 kit has no Spinner). The branded bowl page loader is still out of scope.
+  Design decisions 2026-10-09 (posted on PR #9722): remove `indicatorColor`/`trackColor`, keep the
+  inline track at currentColor 25%, keep Section at 64px/4px, add an optional Section label (built in
+  Figma as Label + Label Text), and use skeleton rows for empty loading tables. The bowl page loader is
+  deferred to its own ticket. (OR-13623 and OR-12020 are the old keys of BOPD-878 and BOPD-836.)
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -148,12 +158,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Loading Spinner** — `wa-spinner` · Figma: [OR-13623](https://diningalliance.atlassian.net/browse/OR-13623) · Dev: OR-12020. **Parked 2026-10-07**
-  pending a scope decision. The old library's Loading Screens page is not a spinner: it is a branded
-  loading card (orange mixing bowl, "Digging in the back pantry..." after 500ms, a list of rotating
-  kitchen messages) plus skeleton loading. The WA 3 Design Kit has no Spinner page (it does have
-  Skeleton, Progress Ring and Progress Bar), so a generic spinner would be hand-built from the docs.
-  Options were: generic spinner only, spinner + branded card, branded card only.
 - **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
 - **Quantity Selector** — `wa-number-input` · Figma: [OR-13625](https://diningalliance.atlassian.net/browse/OR-13625)
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
