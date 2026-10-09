@@ -2017,3 +2017,15 @@ which stayed at the component's natural column positions and bunched up when a r
 `Skeleton Cell` frame (copied cell chrome, same `layoutGrow` as the source cell) holding the bar. Report rows needed Second / Third Group on and
 skeleton cells inside `group-2/3` at a fixed 32px height (FILL collapses inside the hug-height group frames). Table Cell gained
 `Size=Standard, Type=Empty`. BOPD-1167 Done 2026-10-09; dev story BOPD-1177 (boss-table loading state with wa-skeleton).
+
+### Documentation pages (2026-10-09): Icons, Toast Notifications, Animations
+- **Icons (Steve)** `5201:166` (BOPD-876): no Icon component, per the standing decision; documents the Font Awesome 7 Pro glyph approach. Code uses
+  `<fa-icon>` (500+ usages, aliases in `IconAliases.ts`), and Font Awesome stays as a locked epic decision. Size/weight table maps the Figma icon text styles to
+  code classes (`.xsml/.sml/.med/.lg-*-icon`, where "thin" = weight 400, i.e. Regular). Also: colour roles (icon roles only, per colour review H2), 24 common glyphs,
+  and editing via the `… Glyph` text properties.
+- **Toast page, "Toast / Notifications (wa-toast)"** (BOPD-863): placement map, stacked example (12px `spacing/3` gap), duration guidance
+  (5s confirmations; 0 for warning / danger / actions), code, and legacy `alert` service (sl-alert, title + message, refreshing spinner) notes. To-Do 6:
+  Toast Item 360 vs WA stack 448px, and the optional title. Toast page sections were restacked (the To-Do already overlapped the Toast section by 3px).
+- **Animations (Steve)** `5203:796` (BOPD-860): WA `--wa-transition-fast/normal/slow` 75/150/300ms ease, plus the app's Angular animation library
+  (fades 0.3-0.5s, slides / size changes 200ms ease-out / ease-in, rotate 200ms linear, Tada). `wa-animation` is unused. A Smart Animate prototype (toast
+  enter / exit, 150ms) uses frames placed directly in the section: NAVIGATE reactions reject frames nested in an auto-layout wrapper.

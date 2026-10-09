@@ -131,6 +131,15 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Icons (documentation)** — Font Awesome 7 Pro glyphs, no Icon component (standing decision 2026-07-20) · Figma:
+  [BOPD-876](https://diningalliance.atlassian.net/browse/BOPD-876) (was OR-13621, Done 2026-10-09) · Dev: [BOPD-844](https://diningalliance.atlassian.net/browse/BOPD-844) (was OR-12017; only the 3 raw `sl-icon` → `wa-icon`;
+  `fa-icon` stays). Page "Icons (Steve)" `5201:166`, built 2026-10-09: sizes / weights with code classes, colour roles, 24 common glyphs, glyph editing.
+- **Toast Notifications (documentation)** — `wa-toast` container · Figma: [BOPD-863](https://diningalliance.atlassian.net/browse/BOPD-863) (was OR-13631, Done 2026-10-09) · Dev:
+  [BOPD-916](https://diningalliance.atlassian.net/browse/BOPD-916) (was OR-11863, To Do). A "Toast / Notifications (wa-toast)" section was added to the Toast page on 2026-10-09:
+  placement map (default top-end), stacked example, duration guidance, code, legacy alert-service notes. Open: Toast Item 360px vs WA 448px stack, optional title.
+- **Reusable Animations (documentation)** · Figma: [BOPD-860](https://diningalliance.atlassian.net/browse/BOPD-860) (was OR-13633, Done 2026-10-09). Page "Animations (Steve)"
+  `5203:796`, built 2026-10-09: WA transition tokens (75/150/300ms ease) + the app's Angular animation library (`src/app/animations`), guidance,
+  and a Smart Animate toast prototype. `wa-animation` is unused. Open: align library timings to WA tokens, add reduced-motion support.
 - **Icon Button + More Menu** — `orderly-button` (icon-only) + `wa-dropdown` · Figma: [BOPD-859](https://diningalliance.atlassian.net/browse/BOPD-859) (was OR-13632, Done 2026-10-09) ·
   Dev: [BOPD-917](https://diningalliance.atlassian.net/browse/BOPD-917) (was OR-11862, To Do: sl-menu → wa-dropdown incl. moreOptionsMenu). **Design built 2026-10-09**
   on page "Icon Button (Steve)" `5182:198`: new `Icon Button` set `5182:343` (36 variants cloned from Button: Neutral Plain +
@@ -187,13 +196,7 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Figma design not started — WebAwesome has a matching component, Figma story filed (To Do).**
 Build these from the WA kit, not from scratch. Merged from `boss-design-system-docs/Todo.md`
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
-- **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
-  toast triggering (stacking/placement container), distinct from the Toast Item component above.
-  Runtime-only, so the story covers documentation, not a new component
-- **Reusable Animations** — `wa-animation` · Figma: [OR-13633](https://diningalliance.atlassian.net/browse/OR-13633). Runtime-only, so the story
-  covers documentation, not a new component
 - **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019. **Deprioritized 2026-10-09: back of the
   line, after every other remaining component except Button Group** (which stays last).
 
