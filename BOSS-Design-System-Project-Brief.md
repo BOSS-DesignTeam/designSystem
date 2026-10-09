@@ -1977,3 +1977,14 @@ shipped look**: 40px rows, an FA icon (globe / shop / building) before Body/1 la
 brand-blue selected bar); the To-Do says to raise it with devs. Tree Item: `Level` 1-5 × `Expanded`, properties Children
 (chevron), Icon, Icon Glyph, Label. Token drift from code's raw colors ($tree-text #3f3f46, $tree-expand-icon #52525b, lightgray,
 5px radius) is logged in the To-Do. Selection (single highlight vs full WA vs none) is on hold, per the user.
+
+### Icon Button component + More Menu pattern (page `5182:198` "Icon Button (Steve)", ComponentSet `5182:343`)
+Built 2026-10-09 for BOPD-859. The user's idea: the "3 Button More Menu" is just an icon-only button with a kebab glyph. Button had no
+icon-only option (its label can't be hidden, and its padding isn't square), so a separate Icon Button was built, as the WA kit models it.
+Each variant was cloned from the matching Button variant (fills, strokes, opacity, radius and height bindings come along for free), then the label and
+trailing icon were removed, padding zeroed, and width bound to the same `height/control/*` variable to make it square. Variants: Neutral Plain (icon
+`color/icon/default`, hover `color/bg/neutral/subtle`; added because a utility trigger shouldn't be brand blue) + Brand
+Filled/Outlined/Plain, × Small/Medium/Large (32/32/50) × Default/Hover/Disabled = 36. `Icon Glyph` TEXT defaults to `ellipsis-vertical`
+(user choice over the horizontal `ellipsis` that Card Action uses). The More Menu pattern section composes a Neutral Plain trigger with a
+panel of Dropdown Items (`Elevation/Dropdown`, `radius/l`) + Divider + a Danger item, and lists legacy `MoreOptionsMenu` (13 usages) vs
+`wa-dropdown` coverage. Dev ticket: BOPD-917.

@@ -125,6 +125,13 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Icon Button + More Menu** — `orderly-button` (icon-only) + `wa-dropdown` · Figma: [BOPD-859](https://diningalliance.atlassian.net/browse/BOPD-859) (was OR-13632, Done 2026-10-09) ·
+  Dev: [BOPD-917](https://diningalliance.atlassian.net/browse/BOPD-917) (was OR-11862, To Do: sl-menu → wa-dropdown incl. moreOptionsMenu). **Design built 2026-10-09**
+  on page "Icon Button (Steve)" `5182:198`: new `Icon Button` set `5182:343` (36 variants cloned from Button: Neutral Plain +
+  Brand Filled/Outlined/Plain × S/M/L × Default/Hover/Disabled, square, `Icon Glyph` default `ellipsis-vertical`) and a More Menu
+  pattern section (Neutral Plain trigger + Dropdown Items + Divider + Danger item), listing legacy MoreOptionsMenu behavior WA
+  doesn't cover (disabled-item tooltip, stay-open default, stopImmediatePropagation, left-start placement). Follow-up: replace
+  Card's "Card Action" stand-in with Icon Button.
 - **Quantity Selector** — `wa-number-input` · Figma: [BOPD-870](https://diningalliance.atlassian.net/browse/BOPD-870) (was OR-13625, Done 2026-10-09) · Dev:
   [BOPD-1168](https://diningalliance.atlassian.net/browse/BOPD-1168) (To Do). **Design built 2026-10-09** on page "Quantity Selector (Steve)" `5171:162` in Base Components, set
   `5171:332`: built from our Input (the WA 3 kit has no Number Input). `State` Default/Focus/Error/Error Focused/Disabled
@@ -180,10 +187,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
   Runtime-only, so the story covers documentation, not a new component
-- **3 Button More Menu** — `wa-dropdown` · Figma: [OR-13632](https://diningalliance.atlassian.net/browse/OR-13632) · Dev: OR-11862. A pattern on the
-  existing Dropdown with an icon-button trigger. Its closest V2 concept is Dropdown, but that's a
-  newer general-purpose component, not a renamed/ported version of the old `MoreOptionsMenu` —
-  don't assume parity
 - **Reusable Animations** — `wa-animation` · Figma: [OR-13633](https://diningalliance.atlassian.net/browse/OR-13633). Runtime-only, so the story
   covers documentation, not a new component
 - **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019. **Deprioritized 2026-10-09: back of the
