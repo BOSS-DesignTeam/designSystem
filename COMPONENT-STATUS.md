@@ -87,13 +87,6 @@ reference example for future doc-page authors, but it's currently unreachable in
 
 ## In Progress — Designer
 
-- **Floating Action Bar** — Figma story [BOPD-1042](https://diningalliance.atlassian.net/browse/BOPD-1042) (In Progress).
-  Iteration 1 was chosen and rebuilt from 0.1 components on 2026-10-06 (page `942:2`, section
-  "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or a Dropdown Trigger, all Plain,
-  with no Filled primary button. No WebAwesome equivalent. Still open: the tag name
-  (`boss-floating-action-bar` vs `boss-action-bar`) and whether the old Metric Group / No Actions
-  options are needed. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) (To Do), linked to the Figma story.
-  Iterations 2–3 on the same page are superseded, not deleted.
 - **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
   [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
   `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,
@@ -126,6 +119,12 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Floating Action Bar** — `boss-floating-action-bar` (tag name decided 2026-10-08). Figma story
+  [BOPD-1042](https://diningalliance.atlassian.net/browse/BOPD-1042). Iteration 1 was rebuilt from 0.1 components on 2026-10-06 (page `942:2`, section
+  "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or a Dropdown Trigger, all Plain,
+  with no Filled primary button. No WebAwesome equivalent. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) is ready to be picked up
+  and assigned to Hung (2026-10-08). Metric Group and No Actions Available options added to the
+  Figma component 2026-10-08 (both required).
 - **Radio Group** — design done 2026-09-29 (Radio Group: Orientation × Appearance Default/Button ×
   Disabled, Medium only, plus a new Radio Button building block; page `4754:162`, Base Components
   section). WA: `wa-radio-group` + `wa-radio appearance="button"`. Figma story: [OR-13675](https://diningalliance.atlassian.net/browse/OR-13675) · Dev: OR-11860. The
