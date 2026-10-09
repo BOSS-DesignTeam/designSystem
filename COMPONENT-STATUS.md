@@ -139,7 +139,7 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
-- **Filter Drawer + Search Bar** — shipped `<filter-drawer>` (29 usages) and `<search-bar>` (48), no WA equivalent, no Figma ticket. **Design built 2026-10-09**
+- **Filter Drawer + Search Bar** — shipped `<filter-drawer>` (29 usages) and `<search-bar>` (48), no WA equivalent. Figma story [BOPD-1182](https://diningalliance.atlassian.net/browse/BOPD-1182) (filed 2026-10-09). **Design built 2026-10-09**
   on page "Filter Drawer (Steve)" `5221:3845`: `Search Bar` `5221:3920` (State × Width Fixed / Full, from Input) and `Filter Drawer` `5221:19847` (State Collapsed /
   Expanded × Filters None / Applied; Top Header, Dark Panel, Top Header Content / Filter Row swap slots, Filter Count). **Correction:** the Filter Drawer isn't
   a Drawer overlay (this file said it was a pattern on Drawer, OR-13619): it's an inline collapsible filter bar on `boss-details`. Open: rename it
