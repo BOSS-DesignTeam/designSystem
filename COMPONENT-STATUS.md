@@ -160,7 +160,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
 - **Quantity Selector** — `wa-number-input` · Figma: [OR-13625](https://diningalliance.atlassian.net/browse/OR-13625)
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
-- **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019
 - **Progress Bar** — `wa-progress-bar` · Figma: [OR-13628](https://diningalliance.atlassian.net/browse/OR-13628) · Dev: OR-12018
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
@@ -171,6 +170,8 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
   don't assume parity
 - **Reusable Animations** — `wa-animation` · Figma: [OR-13633](https://diningalliance.atlassian.net/browse/OR-13633). Runtime-only, so the story
   covers documentation, not a new component
+- **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019. **Deprioritized 2026-10-09: back of the
+  line, after every other remaining component except Button Group** (which stays last).
 
 **No WebAwesome component — custom build or pattern, no Figma story yet:**
 - Address
