@@ -119,6 +119,12 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Quantity Selector** — `wa-number-input` · Figma: [BOPD-870](https://diningalliance.atlassian.net/browse/BOPD-870) (was OR-13625, Done 2026-10-09) · Dev:
+  [BOPD-1168](https://diningalliance.atlassian.net/browse/BOPD-1168) (To Do). **Design built 2026-10-09** on page "Quantity Selector (Steve)" `5171:162` in Base Components, set
+  `5171:332`: built from our Input (the WA 3 kit has no Number Input). `State` Default/Focus/Error/Error Focused/Disabled
+  × `Limit` None/Min/Max (13 variants), plus Value, Steppers, Label, Required, Hint, Error Text. Decided 2026-10-09: WA neutral
+  steppers inside the field, 120px default width. Code drift: `quantity-selector` (Ordering spec item, supplier
+  cart) uses red/green circle icons outside a 48px box. The `boss-*` wrapper name is still open.
 - **Progress Bar** — `wa-progress-bar` · Figma: [BOPD-855](https://diningalliance.atlassian.net/browse/BOPD-855) (was OR-13628, Done 2026-10-09) · Dev:
   [BOPD-842](https://diningalliance.atlassian.net/browse/BOPD-842) (was OR-12018, To Do). **Design built 2026-10-09** on page "Progress Bar (Steve)"
   `5168:181` in Base Components, set `5168:222`: imported from the WA 3 kit, detached, rebound. `Value`
@@ -165,7 +171,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
 - **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
-- **Quantity Selector** — `wa-number-input` · Figma: [OR-13625](https://diningalliance.atlassian.net/browse/OR-13625)
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.

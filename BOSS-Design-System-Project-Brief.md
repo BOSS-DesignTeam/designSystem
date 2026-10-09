@@ -1957,3 +1957,14 @@ inside the fill. The Indicator uses Scale constraints, so resizing keeps the per
 defaults over shipped code (brand blue only, 16px, label inside, Indeterminate included). The code drift is for
 BOPD-842 (was OR-12018): `boss-progress-bar` wraps `sl-progress-bar` at 9px with `$alert-orange` #ffc061.
 The overview Budget and AdminUi billing bars use raw `sl-progress-bar` with status colors that aren't modeled.
+
+### Quantity Selector component (page `5171:162` "Quantity Selector (Steve)", ComponentSet `5171:332`)
+Built 2026-10-09 for BOPD-870. Neither library has a Number Input, so it was built from Input's structure and tokens: field
+`height/control/m`, `radius/m`, `color/bg/input/resting` / `disabled`, 1px `color/border/default` / `focus` / `danger`,
+`Focus/Ring` / `Error/Ring`, Body/2 label/hint, Body/1 value. Per wa-number-input's CSS, the steppers sit inside the field
+(− start, + end), are square 30px (control height minus border), use neutral icon ink (`color/icon/default`, FA
+`minus`/`plus` in Sml Reg Icon) and dim to 50% at a limit. The value is centered. `State` Default/Focus/Error/Error
+Focused/Disabled × `Limit` None/Min/Max (Disabled only with None, so 13 variants). Properties: Value, Steppers (true),
+Label (false) + Label Text, Required (false), Hint (false) + Hint Text, Error Text. User decisions 2026-10-09: WA
+neutral steppers inside the field (not the code's red/green circles outside), 120px default width, Limit modeled.
+BOPD-870 Done 2026-10-09. Dev story BOPD-1168 (To Do). Today's `quantity-selector` has 2 usages (specItem, focusedSupplierCart).
