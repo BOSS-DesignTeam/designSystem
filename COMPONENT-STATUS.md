@@ -78,8 +78,9 @@ below instead, even if the design side is finished.
   inline track at currentColor 25%, keep Section at 64px/4px, add an optional Section label (built in
   Figma as Label + Label Text), and use skeleton rows for empty loading tables. The bowl page loader is
   deferred to its own ticket. (OR-13623 and OR-12020 are the old keys of BOPD-878 and BOPD-836.)
-  **Follow-up needed, no ticket yet:** the PR merged before those decisions were posted (comment on #9722, 2026-10-09). Master still has the
-  `indicatorColor` / `trackColor` inputs (and the Payroll register pink override) and no Section label. Needs a dev story to remove the overrides and add the label.
+  **Follow-up: [BOPD-1185](https://diningalliance.atlassian.net/browse/BOPD-1185) (Code Review), [PR #9736](https://github.com/orderlyapp/orderly/pull/9736).** PR #9722 merged before those decisions were posted (comment on #9722, 2026-10-09), so master still had the
+  `indicatorColor` / `trackColor` inputs (and the Payroll register pink override) and no Section label. The fix is committed locally on branch
+  `steve.mings/BOPD-1185-boss-spinner-remove-overrides-add-label` (removes both inputs, Payroll back to the standard spinner, adds `label`, updates the style-guide page). Opened 2026-10-09; lint and a template type-check pass, not yet run in a browser.
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -245,7 +246,7 @@ directly before assuming status):**
 **DatePicker** and **Financial Calendar Range** moved to In Progress — Designer on 2026-10-09 (Date Input build).
 
 **Follow-ups found during the 2026-10-09 design work, no Jira ticket yet:**
-- **Spinner:** remove `indicatorColor` / `trackColor` and add the Section label (see the Spinner entry above).
+- **Spinner:** tracked as BOPD-1185 (see the Spinner entry above).
 - **Hand-built buttons:** `#reviewOrderBtn` (filled navy "Review Order") and `#saveForLaterBtn` in `pages/ordering/orderCartFlyout/orderCartFlyout.scss:~103` are custom CSS. Their hover was orange; the decided hover is the real Button hover (`bg-button-brand-hover` / `bg-button-brand-subtle-hover`, text stays). Replace both with `orderly-button`.
 - **Empty State:** rename the `<empty-state>` selector to `boss-empty-state`.
 - **Colour hover wiring:** the 79 orange hover rules in colour-review section I need dev wiring (brand hover, with the listed exceptions).
