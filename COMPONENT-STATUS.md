@@ -87,6 +87,12 @@ reference example for future doc-page authors, but it's currently unreachable in
 
 ## In Progress — Designer
 
+- **Organizational Tree Display** — `boss-tree` wraps `wa-tree` + `wa-tree-item` · Figma: [BOPD-869](https://diningalliance.atlassian.net/browse/BOPD-869)
+  (was OR-13624) · Dev: [BOPD-816](https://diningalliance.atlassian.net/browse/BOPD-816) (was OR-11848) **Done**, already shipped. Figma build started 2026-10-09 on
+  page "Organizational Tree (Steve)" `5176:162` in Base Components: `Tree Item` set `5177:306` (Level 1-5 × Expanded, plus Children /
+  Icon / Icon Glyph / Label) and a `Tree` container `5177:307`. **Follows the shipped boss-tree look, not WA** (decided 2026-10-09):
+  40px rows, FA icons, row lines, bordered box, 20px indent. That mismatch needs to be raised with devs (page To-Do 1).
+  Open: how much selection to model (on hold).
 - **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
   [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
   `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,
@@ -170,7 +176,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.

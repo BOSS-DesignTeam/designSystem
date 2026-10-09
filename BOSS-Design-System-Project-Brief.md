@@ -1968,3 +1968,12 @@ Focused/Disabled × `Limit` None/Min/Max (Disabled only with None, so 13 variant
 Label (false) + Label Text, Required (false), Hint (false) + Hint Text, Error Text. User decisions 2026-10-09: WA
 neutral steppers inside the field (not the code's red/green circles outside), 120px default width, Limit modeled.
 BOPD-870 Done 2026-10-09. Dev story BOPD-1168 (To Do). Today's `quantity-selector` has 2 usages (specItem, focusedSupplierCart).
+
+### Organizational Tree component (page `5176:162` "Organizational Tree (Steve)", Tree Item set `5177:306`, Tree `5177:307`)
+Started 2026-10-09 for BOPD-869. The code shipped first: BOPD-816 swapped the `boss-tree` wrapper from `sl-tree` to `wa-tree` (Done).
+A side-by-side section on the page compares the shipped look with the WA 3 kit's Tree Item (real kit instances). The user chose **A, the
+shipped look**: 40px rows, an FA icon (globe / shop / building) before Body/1 labels, a 1px `color/border/neutral` line between rows,
+20px indent per level, and a bordered container (`radius/m`). This deliberately doesn't match WA (32px rows, no icons, no lines, 32px indent,
+brand-blue selected bar); the To-Do says to raise it with devs. Tree Item: `Level` 1-5 × `Expanded`, properties Children
+(chevron), Icon, Icon Glyph, Label. Token drift from code's raw colors ($tree-text #3f3f46, $tree-expand-icon #52525b, lightgray,
+5px radius) is logged in the To-Do. Selection (single highlight vs full WA vs none) is on hold, per the user.
