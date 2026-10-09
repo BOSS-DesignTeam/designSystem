@@ -1432,8 +1432,9 @@ Inverse row in the Divider section, for documentation only. The component descri
   has no icon there; `boss-select`/`boss-combobox` `.invalid` colours border, focus ring and hint with raw
   `$brand-warn` #fa1616. The 33 Badge (Warning/Danger Start/End icons) and Dropdown Item (Variant=Danger)
   icons stay on the text roles on purpose: they sit inline with their label, which in code they likely
-  match via `currentColor` (not verified in the Badge/Dropdown code). **Discrepancy, not resolved:** Figma's
-  Select/Combobox Error states show a warning icon that the code components don't render.
+  match via `currentColor` (not verified in the Badge/Dropdown code). **Resolved 2026-10-08:** those 6 warning icons were
+  then deleted (user-confirmed) so the Error states match the code: hint/error text only. The Combobox / Field `error-message` text
+  (`731:34`, `3541:288`) was bound to `color/border/danger` and was rebound to `color/text/danger`, matching Select.
 - Not yet published.
 
 ---
@@ -1734,8 +1735,7 @@ COMPONENT-STATUS.md.
   tab-active stroke was reviewed, not ported.
 - ~~Radio Group's Button appearance uses brand blue while Default appearance uses orange checked.~~
   Aligned 2026-10-07: Button appearance now uses the checked tokens.
-- **New 2026-10-08 — colour role review follow-ups:** shadow effect styles, the new primitives' SCSS names, the
-  Select/Combobox error-icon discrepancy, and publishing. See "Colour role review (2026-10-08)".
+- **New 2026-10-08 — colour role review follow-ups:** shadow effect styles, the new primitives' SCSS names, and publishing. See "Colour role review (2026-10-08)".
 
 ---
 
