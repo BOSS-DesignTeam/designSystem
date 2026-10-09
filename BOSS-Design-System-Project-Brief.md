@@ -1988,3 +1988,8 @@ Filled/Outlined/Plain, × Small/Medium/Large (32/32/50) × Default/Hover/Disable
 (user choice over the horizontal `ellipsis` that Card Action uses). The More Menu pattern section composes a Neutral Plain trigger with a
 panel of Dropdown Items (`Elevation/Dropdown`, `radius/l`) + Divider + a Danger item, and lists legacy `MoreOptionsMenu` (13 usages) vs
 `wa-dropdown` coverage. Dev ticket: BOPD-917.
+**Card Action swap (2026-10-09):** Card's `Actions` / `Footer Actions` INSTANCE_SWAP defaults now point to Icon Button (Neutral / Plain /
+Medium, `ellipsis-vertical`) via `editComponentProperty` (defaultValue + preferredValues; Card Action dropped from the preferred list).
+All 15 slots in the Card set followed automatically; on Accent the glyph keeps its white override. The action slots shrink from 40px to 32px.
+The 4 direct Card Action instances (Spinner page example cards, hidden slots) were swapped by hand. `Card Action` (`4699:254`) now
+had 0 instances and was deleted 2026-10-09 (user-confirmed). It was a published component, so the next library publish will report it as removed. Card's docs, To-Do 3 and description were updated.

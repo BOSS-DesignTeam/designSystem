@@ -445,6 +445,13 @@ Setting Card's `Body` INSTANCE_SWAP to the 64px Section Spinner stretched it to 
 outer instance and fix the child there. For real usage, the slot content needs to be a component that's
 designed for the slot's size.
 
+### `description` reads back HTML-escaped, so read-modify-write double-escapes it (2026-10-09)
+`node.description` returns the text with `'` `"` `<` `>` `&` as entities (`&#39;`, `&quot;` ...), while the setter stores whatever
+it gets literally. So `n.description = n.description.replace(...)` (or `+ '...'`) writes the entities as text, and every later edit
+adds another level (`&amp;amp;#39;`). It also makes a `.replace()` on a sentence with an apostrophe silently miss. Unescape first
+(`&amp;`→`&` until stable, then `&#39;` `&quot;` `&lt;` `&gt;`), edit, then set. Cleaned on 2026-10-09: Card, Card Action, Button, Spinner,
+Progress Bar, Quantity Selector, Tree Item, Icon Button.
+
 ### Screenshots can lag a fresh edit
 `get_screenshot` right after a write sometimes returns the pre-edit render (Radio Group colors, Chance's
 P&L header gap). If a screenshot contradicts the node data, read the data (positions, bindings) and

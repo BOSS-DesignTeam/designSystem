@@ -130,8 +130,8 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
   on page "Icon Button (Steve)" `5182:198`: new `Icon Button` set `5182:343` (36 variants cloned from Button: Neutral Plain +
   Brand Filled/Outlined/Plain × S/M/L × Default/Hover/Disabled, square, `Icon Glyph` default `ellipsis-vertical`) and a More Menu
   pattern section (Neutral Plain trigger + Dropdown Items + Divider + Danger item), listing legacy MoreOptionsMenu behavior WA
-  doesn't cover (disabled-item tooltip, stay-open default, stopImmediatePropagation, left-start placement). Follow-up: replace
-  Card's "Card Action" stand-in with Icon Button.
+  doesn't cover (disabled-item tooltip, stay-open default, stopImmediatePropagation, left-start placement). Card's Actions /
+  Footer Actions slots now default to Icon Button (swapped 2026-10-09). The old "Card Action" stand-in was deleted.
 - **Quantity Selector** — `wa-number-input` · Figma: [BOPD-870](https://diningalliance.atlassian.net/browse/BOPD-870) (was OR-13625, Done 2026-10-09) · Dev:
   [BOPD-1168](https://diningalliance.atlassian.net/browse/BOPD-1168) (To Do). **Design built 2026-10-09** on page "Quantity Selector (Steve)" `5171:162` in Base Components, set
   `5171:332`: built from our Input (the WA 3 kit has no Number Input). `State` Default/Focus/Error/Error Focused/Disabled
