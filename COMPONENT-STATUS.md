@@ -245,8 +245,8 @@ directly before assuming status):**
 
 **DatePicker** and **Financial Calendar Range** moved to In Progress — Designer on 2026-10-09 (Date Input build).
 
-**Follow-ups found during the 2026-10-09 design work, no Jira ticket yet:**
-- **Spinner:** tracked as BOPD-1185 (see the Spinner entry above).
-- **Hand-built buttons:** `#reviewOrderBtn` (filled navy "Review Order") and `#saveForLaterBtn` in `pages/ordering/orderCartFlyout/orderCartFlyout.scss:~103` are custom CSS. Their hover was orange; the decided hover is the real Button hover (`bg-button-brand-hover` / `bg-button-brand-subtle-hover`, text stays). Replace both with `orderly-button`.
-- **Empty State:** rename the `<empty-state>` selector to `boss-empty-state`.
-- **Colour hover wiring:** the 79 orange hover rules in colour-review section I need dev wiring (brand hover, with the listed exceptions).
+**Dev follow-ups found during the 2026-10-09 design work (all filed, To Do):**
+- **Spinner:** [BOPD-1185](https://diningalliance.atlassian.net/browse/BOPD-1185), PR #9736 open (see the Spinner entry above).
+- **Hand-built buttons:** [BOPD-1186](https://diningalliance.atlassian.net/browse/BOPD-1186). `#reviewOrderBtn` (filled navy "Review Order") and `#saveForLaterBtn` in `pages/ordering/orderCartFlyout/` become `orderly-button`, with the real Button hover.
+- **Empty State:** [BOPD-1187](https://diningalliance.atlassian.net/browse/BOPD-1187). Rename the `<empty-state>` selector to `boss-empty-state` (42 templates) and add a style-guide page.
+- **Colour hover wiring:** [BOPD-1188](https://diningalliance.atlassian.net/browse/BOPD-1188). The 79 orange hover rules (colour-review section I) move to brand, with the listed exceptions.
