@@ -139,6 +139,9 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Colour Roles + Sizing (token reference pages)** — not components. Figma story [BOPD-1184](https://diningalliance.atlassian.net/browse/BOPD-1184) (Done 2026-10-09). Built 2026-10-09: "Colour Roles (Steve)" `5225:162` (all 91 `color/*` roles with a swatch bound to the live variable,
+  code name, light value and use, plus the decided rules) and "Sizing (Steve)" `5226:162` (spacing ladder with Sass and WA names, radius, control sizes, effect styles,
+  z-index, layout dimensions). They sit after Foundations, which keeps the raw palette, the spacing use cases and the typography.
 - **Filter Drawer + Search Bar** — shipped `<filter-drawer>` (29 usages) and `<search-bar>` (48), no WA equivalent. Figma story [BOPD-1182](https://diningalliance.atlassian.net/browse/BOPD-1182) (filed 2026-10-09). **Design built 2026-10-09**
   on page "Filter Drawer (Steve)" `5221:3845`: `Search Bar` `5221:3920` (State × Width Fixed / Full, from Input) and `Filter Drawer` `5221:19847` (State Collapsed /
   Expanded × Filters None / Applied; Top Header, Dark Panel, Top Header Content / Filter Row swap slots, Filter Count). **Correction:** the Filter Drawer isn't
@@ -226,8 +229,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - Multi Unit Rooftop Selector
 - Input Masking (Maskito) — currently folded into Input/Select/Combobox doc pages as a feature,
   not a dedicated entry
-- Reusable Colors — tokens, not a component
-- Sizing — tokens, not a component
 
 **Not yet compared against WebAwesome (no Figma-brief tracking either way — check the Figma file
 directly before assuming status):**

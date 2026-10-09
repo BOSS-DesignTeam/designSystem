@@ -2088,3 +2088,11 @@ Reset Filters link when Filters=Applied, a Filter Row slot of Selects). State Co
 Toggle: collapsed = white + 1px brand border + Regular filter icon; expanded = `color/bg/brand/subtle-hover` + Solid icon. **Input fix:** the Focus variant's start icon was hidden
 with no property binding (instances omit hidden children, so it can't be undone in an instance), so a focused Search Bar lost its magnifier. It was bound to Show Start Icon / Start Icon like the
 other states. Open: naming (boss-filter-bar?), raw colours / `sl-input` in the SCSS, panel look rule, unlabeled filter controls.
+
+### Colour Roles and Sizing pages (2026-10-09)
+Two reference pages after Foundations. **Colour Roles (Steve)** `5225:162`: all 91 `color/*` variables in Text / Icon / Surface / Background (2) / Border / Shadow tables. Each row has a swatch bound to
+the live variable (so it can't drift), the Figma path, the `--boss-color-*` code syntax (read from `codeSyntax.WEB`; `control/checked` has none), the Light value (alias chain resolved) and a use note, from `tokens.json` plus
+the 2026-10-08 / 10-09 decisions. A rules block summarises them: status text darker than icons and fills, orange = warnings only, hover rules, border roles, raw marketing palette, flagged low-contrast roles. Dark values are
+unused placeholders. **Sizing (Steve)** `5226:162`: spacing ladder (bars bound to `spacing/*`, Sass `friends` names, WA space mapping, 24 and 32 have no WA match), radius tiles (bound), control sizes
+xs-xl (height / padding bound, live controls), the 5 effect styles read live (Focus/Ring, Error/Ring, Elevation/Card / Dropdown / Overlay), z-index scale and layout dimensions from the token doc §6. Foundations still owns the
+raw palette, spacing use cases and typography.
