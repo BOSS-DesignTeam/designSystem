@@ -105,6 +105,9 @@ reference example for future doc-page authors, but it's currently unreachable in
   column-menu headers, multi-period + variance alignment fixed in the Reporting Table components, row
   selection, collapsed-total rows, gray only in headers. Reporting Table and Data Grid pages archived 2026-10-07. Cells merged the same day: Table Cell and Table Header Cell now have Size = Standard | Report, and all instances use them (the Reporting Table rows still live on the archived page). Rows merged the same day (Table Row has Size = Standard | Report). Combo Cell, GL title cells and Sort moved over too (Table Cell Pair, Table Tree Cell, Table Sort), so BOSS Table no longer depends on the archived page. Open: a dev conversation on `wa-data-grid` gaps (inline
   editing, spanning headers, subtotal rows).
+  **Loading → skeleton rows, 2026-10-09 ([BOPD-1167](https://diningalliance.atlassian.net/browse/BOPD-1167) Done; dev [BOPD-1177](https://diningalliance.atlassian.net/browse/BOPD-1177)):** State=Loading = live header + 5 new
+  `Table Row` Type=Skeleton rows (both sizes; bars inside real column cells, following column widths). A new **Skeleton** component
+  (`5197:167`, page "Skeleton (Steve)" `5197:162`) was imported from the WA kit and rebound. A new support variant was added: Table Cell Size=Standard, Type=Empty.
 - **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already
   existed under "Not Started," merged from `boss-design-system-docs/Todo.md` 2026-09-25 — moved
   here now that real Figma work is underway). Figma build in progress, started 2026-10-05. Built

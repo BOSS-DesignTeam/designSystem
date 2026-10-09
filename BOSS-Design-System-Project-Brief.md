@@ -2008,3 +2008,12 @@ effect on the divider itself was hidden under the End pane. Position is a varian
 instance. Start / End are INSTANCE_SWAP slots (placeholder `Split Panel Content` `5192:163`). The example swaps in Tree (Start) and Card (End).
 **Open:** the shipped `boss-selectable-split-view` is a custom Left / Both / Right toggle view (Bank Rec), not a split panel. Direction was asked
 of Tom on BOPD-857 (2026-10-09).
+
+### Skeleton component + BOSS Table skeleton loading (BOPD-1167, 2026-10-09)
+`Skeleton` (`5197:167`, page "Skeleton (Steve)" `5197:162`): imported from the WA 3 kit Skeleton (key `0f2f9dfa…`), detached, and rebound
+(fill `color/bg/neutral/subtle`, `radius/full`, 16px default, resizable). BOSS Table State=Loading now shows the live header + 5 `Table Row`
+**Type=Skeleton** instances (new for Standard and Report). The State Panel instance is hidden, not deleted. The first attempt put absolute bars on the row,
+which stayed at the component's natural column positions and bunched up when a row stretched to the table width. So each content cell became a
+`Skeleton Cell` frame (copied cell chrome, same `layoutGrow` as the source cell) holding the bar. Report rows needed Second / Third Group on and
+skeleton cells inside `group-2/3` at a fixed 32px height (FILL collapses inside the hug-height group frames). Table Cell gained
+`Size=Standard, Type=Empty`. BOPD-1167 Done 2026-10-09; dev story BOPD-1177 (boss-table loading state with wa-skeleton).
