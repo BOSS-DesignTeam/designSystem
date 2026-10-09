@@ -2067,3 +2067,24 @@ Footer are booleans, **off** by default; the inline week stepper is a field Type
   are ignored by Figma, so clicks fell through to the screen's close action. Field and calendar now carry a real no-op (`proto/noop` = true). The API supports
   CONDITIONAL / EXPRESSION actions and `setBoundVariable('visible', bool)` (BOOLEAN variables reject custom scopes).
   The old guided frames (Range / 3 Start picked, 4 Range picked, 4b This Period) were deleted with user confirmation. Flow 2 is now R1 Closed, R2 Fiscal, R2b Calendar, R5 Applied.
+
+### Empty State component (page `5206:19089` "Empty State (Steve)", ComponentSet `5206:19120`)
+Built 2026-10-09 to match the shipped `<empty-state>` (`components/bossEmptyState`, 42 usages); there's no WA component. The old Back Office Design Library Empty
+State has the same structure. `Layout` Standalone (1px `color/border/neutral`, `radius/m`) / Flush (no top border, square corners). Icon (FA `empty-set`, Lrg Reg
+Icon, `color/icon/default`) · 8px · Heading (Heading/3) · 4px · Subheading (Body/1, `color/text/secondary`) · 24px · actions (Button Brand Outlined
+primary + Brand Plain secondary, 8px gap), 12px padding, all bound to spacing tokens. Props: Icon, Icon Glyph, Heading, Subheading, Subheading Text,
+Actions (off, as in code), Secondary Action. Examples: under a table header, setup guidance, no results with clear-filters, and with an action. Open: BOSS Table's
+Table State Panel Empty / No Results was a smaller, different design (24px icon, 16px title), while screens render `<empty-state>`. **Aligned 2026-10-09 (user):** BOSS
+Table State=Empty / No Results now show an Empty State (Flush) instance under the header (No Results: magnifying-glass + "Clear search and filters" link). The Table State Panel
+is now unused in every BOSS Table state (hidden, not deleted). The set was resized to fit (the No Results variants overflowed it).
+
+### Filter Drawer + Search Bar (page `5221:3845` "Filter Drawer (Steve)", sets `5221:19847` / `5221:3920`)
+Built 2026-10-09 from the shipped `<filter-drawer>` (`components/filterDrawer`, 29 usages) and `<search-bar>` (`components/searchBar`, 48). Neither has a WA equivalent. The Filter Drawer is
+not a Drawer overlay: it's an inline collapsible bar built on `boss-details` (wa-details) that opens a filter panel under a search row (status-file
+entry corrected). **Search Bar** = Input instances (`isExposedInstance`) with the magnifier on, no label / help: State Default / Focus / Filled / Disabled × Width Fixed 240 /
+Full. **Filter Drawer** = top row (Search Bar + 32px toggle + optional top-header slot) over a panel (1px `color/border/neutral` top / bottom, 12px padding,
+Reset Filters link when Filters=Applied, a Filter Row slot of Selects). State Collapsed / Expanded × Filters None / Applied; booleans Top Header, Dark Panel (a
+`color/bg/brand/subtle` overlay with a 19% inner shadow, since a boolean can't change a fill); swaps Top Header Content (Date Input range) and Filter Row; text Filter Count.
+Toggle: collapsed = white + 1px brand border + Regular filter icon; expanded = `color/bg/brand/subtle-hover` + Solid icon. **Input fix:** the Focus variant's start icon was hidden
+with no property binding (instances omit hidden children, so it can't be undone in an instance), so a focused Search Bar lost its magnifier. It was bound to Show Start Icon / Start Icon like the
+other states. Open: naming (boss-filter-bar?), raw colours / `sl-input` in the SCSS, panel look rule, unlabeled filter controls.

@@ -139,6 +139,16 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Filter Drawer + Search Bar** — shipped `<filter-drawer>` (29 usages) and `<search-bar>` (48), no WA equivalent, no Figma ticket. **Design built 2026-10-09**
+  on page "Filter Drawer (Steve)" `5221:3845`: `Search Bar` `5221:3920` (State × Width Fixed / Full, from Input) and `Filter Drawer` `5221:19847` (State Collapsed /
+  Expanded × Filters None / Applied; Top Header, Dark Panel, Top Header Content / Filter Row swap slots, Filter Count). **Correction:** the Filter Drawer isn't
+  a Drawer overlay (this file said it was a pattern on Drawer, OR-13619): it's an inline collapsible filter bar on `boss-details`. Open: rename it
+  (boss-filter-bar?), clean up its raw colours / `sl-input` styling, and decide the one default panel look. Also fixed: Input's Focus variant now shows its start icon.
+- **Empty State** — shipped `<empty-state>` (`BossEmptyStateComponent`, 42 screens), no WA equivalent, no Figma ticket. **Design
+  built 2026-10-09** on page "Empty State (Steve)" `5206:19089`, set `5206:19120`: Layout Standalone / Flush (= `flushLayout`), Icon + Icon
+  Glyph (`empty-set`), Heading, Subheading, Actions (Outlined Brand) + Secondary Action (Plain = `isLinkDisplay`), matching code spacing (8 / 4 / 24).
+  BOSS Table State=Empty / No Results now use it (Flush), replacing the Table State Panel (2026-10-09). Open: rename the selector to
+  `boss-empty-state`.
 - **Icons (documentation)** — Font Awesome 7 Pro glyphs, no Icon component (standing decision 2026-07-20) · Figma:
   [BOPD-876](https://diningalliance.atlassian.net/browse/BOPD-876) (was OR-13621, Done 2026-10-09) · Dev: [BOPD-844](https://diningalliance.atlassian.net/browse/BOPD-844) (was OR-12017; only the 3 raw `sl-icon` → `wa-icon`;
   `fa-icon` stays). Page "Icons (Steve)" `5201:166`, built 2026-10-09: sizes / weights with code classes, colour roles, 24 common glyphs, glyph editing.
@@ -210,8 +220,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 
 **No WebAwesome component — custom build or pattern, no Figma story yet:**
 - Address
-- Empty State
-- Filter Drawer — a pattern on top of Drawer (OR-13619)
 - Links — native styles, no component
 - Lists
 - Multi Unit Division Selector
@@ -219,7 +227,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - Input Masking (Maskito) — currently folded into Input/Select/Combobox doc pages as a feature,
   not a dedicated entry
 - Reusable Colors — tokens, not a component
-- Search Bar — a pattern on top of Input
 - Sizing — tokens, not a component
 
 **Not yet compared against WebAwesome (no Figma-brief tracking either way — check the Figma file
