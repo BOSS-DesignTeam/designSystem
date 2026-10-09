@@ -2029,3 +2029,41 @@ skeleton cells inside `group-2/3` at a fixed 32px height (FILL collapses inside 
 - **Animations (Steve)** `5203:796` (BOPD-860): WA `--wa-transition-fast/normal/slow` 75/150/300ms ease, plus the app's Angular animation library
   (fades 0.3-0.5s, slides / size changes 200ms ease-out / ease-in, rotate 200ms linear, Tada). `wa-animation` is unused. A Smart Animate prototype (toast
   enter / exit, 150ms) uses frames placed directly in the section: NAVIGATE reactions reject frames nested in an auto-layout wrapper.
+
+### Date Input component (page `5200:162` "Date Input (Steve)", sets `5203:632` / `5202:1686` / `5203:1129`)
+Built 2026-10-09 to the WA spec (`wa-date-input` + `wa-date-picker`, Pro 3.8; source read from RestaurantUI node_modules — the WA 3 Figma kit has
+no date components). The user asked for a rebuild that also covers every Financial Calendar Range option, with each option selectable by designers
+and devs. Decisions (user, 2026-10-09): **both fiscal models** (Fiscal variants in the calendar and the select-based Fiscal Range); Presets and
+Footer are booleans, **off** by default; the inline week stepper is a field Type. Priscilla's WIP page `4340:13854` was not edited.
+- **Date Input** `5203:632` (15): Type Single / Range / Stepper × State Default / Focus / Filled / Disabled / Error / Error Focused (Stepper: Default /
+  Focus / Disabled). Built like Input / Quantity Selector: `height/control/m`, `padding/control/m`, `color/bg/input/*`, Focus/Ring and Error/Ring,
+  Body/1 value, Body/2 label/hint. The calendar expand-button sits at the end (WA), not the start (today's datepicker). Props: Label, Label Text,
+  Required, Hint, Hint Text, Error Text, With Clear. Value text is a direct override. Widths: Single 200, Range / Stepper 288.
+- **Date Calendar** `5202:1686` (10): Calendar Standard / Fiscal × Selection Day / Range / Week / Month / Year. Fiscal = Period titles, a P/W column
+  ("P10 / W2"), P1–P12, FY years (sample: P10 = Sep 27–Oct 24 2026). Month and Year use WA's months / years views at the day grid's height.
+  Booleans: Presets (BOSS addition), Footer (Cancel / Apply, WA footer slot), Calendar Toggle (Toggle instance), Week Numbers (ISO, Standard only).
+  `color/surface/default`, 1px `color/border/neutral`, `radius/m`, `Elevation/Dropdown`, 12px padding / gap.
+- ~~**Fiscal Range** `5203:1129`~~ (**removed 2026-10-09**, user decision, with its section, example and prototype flow; fiscal units are picked in Date Calendar Fiscal instead): Unit Year / Period / Week / Custom, from Toggle + Single Select instances. Option labels matched code
+  (`Period 9: 08/30/2026`, `Period 10, Week 2: 10/04/2026`). Year disables Start/End. Custom uses a 4-option Toggle + two Date Inputs.
+- Atoms: **Calendar Day** `5200:183` (Default / Hover / Focus / Today / Outside / Disabled / Selected / Range Start / Range Inner / Range End, 36×32) and
+  **Calendar View Item** `5200:194` (Default / Hover / Today / Selected / Disabled). Range fills round at row edges via instance radius overrides.
+- Open (page To-Do): outside days shown (WA default off); the fiscal P/W column needs custom rendering in code; week / period / year / stepper are
+  BOPD-921 v2; preset list per context; review with Priscilla, then archive her page; Toggle is 34px vs 32px controls.
+
+- **Prototype (2026-10-09)**, section `Date Input / Prototype` (`5206:1211`) on the same page, with 4 flow starting points: **1 Single date** (any
+  October day works: each day sets the STRING variable `date-input/single-value` in a new local **Prototype** collection and navigates, and the
+  Filled field's Value text is bound to it; clear × resets), **2 Fiscal report range** (guided: Oct 12 → Oct 21, This Period preset, Calendar/Fiscal
+  toggle, Apply sets `date-input/range-value`, Cancel), **3 Weekly schedule** (‹ › steps 3 weeks, week rows pick a week), **4 Fiscal Range** (unit
+  toggle; Year/Period/Week instances use a 4-option Toggle so Custom is reachable). Screens are top-level frames in the section (not auto-layout).
+  Reactions live on nested instance sublayers, and an empty ON_CLICK on each calendar instance stops clicks on it from closing the popup (only
+  outside clicks close it). Calendar Day and View Item Default variants got ON_HOVER → Hover (interactive components). Instance-level reactions replace component
+  ones, so wired days repeat the hover reaction. Figma auto-adds flow starting points when the first reaction is set, so de-duplicate before setting `flowStartingPoints`.
+- **Prototype revision (2026-10-09, later):** Fiscal Range and flow 4 removed. Flow 2's open screens (`5207:1363` Fiscal, `5207:1366` Calendar) now accept
+  **any** start / end day. The calendar on those screens is detached (prototype copy only), and each clickable day is wrapped in a `cell` frame holding the base
+  day + 4 overlay Calendar Day instances (Selected / Range Start / Range Inner / Range End) whose `visible` is bound to per-day BOOLEANs
+  `range/day-{0..34}/{sel,start,inner,end}` (day 0 = Sep 27). Each click runs a CONDITIONAL (pick start vs end, using `range/S`, `range/E`, `range/P`)
+  and then 140 SET_VARIABLE expressions that recompute every cell. The field text binds to `range/text` (built by string ADDITION). Presets set S/E directly. Apply copies to
+  `date-input/range-value`. Cancel and outside click reset. Both views share the variables, so the toggle keeps the range. **Click-outside fix:** empty-action reactions
+  are ignored by Figma, so clicks fell through to the screen's close action. Field and calendar now carry a real no-op (`proto/noop` = true). The API supports
+  CONDITIONAL / EXPRESSION actions and `setBoundVariable('visible', bool)` (BOOLEAN variables reject custom scopes).
+  The old guided frames (Range / 3 Start picked, 4 Range picked, 4b This Period) were deleted with user confirmation. Flow 2 is now R1 Closed, R2 Fiscal, R2b Calendar, R5 Applied.

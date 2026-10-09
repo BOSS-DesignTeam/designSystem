@@ -90,6 +90,14 @@ reference example for future doc-page authors, but it's currently unreachable in
 
 ## In Progress — Designer
 
+- **Date Input / DatePicker + Financial Calendar Range** — `wa-date-input` + `wa-date-picker` (Pro) · Dev:
+  [BOPD-921](https://diningalliance.atlassian.net/browse/BOPD-921) (v1 = Single + Range; week / period / year modes are v2). No Figma ticket.
+  Figma build 2026-10-09 on page "Date Input (Steve)" `5200:162`, rebuilt to the WA spec and covering every option
+  today's `datepicker` and `financial-calendar-range` offer. **Date Input** `5203:632`: Type Single / Range / Stepper × Input's states, 15 variants.
+  **Date Calendar** `5202:1686`: Calendar Standard / Fiscal × Selection Day / Range / Week / Month / Year, plus Presets / Footer /
+  Calendar Toggle / Week Numbers booleans (off). Fiscal Range (select-based) was built, then removed the same day by user decision: fiscal Year / Period / Week are picked in Date Calendar Fiscal. Atoms: Calendar Day
+  `5200:183`, Calendar View Item `5200:194`. Priscilla's WIP page `4340:13854` is untouched. Open (page To-Do): outside days on vs WA
+  default off, fiscal P/W column needs custom dev rendering, v2 story, preset list, review with Priscilla.
 - **Selectable Split View / Split Panel** — `wa-split-panel` · Figma: [BOPD-857](https://diningalliance.atlassian.net/browse/BOPD-857) (was OR-13626). Figma
   build 2026-10-09 on page "Split Panel (Steve)" `5192:162`: `Split Panel` set `5192:217` built to the WA spec (Orientation × Divider
   Plain/Handle × State Default/Focus × Position 25/50/75 = 24 variants, Start/End instance-swap slots, placeholder `5192:163`) plus a
@@ -204,7 +212,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - Address
 - Empty State
 - Filter Drawer — a pattern on top of Drawer (OR-13619)
-- Financial Calendar Range — closest is `wa-date-picker` (Pro); see the DatePicker note below
 - Links — native styles, no component
 - Lists
 - Multi Unit Division Selector
@@ -225,6 +232,4 @@ directly before assuming status):**
   WA has `wa-button-group`. **Deprioritized 2026-10-07: do this last, after everything else on
   this list** (the product doesn't use it much on the site).
 
-**DatePicker** was flagged in an earlier hand-typed list as "In Progress — Designer" — not
-verified here either way. It's absent from the Figma brief's tracked build-order list by name,
-so its actual design status is unknown without checking the Figma file directly. Don't assume.
+**DatePicker** and **Financial Calendar Range** moved to In Progress — Designer on 2026-10-09 (Date Input build).
