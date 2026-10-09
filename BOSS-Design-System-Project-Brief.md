@@ -561,6 +561,15 @@ its pre-edit position/size and confirmed the original 411×1019 box already exce
 Documentation section's bounds at the same origin). Left alone — out of scope for this audit, and
 not a regression.
 
+**State=Loading added 2026-10-09** (15 variants, one per Variant×Appearance×Size, cloned from
+Default, in a fifth column at x=680). Matches `orderly-button [loading]`, which passes straight to
+`wa-button`'s `loading` attribute. Per WA's button CSS: the label, start/end icons and caret get
+`visibility: hidden` (opacity 0 in Figma, so the width holds), and a `wa-spinner` is centered at 1em
+(12/16/20px) with `--indicator-color: currentColor` and `--track-color` = currentColor at 10%. In Figma it's
+a Spinner instance (`5135:166`) with Indicator and Track strokes overridden to the variant's label color
+variable, and the track at 10% opacity. The fill isn't dimmed. Loading is a separate boolean in code;
+Figma models it as a State, like Disabled. The WA 3 kit's Button has no loading state to copy.
+
 ---
 
 ### Split Button component (page `460:2` "Split Button", ComponentSet ID `540:7`)
@@ -1925,3 +1934,15 @@ archived Data Grid page (6) and orphaned components no longer in the document (9
 Detail panel background has no token matching code (#f8faff); dev conversation on `wa-data-grid` gaps
 (inline editing, spanning headers, subtotal rows).
 
+### Spinner component (page `5135:162` "Spinner (Steve)", ComponentSet `5135:179`)
+Built 2026-10-08 for BOPD-878 (Done 2026-10-09) from the `boss-spinner` handoff (PR #9722, BOPD-836).
+The WA 3 kit has no Spinner, so it was drawn by SVG import (track circle + 250° arc path, round caps,
+stroke centered) instead of imported. Variants: `Size` Inline (16px, 2px track; `Color` Default →
+`color/text/primary`, Brand → `color/text/brand`, On Filled → `color/text/on-filled`; track = same variable
+at 25% paint opacity, standing in for code's `currentColor`) / Section (64px, 4px track, `color/icon/brand` arc
+on primitive `gray/90`). Section has `Label` (boolean, off) + `Label Text` (Body/2, `color/text/secondary`,
+12px gap; the ring sits in a `Ring` frame inside vertical auto-layout). Design decisions 2026-10-09 (posted
+on the PR): remove the `indicatorColor`/`trackColor` overrides, no spinner-track token, keep 64/4, add the
+label, skeleton rows for tables that load empty, bowl page loader deferred. The page has Documentation,
+To-Do, the component section (On Filled sits on a dark swatch) and Examples (example Card detached: a swapped
+instance in Card's Body slot can't be resized).

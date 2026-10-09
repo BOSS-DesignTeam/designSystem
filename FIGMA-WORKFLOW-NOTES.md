@@ -433,6 +433,18 @@ visible children kept its old width. Don't wrap an always-visible layer just to 
 `text.deleteCharacters(i, i + old.length)`, then `insertCharacters(i, newText)`. Passing a length throws
 `deleteCharacters must have (start <= end)` once `i` is larger than the length.
 
+### Binding a color variable resets the paint's opacity to 100% (Spinner + Button Loading, 2026-10-08/09)
+`setBoundVariableForPaint` returns a paint at opacity 1, and spreading it with `opacity: 0.25` in the same
+assignment didn't stick either (hit on the Spinner tracks, then again on the Button Loading tracks). Bind
+first, assign `strokes`/`fills`, then do a second pass: `node.strokes = node.strokes.map(p => ({ ...p, opacity }))`.
+Read the opacity back before calling it done; the binding survives the second pass.
+
+### A swapped instance inside another component's slot can't be resized (Card, 2026-10-08)
+Setting Card's `Body` INSTANCE_SWAP to the 64px Section Spinner stretched it to the slot's 352×40, and
+`resize()` / sizing changes on that nested instance were silently ignored. For an example, detach the
+outer instance and fix the child there. For real usage, the slot content needs to be a component that's
+designed for the slot's size.
+
 ### Screenshots can lag a fresh edit
 `get_screenshot` right after a write sometimes returns the pre-edit render (Radio Group colors, Chance's
 P&L header gap). If a screenshot contradicts the node data, read the data (positions, bindings) and
