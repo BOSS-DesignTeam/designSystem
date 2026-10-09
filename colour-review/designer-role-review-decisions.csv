@@ -1,0 +1,196 @@
+value,used_as,decision,target,reason,section
+#000000,text,FOLD,--boss-color-text-primary,"Modal headers, form text, selected toggle text: primary text. Pure black isn't intentional.",B
+#000000,border,NEW,color/border/strong (#18191d),Report total/header rules need a high-contrast border. No role exists. Q7: #18191d.,B
+#000000,background,MERGE,#000000 border,Used as rule lines drawn with background.,B
+#9a9aa3,text,NEW,"color/text/tertiary (#737380, per Q1)","Lowest-emphasis readable text (day names, out-of-month dates, meta). Distinct from secondary. Disabled selectors (`.disabled-*`, `.boss-table-disabled-action`) → text-disabled.",B
+#9a9aa3,border,NEW,color/border/secondary (#9a9aa3),"Mid-weight border (tab underlines, cards). Named to match the Divider `secondary` variant. Absorbs other mid-grey borders.",B
+#9a9aa3,background,FOLD,"--boss-color-bg-disabled (.disabled-btn, 4) / --boss-color-bg-brand-default (active tabs, 3)","4 uses are `.disabled-btn` grounds. 3 are active tabs with white text (Restaurant Stats, Take Inventory x2): on bg-disabled they would read as disabled (~1.5:1), so they follow the Q3 rule: active = brand. (rev. 2026-10-09)",B
+#0071ce,text,FOLD,--boss-color-text-link,"Callout links, ""add new"" options, info icons. Link purpose; one link blue. Info icons → icon-brand.",B
+#0071ce,background,FOLD,--boss-color-bg-brand-default; tooltip grounds → --boss-color-bg-tooltip,"Active tabs, selected nav rows, headers: brand selection, not info. Tooltip grounds fold to bg-tooltip (dark grey, matches the Figma Tooltip), not brand navy. (rev. 2026-10-09)",B
+#0071ce,border,FOLD,--boss-color-border-brand,Active-tab underlines. The 9 `outline` uses → border-focus.,B
+#ffc061,text,FOLD,--boss-color-text-warning; icons (21) → --boss-color-icon-warning,"Same purpose as warning. #ffc061 on white is 1.62:1, unreadable. The 21 caution icons coloured with `color:` use icon-warning (#fa9016, orange), not the darkened text colour. (rev. 2026-10-09)",B
+#ffc061,border,FOLD,--boss-color-border-warning,Warning modal and alert-card borders.,B
+#ffc061,background,FOLD,--boss-color-bg-warning-subtle,Warning modal header/footer ground.,B
+#5e5e5e,text,FOLD,--boss-color-text-secondary,"Minor info, column headers, tooltip text. Near-identical to #5f6272.",B
+#5e5e5e,border,MERGE,#9a9aa3 border,Not-selected tab underline: mid-weight border.,B
+#5e5e5e,background,MERGE,#9a9aa3 border,`.vl` / `.line` rules drawn with background.,B
+#698ff8,text,FOLD,--boss-color-text-link,"""More"" links, show-more notes, link `a`. Two link blues is a defect.",B
+#698ff8,border,FOLD,--boss-color-border-focus,Datepicker `:focus-within` border/ring.,B
+#d3d8e0,background,FOLD,--boss-color-border-neutral,Rule lines drawn with background. Use the border role.,B
+#d3d8e0,text,FOLD,--boss-color-text-disabled (verify),"Very light text. If it's a ""\",B
+#f2f5fd,background,FOLD,--boss-color-bg-brand-subtle,Hover/active tint on list rows and nav. Within ~10 of #f8f8fa.,B
+#f2f5fd,border,FOLD,--boss-color-border-neutral,Single toast border.,B
+#f8faff,background,NEW,color/surface/table-expanded (#f8faff),"BOSS Table subheaders, expanded-row rim and detail panels. Matches the Figma detail panel gap noted in the brief.",B
+#8d8d90,border,MERGE,#9a9aa3 border,"Mid-grey border. No separate ""inactive"" purpose.",B
+#8d8d90,background,FOLD,"color/bg/overlay/default (NEW, F)",Only use is `bankingModal .overlay`.,B
+#060d21,text,FOLD,--boss-color-text-primary,Drawer headings and labels: primary text.,B
+#060d21,background,FOLD,--boss-color-bg-neutral-default,Style-guide code sample / spec-row divider.,B
+#9a261c,text,FOLD,--boss-color-text-danger,Same purpose as danger. text-danger now takes this value (Q1).,B
+#fef1e3,background,FOLD,--boss-color-surface-table-hover,Row `:hover` in ingredient/recipe lists. Orange hover carries no meaning.,B
+#5f6272,border,MERGE,#9a9aa3 border,One mid-weight border role.,B
+#ffffb3,background,FOLD,--boss-color-surface-row-active,"`.selected-supplier`: selection, not a yellow highlight.",B
+#e8178a,text,FOLD,--boss-color-text-secondary,Single `.report-label` in the financial statement title. Decorative.,B
+#000000,border (Divider strong),NEW,color/border/strong (#18191d),Same as B.,C
+#5f6272,border (Divider secondary),NEW,color/border/secondary (#9a9aa3),One mid-weight border. Value shifts lighter (Q5b).,C
+#dee2ee,border (Divider brand-subtle),FOLD,--boss-color-border-neutral; retire the variant,Within ~10 of #d3d8e0. No distinct purpose (Q5a).,C
+#ffffff,border (Divider inverse),NEW,color/border/inverse (#ffffff),Dividers on filled/dark grounds. Pairs with text-on-filled.,C
+#868995,"text 7, bg 1",FOLD,--boss-color-text-table-header,Same purpose as an existing role. The bg use → border-neutral (verify).,D
+#e1e1e1,bg 5,FOLD,--boss-color-bg-neutral-subtle,"Neutral grey ground. ""grey"" is an appearance name.",D
+#878995,text 1,FOLD,--boss-color-text-disabled,Agreed.,D
+#3f3f46,text 3,FOLD,--boss-color-text-primary,"WebAwesome tree default (zinc). Tree cells now live in BOSS Table, so they use table roles.",D
+#52525b,text 3,FOLD,--boss-color-icon-default,Same as other row icons.,D
+#f4f4f5,bg 2,FOLD,--boss-color-surface-row-active,Same as selected table row.,D
+#efeff1,bg 1,FOLD,--boss-color-surface-table-hover,Same as table hover.,D
+#999999,"border 15, text 3",KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#d77138,"border 6, text 4, bg 3",KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#555555,"border 9, text 3",KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#b44e15,text 9,KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#336699,"text 3, border 2, bg 2",KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#8a322b,text 6,KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#b33431,border 2,KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#ebebeb,"bg 3, border 1",KEEP,,Q6: the marketing palette stays raw everywhere.,D
+#7a8699,text 16,FOLD,--boss-color-text-secondary,"Muted labels, not disabled. on-disabled is a component token.",E
+#333333,text 13,FOLD,--boss-color-text-primary,Body text.,E
+#27407f,"text 6, bg 2, border 1, shadow 1",FOLD,brand family: text-brand / bg-brand-default / border-brand; shadow → color/shadow/sm,Hand-typed brand navy.,E
+#e0e0e0,"border 8, bg 1",FOLD,--boss-color-border-neutral,Generic border. Select tokens are for selects.,E
+#cccccc,"border 8, bg 1",FOLD,--boss-color-border-neutral,Generic border (disabled selectors → border-disabled).,E
+#dddddd,border 9,FOLD,--boss-color-border-neutral,Generic border.,E
+#d9d9d9,"text 5, other 1, bg 1, border 1",FOLD,"""|"" separators → --boss-color-border-neutral; quantity-selector disabled +/- icon → --boss-color-icon-disabled; other light text → --boss-color-text-disabled (verify)","The Take Inventory ""|"" count separators are divider marks, not text: text-disabled (#8d8d90) would make them much darker. Border/bg → border-neutral. (rev. 2026-10-09)",E
+#6c7a93,text 8,FOLD,--boss-color-text-secondary,Secondary text.,E
+#f44336,"border 5, text 2",FOLD,--boss-color-border-danger / text-danger,"Material red, error state.",E
+#ecedf1,border 7,FOLD,--boss-color-border-neutral,Generic border.,E
+#eef1f5,border 7,FOLD,--boss-color-border-neutral,Generic border.,E
+#c0392b,text 7,FOLD,--boss-color-text-danger,Error text.,E
+#22304a,text 7,FOLD,--boss-color-text-primary,Heading ink.,E
+#f4f4f4,bg 6,FOLD,--boss-color-surface-table-header,Payroll register report tables.,E
+#eef1f6,border 6,FOLD,--boss-color-border-neutral,Generic border.,E
+#3399ff,"border 5, text 1",FOLD,--boss-color-border-focus; text → text-link,Highlight/focus blue.,E
+#606271,text 5,FOLD,--boss-color-text-secondary,Typo of #5f6272.,E
+#f2f2f3,bg 5,FOLD,--boss-color-surface-row-active (verify),If not a selected row → bg-brand-subtle.,E
+#e3e7ee,"border 4, bg 1",FOLD,--boss-color-border-neutral,Generic border.,E
+#f5f5f5,bg 4,FOLD,--boss-color-bg-brand-subtle,"Panel ground, not a table header.",E
+#757575,text 4,FOLD,--boss-color-text-secondary,Secondary text.,E
+#f9f9f9,bg 4,FOLD,--boss-color-bg-brand-subtle,Subtle ground.,E
+#f2f2f2,bg 4,FOLD,--boss-color-surface-row-active (verify),As #f2f2f3.,E
+#393939,border 4,FOLD,color/border/strong (NEW),"Dark neutral rule, not brand.",E
+#3f51b5,"text 2, border 2",FOLD,--boss-color-text-brand / border-brand,Material indigo standing in for brand.,E
+#666666,text 3,FOLD,--boss-color-text-secondary,Secondary text.,E
+#f3f3f3,bg 3,FOLD,--boss-color-surface-row-active (verify),As #f2f2f3.,E
+#111111,text 3,FOLD,--boss-color-text-primary,Primary text.,E
+#e00000,"text 2, border 1",FOLD,--boss-color-text-danger / border-danger,Error state.,E
+#d6dce5,border 3,FOLD,--boss-color-border-neutral,Same.,E
+#fafafb,bg 3,FOLD,--boss-color-bg-brand-subtle,Same.,E
+#b6bfd4,"bg 1, text 1, border 1",FOLD,"bg → bg-brand-subtle-hover, text → text-disabled, border → border-neutral",Not a button. Brand tint family.,E
+#445069,text 3,FOLD,--boss-color-text-secondary,Secondary text.,E
+#444444,"text 2, border 1",FOLD,--boss-color-text-primary; border → color/border/secondary,Dark body text.,E
+#333a4d,"border 2, bg 1",FOLD,--boss-color-bg-neutral-default (all 3 uses),"Spinner ink is neutral, not brand.",E
+#e3f2fd,bg 2,FOLD,--boss-color-surface-table-hover,Highlighted match row.,E
+#2196f3,border 2,FOLD,--boss-color-border-brand,"Selected match card. Selection, not focus.",E
+#e8e8e8,border 2,FOLD,--boss-color-border-neutral,Generic border.,E
+#2d73c9,text 2,FOLD,--boss-color-text-link,Link.,E
+#bbbbbb,border 2,FOLD,color/border/secondary (NEW),Mid-weight border.,E
+#49a4d6,text 2,FOLD,--boss-color-text-link,"Tracking link, not a disabled button.",E
+#b8cbda,bg 2,FOLD,--boss-color-bg-brand-subtle-hover,"Brand tint, not a button.",E
+#e8f0fd,bg 2,FOLD,--boss-color-bg-brand-subtle,Tinted panel.,E
+#fbe9e7,bg 2,FOLD,--boss-color-bg-danger-subtle,Red-hued tint paired with #c0392b error text.,E
+#eef3ff,bg 2,FOLD,--boss-color-bg-brand-subtle,Tinted panel.,E
+#d3dae5,border 2,FOLD,--boss-color-border-neutral,Same.,E
+#f6f8fb,bg 2,FOLD,--boss-color-bg-brand-subtle,Same.,E
+#dde2eb,other 2,FOLD,--boss-color-bg-brand-subtle-hover,Same.,E
+#fbfbff,bg 2,FOLD,--boss-color-bg-brand-subtle,"Report table ground, not a drawer.",E
+#989898,text 2,FOLD,color/text/tertiary (NEW),Low-emphasis stat label.,E
+#424242,text 1,FOLD,--boss-color-text-primary,Dark body text.,E
+#fbc1c1,bg 1,FOLD,--boss-color-bg-danger-subtle,Error tint.,E
+#313131,text 1,FOLD,--boss-color-text-primary,Primary text.,E
+#2c2c2c,text 1,FOLD,--boss-color-text-primary,Primary text.,E
+#d1d2d4,bg 1,FOLD,--boss-color-bg-disabled (verify),If not disabled → surface-secondary.,E
+#cacbcd,border 1,FOLD,--boss-color-border-neutral,Generic border.,E
+#f1f1f2,bg 1,FOLD,--boss-color-surface-row-active (verify),As #f2f2f3.,E
+#d7d7d7,border 1,FOLD,--boss-color-border-neutral,Not a select.,E
+#f4f7fc,bg 1,FOLD,--boss-color-bg-brand-subtle,Same.,E
+#677eb8,border 1,FOLD,--boss-color-border-brand,"Brand border, not a disabled button.",E
+#777777,text 1,FOLD,--boss-color-text-secondary,Secondary text.,E
+#909090,text 1,FOLD,color/text/tertiary (NEW),Low-emphasis text (disabled selector → text-disabled).,E
+#d4d4d4,border 1,FOLD,--boss-color-border-neutral,Generic border.,E
+#f01818,bg 1,FOLD,--boss-color-bg-danger-default,Same.,E
+#d60000,text 1,FOLD,--boss-color-text-danger,Error text.,E
+#f00000,text 1,FOLD,--boss-color-text-danger,Error text.,E
+#f6f7f9,bg 1,FOLD,--boss-color-bg-brand-subtle (verify),Table header → keep surface-table-header.,E
+#f7f9fc,bg 1,FOLD,--boss-color-bg-brand-subtle,Same.,E
+#aaaaaa,bg 1,FOLD,--boss-color-bg-disabled,"Grey disabled fill, not brand.",E
+#f9f8fa,bg 1,FOLD,--boss-color-bg-brand-subtle,Typo of #f8f8fa.,E
+#6e6e6e,text 1,FOLD,--boss-color-text-secondary,Secondary text.,E
+#888888,border 1,FOLD,color/border/secondary (NEW),Mid-grey border.,E
+#5c3e8f,text 1,SKIP,(not rendered),Finished statuses. Payroll status colour is set in code but no screen shows it (Q4 revised). Log as dead code for removal. (rev. 2026-10-09),E
+#ff9800,text 1,SKIP,(not rendered),"Late, in progress. Payroll status colour is set in code but no screen shows it (Q4 revised). Log as dead code for removal. (rev. 2026-10-09)",E
+#81c784,text 1,DELETE,(dead CSS),`.green-text.text-lighten-2` is never applied; the code uses `grey-text text-lighten-2`.,E
+#4caf50,text 1,SKIP,(not rendered),Due today. Payroll status colour is set in code but no screen shows it (Q4 revised). Log as dead code for removal. (rev. 2026-10-09),E
+#9e9e9e,text 1,SKIP,(not rendered),Not due yet. Payroll status colour is set in code but no screen shows it (Q4 revised). Log as dead code for removal. (rev. 2026-10-09),E
+#e9ecf4,bg 1,FOLD,--boss-color-bg-brand-subtle-hover,Brand-tinted ground.,E
+#cdddf8,border 1,FOLD,--boss-color-border-neutral,Same purpose. Blue tint isn't meaningful.,E
+#fdeeda,bg 1,FOLD,--boss-color-bg-warning-subtle,Same.,E
+#f3d9ae,border 1,FOLD,--boss-color-border-neutral,Commissary banner border (OR-13685). The saturated border-warning/danger would be loud on a pale banner; the tinted background carries the status. (rev. 2026-10-09),E
+#b06a12,text 1,FOLD,--boss-color-text-warning,Warning text. text-warning is now #a85800 (Q1).,E
+#f2c8c2,border 1,FOLD,--boss-color-border-neutral,Commissary banner border (OR-13685). The saturated border-warning/danger would be loud on a pale banner; the tinted background carries the status. (rev. 2026-10-09),E
+#f4f6fa,bg 1,FOLD,--boss-color-bg-brand-subtle,Panel ground.,E
+#f6f9ff,bg 1,FOLD,--boss-color-bg-brand-subtle,Same.,E
+#e2f5e9,bg 1,FOLD,--boss-color-bg-success-subtle,Green tint (success).,E
+#21764a,text 1,FOLD,--boss-color-text-success,Green success text.,E
+#eef2f7,bg 1,FOLD,--boss-color-bg-brand-subtle (verify),Hover state → surface-table-hover.,E
+#fafbfd,bg 1,FOLD,--boss-color-bg-brand-subtle,Not a drawer.,E
+#e4eaf5,bg 1,FOLD,--boss-color-bg-brand-subtle-hover,Brand-tinted ground.,E
+#fcfcfc,bg 1,FOLD,--boss-color-bg-brand-subtle,Not a drawer.,E
+#9747ff,border 1,KEEP,,"Figma's component-set purple, style-guide documentation only.",E
+#c4c4c4,text 1,FOLD,--boss-color-text-disabled,Not a combobox.,E
+#ae0909,bg 1,FOLD,--boss-color-bg-danger-hover (verify),If not a hover → bg-danger-default.,E
+#49484d,text 1,FOLD,--boss-color-text-primary,Dark body text.,E
+#dc3545,text 1,FOLD,--boss-color-text-danger,"Bootstrap red, error.",E
+#ff0000,text 1,FOLD,--boss-color-text-danger,Error.,E
+#f8f8f8,bg 1,FOLD,--boss-color-bg-brand-subtle,"Dialog ground, not a table.",E
+#fa4d56,text 1,FOLD,--boss-color-text-danger,Error.,E
+#02040b,text 1,FOLD,--boss-color-text-primary,Primary text.,E
+#fdfdfd,bg 1,FOLD,--boss-color-surface-drawer,It is a drawer.,E
+"rgba(0,0,0,0.25)","shadow 97, border 1",NEW,"color/shadow/md (rgba(0,0,0,0.25)); border → border-neutral",Defines the default shadow.,F
+"rgba(0,0,0,0.2)","shadow 6, other 1, bg 1",FOLD,color/shadow/md; bg → color/bg/overlay/default,,F
+"rgba(73,164,218,0.2)",bg 7,FOLD,--boss-color-surface-table-hover,20% focus-blue on white ≈ #edf6fb.,F
+"rgba(0,0,0,0.5)","bg 3, shadow 2, other 1",NEW,"color/bg/overlay/default (rgba(0,0,0,0.5)); shadow → color/shadow/lg",Modal scrim.,F
+"rgba(0,0,0,0.14)",other 6,FOLD,color/shadow/sm,Material elevation layer.,F
+"rgba(0,0,0,0.12)",other 6,FOLD,color/shadow/sm,Material elevation layer.,F
+"rgba(250,22,22,0.30)",shadow 4,NEW,"color/shadow/focus-danger (rgba(250,22,22,0.3))",Error focus ring: a state.,F
+"rgba(0,0,0,0.3)",shadow 4,NEW,"color/shadow/lg (rgba(0,0,0,0.3))",,F
+"rgba(0,0,0,0.02)",shadow 3,FOLD,color/shadow/sm,,F
+"rgba(255,255,255,0.6)",bg 3,NEW,"color/bg/overlay/loading (rgba(255,255,255,0.6))",Loading veil over content.,F
+"rgba(192,192,192,0.5)",bg 2,FOLD,color/bg/overlay/loading,Light veil.,F
+"rgba(63,81,181,0.5)",shadow 2,MERGE,"`rgba(colors.$brand-active-blue,0.4)`",Focus ring.,F
+"rgba(0,0,0,0.19)",shadow 2,FOLD,color/shadow/md,,F
+rgb(000/15%),shadow 2,FOLD,color/shadow/md,,F
+"rgba(colors.$brand-active-blue,0.4)",shadow 2,NEW,"color/shadow/focus (rgba(73,164,218,0.4))",Input focus ring.,F
+"rgba(0,0,0,0.1)",shadow 1,NEW,"color/shadow/sm (rgba(0,0,0,0.1))",,F
+"rgb(224,224,224)",other 1,MERGE,#e0e0e0 (→ border-neutral),Same colour as E row.,F
+"rgba(200,200,200,0.3)",bg 1,FOLD,--boss-color-bg-brand-subtle,Light grey wash ≈ subtle ground.,F
+"rgba(0,0,0,0.04)",shadow 1,FOLD,color/shadow/sm,,F
+"rgba(30,48,90,0.08)",shadow 1,FOLD,color/shadow/sm,,F
+"rgba(255,255,255,0.35)",bg 1,NEW,"color/bg/on-filled-subtle (rgba(255,255,255,0.2))",Translucent chips/panels on brand-filled grounds. Pairs with text-on-filled.,F
+"rgba(255,255,255,0.7)",text 1,FOLD,--boss-color-text-on-filled,One text-on-fill role.,F
+"rgba(255,255,255,0.5)",border 1,FOLD,color/border/inverse (NEW),,F
+"rgba(30,40,60,0.05)",shadow 1,FOLD,color/shadow/sm,,F
+"rgba(255,255,255,0.15)",bg 1,MERGE,"`rgba(255,255,255,0.35)`",,F
+"rgba(255,255,255,0.4)",border 1,FOLD,color/border/inverse (NEW),,F
+"rgba(255,255,255,0.25)",bg 1,MERGE,"`rgba(255,255,255,0.35)`",,F
+"rgba(192,57,43,0.1)",bg 1,FOLD,--boss-color-bg-danger-subtle,,F
+"rgba(233,48,44,0.75)",bg 1,FOLD,--boss-color-bg-danger-default,,F
+rgb(000/25%),shadow 1,FOLD,color/shadow/md,,F
+"rgba(colors.$brand-active-blue,0.08)",bg 1,FOLD,--boss-color-surface-table-hover,8% focus-blue ≈ hover tint.,F
+"rgba(0,0,0,0.7)",bg 1,FOLD,color/bg/overlay/default,,F
+"rgba(51,153,255,0.4)",bg 1,FOLD,--boss-color-surface-table-hover,Highlight tint.,F
+"rgba(255,255,255,0.8)",bg 1,FOLD,color/bg/overlay/loading,,F
+"rgba(255,255,255,0.3)",border 1,FOLD,color/border/inverse (NEW),,F
+"rgba(0,0,0,0.87)",text 1,FOLD,--boss-color-text-primary,Material default text.,F
+"rgba(0,0,0,0.6)",bg 1,FOLD,color/bg/overlay/default,,F
+"rgba(colors.$brand-warn,0.3)",shadow 1,MERGE,"`rgba(250,22,22,0.30)`",Same value (brand-warn = #fa1616).,F
+"rgba(0,0,0,0.2509803922)",shadow 1,FOLD,color/shadow/md,Compiled 0.25.,F
+#fa9016,"text (highlight icons: sidebar current page, favourite star, ~10 edit-icon hovers, active Settings icon)",FOLD,--boss-color-icon-brand,"Orange here is a ""you are here / active"" highlight, not a warning. Following text-warning it would turn brown (Q1). Colour only with meaning: active = brand (Q3). No accent role. (rev. 2026-10-09)",H
+#fa9016,text (breadcrumb hover),FOLD,--boss-color-text-brand,"Same highlight purpose, on text. (rev. 2026-10-09)",H
+#fa1616 / #fa9016,"text (~45 error, delete and warning icons)",FOLD,--boss-color-icon-danger / --boss-color-icon-warning,Icons coloured with `color:` were grouped as text and would darken with Q1. Q1 says icons keep the bright colours. Only real text gets #9a261c / #a85800. (rev. 2026-10-09),H
+WA --wa-color-danger/warning text + .warn-text,text,FOLD,--boss-color-text-danger / --boss-color-text-warning,"Web Awesome components and `.warn-text` (_text.scss) read the raw palette and would stay #fa1616 / #fa9016 next to the new text colours. Point them at the text roles. Known side effect: WA uses the same setting for its own danger/warning icons, so those darken too (accepted; override per component if one looks wrong). (rev. 2026-10-09)",H
+Divider brand-subtle,border (6 Overview dividers),REMOVE,--boss-color-border-neutral (Divider default),"Q5a removal confirmed: swap the 6 instances to default, then remove the brand-subtle colorInput option. (rev. 2026-10-09)",H
