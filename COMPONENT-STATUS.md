@@ -90,6 +90,12 @@ reference example for future doc-page authors, but it's currently unreachable in
 
 ## In Progress — Designer
 
+- **Selectable Split View / Split Panel** — `wa-split-panel` · Figma: [BOPD-857](https://diningalliance.atlassian.net/browse/BOPD-857) (was OR-13626). Figma
+  build 2026-10-09 on page "Split Panel (Steve)" `5192:162`: `Split Panel` set `5192:217` built to the WA spec (Orientation × Divider
+  Plain/Handle × State Default/Focus × Position 25/50/75 = 24 variants, Start/End instance-swap slots, placeholder `5192:163`) plus a
+  Tree → Card list/detail example. **Open, asked Tom on BOPD-857:** what ships is a different custom component,
+  `boss-selectable-split-view` (Left / Both / Right `boss-toggle` above two panes, no divider, used in Bank Rec). Nothing uses
+  `wa-split-panel`. Direction pending: document the shipped one, migrate it to wa-split-panel, or keep both.
 - **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
   [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
   `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,
@@ -180,7 +186,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
 - **Icons** — `wa-icon` · Figma: [OR-13621](https://diningalliance.atlassian.net/browse/OR-13621) · Dev: OR-12017
 - **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
   Runtime-only, so the story covers documentation, not a new component

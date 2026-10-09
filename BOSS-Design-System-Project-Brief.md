@@ -1998,3 +1998,13 @@ Medium, `ellipsis-vertical`) via `editComponentProperty` (defaultValue + preferr
 All 15 slots in the Card set followed automatically; on Accent the glyph keeps its white override. The action slots shrink from 40px to 32px.
 The 4 direct Card Action instances (Spinner page example cards, hidden slots) were swapped by hand. `Card Action` (`4699:254`) now
 had 0 instances and was deleted 2026-10-09 (user-confirmed). It was a published component, so the next library publish will report it as removed. Card's docs, To-Do 3 and description were updated.
+
+### Split Panel component (page `5192:162` "Split Panel (Steve)", ComponentSet `5192:217`)
+Started 2026-10-09 for BOPD-857 ("Selectable Split View"). Neither library has a Split Panel, so it was built to `wa-split-panel`'s source CSS: a grid of
+start / end panes with a 4px divider (`--divider-width: 0.25rem`, WA neutral-border-normal → `color/border/neutral`) and a 12px hit area.
+Variants: Orientation H/V × Divider Plain (4px) / Handle (20px + `grip-vertical` / `grip`, from WA's "Customizing the Divider") × State
+Default / Focus × Position 25/50/75. Focus is an absolute `Focus Ring` layer on top of both panes (`color/border/focus` + `Focus/Ring`). An
+effect on the divider itself was hidden under the End pane. Position is a variant because Figma can't resize the Start pane inside an
+instance. Start / End are INSTANCE_SWAP slots (placeholder `Split Panel Content` `5192:163`). The example swaps in Tree (Start) and Card (End).
+**Open:** the shipped `boss-selectable-split-view` is a custom Left / Both / Right toggle view (Bank Rec), not a split panel. Direction was asked
+of Tom on BOPD-857 (2026-10-09).
