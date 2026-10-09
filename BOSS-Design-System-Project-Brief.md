@@ -1978,7 +1978,10 @@ shipped look**: 40px rows, an FA icon (globe / shop / building) before Body/1 la
 20px indent per level, and a bordered container (`radius/m`). This deliberately doesn't match WA (32px rows, no icons, no lines, 32px indent,
 brand-blue selected bar); the To-Do says to raise it with devs. Tree Item: `Level` 1-5 × `Expanded`, properties Children
 (chevron), Icon, Icon Glyph, Label. Code's raw colours aren't drift: the 2026-10-08 colour-role decisions (section D) fold them into `text/primary`,
-`icon/default`, `surface/row-active` and `surface/table-hover`, and the Figma Tree already uses those (To-Do 3, corrected 2026-10-09). Selection (single highlight vs full WA vs none) is on hold, per the user.
+`icon/default`, `surface/row-active` and `surface/table-hover`, and the Figma Tree already uses those (To-Do 3, corrected 2026-10-09). **Selection (decided 2026-10-09): the full WA model.** Tree Item gained `Selected` False/True/Indeterminate (clones of the
+False variants, with property refs re-applied) and a `Checkbox` boolean (our Checkbox, label off, before the icon), for 30 variants on a 3-column grid.
+Selected=True fills `color/surface/row-active` with no brand bar (look A). Indeterminate = a partly selected parent (checkbox only). Examples show
+single / multiple / leaf. boss-tree has no selection input yet.
 
 ### Icon Button component + More Menu pattern (page `5182:198` "Icon Button (Steve)", ComponentSet `5182:343`)
 Built 2026-10-09 for BOPD-859. The user's idea: the "3 Button More Menu" is just an icon-only button with a kebab glyph. Button had no

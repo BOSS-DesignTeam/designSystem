@@ -39,6 +39,9 @@ entries (see the "In Progress — Dev" section).
 - Tag
 - Toggle → `boss-toggle` (OR-13514, merged 2026-10-01). Replaced the legacy `button-select`, which
   was deleted after every usage moved over
+- Organizational Tree → `boss-tree` (wraps `wa-tree`; dev BOPD-816 Done, doc page "Tree" in `style-guide-v2.nav.ts`). Figma
+  [BOPD-869](https://diningalliance.atlassian.net/browse/BOPD-869) Done 2026-10-09: page `5176:162`, Tree Item `5177:306` (30 variants incl. WA selection
+  model) + Tree `5177:307`. Follows the shipped look, not WA (raised with dev on BOPD-816). boss-tree has no `selection` input yet.
 - Alert Banner → shipped as **Callout** (OR-13111, On Prod) — flagging a caveat, not a full
   parity claim: the legacy Alert this replaces was a stateful, toast-like manager (imperative
   `showAlert()`, stacking), while the new Callout doc page reads as a static banner. Worth
@@ -87,12 +90,6 @@ reference example for future doc-page authors, but it's currently unreachable in
 
 ## In Progress — Designer
 
-- **Organizational Tree Display** — `boss-tree` wraps `wa-tree` + `wa-tree-item` · Figma: [BOPD-869](https://diningalliance.atlassian.net/browse/BOPD-869)
-  (was OR-13624) · Dev: [BOPD-816](https://diningalliance.atlassian.net/browse/BOPD-816) (was OR-11848) **Done**, already shipped. Figma build started 2026-10-09 on
-  page "Organizational Tree (Steve)" `5176:162` in Base Components: `Tree Item` set `5177:306` (Level 1-5 × Expanded, plus Children /
-  Icon / Icon Glyph / Label) and a `Tree` container `5177:307`. **Follows the shipped boss-tree look, not WA** (decided 2026-10-09):
-  40px rows, FA icons, row lines, bordered box, 20px indent. That mismatch needs to be raised with devs (page To-Do 1).
-  Open: how much selection to model (on hold).
 - **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
   [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
   `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,
