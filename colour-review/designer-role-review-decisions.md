@@ -12,7 +12,7 @@ Filled-in version of `designer-role-review.md`. Section A is unchanged. Every ro
 
 ---
 
-## Designer decisions (all resolved 2026-10-08, revised 2026-10-09)
+## Designer decisions (all resolved 2026-10-08, revised 2026-10-09, hover added 2026-10)
 
 Revised after the colour review (`steve-colour-review.html`), which checked every decision against the real screens. Changes are marked *rev. 2026-10-09* and listed in section H.
 
@@ -275,6 +275,38 @@ Also from the review: it used the code as of 1 Oct. Colours added since then hav
 - ~~Check the rest of the file for any icon still bound to a text status role (H2).~~ **Done 2026-10-09:** a full scan (all pages, including instances and vector icons) found no icons left on `text/danger|warning`. The only remaining case was the 12 Badge Success icons on `text/success`, moved to `color/icon/success` for consistency (same value, green/50 / green/90, so no visual change).
 - ~~Organizational Tree page: fix To-Do 3 and the Tree Item description (they called the tree colours drift).~~ **Done 2026-10-09:** To-Do 3 is now marked resolved and lists the section D folds; To-Do 2 and the description note `surface/row-active` for the selected row. The BOPD-816 comment was corrected the same day.
 - No change needed: Divider (no brand-subtle variant in Figma), Alert (already on icon roles), Tooltip (already `color/bg/tooltip`).
+
+## I. Hover and trend colours (round 3, resolved 2026-10)
+
+The orange highlight (#fa9016) is also the app's general **hover** colour on links, breadcrumbs, sortable headers, tabs and clickable icons: 79 hover rules. Under Q1 each would turn dark brown (#a85800). Decision: hover is an interaction state, not a warning, so it leaves the warning role (H1: orange = warnings only). Answers: **I1 = BRAND with exceptions**, **I2 = ICON-WARNING**, **I3 = ICON-WARNING**. No new Figma variables are needed.
+
+| Group (79 rules) | Rules | Hover treatment |
+|---|---:|---|
+| Text, colour inherited or other (includes 8 link-accent rows, which fold to `text-link` #237db1 under decision B, and 9 breadcrumb rows covered by H1) | 28 | `--boss-color-text-brand` (#23408f) |
+| Icons, colour inherited or other | 21 | `--boss-color-icon-brand` |
+| Text already brand before hover | 12 | Stay brand, add an underline on hover (designer choice) |
+| Icons already brand before hover | 2 | No colour change, cursor only (an underline does not apply to an icon) |
+| Sortable headers and sort controls | 8 | `--boss-color-text-primary`, so table headers stay gray-only (designer choice, BOSS Table 2026-10-07) |
+| Tab labels | 5 | Grey ground `--boss-color-bg-neutral-subtle-hover`, label unchanged (matches the Figma Tab Hover) |
+| White text on a navy banner or dark header | 3 | Ground `--boss-color-bg-on-filled-subtle` (rgba white 20%), text stays white (designer choice) |
+
+**Verify on screen:** `submittedOrderRow.scss:223` (a status icon that may not need a hover), `addToRestaurantsFlyout.scss:133` (icon in a warning popover), `viewAllW2.component.scss:38` (parent colour is `$brand-darker-blue`, so brand hover may show no change), and the grounds of `_recipeMaintenanceView.scss:116` and `ordering.scss:102` (assumed dark). The other inherited-colour rows get brand hover without a per-row screen check, so spot-check them.
+
+| Value | Used as | Decision | Target | Reason |
+|---|---|---|---|---|
+| #fa9016 | I1 hover: white text on navy banner / dark header (3 rules) | FOLD | --boss-color-bg-on-filled-subtle (hover ground, rgba(255,255,255,0.2)); text stays --boss-color-text-on-filled | Brand navy hover would vanish on navy, so these 3 are an exception to the brand rule. viewAllW2.component.scss:17 is confirmed a navy banner; _recipeMaintenanceView.scss:116 and ordering.scss:102 have white text and look like dark headers (verify the ground). No new variable. |
+| #fa9016 | I1 hover: tab labels (5 rules) | FOLD | --boss-color-bg-neutral-subtle-hover (hover ground); label colour unchanged | Match the Figma Tab Hover (grey ground, label stays text-secondary). Active tabs already use brand (Q3). Rows: _tabBar.scss:38, _recipeMaintenanceView.scss:153, recipeDetailFlyout.scss:68, categoryIngredientOverview.scss:55, restaurantCategoryOverview.scss:258. |
+| #fa9016 | I1 hover: sortable headers and sort controls (8 rules) | FOLD | --boss-color-text-primary | Table headers stay gray-only (BOSS Table decision 2026-10-07), so hover darkens to ink instead of turning brand. Rows: categoryOverviewContent.scss:46, categoryIngredientOverview.scss:205, categoryIngredientOverview.scss:310, allIngredientsOverview.scss:173, allIngredientsOverview.scss:268, restaurantCategoryOverview.scss:170, allCategoriesOverview.scss:245, manageUsers.scss:177. |
+| #fa9016 | I1 hover: text already brand before hover (12 rules) | FOLD | --boss-color-text-brand (unchanged) + underline on hover | A brand hover would show no change, so add an underline (no new role). Designer choice 2026-10. |
+| #fa9016 | I1 hover: icons already brand before hover (2 rules) | KEEP | --boss-color-icon-brand (unchanged); no hover colour change | Underline does not apply to an icon, so these keep their colour and only change the cursor. Rows: recipeCostingContent.scss:269, openOrders.scss:126. |
+| #fa9016 | I1 hover: all other text (inherited, link-accent, secondary, strong, #49a4da) (28 rules) | FOLD | --boss-color-text-brand | Orange hover is an interaction state, not a warning, so it leaves the warning role (H1: orange = warnings only). Brand matches active and breadcrumb (H1, Q3). The 8 link-accent rows fold to text-link (#237db1) under decision B, so brand navy is a visible darkening. Includes the breadcrumb text rows covered by H1. |
+| #fa9016 | I1 hover: all other icons (21 rules) | FOLD | --boss-color-icon-brand | Same reason as the text rows. Includes the shared breadcrumb icon (components/breadcrumb/breadcrumb.scss:14). |
+| #fa9016 | I1 verify on screen (4 spots) | FOLD | as the group above, confirm visually | submittedOrderRow.scss:223 (status icon, may not need any hover) ; addToRestaurantsFlyout.scss:133 (icon in a warning popover) ; viewAllW2.component.scss:38 (parent colour is $brand-darker-blue, so brand hover may show no change) ; _recipeMaintenanceView.scss:116 and ordering.scss:102 (confirm the header ground is dark). Brand hover is applied to the other inherited-colour rows without a per-row screen check. |
+| #fa9016 | I2 loading spinner steam (5 rules, loadingSpinner.scss:127,142,156,178,185) | FOLD | --boss-color-icon-warning | Decorative illustration. icon-warning keeps today's orange (#fa9016) with no visible change and avoids the dark brown text role (Q1). The bowl loader is being replaced (BOPD-1166): remove this then. |
+| #ffc061 | I3 trend up-arrow (budgetHistoryCard.scss:27 .arrow-up) | FOLD | --boss-color-icon-warning | A glyph, so under H2 it is an icon: bright orange, not dark brown. Trend direction is a real status signal. |
+| #ffc061 | I3 margin caret (globalReportingDashboard.scss:149 .marginCaretDown) | FOLD | --boss-color-icon-warning | Same as the trend arrow: a glyph, bright orange under H2. |
+
+**Figma follow-up:** Breadcrumb Item `State=Hover` is bound to `color/text/link`, the same as Linked. H1 makes breadcrumb hover brand, so Hover should become `color/text/brand`. The Tab Hover already matches.
 
 ## G. Not colours, for later
 
