@@ -1440,8 +1440,10 @@ Inverse row in the Divider section, for documentation only. The component descri
   in main components. The 6 Select/Combobox Error-state warning icons were rebound to `color/icon/danger`. Code
   has no icon there; `boss-select`/`boss-combobox` `.invalid` colours border, focus ring and hint with raw
   `$brand-warn` #fa1616. The 33 Badge (Warning/Danger Start/End icons) and Dropdown Item (Variant=Danger)
-  icons stay on the text roles on purpose: they sit inline with their label, which in code they likely
-  match via `currentColor` (not verified in the Badge/Dropdown code). **Resolved 2026-10-08:** those 6 warning icons were
+  icons first stayed on the text roles to match their inline labels. **Changed 2026-10-09** (colour review, decisions H2):
+  all 33 glyphs (Badge 24, Dropdown Item Danger 9) now use `color/icon/danger` / `color/icon/warning` (plus the 12 Badge Success icons → `color/icon/success`, same value), so they stay bright
+  while the labels take the darker text colour. In code these icons probably inherit `currentColor` from the label (not verified), so
+  wiring needs an explicit icon colour for them to match. **Resolved 2026-10-08:** those 6 warning icons were
   then deleted (user-confirmed) so the Error states match the code: hint/error text only. The Combobox / Field `error-message` text
   (`731:34`, `3541:288`) was bound to `color/border/danger` and was rebound to `color/text/danger`, matching Select.
 - Not yet published.
@@ -1975,8 +1977,8 @@ A side-by-side section on the page compares the shipped look with the WA 3 kit's
 shipped look**: 40px rows, an FA icon (globe / shop / building) before Body/1 labels, a 1px `color/border/neutral` line between rows,
 20px indent per level, and a bordered container (`radius/m`). This deliberately doesn't match WA (32px rows, no icons, no lines, 32px indent,
 brand-blue selected bar); the To-Do says to raise it with devs. Tree Item: `Level` 1-5 × `Expanded`, properties Children
-(chevron), Icon, Icon Glyph, Label. Token drift from code's raw colors ($tree-text #3f3f46, $tree-expand-icon #52525b, lightgray,
-5px radius) is logged in the To-Do. Selection (single highlight vs full WA vs none) is on hold, per the user.
+(chevron), Icon, Icon Glyph, Label. Code's raw colours aren't drift: the 2026-10-08 colour-role decisions (section D) fold them into `text/primary`,
+`icon/default`, `surface/row-active` and `surface/table-hover`, and the Figma Tree already uses those (To-Do 3, corrected 2026-10-09). Selection (single highlight vs full WA vs none) is on hold, per the user.
 
 ### Icon Button component + More Menu pattern (page `5182:198` "Icon Button (Steve)", ComponentSet `5182:343`)
 Built 2026-10-09 for BOPD-859. The user's idea: the "3 Button More Menu" is just an icon-only button with a kebab glyph. Button had no
