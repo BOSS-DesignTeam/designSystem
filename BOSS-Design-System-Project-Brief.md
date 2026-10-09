@@ -1946,3 +1946,14 @@ on the PR): remove the `indicatorColor`/`trackColor` overrides, no spinner-track
 label, skeleton rows for tables that load empty, bowl page loader deferred. The page has Documentation,
 To-Do, the component section (On Filled sits on a dark swatch) and Examples (example Card detached: a swapped
 instance in Card's Body slot can't be resized).
+
+### Progress Bar component (page `5168:181` "Progress Bar (Steve)", ComponentSet `5168:222`)
+Built 2026-10-09 for BOPD-855 (Done). It was imported from the WA 3 kit's Progress Bar (component set key
+`060d9898a9c3c2bfd883926de0eff739da921849`) by instancing each variant, detaching, and turning it into a component, then rebinding:
+track `color/bg/neutral/subtle`, fill `color/bg/brand/default`, `radius/full`, height bound to `font-size/m` (the kit
+binds height to Font Size/M, i.e. `--track-height: 1rem`), and the label in Body/2 with `color/text/on-filled`. No remote WA
+variables remain. Variants: `Value` 0/25/50/75/100/Indeterminate, the same as the kit. `Label` TEXT (default blank),
+inside the fill. The Indicator uses Scale constraints, so resizing keeps the percentage. User decision 2026-10-09: WA
+defaults over shipped code (brand blue only, 16px, label inside, Indeterminate included). The code drift is for
+BOPD-842 (was OR-12018): `boss-progress-bar` wraps `sl-progress-bar` at 9px with `$alert-orange` #ffc061.
+The overview Budget and AdminUi billing bars use raw `sl-progress-bar` with status colors that aren't modeled.

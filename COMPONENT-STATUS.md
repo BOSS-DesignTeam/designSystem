@@ -119,6 +119,13 @@ Real components exist and are used in production RestaurantUI code for every ite
 of these are "doesn't exist," only "no dev work actively happening on a style-guide-v2 doc page."
 
 **Design already done in Figma, dev just hasn't started yet (no active ticket found):**
+- **Progress Bar** — `wa-progress-bar` · Figma: [BOPD-855](https://diningalliance.atlassian.net/browse/BOPD-855) (was OR-13628, Done 2026-10-09) · Dev:
+  [BOPD-842](https://diningalliance.atlassian.net/browse/BOPD-842) (was OR-12018, To Do). **Design built 2026-10-09** on page "Progress Bar (Steve)"
+  `5168:181` in Base Components, set `5168:222`: imported from the WA 3 kit, detached, rebound. `Value`
+  0/25/50/75/100/Indeterminate + `Label` text inside the fill. Decided 2026-10-09: WA defaults (16px, brand blue
+  on `color/bg/neutral/subtle`, label inside). Code drift for BOPD-842: `boss-progress-bar` still wraps
+  `sl-progress-bar` at 9px with an orange `$alert-orange` fill, and the overview Budget / AdminUi billing bars
+  use raw `sl-progress-bar` with status colors that this component doesn't model.
 - **Floating Action Bar** — `boss-floating-action-bar` (tag name decided 2026-10-08). Figma story
   [BOPD-1042](https://diningalliance.atlassian.net/browse/BOPD-1042). Iteration 1 was rebuilt from 0.1 components on 2026-10-06 (page `942:2`, section
   "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or a Dropdown Trigger, all Plain,
@@ -160,7 +167,6 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
 - **Organizational Tree Display** — `wa-tree` + `wa-tree-item` · Figma: [OR-13624](https://diningalliance.atlassian.net/browse/OR-13624) · Dev: OR-11848
 - **Quantity Selector** — `wa-number-input` · Figma: [OR-13625](https://diningalliance.atlassian.net/browse/OR-13625)
 - **Selectable Split View** — `wa-split-panel` · Figma: [OR-13626](https://diningalliance.atlassian.net/browse/OR-13626)
-- **Progress Bar** — `wa-progress-bar` · Figma: [OR-13628](https://diningalliance.atlassian.net/browse/OR-13628) · Dev: OR-12018
 - **Toast Notifications** — `wa-toast` · Figma: [OR-13631](https://diningalliance.atlassian.net/browse/OR-13631) · Dev: OR-11863. Service-level
   toast triggering (stacking/placement container), distinct from the Toast Item component above.
   Runtime-only, so the story covers documentation, not a new component
