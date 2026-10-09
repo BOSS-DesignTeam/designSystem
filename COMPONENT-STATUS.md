@@ -51,7 +51,7 @@ entries (see the "In Progress — Dev" section).
 **Also dev-complete, but this file's Figma section doesn't track them by name** (likely already
 designed — just not itemized in the brief's specific "atomic components" list — not a confirmed
 Figma gap):
-- Breadcrumb
+- Breadcrumb (Figma Breadcrumb Item Hover changed to `color/text/brand` 2026-10, colour review H1 / hover round I; code hover should be `text-brand`)
 - Combobox
 - Details
 - Textarea
@@ -69,7 +69,7 @@ below instead, even if the design side is finished.
 - **Tooltip** — OR-13002, Code Review, not yet merged
 - **Dialog** — OR-13003, Code Review, not yet merged
 - **Spinner** — `boss-spinner` wraps `wa-spinner` · Dev: [PR #9722](https://github.com/orderlyapp/orderly/pull/9722)
-  (BOPD-836), Testing (QE), not yet merged (includes the style-guide-v2 doc page) · Figma:
+  (BOPD-836), **merged 2026-10-08**, still Testing (QE) in Jira, not on prod yet (includes the style-guide-v2 doc page) · Figma:
   [BOPD-878](https://diningalliance.atlassian.net/browse/BOPD-878) (Done 2026-10-09), **design built 2026-10-08** on page
   "Spinner (Steve)" `5135:162` in Base Components, set `5135:179`: Size Inline (16px, 2px track, Color
   Default / Brand / On Filled, track = arc at 25%) / Section (64px, 4px track, brand arc on gray/90).
@@ -78,6 +78,8 @@ below instead, even if the design side is finished.
   inline track at currentColor 25%, keep Section at 64px/4px, add an optional Section label (built in
   Figma as Label + Label Text), and use skeleton rows for empty loading tables. The bowl page loader is
   deferred to its own ticket. (OR-13623 and OR-12020 are the old keys of BOPD-878 and BOPD-836.)
+  **Follow-up needed, no ticket yet:** the PR merged before those decisions were posted (comment on #9722, 2026-10-09). Master still has the
+  `indicatorColor` / `trackColor` inputs (and the Payroll register pink override) and no Section label. Needs a dev story to remove the overrides and add the label.
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -217,8 +219,8 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 **Figma design not started — WebAwesome has a matching component, Figma story filed (To Do).**
 Build these from the WA kit, not from scratch. Merged from `boss-design-system-docs/Todo.md`
 2026-09-25; WA matches checked against webawesome.com/docs/components the same day.
-- **Layout** — `wa-page` · Figma: [OR-13622](https://diningalliance.atlassian.net/browse/OR-13622)
-- **Progress Ring** — `wa-progress-ring` · Figma: [OR-13627](https://diningalliance.atlassian.net/browse/OR-13627) · Dev: OR-12019. **Deprioritized 2026-10-09: back of the
+- **Layout** — `wa-page` · Figma: [BOPD-877](https://diningalliance.atlassian.net/browse/BOPD-877) (was OR-13622)
+- **Progress Ring** — `wa-progress-ring` · Figma: [BOPD-858](https://diningalliance.atlassian.net/browse/BOPD-858) (was OR-13627) · Dev: [BOPD-843](https://diningalliance.atlassian.net/browse/BOPD-843) (was OR-12019, To Do). **Deprioritized 2026-10-09: back of the
   line, after every other remaining component except Button Group** (which stays last).
 
 **No WebAwesome component — custom build or pattern, no Figma story yet:**
@@ -241,3 +243,9 @@ directly before assuming status):**
   this list** (the product doesn't use it much on the site).
 
 **DatePicker** and **Financial Calendar Range** moved to In Progress — Designer on 2026-10-09 (Date Input build).
+
+**Follow-ups found during the 2026-10-09 design work, no Jira ticket yet:**
+- **Spinner:** remove `indicatorColor` / `trackColor` and add the Section label (see the Spinner entry above).
+- **Hand-built buttons:** `#reviewOrderBtn` (filled navy "Review Order") and `#saveForLaterBtn` in `pages/ordering/orderCartFlyout/orderCartFlyout.scss:~103` are custom CSS. Their hover was orange; the decided hover is the real Button hover (`bg-button-brand-hover` / `bg-button-brand-subtle-hover`, text stays). Replace both with `orderly-button`.
+- **Empty State:** rename the `<empty-state>` selector to `boss-empty-state`.
+- **Colour hover wiring:** the 79 orange hover rules in colour-review section I need dev wiring (brand hover, with the listed exceptions).
