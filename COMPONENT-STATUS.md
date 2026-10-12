@@ -121,6 +121,17 @@ reference example for future doc-page authors, but it's currently unreachable in
   **Loading → skeleton rows, 2026-10-09 ([BOPD-1167](https://diningalliance.atlassian.net/browse/BOPD-1167) Done; dev [BOPD-1177](https://diningalliance.atlassian.net/browse/BOPD-1177)):** State=Loading = live header + 5 new
   `Table Row` Type=Skeleton rows (both sizes; bars inside real column cells, following column widths). A new **Skeleton** component
   (`5197:167`, page "Skeleton (Steve)" `5197:162`) was imported from the WA kit and rebound. A new support variant was added: Table Cell Size=Standard, Type=Empty.
+- **Form** — `boss-form` (custom composite, no WA equivalent; 14 usages, mostly Drawer bodies) · Figma:
+  [BOPD-1223](https://diningalliance.atlassian.net/browse/BOPD-1223) (filed and Done 2026-10-12, under BOPD-826; dev follow-ups filed 2026-10-12: BOPD-1230 to BOPD-1233). Was missing from every list until 2026-10-12.
+  Modes View / Edit / Read-only; header with Edit, Cancel, Save and Delete; field rows with label, required `*`, help text, locked-field tooltip, error and
+  warning messages; 13 field types. **Atoms audit (live in Figma, 2026-10-12):** already designed = Input, Single Select, Multi Select, Textarea, Date Input,
+  Quantity Selector, Switch, Checkbox, Radio Group. **Missing atoms built 2026-10-12, each on its own page after Date Input (Steve):** "Money Input (Steve)"
+  `5279:284` (set `5279:232`, cloned from Input, fixed $ prefix; `boss-money-input`), "Numeric Set Input (Steve)" `5282:285` (set `5282:233`, two fields + delimiter +
+  Money ($) option; `boss-tuple-input`), "Address (Steve)" `5284:14734` (set `5284:14930`, composed of Input + Single Select instances; `boss-address`). Each has
+  Documentation / To-Do / Examples. **The Form itself built 2026-10-12** on page "Form (Steve)" `5287:162`: `Form` set `5288:20665` (Mode View / Edit / Read-only, five-row sample),
+  `Form Header` `5287:205` (Mode × Save Enabled/Disabled, Title / Info Tooltip / Show Actions / Delete), `Form Row` `5288:266` (Mode View / View Control / Edit × State Default / Error / Warning;
+  Control, Boolean Control, Error Control swap slots), support `Form Quantity Field` `5288:175`. Examples show all 13 field types in Edit plus validation / locked rows.
+  Open: header 48px vs code 35px (Icon Buttons); Edit / Delete are bare icons in code; warnings share the error red; raw brand colours in code; a Form has a fixed row count, compose real forms from Header + Rows. Other open: code still wraps Shoelace internals; Edit icon vs Icon Button; Single Select's Disabled look is paler than Input's; Input's Error variants aren't wired to its properties (fixed in the three new sets).
 - **Drawer** — `wa-drawer` · Figma: [OR-13619](https://diningalliance.atlassian.net/browse/OR-13619) · Dev: OR-11865 (tickets already
   existed under "Not Started," merged from `boss-design-system-docs/Todo.md` 2026-09-25 — moved
   here now that real Figma work is underway). Figma build in progress, started 2026-10-05. Built
@@ -227,7 +238,7 @@ Build these from the WA kit, not from scratch. Merged from `boss-design-system-d
   line, after every other remaining component except Button Group** (which stays last).
 
 **No WebAwesome component — custom build or pattern, no Figma story yet:**
-- Address
+- Address — built 2026-10-12 as a Form atom (BOPD-1223), page "Address (Steve)" `5284:14734`
 - Links — native styles, no component
 - Lists
 - Multi Unit Division Selector
@@ -252,3 +263,4 @@ directly before assuming status):**
 - **Hand-built buttons:** [BOPD-1186](https://diningalliance.atlassian.net/browse/BOPD-1186). `#reviewOrderBtn` (filled navy "Review Order") and `#saveForLaterBtn` in `pages/ordering/orderCartFlyout/` become `orderly-button`, with the real Button hover.
 - **Empty State:** [BOPD-1187](https://diningalliance.atlassian.net/browse/BOPD-1187). Rename the `<empty-state>` selector to `boss-empty-state` (42 templates) and add a style-guide page.
 - **Colour hover wiring:** [BOPD-1188](https://diningalliance.atlassian.net/browse/BOPD-1188). The 79 orange hover rules (colour-review section I) move to brand, with the listed exceptions.
+- **Form (BOPD-1223):** [BOPD-1230](https://diningalliance.atlassian.net/browse/BOPD-1230) migrate `boss-form`, `boss-money-input`, `boss-tuple-input` and `boss-address` off Shoelace; [BOPD-1231](https://diningalliance.atlassian.net/browse/BOPD-1231) raw colours to colour roles, error ring, warning colour; [BOPD-1232](https://diningalliance.atlassian.net/browse/BOPD-1232) header Icon Buttons, header height, truncation tooltips; [BOPD-1233](https://diningalliance.atlassian.net/browse/BOPD-1233) Single Select disabled look, Input Error wiring, Address beyond the US.
