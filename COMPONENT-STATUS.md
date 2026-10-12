@@ -104,9 +104,11 @@ reference example for future doc-page authors, but it's currently unreachable in
 - **Selectable Split View / Split Panel** — `wa-split-panel` · Figma: [BOPD-857](https://diningalliance.atlassian.net/browse/BOPD-857) (was OR-13626). Figma
   build 2026-10-09 on page "Split Panel (Steve)" `5192:162`: `Split Panel` set `5192:217` built to the WA spec (Orientation × Divider
   Plain/Handle × State Default/Focus × Position 25/50/75 = 24 variants, Start/End instance-swap slots, placeholder `5192:163`) plus a
-  Tree → Card list/detail example. **Open, asked Tom on BOPD-857:** what ships is a different custom component,
-  `boss-selectable-split-view` (Left / Both / Right `boss-toggle` above two panes, no divider, used in Bank Rec). Nothing uses
-  `wa-split-panel`. Direction pending: document the shipped one, migrate it to wa-split-panel, or keep both.
+  Tree → Card list/detail example. **Direction settled (Tom, BOPD-857, 2026-10-09): go with WA.** `Selectable Split View` set `5265:20092`
+  (View = Left / Both / Right, 600 wide) added 2026-10-12: Toggle (Options=3) above a Split Panel instance (Both, exactly 50%) or a single
+  full-width pane (Left / Right, no divider). Prototype clicks on the toggle switch views. Pane content is placeholder. Code migration:
+  [BOPD-1211](https://diningalliance.atlassian.net/browse/BOPD-1211) (`boss-selectable-split-view` → `wa-split-panel`; used in Bank Rec Matched
+  Transactions tab + Match Details drawer). Open: Both → Left → Both returns to 50% or the dragged position (design assumes 50%).
 - **BOSS Table** — `wa-data-grid` (Pro; WebAwesome Pro 3.11 already ships in RestaurantUI) · Figma:
   [OR-13629](https://diningalliance.atlassian.net/browse/OR-13629). Figma build started 2026-10-07 on page `5027:162` (WIP section): one table with
   `Size` Standard (list screens, today's TanStack-based `boss-table`) / Report (financial statements,

@@ -2006,8 +2006,17 @@ Variants: Orientation H/V × Divider Plain (4px) / Handle (20px + `grip-vertical
 Default / Focus × Position 25/50/75. Focus is an absolute `Focus Ring` layer on top of both panes (`color/border/focus` + `Focus/Ring`). An
 effect on the divider itself was hidden under the End pane. Position is a variant because Figma can't resize the Start pane inside an
 instance. Start / End are INSTANCE_SWAP slots (placeholder `Split Panel Content` `5192:163`). The example swaps in Tree (Start) and Card (End).
-**Open:** the shipped `boss-selectable-split-view` is a custom Left / Both / Right toggle view (Bank Rec), not a split panel. Direction was asked
-of Tom on BOPD-857 (2026-10-09).
+**Direction settled:** the shipped `boss-selectable-split-view` is a custom Left / Both / Right toggle view (Bank Rec). Tom answered on BOPD-857
+(2026-10-09): go with WA, show Selectable Split View as an example composed from the Split Panel, and file a code migration ticket (BOPD-1211).
+
+**Selectable Split View** (set `5265:20092`, same page, section "Selectable Split View", added 2026-10-12). `View` = Left / Both / Right. Each variant
+is a 600px column: `View toggle` (Toggle `4544:11706`, Options=3, labels Left / Both / Right with icons off, the chosen option Active) above a `Panes`
+frame (360 tall, 1px `color/border/neutral`, `radius/panel`, clipped, stroke not included in layout). Both holds a Split Panel instance
+(Horizontal / Plain / Default / 50, exactly 298 + 4 + 298); Left / Right hold one full-width `Split Panel Content` instance with no divider. Width is 600
+because Figma can't resize the Start pane inside an instance, so the 50% variant is only exact at the base's own 600 (same limit as Split Panel To-Do 3).
+Prototype: each toggle option has an On click Change to reaction to its variant (set on the nested option instances; self-targets are rejected, so
+the active option has none). Pane content is placeholder. Split Panel To-Do 1 was rewritten as resolved. Open: whether Both → Left → Both returns to 50%
+or to the dragged position.
 
 ### Skeleton component + BOSS Table skeleton loading (BOPD-1167, 2026-10-09)
 `Skeleton` (`5197:167`, page "Skeleton (Steve)" `5197:162`): imported from the WA 3 kit Skeleton (key `0f2f9dfa…`), detached, and rebound
