@@ -1,0 +1,19 @@
+/* Ledger Loader. Text inherits the host page's font and colour, so it works on light and dark surfaces.
+   Size: set --ledger-loader-width on .ledger-loader or any ancestor (default 300px). */
+.ledger-loader{
+  width:var(--ledger-loader-width, 300px);
+  max-width:100%;
+  display:grid;
+  justify-items:center;
+  gap:6px;
+  text-align:center;
+}
+.ledger-loader canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:600 / 360;
+  max-width:100%;
+}
+.ledger-loader__title{margin:0; font-size:15px; font-weight:600;}
+.ledger-loader__step{margin:0; font-size:13px; opacity:.72; min-height:1.4em;}

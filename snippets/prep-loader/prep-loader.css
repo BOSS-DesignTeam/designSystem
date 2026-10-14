@@ -1,0 +1,19 @@
+/* Prep Loader. Text inherits the host page's font and colour, so it works on light and dark surfaces.
+   Size: set --prep-loader-width on .prep-loader or any ancestor (default 300px). */
+.prep-loader{
+  width:var(--prep-loader-width, 300px);
+  max-width:100%;
+  display:grid;
+  justify-items:center;
+  gap:6px;
+  text-align:center;
+}
+.prep-loader canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:780 / 342;
+  max-width:100%;
+}
+.prep-loader__title{margin:0; font-size:15px; font-weight:600;}
+.prep-loader__step{margin:0; font-size:13px; opacity:.72; min-height:1.4em;}
