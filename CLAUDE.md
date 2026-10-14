@@ -22,3 +22,6 @@ permitted to delete existing Figma nodes without explicit confirmation.
 At the start of the first design story of an epic, ask whether the work goes in the design system
 file or in a new epic file with a page per ticket. The question and how to choose are in
 FIGMA-WORKFLOW-NOTES.md §12.
+
+## Reporting findings
+Say how each finding was verified (live read, screenshot, or inference) and scope every count (which component, local or remote). Read variant options and fills live before describing or building from a variant. See FIGMA-WORKFLOW-NOTES.md §13 for the mistakes this rule comes from.

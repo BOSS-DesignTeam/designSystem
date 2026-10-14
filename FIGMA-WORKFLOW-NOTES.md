@@ -848,3 +848,67 @@ If the answer is a new epic file:
 
 **Decisions so far**
 - BOPD-42 Period close (2026-10-13): new file for the epic, "BOPD-42 Period close", key `zbs8jTlxXJzIXwFhJE0G8b` (Buyers Edge Platform org plan), https://www.figma.com/design/zbs8jTlxXJzIXwFhJE0G8b. Cover page plus one page per design ticket. At creation it had only the old Back Office Design Library and Back Office Users libraries; "Back Office Design System 0.1" had to be added by hand. BOPD-1110 (states and messaging pattern, plus the Period Status Badge, Locked Marker and Field Message components) was built in the design system file before this question existed.
+
+---
+
+## 13. Overstated claims and messes (2026-10-13 to 14), and the rules that stop them
+
+Each item below happened during the Period close work. The rule is what to do instead.
+
+### Claims that were wrong or overstated
+
+| What I said | What was true | Rule |
+|---|---|---|
+| "Neutral Filled is a solid near-black chip" | Badge `Accent` is the solid chip, `Filled` is light gray, `Filled-Outlined` adds a border. I read it from a screenshot's column order. | Before describing how a variant looks, read its fills and bound variables from the exact variant. A screenshot's order is not evidence. |
+| "Callout 75, Details 48, Tree Item 40, Checkbox 36, Tab 3 still use the remote Text Node" | Those counts were inside Web Awesome "Reference only" copies. Every live variant of ours had 0. | `getInstancesAsync()` walks into remote component definitions. Check `owner.remote`, and scan the local variants directly, before reporting a count. Say where each use lives, not just how many. |
+| "Table Cell is unpublished and needs publishing" | It reports UNPUBLISHED and can't be imported by key, but it works everywhere because it ships inside Table Row. Edits to it reach other files when Table Row is published. | UNPUBLISHED does not mean unusable. Before asking for a publish, test whether the change already propagates through a parent component, and say what is verified and what is not known. |
+| Built with Button `Appearance=Filled` | The library Button now uses `link / accent / outlined / plain`. The brief lagged the file. | Read variant options live before building anything by variant name. |
+| "Radio and Switch too?" answered "yes" to a question with two options | I did the smaller scope, said so, and asked. That worked. | When an answer is ambiguous, do the smaller scope and name what was held back. |
+| Used a different badge look than the one the user approved, without saying | The "Neutral Filled" the user approved was already gray; I changed it to Filled-Outlined on a wrong belief. | Never change an approved decision silently. If a deviation seems needed, flag it first. |
+
+### Messes
+
+| What happened | Rule |
+|---|---|
+| `variant.clone()` put the new component on the page, not in the set. Five stray components ended up on the BOSS Table page. | After cloning a variant, `set.appendChild(clone)` in the same script. At the end of any build, scan the page for components or frames the build created that are not meant to stay, and clean up only those (created in this session). |
+| Swapping a nested instance's component (`swapComponent`) wiped the text overrides on every existing instance (Tooltip, Radio Group). | Before swapping, collect every instance with `getInstancesAsync()`, record the overrides, swap, then restore and verify. |
+| A script that throws is rolled back completely. I re-ran a half-applied script twice. | After an error, read the current state before retrying. |
+| `resize()` on a component root reset its height to fixed (Checklist Item, Status Row), so content overflowed. | Set `counterAxisSizingMode = 'AUTO'` after `resize()`. Rule 12c in the figma-use skill. |
+| Nested instances inside an instance ignore `resize()` and `maxWidth` (only Fill works). | Don't try to size cells in a Table Row instance; choose which template columns to keep. |
+| An empty slot adds about 100px, and `createSlot()` adds its own `Slot` property per variant. | Default a `With Content` toggle to off, add one set-level slot property, point every slot at it, delete the auto ones. |
+| Temporary test instances and frames were left on pages. | Remove temp nodes in the same script that makes them, and return every created id. |
+
+### Before reporting a finding
+
+1. Say how it was verified: a live read, a screenshot, or an inference. If it is an inference, say so.
+2. A count needs a scope (which component, local or remote, which page).
+3. A "gap" needs the live read of the component, not the brief or an earlier note (the brief and my own notes lagged the file more than once).
+4. Check the library publish state (`getPublishStatusAsync`) and whether a library import works before building from the library, and say what a publish would and would not change.
+
+---
+
+## 14. Table Row recipe (found building BOPD-1114, 2026-10-14)
+
+The library Table Row has a fixed 7-cell template: checkbox (40), expander (40), one Fill text cell, three 160px cells, a 40px menu cell. To build a table from it:
+
+- Retype a cell with one call, `cell.setProperties({ Type, Align, Link })` (for example `Type: "Text + Sub Text"`). Changing Type and Align in separate calls can fail with "Unable to find a variant" because some Type/Align pairs do not exist (Checkbox and Expanded are Center only).
+- Set cell text on the nested TEXT nodes named `value` and `sub-text`. The `Value#...` property does not stick after a Type change.
+- Swap a cell to the local `Table Cell Content` with `cell.swapComponent(TCC)`, then delete the `default` placeholder TEXT in its slot before appending content.
+- The `Column N` toggles hide a cell and REMOVE it from `row.children`. Edit cells by index first, toggle columns last, then set `layoutSizingHorizontal = "FILL"` on the cells that need width, using the post-toggle child list.
+- Nested cells only accept Fill. Text + Sub Text is 50px tall against 43px for other cells.
+- Header row: same template. Do not set Align on the Checkbox or Expanded header cells.
+- A script that throws rolls back fully, so `throw new Error(JSON.stringify(diag))` at the end of a probe script is a safe way to inspect without leaving nodes behind.
+- Nodes created before `appendChild` into a Card slot get new IDs afterwards; find them again through the stage frame, not by the id the script returned.
+- The Jira cloudId for this site is `5ab67c95-bdac-4466-931d-f5aa3c8f435b` (diningalliance.atlassian.net); the buyersedgeplatform hostname is not granted.
+
+### 14b. More recipes from BOPD-1115 to 1119 (2026-10-14)
+
+- **Table Cell Content slot width goes stale.** After a cell's width changes (Fill, or column toggles), the `Content` slot inside can stay at the old width and clip a Badge. Toggle `slot.layoutSizingHorizontal = "FIXED"` then `"FILL"` on every slot after the row is finished.
+- **Property-bound visibility.** On Table Row Report rows the `Variance` property drives the visibility of every variance cell. Setting `.visible = false` on one variance cell flips the property to false and removes all of them (the row then no longer lines up with its header). Fill the cell instead. If it has happened, toggle the property off and on to rebuild the cells, then refill. Check `row.componentProperties["Variance#5064:39"].value` at the end of a build.
+- **Hidden nodes drop out of `children`.** A node hidden by a property (Column toggle, Variance) is not in `node.children`, so indices shift. Capture or edit first, hide last.
+- **Report-size Table Row** (Size=Report): children are expander (40), GL number (104), title (Fill), Pair (187) + Variance cell (94), then `group-2` and `group-3` frames each holding a Pair + Variance cell. Header labels are the TEXT nodes named `Column` in order; hide the `MM/DD/YYYY` sub text. Pair state `Numerical` (or `Subtotal` for Total rows); Variance cell Type `Money` or `Total`, or `Text` for text. Numbers in the Pair are the first non-percent TEXT; hide the `%` TEXT. Type Parent has an expander (`Expanded` on the first cell to open it), Child uses a Table Tree Cell.
+- **Status Row** action slot ships with two placeholder buttons: keep your own and delete the others. Its detail text does not grow the row, so give it full width.
+- **Dialog**: set `With Content`, delete the slot's placeholder children, append a frame; turn the footer buttons' `Leading Icon` off; titles do not wrap, keep them under about 30 characters at 440px.
+- **A card whose layout is switched from horizontal to vertical** keeps fixed sizing: set `layoutSizingVertical = "HUG"` on the card and the row frame, and `primaryAxisSizingMode = "AUTO"` on the wrapper.
+- **Date Calendar**: 42 `Calendar Day` instances with `State` Default, Disabled, Selected, Focus, Outside; set `State` and the `Day#...` text per cell and the `Title` text to retarget the month.
+- Instance text that must wrap (Field Message): set the TEXT to `layoutSizingHorizontal = "FILL"` and `textAutoResize = "HEIGHT"`. This did not work for the Empty State subheading, whose wrapper frame is 516px wide.
