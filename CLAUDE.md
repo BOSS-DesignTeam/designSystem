@@ -17,3 +17,8 @@ You may also edit existing Figma nodes directly (e.g. updating a component to ma
 this restriction was lifted for this project (see FIGMA-WORKFLOW-NOTES.md §3). The goal is always
 one canonical version of each component, not parallel old/new copies. You are still never
 permitted to delete existing Figma nodes without explicit confirmation.
+
+## Where epic design work lives
+At the start of the first design story of an epic, ask whether the work goes in the design system
+file or in a new epic file with a page per ticket. The question and how to choose are in
+FIGMA-WORKFLOW-NOTES.md §12.

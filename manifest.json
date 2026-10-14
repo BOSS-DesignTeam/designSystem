@@ -25,7 +25,7 @@
     {
       "name": "Badge",
       "group": "Data display",
-      "summary": "Badge is a small status or count label, wrapping the Web Awesome badge as orderly-badge."
+      "summary": "Badge is a small status or count label, wrapping the Web Awesome badge as badge (BadgeComponent, selector `badge`)."
     },
     {
       "name": "Breadcrumb",

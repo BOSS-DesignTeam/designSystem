@@ -492,6 +492,12 @@ the "never delete existing Figma nodes" rule. Recovery from Figma version histor
 design team to confirm; this section describes the replacement that currently exists in the
 file.
 
+**Live check 2026-10-13 (the text below lags the file):** `3941:32` now has **75 variants**. The `Appearance`
+axis is `link` | `accent` | `outlined` | `plain` (lower case; there is no `Filled`; `accent` is the solid brand
+button) and `State` is `Active` | `Default` | `Hover` | `Disabled` | `Loading`. Variant names look like
+`Variant=Brand, Appearance=accent, Size=Medium, State=Default`. Anything built by variant name must use
+these. Instances made before the change (for example on "Period Close States (Steve)") still work.
+
 **45 variants** = 2 Variants × 4 Appearances × 3 Sizes × 3 States — combined into one
 ComponentSet named `Button`.
 
@@ -1300,6 +1306,8 @@ visually before combining everything.
    instead of re-parented into it (the original had been pulled out during the rebuild and never
    put back) — caught via a page-layout check, not a screenshot; fixed with `section.appendChild()`
    and a section resize before it could ship looking broken.
+
+**Update 2026-10-13:** the remote Text Node is gone from Tooltip. All 12 variants now use a local `Tooltip Content` component (`5346:209` on the Tooltip page: Body/2, `color/text/on-filled`, hugs the text up to 240px then wraps) and its text is exposed on instances (`isExposedInstance`). Swapping the nested instance dropped every existing text override, so each Tooltip instance in the file had to be re-set; the 7 found were restored. **Radio and Switch, same day:** their 8 variants now use a local `Control Label` (`5350:235` on the Radio page: Roboto 16 / 120%, `color/text/primary`, label text exposed). The Switch label was bound to the remote WA variable `Form Control/Value/Color` (#1B1D26); it is now `color/text/primary` (#181920), a barely visible shift. 12 `Option N` labels in the Radio Group were restored. **Correction 2026-10-14:** the remote Text Node counts under Callout, Details, Tree Item, Checkbox and Tab are inside Web Awesome "Reference only" copies, not our live components (0 in every live variant; see page "Remote Text Node Audit (Steve)"). Only four hover components that are on no page (`Radio/Unselected/Hover`, `Radio/Selected/Hover`, `Switch/Off/Hover`, `Switch/On/Hover`).
 
 **`Content` is not exposed as a component property** — attempted adding one, but Figma rejects
 binding a TEXT property to a nested `INSTANCE`'s internal text node. Same constraint already

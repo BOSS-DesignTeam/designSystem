@@ -822,3 +822,29 @@ convention: don't write comments that restate what the code does, narrate why a 
 was overridden, or point at the ticket. That reasoning goes in the PR description. Only comment a
 genuinely non-obvious constraint, like a workaround for a specific library bug. Strip comments
 before opening the PR, not after review.
+
+---
+
+## 12. Where does a design story live: the design system file or a new epic file?
+
+**Ask this question at the start of the first design story of any epic, before building anything:**
+
+> Should this epic's design work live in the design system file (`B5j3nfocmShiBwqwy9dNXg`), or in a
+> new Figma file for the epic, with one page per design ticket?
+
+How to recommend an answer (still ask, the user decides):
+
+| Work looks like | Suggest |
+|---|---|
+| A new or changed reusable component, token or pattern (Badge, Callout, Tooltip, Form...) | Design system file, on its own `(Steve)` page, per the usual page conventions |
+| Screens and flows for one feature epic (dashboards, drawers, reports) that mostly instance existing components | New file for the epic, one page per design ticket |
+| A story that does both | New epic file for the screens; build any missing component in the design system file first, then use it |
+
+If the answer is a new epic file:
+- Name it after the epic (`BOPD-42 Period close`), create it in the same plan and project as the design system file, and add the BOSS design system as a library before building, so screens use real instances and not copies. Check with `get_libraries` on the new file; adding a library to a file is a manual step in the Figma UI.
+- A component can only be used from the library once it is **published** in the design system file. Publishing is also manual. Tell the user what needs publishing before the screens start.
+- One page per design ticket, named `BOPD-1111 Close dashboard: location view`. Keep a short cover page listing the epic, the tickets and their status.
+- Gaps found while building screens still go in `COMPONENT-STATUS.md` and, if a component needs changing, in the design system file.
+
+**Decisions so far**
+- BOPD-42 Period close (2026-10-13): new file for the epic, "BOPD-42 Period close", key `zbs8jTlxXJzIXwFhJE0G8b` (Buyers Edge Platform org plan), https://www.figma.com/design/zbs8jTlxXJzIXwFhJE0G8b. Cover page plus one page per design ticket. At creation it had only the old Back Office Design Library and Back Office Users libraries; "Back Office Design System 0.1" had to be added by hand. BOPD-1110 (states and messaging pattern, plus the Period Status Badge, Locked Marker and Field Message components) was built in the design system file before this question existed.
