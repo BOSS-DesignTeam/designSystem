@@ -21,14 +21,89 @@ this file is just the status.
 
 ---
 
+## Sync audit 2026-10-19 — what is out of date or out of sync (the to-do list)
+
+Compared five sources. **How each was verified:**
+- **Style guide v2** — saved qe2 page `styleguideV2/Back Office.html`: 25 component pages + the Popup utility (live read of its sidebar). qe2 is not prod. The Patterns / UX Standards / Tokens groups exist but their entries are not visible in the saved page.
+- **WebAwesome** — webawesome.com/docs/components index, live fetch.
+- **Figma 0.1** (`B5j3nfocmShiBwqwy9dNXg`) — all ~70 page names read live, plus the component sets inside the Organizational Tree and BOSS Table pages. Other pages' contents were **not** opened, so a component hidden inside another page would be missed.
+- **Old Figma library** ("Back Office Design Library", `wdwwm6VbBU89GFViEvcfkY`) — all page names read live, plus component names on 5 pages (Final Components, Base, Buttons & Button Groups, Navigation, Table). Not every page was opened.
+- **Old style guide v1** (`#/styleGuide`) — read from the orderly master snapshot of Oct 2 (`3657a07ecec`), not from qe2. WA registrations (`webawesome-imports.ts`) are from the same snapshot.
+- **Not re-checked:** Jira statuses (the Atlassian connector needs authorization), prod vs qe2, and any v2 change after the saved page.
+
+### A. Figma actions
+- [ ] **Copy Button** — in v2 (experimental, minimal), no Figma page. WA has `wa-copy-button`; check the WA kit first, build from it.
+- [ ] **Document Viewer** — in v2 (experimental, standard), no Figma page, no WA equivalent (custom).
+- [ ] **Document Strip** — in v2 (experimental, minimal), no Figma page, no WA equivalent (custom).
+- [ ] **Report Tree** — in v2 (experimental, minimal), no Figma page. The Organizational Tree page holds only Tree Item + Tree. Check the archived Reporting Table page before building.
+- [ ] **Toast (Steve)** `4381:162` sits below the "--- Archive ---" divider but is a current component (Toast Item, Action Toast). Move it above the divider. Same for the Toast notifications section.
+- [ ] **Datepicker (Priscilla)** `4340:13854` also sits below "--- Archive ---" with no `[Archived]` tag; Date Input (Steve) replaces it. Rename `[Archived]`, don't delete.
+- [ ] **Tabs (Steve)** `3900:2` sits in "--- Dev Picked Up ---" but there is no dev ticket and no v2 page (see Not Started → Tabs). Move it or open a ticket.
+- [ ] **Accordion** `1142:2` sits in "--- In Style Guide V2 ---" but v2 has no Accordion page; v2 has **Details** (wraps `wa-details`). Confirm they are the same component, then rename the Figma page to match (the code name wins) or add the missing page. Jira OR-13005 reads "Ready For Prod", which also needs a check.
+- [ ] **Tabbing Focus State Guidelines** `1103:2` is in "--- In Style Guide V2 ---" but is a guideline, not a component. Move it to Foundations, or add a matching page under v2 UX Standards.
+- [ ] **Figma Foundations and Colour Roles / Sizing** are built but v2's Tokens group is a stub (OR-11841). Hand `Colour Roles (Steve)` `5225:162` and `Sizing (Steve)` `5226:162` to dev as the content.
+
+### B. Style guide v2 actions (Figma is designed, v2 has no page)
+WA tag registered in `webawesome-imports.ts` (Oct 2 snapshot) means the page is cheap to add.
+- [ ] **Tabs** — `wa-tab-group` (registered)
+- [ ] **Card** — `wa-card` (registered), dev OR-11849
+- [ ] **Toast** — `wa-toast` (registered), dev BOPD-916
+- [ ] **Drawer** — `wa-drawer` (registered). The doc page is built on disk but has **no entry in `style-guide-v2.nav.ts`**, and it is still not in the qe2 sidebar. One line from live.
+- [ ] **Popover** — `wa-popover` (registered). v2's Popup utility is a different thing (`wa-popup`).
+- [ ] **Skeleton** — `wa-skeleton` (registered), dev BOPD-1177
+- [ ] **Icons** — `wa-icon` (registered); documentation page, dev BOPD-844
+- [ ] **Progress Bar** — `wa-progress-bar` (not registered), dev BOPD-842
+- [ ] **Quantity Selector** — `wa-number-input` (not registered), dev BOPD-1168
+- [ ] **Split Panel / Selectable Split View** — `wa-split-panel` (not registered), dev BOPD-1211
+- [ ] **Date Input** — `wa-date-input` + `wa-date-picker`, Pro (not registered), dev BOPD-921
+- [ ] **File Upload** — `wa-file-input`, Pro (not registered). Confirm the WA Pro licence.
+- [ ] **BOSS Table** — `wa-data-grid`, Pro (not registered)
+- [ ] **Icon Button + More Menu**, **Floating Action Bar** (dev BOPD-897), **Empty State** (rename to `boss-empty-state`, BOPD-1187), **Search Bar**, **Filter Drawer**, **Form** with Money Input, Numeric Set Input and Address (BOPD-1230 to 1233) — custom, no WA tag. v2's Patterns group has no entries, so these are candidates for it.
+- [ ] **Field Message**, **Checklist Item / Status Row**, **Animations** — new in Figma, no v2 page. Decide component page vs Pattern.
+
+### C. WebAwesome components in neither v2 nor Figma
+- **Likely relevant, not tracked anywhere:** Avatar, Carousel, Scroller, Pagination (only exists as Table Pager), Stepper / Step, Slider, Rating, Tag Input, Time Input, OTP Input, Checkbox Group, Color Picker. Decide yes / no for each. Avatar, Carousel and Scroller are already registered in `webawesome-imports.ts`, so code is ahead of both docs.
+- **Already on the backlog, not built:** Button Group (last), Progress Ring (back of the line), Page (Layout, BOPD-877).
+- **Probably not relevant:** charts, Sparkline, QR Code, Video, Video Playlist, Zoomable Frame, Markdown, Comparison, Animated Image, and the observer / format / include utilities.
+
+### D. Old style guide v1 leftovers (no v2 page)
+Still only in the legacy guide. Decide for each: migrate to v2, replace with a WA component, or retire.
+- **Designed in Figma 0.1, needs a v2 page** (see B): `quantity-selector`, `file-uploader`, `boss-selectable-split-view`, `boss-progress-bar`, `boss-progress-ring` (no Figma yet), `financial-calendar-range` + datepicker, `boss-drawer`, `filter-drawer`, `search-bar`, `empty-state`, `boss-address`, `more-options-menu`.
+- **No v2 page and no Figma 0.1 page:** `boss-header-info`, `boss-list-item`, `tab-bar`, `boss-page-content`, `action-select`, `boss-button-group`, `boss-multi-unit-division-selector`, `boss-multi-unit-rooftop-selector`, `boss-toast-action-bar`.
+- Directive guide (`bossPopover`) is covered by v2 Popup. The old playgrounds (form, table) are covered by Form and BOSS Table in Figma but not in v2.
+
+### E. Old Figma library not carried into 0.1
+Found by page and component name in the old library; each needs a decision (rebuild in 0.1, replace, or drop). 0.1 has no page for any of these:
+- [ ] **Navigation** (Back Office Navigation, Global Settings Nav, Sub Nav, Restaurant Picker, nav icons) — 18+ components, the largest gap
+- [ ] **Page Header / Page Heading** and **Top Bar** (code: `boss-page-content`, `boss-header-info`)
+- [ ] **Menu** and **Menu / COA-GL**
+- [ ] **Audit / History Log**
+- [ ] **Financial Reporting Card**
+- [ ] **Multi Unit Selector**
+- [ ] **List** (code: `boss-list-item`)
+- [ ] **Price Range Picker** and **Password Input**
+- [ ] **Island**, **Disclosure Button**, button "decision group" and "view details" variants, **Scrollbar**, **Ordering Add Item**, **Accounting Tags / Bank Account Use**
+- [ ] Old documentation pages with no 0.1 equivalent: Negative Numbers, Selection Bar, Panel Slide Out, Voice of the Product, Loading Screens (partly covered by Spinner + Skeleton), Dialogs, Layout, Search
+- Covered in 0.1 under a new name: Alert → Callout, Tab Group → Tabs, Toasts → Toast, Datepicker / Date Range Picker → Date Input, Paginator / Table Pagination → Table Pager, Report Table / Table → BOSS Table, Toggle Button → Toggle, Dropdown Select → Select, Form (for Drawer) → Form, File Upload, Empty State, Floating Action Bar, Drawer, Tooltip, Checkbox, Input, Dialog.
+
+### F. Docs out of sync
+- [x] **Switch, Tooltip, Dialog, Spinner** were listed here as unmerged or in QE; all four are on qe2's v2 sidebar. Moved to Complete below. Their Jira statuses (OR-13001, OR-13002, OR-13003, BOPD-836) were **not** rechecked, and Spinner's follow-up PR #9736 (BOPD-1185) status is unknown.
+- [x] This file did not mention **Report Tree, Copy Button, Document Strip or Document Viewer**. Added in A.
+- [ ] **`manifest.json`** indexes 14 components. v2 has 25 + Popup. Missing: Dialog, Divider, Dropdown, Radio, Split Button, Spinner, Tree, Report Tree, Copy Button, Document Strip, Document Viewer, Popup. `CLAUDE.md` calls this file a first stop for tag names, so it needs a refresh.
+- [ ] **`BOSS-Design-System-Project-Brief.md`** page list lags the file (it says so itself): Toast (Steve) and Datepicker (Priscilla) positions, and the pages added since 2026-10-08.
+- [ ] **qe2 vs prod**: Complete here means "on qe2". Check which of the newest pages are on prod.
+
+---
+
 ## Complete — designed in Figma AND has a real RestaurantUI style-guide-v2 doc page
 
 Verified 2026-09-23 against both `BOSS-Design-System-Project-Brief.md`'s Figma build order and
 `style-guide-v2.nav.ts` on `master` directly — not against Jira ticket wording, which has stale
-entries (see the "In Progress — Dev" section).
+entries (see the "In Progress — Dev" section). **Re-verified 2026-10-19** against the saved qe2
+style guide v2 sidebar and the live Figma 0.1 page list (see the sync audit above).
 
 - Badge
-- Button (Orderly)
+- Button (Orderly) — Figma Appearance renamed 2026-10-13 to match the code: accent (was Filled), outlined, plain, link (was Accent); published 2026-10-14
 - Checkbox
 - Divider
 - Dropdown
@@ -37,6 +112,22 @@ entries (see the "In Progress — Dev" section).
 - Select
 - Split Button
 - Tag
+- Switch → `boss-switch` (moved from In Progress — Dev 2026-10-19; OR-13001 was Code Review, now in the qe2 v2 sidebar, Jira status not rechecked). Figma checked colour is orange/50 by decision.
+- Tooltip → `boss-tooltip` (moved 2026-10-19; OR-13002 was Code Review, now in the qe2 v2 sidebar, Jira status not rechecked)
+- Dialog → v2 `dialog` (moved 2026-10-19; OR-13003 was Code Review, now in the qe2 v2 sidebar, Jira status not rechecked)
+- **Spinner** (moved from In Progress — Dev 2026-10-19; now in the qe2 v2 sidebar, Jira/prod status not rechecked) — `boss-spinner` wraps `wa-spinner` · Dev: [PR #9722](https://github.com/orderlyapp/orderly/pull/9722)
+  (BOPD-836), **merged 2026-10-08**, still Testing (QE) in Jira, not on prod yet (includes the style-guide-v2 doc page) · Figma:
+  [BOPD-878](https://diningalliance.atlassian.net/browse/BOPD-878) (Done 2026-10-09), **design built 2026-10-08** on page
+  "Spinner (Steve)" `5135:162` in Base Components, set `5135:179`: Size Inline (16px, 2px track, Color
+  Default / Brand / On Filled, track = arc at 25%) / Section (64px, 4px track, brand arc on gray/90).
+  Built from the spec (the WA 3 kit has no Spinner). The branded bowl page loader is still out of scope.
+  Design decisions 2026-10-09 (posted on PR #9722): remove `indicatorColor`/`trackColor`, keep the
+  inline track at currentColor 25%, keep Section at 64px/4px, add an optional Section label (built in
+  Figma as Label + Label Text), and use skeleton rows for empty loading tables. The bowl page loader is
+  deferred to its own ticket. (OR-13623 and OR-12020 are the old keys of BOPD-878 and BOPD-836.)
+  **Follow-up: [BOPD-1185](https://diningalliance.atlassian.net/browse/BOPD-1185) (Code Review), [PR #9736](https://github.com/orderlyapp/orderly/pull/9736).** PR #9722 merged before those decisions were posted (comment on #9722, 2026-10-09), so master still had the
+  `indicatorColor` / `trackColor` inputs (and the Payroll register pink override) and no Section label. The fix is committed locally on branch
+  `steve.mings/BOPD-1185-boss-spinner-remove-overrides-add-label` (removes both inputs, Payroll back to the standard spinner, adds `label`, updates the style-guide page). Opened 2026-10-09; lint and a template type-check pass, not yet run in a browser.
 - Toggle → `boss-toggle` (OR-13514, merged 2026-10-01). Replaced the legacy `button-select`, which
   was deleted after every usage moved over
 - Organizational Tree → `boss-tree` (wraps `wa-tree`; dev BOPD-816 Done, doc page "Tree" in `style-guide-v2.nav.ts`). Figma
@@ -65,22 +156,9 @@ Real, active development happening right now — a real PR/ticket in motion, not
 done so it's eligible." If nobody's actually writing code for it today, it belongs in Not Started
 below instead, even if the design side is finished.
 
-- **Switch** — OR-13001, Code Review, not yet merged
-- **Tooltip** — OR-13002, Code Review, not yet merged
-- **Dialog** — OR-13003, Code Review, not yet merged
-- **Spinner** — `boss-spinner` wraps `wa-spinner` · Dev: [PR #9722](https://github.com/orderlyapp/orderly/pull/9722)
-  (BOPD-836), **merged 2026-10-08**, still Testing (QE) in Jira, not on prod yet (includes the style-guide-v2 doc page) · Figma:
-  [BOPD-878](https://diningalliance.atlassian.net/browse/BOPD-878) (Done 2026-10-09), **design built 2026-10-08** on page
-  "Spinner (Steve)" `5135:162` in Base Components, set `5135:179`: Size Inline (16px, 2px track, Color
-  Default / Brand / On Filled, track = arc at 25%) / Section (64px, 4px track, brand arc on gray/90).
-  Built from the spec (the WA 3 kit has no Spinner). The branded bowl page loader is still out of scope.
-  Design decisions 2026-10-09 (posted on PR #9722): remove `indicatorColor`/`trackColor`, keep the
-  inline track at currentColor 25%, keep Section at 64px/4px, add an optional Section label (built in
-  Figma as Label + Label Text), and use skeleton rows for empty loading tables. The bowl page loader is
-  deferred to its own ticket. (OR-13623 and OR-12020 are the old keys of BOPD-878 and BOPD-836.)
-  **Follow-up: [BOPD-1185](https://diningalliance.atlassian.net/browse/BOPD-1185) (Code Review), [PR #9736](https://github.com/orderlyapp/orderly/pull/9736).** PR #9722 merged before those decisions were posted (comment on #9722, 2026-10-09), so master still had the
-  `indicatorColor` / `trackColor` inputs (and the Payroll register pink override) and no Section label. The fix is committed locally on branch
-  `steve.mings/BOPD-1185-boss-spinner-remove-overrides-add-label` (removes both inputs, Payroll back to the standard spinner, adds `label`, updates the style-guide page). Opened 2026-10-09; lint and a template type-check pass, not yet run in a browser.
+Nothing is in active dev here right now. Switch, Tooltip, Dialog and Spinner were listed in this section
+until 2026-10-19, when all four turned out to be on qe2's style guide v2 sidebar; they moved to Complete.
+Jira statuses were not rechecked.
 
 **Quick win found along the way:** `components/boss-drawer/boss-drawer-doc.component.ts` is
 fully built on disk (ts/html/scss all present) but has **no entry in `style-guide-v2.nav.ts`** —
@@ -225,7 +303,7 @@ of these are "doesn't exist," only "no dev work actively happening on a style-gu
 - **Floating Action Bar** — `boss-floating-action-bar` (tag name decided 2026-10-08). Figma story
   [BOPD-1042](https://diningalliance.atlassian.net/browse/BOPD-1042). Iteration 1 was rebuilt from 0.1 components on 2026-10-06 (page `942:2`, section
   "Iteration 1 — v0.1 rebuild"). Each action slot is a Button or a Dropdown Trigger, all Plain,
-  with no Filled primary button. No WebAwesome equivalent. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) is ready to be picked up
+  with no accent (solid, was Filled) primary button. No WebAwesome equivalent. Dev: [BOPD-897](https://diningalliance.atlassian.net/browse/BOPD-897) is ready to be picked up
   and assigned to Hung (2026-10-08). Metric Group and No Actions Available options added to the
   Figma component 2026-10-08 (both required).
 - **Radio Group** — design done 2026-09-29 (Radio Group: Orientation × Appearance Default/Button ×
