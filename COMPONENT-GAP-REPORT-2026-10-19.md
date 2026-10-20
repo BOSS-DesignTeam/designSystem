@@ -23,7 +23,7 @@ The two saved v2 style guides come from different builds (qe1 `main-OZLZUUIK.js`
 - **Only on qe2:** Document Viewer and Document Strip.
 - Everything else matches: 23 components plus Popup, with the same status and tier labels.
 
-The qe1 file was supplied as the more up-to-date one. So Document Viewer and Document Strip may be unmerged work, which would mean BOPD-1566's "both already ship" holds only on qe2. This needs checking before treating either as shipped.
+The qe1 file was supplied as the more up-to-date one, so Document Viewer and Document Strip may be unmerged work. A Figma first pass and story BOPD-1566 were created for them on 2026-10-20 and then removed and archived by decision; revisit if they merge.
 
 ## 2. Style guide v2 (qe1) vs Figma 0.1
 
@@ -33,7 +33,6 @@ The qe1 file was supplied as the more up-to-date one. So Document Viewer and Doc
 
 **In Figma, not in the qe1 v2 guide:**
 - *Designed in 0.1, no v2 page:* Card, Toast, Drawer, Popover, BOSS Table, Floating Action Bar, File Upload, Progress Bar, Quantity Selector, Icon Button, Split Panel, Skeleton, Empty State, Search Bar, Filter Drawer, Date Input, Money Input, Numeric Set Input, Address, Form, Field Message, Checklist Item and Status Row, Icons, Animations. Radio Group is covered by the v2 Radio page (alias).
-- *First pass built 2026-10-20, qe2 only in code:* Document Viewer and Document Strip (draft, unpublished).
 
 ## 3. WebAwesome vs v2 and Figma
 
@@ -101,7 +100,7 @@ Matching is by page and component name only. A component may have been rebuilt i
 1. Find out why qe1 and qe2 differ and whether Document Viewer, Document Strip and Tabs are merged (section 1).
 2. Figma designs for Copy Button and Report Tree, the two v2 components with no design.
 3. v2 doc pages for the components that are designed but undocumented, starting with Card, Toast, Drawer and Popover (already registered in the WA imports).
-4. Add a Neutral + Outlined variant to Button and Icon Button, which the Document Viewer toolbar is waiting on (see the Button review in `COMPONENT-STATUS.md`).
+4. Add a Neutral + Outlined variant to Button and Icon Button, the missing default button look (see the Button review in `COMPONENT-STATUS.md`).
 5. Decide which of Avatar, Carousel, Scroller, Pagination, Stepper, Slider and Rating the product needs. None is tracked today.
 6. Decide the fate of the old-guide-only custom components (header-info, list-item, page-content, action-select, multi-unit selectors, toast-action-bar).
 7. Decide what happens to the old library's Navigation, Page Header, Menu, Audit/History Log and Financial Reporting Card. These look like core product chrome (the code has matching components) and have no home in 0.1 yet.

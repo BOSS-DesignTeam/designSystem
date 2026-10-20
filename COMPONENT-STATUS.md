@@ -34,8 +34,8 @@ Compared five sources. **How each was verified:**
 ### A. Figma actions
 `[ ]` not started · `[~]` first pass built, not published or finished · `[x]` done.
 - [ ] **Copy Button** — in v2 on qe1 and qe2 (experimental, minimal), no Figma page. WA has `wa-copy-button`; check the WA kit first, build from it.
-- [~] **Document Viewer** — in the **qe2** v2 style guide only (experimental, standard; not in the qe1 build, see H), no WA equivalent (custom). Figma story [BOPD-1566](https://diningalliance.atlassian.net/browse/BOPD-1566) (filed 2026-10-20, code first approach), shared with Document Strip. **First pass built 2026-10-20** on page "Document Viewer (Steve)" `5453:2` (draft, not published): Document Viewer set `5454:696` (18 variants), Viewer Toolbar `5453:53`, Documentation, To-Do and an Examples dialog. Open items are on the page's To-Do and in BOPD-1566. Toolbar buttons are Brand outlined stand-ins until Button gets a Neutral variant (see G).
-- [~] **Document Strip** — in the **qe2** v2 style guide only (experimental, minimal; not in the qe1 build, see H), no WA equivalent (custom). Figma story [BOPD-1566](https://diningalliance.atlassian.net/browse/BOPD-1566), shared with Document Viewer. **First pass built 2026-10-20** on page "Document Strip (Steve)" `5454:697` (draft, not published): Document Tile `5454:712` (4 variants), Document Strip `5454:749` (Tiles 1 / 3 / 6), Documentation, To-Do and an example.
+- [ ] **Document Viewer** — in the **qe2** v2 style guide only (experimental, standard; not in the qe1 build, see H), no WA equivalent (custom). **Parked 2026-10-20:** the Figma first pass (page "Document Viewer (Steve)") and story BOPD-1566 were removed and archived by decision, since the component may be unmerged. Revisit if it lands in the up-to-date build; the spec was read from the qe2 style guide page.
+- [ ] **Document Strip** — in the **qe2** v2 style guide only (experimental, minimal; not in the qe1 build, see H), no WA equivalent (custom). **Parked 2026-10-20:** the Figma first pass (page "Document Strip (Steve)") and story BOPD-1566 were removed and archived by decision. Revisit if it lands in the up-to-date build.
 - [ ] **Report Tree** — in v2 on qe1 and qe2 (experimental, minimal), no Figma page. The Organizational Tree page holds only Tree Item + Tree. Check the archived Reporting Table page before building.
 - [ ] **Toast (Steve)** `4381:162` sits below the "--- Archive ---" divider but is a current component (Toast Item, Action Toast). Move it above the divider. Same for the Toast notifications section.
 - [ ] **Datepicker (Priscilla)** `4340:13854` also sits below "--- Archive ---" with no `[Archived]` tag; Date Input (Steve) replaces it. Rename `[Archived]`, don't delete.
@@ -101,7 +101,7 @@ Found by page and component name in the old library; each needs a decision (rebu
 **Usage (606 `<orderly-button>` in 170 files):** `text` 192 · `primary` 190 · none 94 (= default) · `default` 45 · `brand` 36 · `neutral` 15 · `danger` 13 · `warning` 8 · `success` 2 · `secondary` 1 · the rest bound to expressions. 427 calls (70%) use legacy names, 521 (86%) counting calls with no variant. Options: `outlineButton` 52, `customWidth` 34, `caret` 19, `pillButton` 14, `circleButton` 6, `size="icon"` 4. Also 37 raw `sl-button`, 1 raw `wa-button`, 9 `boss-button-group`.
 
 **Figma actions**
-- [ ] **Add Neutral + Outlined to Button** (Small / Medium / Large × Active / Default / Hover / Disabled / Loading). It is what `default`, `neutral` and every call with no variant render: about 154 calls, 25% of all buttons. Figma Button has Brand and Danger only. The Document Viewer toolbar is waiting on this.
+- [ ] **Add Neutral + Outlined to Button** (Small / Medium / Large × Active / Default / Hover / Disabled / Loading). It is what `default`, `neutral` and every call with no variant render: about 154 calls, 25% of all buttons. Figma Button has Brand and Danger only.
 - [ ] **Add Neutral + Outlined to Icon Button.** Neutral is Plain only today; icon-only buttons in code inherit the neutral outlined default.
 - [ ] **Decide Warning and Success** (8 and 2 calls in code, no Figma variant): add them, or retire them in code.
 - [ ] **Danger look:** Figma draws Danger as `accent` (solid); the wrapper gives non-brand variants `appearance="filled"` unless `outlineButton` is set, so code may render a soft fill. Check the running app, then fix whichever side is wrong. Danger Outlined and Plain do not exist in Figma.
@@ -115,7 +115,7 @@ Found by page and component name in the old library; each needs a decision (rebu
 - [ ] **`variant="secondary"`** (1 call) is not a valid variant; find it and fix.
 - [ ] Replace 37 raw `sl-button` and 1 raw `wa-button`, and the hand-built buttons (BOPD-1186), with `orderly-button`.
 - [ ] **Tag naming:** `orderly-button`, `orderly-checkbox`, `orderly-split-button` break the `boss-*` convention (FIGMA-WORKFLOW-NOTES §6). Decide: rename, or document as the exception. `manifest.json` should list the real tags.
-- [ ] Strip tile focus ring (Document Strip) uses a 2px `border-strong` outline; the standard is the Focus/Ring style.
+- [ ] Document Strip's tile focus ring (qe2 only) uses a 2px `border-strong` outline; the standard is the Focus/Ring style. Moot until the component merges.
 
 **Style guide v2 actions**
 - [ ] Button page: show Neutral Outlined as the default, mark `primary` / `text` / `default` deprecated, document `warning` / `success` or remove them, and add pill / caret / custom width if they stay.
@@ -126,8 +126,8 @@ Same `#/styleGuideV2` page, two builds (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRV
 - **Only on qe2:** Document Viewer, Document Strip.
 - Everything else is identical: 23 components plus Popup, with the same status and tier labels.
 - [ ] **Find out why.** Most likely each environment runs a different branch. Check which branch or PR adds Tabs, and which adds Document Viewer and Document Strip, and whether they are merged to `master`. The qe1 page was supplied as the more up-to-date one, so Document Viewer and Document Strip may still be unmerged work.
-- [ ] **BOPD-1566 says both components "already ship".** That was true only on qe2. Until the branch status is known, treat the Figma first pass as designed ahead of, or alongside, the code. Update the ticket once confirmed.
-- [ ] Re-save Document Viewer and Document Strip from qe1 if they land there, so the Figma pages can be checked against the up-to-date build.
+- [x] Figma pages for both components and story BOPD-1566 were removed and archived 2026-10-20 (the ticket had said both "already ship", true only on qe2).
+- [ ] If Document Viewer and Document Strip land in the up-to-date build, re-save them from there and restart the Figma work (a new story, since BOPD-1566 is archived).
 
 ---
 
