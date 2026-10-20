@@ -32,9 +32,10 @@ Compared five sources. **How each was verified:**
 - **Not re-checked:** Jira statuses (the Atlassian connector needs authorization), prod vs qe2, and any v2 change after the saved page.
 
 ### A. Figma actions
+`[ ]` not started · `[~]` first pass built, not published or finished · `[x]` done.
 - [ ] **Copy Button** — in v2 (experimental, minimal), no Figma page. WA has `wa-copy-button`; check the WA kit first, build from it.
-- [ ] **Document Viewer** — in v2 (experimental, standard), no Figma page, no WA equivalent (custom).
-- [ ] **Document Strip** — in v2 (experimental, minimal), no Figma page, no WA equivalent (custom).
+- [~] **Document Viewer** — in v2 (experimental, standard), no Figma page, no WA equivalent (custom). Figma story [BOPD-1566](https://diningalliance.atlassian.net/browse/BOPD-1566) (filed 2026-10-20, code first approach), shared with Document Strip. **First pass built 2026-10-20** on page "Document Viewer (Steve)" `5453:2` (draft, not published): Document Viewer set `5454:696` (18 variants), Viewer Toolbar `5453:53`, Documentation, To-Do and an Examples dialog. Open items are on the page's To-Do and in BOPD-1566. Toolbar buttons are Brand outlined stand-ins until Button gets a Neutral variant (see G).
+- [~] **Document Strip** — in v2 (experimental, minimal), no Figma page, no WA equivalent (custom). Figma story [BOPD-1566](https://diningalliance.atlassian.net/browse/BOPD-1566), shared with Document Viewer. **First pass built 2026-10-20** on page "Document Strip (Steve)" `5454:697` (draft, not published): Document Tile `5454:712` (4 variants), Document Strip `5454:749` (Tiles 1 / 3 / 6), Documentation, To-Do and an example.
 - [ ] **Report Tree** — in v2 (experimental, minimal), no Figma page. The Organizational Tree page holds only Tree Item + Tree. Check the archived Reporting Table page before building.
 - [ ] **Toast (Steve)** `4381:162` sits below the "--- Archive ---" divider but is a current component (Toast Item, Action Toast). Move it above the divider. Same for the Toast notifications section.
 - [ ] **Datepicker (Priscilla)** `4340:13854` also sits below "--- Archive ---" with no `[Archived]` tag; Date Input (Steve) replaces it. Rename `[Archived]`, don't delete.
@@ -92,6 +93,33 @@ Found by page and component name in the old library; each needs a decision (rebu
 - [ ] **`manifest.json`** indexes 14 components. v2 has 25 + Popup. Missing: Dialog, Divider, Dropdown, Radio, Split Button, Spinner, Tree, Report Tree, Copy Button, Document Strip, Document Viewer, Popup. `CLAUDE.md` calls this file a first stop for tag names, so it needs a refresh.
 - [ ] **`BOSS-Design-System-Project-Brief.md`** page list lags the file (it says so itself): Toast (Steve) and Datepicker (Priscilla) positions, and the pages added since 2026-10-08.
 - [ ] **qe2 vs prod**: Complete here means "on qe2". Check which of the newest pages are on prod.
+
+### G. Button review 2026-10-20 — what must change so Figma, code and the style guide match
+**How verified:** Figma Button (`3941:32`, 75 variants) and Icon Button (`5182:343`, 36 variants) read live; `orderly-button` source (`OrderlyButton.component.ts`) and usage counts read from the Oct 2 orderly master snapshot, **RestaurantUI only** (AdminUi not scanned); tokens from `tokens.json` (synced 2026-10-05). **Not done:** a scan of every Figma page for hand-built buttons (needs ~70 pages opened one at a time; better as a file-wide audit on Opus) and a check of how each variant looks in the running app.
+
+**What the code does.** `orderly-button` still carries a shim (to be removed once OR-11958 sweeps every call site): legacy `default` → wa `neutral` + `outlined`, `primary` → `brand` + `accent`, `text` → `brand` + `plain`, `outlineButton` → `outlined`, anything else → `filled`; size `icon` → `s`. The code comment says neutral has no filled form in the DS v2 spec.
+
+**Usage (606 `<orderly-button>` in 170 files):** `text` 192 · `primary` 190 · none 94 (= default) · `default` 45 · `brand` 36 · `neutral` 15 · `danger` 13 · `warning` 8 · `success` 2 · `secondary` 1 · the rest bound to expressions. 427 calls (70%) use legacy names, 521 (86%) counting calls with no variant. Options: `outlineButton` 52, `customWidth` 34, `caret` 19, `pillButton` 14, `circleButton` 6, `size="icon"` 4. Also 37 raw `sl-button`, 1 raw `wa-button`, 9 `boss-button-group`.
+
+**Figma actions**
+- [ ] **Add Neutral + Outlined to Button** (Small / Medium / Large × Active / Default / Hover / Disabled / Loading). It is what `default`, `neutral` and every call with no variant render: about 154 calls, 25% of all buttons. Figma Button has Brand and Danger only. The Document Viewer toolbar is waiting on this.
+- [ ] **Add Neutral + Outlined to Icon Button.** Neutral is Plain only today; icon-only buttons in code inherit the neutral outlined default.
+- [ ] **Decide Warning and Success** (8 and 2 calls in code, no Figma variant): add them, or retire them in code.
+- [ ] **Danger look:** Figma draws Danger as `accent` (solid); the wrapper gives non-brand variants `appearance="filled"` unless `outlineButton` is set, so code may render a soft fill. Check the running app, then fix whichever side is wrong. Danger Outlined and Plain do not exist in Figma.
+- [ ] **Label type:** the code has one button label token, `label-button` (14px / 20px / 500). Figma Button labels have **no text style** and use raw 12 / 16 / 20px by size. Confirm whether wa-button scales the font by size (then add per-size styles), or bind to Label/Button.
+- [ ] **Unused legacy text styles** in the file, with one-off names: Small / Medium / Large Button, Small / Medium / Large Icon Button (plus h1-h3, Body 1/2, Subtitle 1/2 duplicates of the slash-named styles). Remove or document; do not delete without confirmation.
+- [ ] **Options with no Figma counterpart:** pill (14), circle (6), caret (19; Dropdown Trigger covers some), custom width (34). Add as options or retire in code. `size="icon"` (4) maps to Small.
+- [ ] `link` appearance exists in Figma; in code it is reachable only through `appearance="link"` (1 call). WA's `filled` and `filled-outlined` are not in Figma.
+
+**Code actions (dev)**
+- [ ] Finish the OR-11958 sweep: `primary` → `brand` (accent), `text` → `brand` + `appearance="plain"`, `default` and no-variant → `neutral`, drop `size="icon"`, then delete the shim.
+- [ ] **`variant="secondary"`** (1 call) is not a valid variant; find it and fix.
+- [ ] Replace 37 raw `sl-button` and 1 raw `wa-button`, and the hand-built buttons (BOPD-1186), with `orderly-button`.
+- [ ] **Tag naming:** `orderly-button`, `orderly-checkbox`, `orderly-split-button` break the `boss-*` convention (FIGMA-WORKFLOW-NOTES §6). Decide: rename, or document as the exception. `manifest.json` should list the real tags.
+- [ ] Strip tile focus ring (Document Strip) uses a 2px `border-strong` outline; the standard is the Focus/Ring style.
+
+**Style guide v2 actions**
+- [ ] Button page: show Neutral Outlined as the default, mark `primary` / `text` / `default` deprecated, document `warning` / `success` or remove them, and add pill / caret / custom width if they stay.
 
 ---
 
