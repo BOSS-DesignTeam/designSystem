@@ -96,6 +96,8 @@ Found by page and component name in the old library; each needs a decision (rebu
 ### G. Button review 2026-10-20 — what must change so Figma, code and the style guide match
 **How verified:** Figma Button (`3941:32`, 75 variants) and Icon Button (`5182:343`, 36 variants) read live; `orderly-button` source (`OrderlyButton.component.ts`) and usage counts read from the Oct 2 orderly master snapshot, **RestaurantUI only** (AdminUi not scanned); tokens from `tokens.json` (synced 2026-10-05). **Not done:** a scan of every Figma page for hand-built buttons (needs ~70 pages opened one at a time; better as a file-wide audit on Opus) and a check of how each variant looks in the running app.
 
+**Why code and Figma names differ (by design).** Dev wraps the Web Awesome library in Angular components: `orderly-button` wraps `wa-button`, the `boss-*` components wrap their `wa-*` counterparts. Figma follows WA's own variant model, so the Figma name, the wrapper tag and the wa tag will not match one for one, and that gap is expected, not drift. Only differences inside a wrapper's own API (legacy variant names, options with no Figma counterpart) are action items below.
+
 **What the code does.** `orderly-button` still carries a shim (to be removed once OR-11958 sweeps every call site): legacy `default` → wa `neutral` + `outlined`, `primary` → `brand` + `accent`, `text` → `brand` + `plain`, `outlineButton` → `outlined`, anything else → `filled`; size `icon` → `s`. The code comment says neutral has no filled form in the DS v2 spec.
 
 **Usage (606 `<orderly-button>` in 170 files):** `text` 192 · `primary` 190 · none 94 (= default) · `default` 45 · `brand` 36 · `neutral` 15 · `danger` 13 · `warning` 8 · `success` 2 · `secondary` 1 · the rest bound to expressions. 427 calls (70%) use legacy names, 521 (86%) counting calls with no variant. Options: `outlineButton` 52, `customWidth` 34, `caret` 19, `pillButton` 14, `circleButton` 6, `size="icon"` 4. Also 37 raw `sl-button`, 1 raw `wa-button`, 9 `boss-button-group`.
@@ -114,7 +116,7 @@ Found by page and component name in the old library; each needs a decision (rebu
 - [ ] Finish the OR-11958 sweep: `primary` → `brand` (accent), `text` → `brand` + `appearance="plain"`, `default` and no-variant → `neutral`, drop `size="icon"`, then delete the shim.
 - [ ] **`variant="secondary"`** (1 call) is not a valid variant; find it and fix.
 - [ ] Replace 37 raw `sl-button` and 1 raw `wa-button`, and the hand-built buttons (BOPD-1186), with `orderly-button`.
-- [ ] **Tag naming:** `orderly-button`, `orderly-checkbox`, `orderly-split-button` break the `boss-*` convention (FIGMA-WORKFLOW-NOTES §6). Decide: rename, or document as the exception. `manifest.json` should list the real tags.
+- [ ] **Wrapper tag naming (low priority):** the `orderly-*` wrappers (`orderly-button`, `orderly-checkbox`, `orderly-split-button`) and the newer `boss-*` wrappers follow two prefixes (FIGMA-WORKFLOW-NOTES §6 sets `boss-*` going forward). Both wrap WA, so this is a dev choice: rename or document the exception. `manifest.json` should list the real tags.
 - [ ] Document Strip's tile focus ring (qe2 only) uses a 2px `border-strong` outline; the standard is the Focus/Ring style. Moot until the component merges.
 
 **Style guide v2 actions**

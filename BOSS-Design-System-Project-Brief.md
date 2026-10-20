@@ -274,7 +274,7 @@ look up the primitive in the Primitives list below if you need the actual value.
 RestaurantUI `--boss-color-text-link`. Already done in the file before this check (primitives
 `4777:162–164`, not recorded here at the time). Same family drives the link-style button text:
 `color/text/button/brand-accent-default|hover|disabled` → `blue/link|link-hover|link-disabled`
-(Dark: `blue/70` / `blue/30` / `blue/button-disabled`). Button Accent appearance and Breadcrumb
+(Dark: `blue/70` / `blue/30` / `blue/button-disabled`). Button link appearance (was Accent) and Breadcrumb
 labels confirmed bound to these. The 3 new primitives' scopes set to `[]` to match the rest of
 Primitives. Note the RestaurantUI source is the `thorn/sidebar-wa-refresh` branch — re-check if
 it changes before merging.
@@ -498,6 +498,21 @@ button) and `State` is `Active` | `Default` | `Hover` | `Disabled` | `Loading`. 
 `Variant=Brand, Appearance=accent, Size=Medium, State=Default`. Anything built by variant name must use
 these. Instances made before the change (for example on "Period Close States (Steve)") still work.
 
+**Appearance rename, 2026-10-13 (page Button):** Figma was renamed to match the code and the live style guide.
+`Filled` → `accent`, `Outlined` → `outlined`, `Plain` → `plain`, `Accent` → `link` (the old `Accent` was the
+link-style text button, not a solid fill). Brand has accent / outlined / plain / link (15 variants each), Danger has
+accent only (15), 75 in total, none lost, sizes unchanged at 32 / 32 / 50. Usage notes `456:5` and `456:6` were
+updated to match (`orderly-button`, `size="small|medium|large"`; the stray `boss-button` prefix was removed from
+`456:5` on 2026-10-14). Published 2026-10-14; verified live (publish status `CURRENT`), and all 494 Button instances in
+the BOPD-42 epic file resolve to the new names. The Appearance, colour table and column-order text below still
+uses the old names, read as: Filled = accent, Accent = link.
+
+**Why code and Figma names differ.** Dev wraps the Web Awesome library in Angular components: `orderly-button` wraps `wa-button`,
+and the `boss-*` components wrap their `wa-*` counterparts. Figma follows WA's own variant model, so the Figma component
+name, the wrapper tag and the `wa-*` tag do not match one for one. That is by design, not drift. Only differences inside a
+wrapper's own API (the legacy `default` / `primary` / `text` variants, options with no Figma counterpart) need action; the
+full list is the Button review (section G) in COMPONENT-STATUS.md.
+
 **45 variants** = 2 Variants × 4 Appearances × 3 Sizes × 3 States — combined into one
 ComponentSet named `Button`.
 
@@ -505,8 +520,8 @@ ComponentSet named `Button`.
   warning — the BO Design Library's Buttons & Button Groups reference only defines blue and
   red; no green/orange/black tokens exist there. Flag design team if Neutral/Success
   semantics are still needed on other BO screens.)
-- **Appearance axis:** `Filled` | `Outlined` | `Plain` | `Accent` (naming matches the
-  WebAwesome Figma kit, file `UAtCpcylvJ96X02SbIVSeM`)
+- **Appearance axis:** now `accent` | `outlined` | `plain` | `link` (was `Filled` | `Outlined` | `Plain` | `Accent`, renamed
+  2026-10-13 to match the code; the original naming followed the WebAwesome Figma kit, file `UAtCpcylvJ96X02SbIVSeM`)
 - **Size axis:** `Small` (12px label) | `Medium` (16px, default) | `Large` (20px) — all use
   16px/8px padding, 4px gap, 4px corner radius
 - **State axis:** `Default` | `Hover` | `Disabled` (no `Active` — not defined in the library)
@@ -516,11 +531,11 @@ Library hex where they conflicted):**
 
 | Variant \| Appearance | Default | Hover | Disabled |
 |---|---|---|---|
-| Brand \| Filled | bg `$brand-darker-blue` #23408f, text white | bg `$brand-hover-blue` #002790, text white | Default look @ opacity 0.6 |
+| Brand \| Filled (now accent) | bg `$brand-darker-blue` #23408f, text white | bg `$brand-hover-blue` #002790, text white | Default look @ opacity 0.6 |
 | Brand \| Outlined | border/text `$brand-darker-blue` #23408f, transparent bg | bg `$brand-secondary-hover-blue` #c8cfe3 | Default look @ opacity 0.6 |
 | Brand \| Plain | text `$brand-darker-blue` #23408f, no border/bg | bg `$brand-secondary-hover-blue` #c8cfe3 | Default look @ opacity 0.6 |
-| Brand \| Accent | text `$brand-active-blue` #49a4da, no border/bg | text `$brand-hover-blue` #002790 | Default look @ opacity 0.6 |
-| Danger \| Filled | bg `$brand-warn` #fa1616, text white | bg `$brand-warn-hover` #e60c0c, text white | Default look @ opacity 0.6 |
+| Brand \| Accent (now link) | text `$brand-active-blue` #49a4da, no border/bg | text `$brand-hover-blue` #002790 | Default look @ opacity 0.6 |
+| Danger \| Filled (now accent) | bg `$brand-warn` #fa1616, text white | bg `$brand-warn-hover` #e60c0c, text white | Default look @ opacity 0.6 |
 
 Disabled uses component-level `opacity=0.6` on the Default appearance (matches the original
 BOSS convention) rather than distinct lighter hex tints — the Design Library uses the latter,
@@ -1493,7 +1508,7 @@ explicitly chose to skip source verification since the repo isn't checked out in
 
 | Component | Node ID | Mapped source |
 |---|---|---|
-| Button | `3941:32` | `orderly-button (boss-button)` |
+| Button | `3941:32` | `orderly-button` |
 | Split Button | `540:7` | `orderly-split-button` |
 | Dropdown Trigger | `472:74` | `boss-dropdown + orderly-button (with-caret trigger)` |
 | Radio | `771:432` | `bossRadioGroup (wa-radio)` |
@@ -1579,8 +1594,8 @@ child (accent bars, dividers) needs to track a hug-sized sibling.
   (which also had a bold header line; **not modeled**, user decision). WA's own CSS centers the icon and
   close button vertically in a taller toast, which is what the Figma layout does.
 - **Structure:** in all 5 variants the `Message` text moved into a new vertical `Body` frame
-  (`spacing/2` gap) with an `Actions` row under it: `Primary Action` (Button, Brand / Filled / Small,
-  label "Action") and `Secondary Action` (Button, Brand / Outlined / Small, label "Dismiss"). Both
+  (`spacing/2` gap) with an `Actions` row under it: `Primary Action` (Button, Brand / accent / Small (was Filled),
+  label "Action") and `Secondary Action` (Button, Brand / outlined / Small, label "Dismiss"). Both
   are exposed instances. Our Button has no Neutral variant, so WA's neutral "filled" secondary button is
   shown as Outlined (flagged on the page's To-Do item 5).
 - **New component properties:** `Actions` (BOOLEAN, default false, so every existing toast is unchanged
@@ -1691,7 +1706,7 @@ Financial Reports Card undecided; not published or Code Connect–mapped.
 
 - Doc frames: Roboto Medium 32px title + Body/2 description, positioned above component sets
 - Grid gap: 16px between variants, 40px padding inside ComponentSet
-- Column order: `Default | Hover | Disabled` (per Size row); Appearance groups ordered `Filled | Outlined | Plain | Accent`
+- Column order: `Default | Hover | Disabled` (per Size row); Appearance groups ordered `Filled | Outlined | Plain | Accent` (now accent | outlined | plain | link)
 - Row order: `Brand | Danger` (was: `brand | neutral | danger | success | warning`)
 - Page naming: `[Status] Page Name` per craft standards (e.g. `[WIP] Button`)
 
