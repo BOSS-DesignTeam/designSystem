@@ -24,7 +24,7 @@ this file is just the status.
 ## Sync audit, recompiled 2026-10-20 from the qe1 style guide — what is out of date or out of sync (the to-do list)
 
 Compared five sources. **How each was verified:**
-- **Style guide v2** (saved in `styleguideV2/`, refresh weekly, see `CLAUDE.md`) — the saved **qe1** page `styleguideV2/Back Office.html` (replaced 2026-10-20; the main source now): 24 component pages + the Popup utility, live read of its sidebar. The two pages in `styleguideV2/components/` (Document Viewer, Document Strip) were saved from **qe2** and are not in the qe1 sidebar (see H). Neither environment is prod. The Patterns / UX Standards / Tokens groups exist but their entries are not visible.
+- **Style guide v2** (saved in `styleguideV2/`, refresh weekly, see `CLAUDE.md`) — the saved **qe1** page (staging, closest to production; qe2 is the testing environment) `styleguideV2/Back Office.html` (replaced 2026-10-20; the main source now): 24 component pages + the Popup utility, live read of its sidebar. The two pages in `styleguideV2/components/` (Document Viewer, Document Strip) were saved from **qe2** and are not in the qe1 sidebar (see H). Neither environment is prod. The Patterns / UX Standards / Tokens groups exist but their entries are not visible.
 - **WebAwesome** — webawesome.com/docs/components index, live fetch.
 - **Figma 0.1** (`B5j3nfocmShiBwqwy9dNXg`) — all ~70 page names re-read live 2026-10-20 (only change since 2026-10-19: the two pages added this session), plus the component sets inside the Organizational Tree and BOSS Table pages. Other pages' contents were **not** opened, so a component hidden inside another page would be missed.
 - **Old Figma library** ("Back Office Design Library", `wdwwm6VbBU89GFViEvcfkY`) — all page names read live, plus component names on 5 pages (Final Components, Base, Buttons & Button Groups, Navigation, Table). Not every page was opened.
@@ -33,10 +33,10 @@ Compared five sources. **How each was verified:**
 
 ### A. Figma actions
 `[ ]` not started · `[~]` first pass built, not published or finished · `[x]` done.
-- [ ] **Copy Button** — in v2 on qe1 and qe2 (experimental, minimal), no Figma page. WA has `wa-copy-button`; check the WA kit first, build from it.
+- [x] **Copy Button** — in v2 (qe1 and qe2), no Figma page. **Not needed (decided 2026-10-21); no design planned.**
 - [ ] **Document Viewer** — in the **qe2** v2 style guide only (experimental, standard; not in the qe1 build, see H), no WA equivalent (custom). **Parked 2026-10-20:** the Figma first pass (page "Document Viewer (Steve)") and story BOPD-1566 were removed and archived by decision, since the component may be unmerged. Revisit if it lands in the up-to-date build; the spec was read from the qe2 style guide page.
 - [ ] **Document Strip** — in the **qe2** v2 style guide only (experimental, minimal; not in the qe1 build, see H), no WA equivalent (custom). **Parked 2026-10-20:** the Figma first pass (page "Document Strip (Steve)") and story BOPD-1566 were removed and archived by decision. Revisit if it lands in the up-to-date build.
-- [ ] **Report Tree** — in v2 on qe1 and qe2 (experimental, minimal), no Figma page. The Organizational Tree page holds only Tree Item + Tree. Check the archived Reporting Table page before building.
+- [x] **Report Tree** — in v2 (qe1 and qe2), no Figma page. **Not needed (decided 2026-10-21); no design planned.**
 - [ ] **Toast (Steve)** `4381:162` sits below the "--- Archive ---" divider but is a current component (Toast Item, Action Toast). Move it above the divider. Same for the Toast notifications section.
 - [ ] **Datepicker (Priscilla)** `4340:13854` also sits below "--- Archive ---" with no `[Archived]` tag; Date Input (Steve) replaces it. Rename `[Archived]`, don't delete.
 - [ ] **Tabs (Steve)** `3900:2` sits in "--- Dev Picked Up ---", but v2 on qe1 now has a **Tabs** page (experimental, standard). Designed and documented: move the page into "--- In Style Guide V2 ---" and link the dev ticket (none was found). Tabs moved to Complete below.
@@ -91,7 +91,7 @@ Found by page and component name in the old library; each needs a decision (rebu
 - [x] This file did not mention **Report Tree, Copy Button, Document Strip or Document Viewer**. Added in A. **Tabs** was listed as having no v2 page; qe1 has one (moved to Complete).
 - [ ] **`manifest.json`** indexes 14 components. v2 on qe1 has 24 + Popup. Missing (11): Dialog, Divider, Dropdown, Radio, Split Button, Spinner, Tabs, Tree, Report Tree, Copy Button, Popup (plus Document Viewer and Document Strip if they merge). `CLAUDE.md` calls this file a first stop for tag names, so it needs a refresh.
 - [ ] **`BOSS-Design-System-Project-Brief.md`** page list lags the file (it says so itself): Toast (Steve) and Datepicker (Priscilla) positions, and the pages added since 2026-10-08.
-- [ ] **qe1 vs qe2 vs prod**: Complete here means "on the qe1 style guide". Check which of the newest pages are on prod. See H for the two environments that disagree.
+- [ ] **qe1 vs prod**: Complete here means "on the qe1 style guide" (staging, closest to production). Check which of the newest pages are on prod. See H.
 
 ### G. Button review 2026-10-20 — what must change so Figma, code and the style guide match
 **How verified:** Figma Button (`3941:32`, 75 variants) and Icon Button (`5182:343`, 36 variants) read live; `orderly-button` source (`OrderlyButton.component.ts`) and usage counts read from the Oct 2 orderly master snapshot, **RestaurantUI only** (AdminUi not scanned); tokens from `tokens.json` (synced 2026-10-05). **Not done:** a scan of every Figma page for hand-built buttons (needs ~70 pages opened one at a time; better as a file-wide audit on Opus) and a check of how each variant looks in the running app.
@@ -122,15 +122,14 @@ Found by page and component name in the old library; each needs a decision (rebu
 **Style guide v2 actions**
 - [ ] Button page: show the outlined look as the default (code `default` / `neutral`; Figma uses Brand + Outlined), mark `primary` / `text` / `default` deprecated, document `warning` / `success` or remove them, and add pill / caret / custom width if they stay.
 
-### H. qe1 and qe2 style guides disagree (found 2026-10-20)
-Same `#/styleGuideV2` page, two builds (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRVNM.js`). Comparing the sidebars:
+### H. qe1 and qe2 style guides differ (expected; found 2026-10-20)
+qe1 is the staging environment, the closest to production. qe2 is the testing environment. So the two sidebars differ on purpose (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRVNM.js`):
 - **Only on qe1:** Tabs.
-- **Only on qe2:** Document Viewer, Document Strip.
+- **Only on qe2:** Document Viewer, Document Strip (still in testing, not yet in staging).
 - Everything else is identical: 23 components plus Popup, with the same status and tier labels.
-- [ ] **Find out why.** Most likely each environment runs a different branch. Check which branch or PR adds Tabs, and which adds Document Viewer and Document Strip, and whether they are merged to `master`. The qe1 page was supplied as the more up-to-date one, so Document Viewer and Document Strip may still be unmerged work.
-- [x] Figma pages for both components and story BOPD-1566 were removed and archived 2026-10-20 (the ticket had said both "already ship", true only on qe2).
-- [ ] If Document Viewer and Document Strip land in the up-to-date build, re-save them from there and restart the Figma work (a new story, since BOPD-1566 is archived).
-
+- [x] **Not investigating why they differ (decided 2026-10-21).**
+- [x] Figma pages for Document Viewer and Document Strip and story BOPD-1566 were removed and archived 2026-10-20 (the ticket had said both "already ship", true only on qe2).
+- [ ] If Document Viewer and Document Strip reach qe1 (staging), re-save them from there and restart the Figma work as a new story (BOPD-1566 is archived).
 ---
 
 ## Complete — designed in Figma AND has a real RestaurantUI style-guide-v2 doc page

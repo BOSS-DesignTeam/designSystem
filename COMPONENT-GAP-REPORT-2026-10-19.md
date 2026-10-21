@@ -15,19 +15,19 @@ Recompiled 2026-10-20 from the qe1 style guide (first written 2026-10-19 from qe
 
 Counts are scoped to the source named. "No page" means no page of that name in that source, not "does not exist anywhere".
 
-## 1. qe1 and qe2 disagree
+## 1. qe1 and qe2 differ (expected)
 
-The two saved v2 style guides come from different builds (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRVNM.js`):
+qe1 is the staging environment, the closest to production; qe2 is the testing environment. The two saved v2 style guides come from different builds (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRVNM.js`) and differ on purpose:
 
 - **Only on qe1:** Tabs.
-- **Only on qe2:** Document Viewer and Document Strip.
+- **Only on qe2:** Document Viewer and Document Strip (still in testing).
 - Everything else matches: 23 components plus Popup, with the same status and tier labels.
 
-The qe1 file was supplied as the more up-to-date one, so Document Viewer and Document Strip may be unmerged work. A Figma first pass and story BOPD-1566 were created for them on 2026-10-20 and then removed and archived by decision; revisit if they merge.
+Why they differ is not being investigated (decided 2026-10-21). A Figma first pass and story BOPD-1566 were created for Document Viewer and Document Strip on 2026-10-20 and then removed and archived by decision; restart if they reach qe1.
 
 ## 2. Style guide v2 (qe1) vs Figma 0.1
 
-**In v2, no Figma page (2):** Copy Button and Report Tree. The Organizational Tree page holds only Tree Item and Tree; the archived Reporting Table page was not searched.
+**In v2, no Figma page (2):** Copy Button and Report Tree. Both are not needed (decided 2026-10-21); no design planned.
 
 **In both (22):** Badge, Breadcrumb, Button, Callout, Checkbox, Combobox, Dialog, Divider, Dropdown, Input, Radio, Select, Spinner, Split Button, Switch, Tabs, Tag, Textarea, Toggle, Tooltip, Tree, and Details (Figma name: Accordion, inferred from the WA Details base).
 
@@ -97,10 +97,8 @@ Matching is by page and component name only. A component may have been rebuilt i
 
 ## 7. Suggested priority
 
-1. Find out why qe1 and qe2 differ and whether Document Viewer, Document Strip and Tabs are merged (section 1).
-2. Figma designs for Copy Button and Report Tree, the two v2 components with no design.
-3. v2 doc pages for the components that are designed but undocumented, starting with Card, Toast, Drawer and Popover (already registered in the WA imports).
-4. Decide which of Avatar, Carousel, Scroller, Pagination, Stepper, Slider and Rating the product needs. None is tracked today.
-5. Decide the fate of the old-guide-only custom components (header-info, list-item, page-content, action-select, multi-unit selectors, toast-action-bar).
-6. Decide what happens to the old library's Navigation, Page Header, Menu, Audit/History Log and Financial Reporting Card. These look like core product chrome (the code has matching components) and have no home in 0.1 yet.
-7. Open the old library pages I skipped before treating section 5 as complete.
+1. v2 doc pages for the components that are designed but undocumented, starting with Card, Toast, Drawer and Popover (already registered in the WA imports).
+2. Decide which of Avatar, Carousel, Scroller, Pagination, Stepper, Slider and Rating the product needs. None is tracked today.
+3. Decide the fate of the old-guide-only custom components (header-info, list-item, page-content, action-select, multi-unit selectors, toast-action-bar).
+4. Decide what happens to the old library's Navigation, Page Header, Menu, Audit/History Log and Financial Reporting Card. These look like core product chrome (the code has matching components) and have no home in 0.1 yet.
+5. Open the old library pages I skipped before treating section 5 as complete.
