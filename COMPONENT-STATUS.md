@@ -103,8 +103,8 @@ Found by page and component name in the old library; each needs a decision (rebu
 **Usage (606 `<orderly-button>` in 170 files):** `text` 192 · `primary` 190 · none 94 (= default) · `default` 45 · `brand` 36 · `neutral` 15 · `danger` 13 · `warning` 8 · `success` 2 · `secondary` 1 · the rest bound to expressions. 427 calls (70%) use legacy names, 521 (86%) counting calls with no variant. Options: `outlineButton` 52, `customWidth` 34, `caret` 19, `pillButton` 14, `circleButton` 6, `size="icon"` 4. Also 37 raw `sl-button`, 1 raw `wa-button`, 9 `boss-button-group`.
 
 **Figma actions**
-- [ ] **Add Neutral + Outlined to Button** (Small / Medium / Large × Active / Default / Hover / Disabled / Loading). It is what `default`, `neutral` and every call with no variant render: about 154 calls, 25% of all buttons. Figma Button has Brand and Danger only.
-- [ ] **Add Neutral + Outlined to Icon Button.** Neutral is Plain only today; icon-only buttons in code inherit the neutral outlined default.
+- [x] **No Neutral + Outlined variant needed (decided 2026-10-20):** Brand + Outlined is visually the same, so code `default`, `neutral` and every call with no variant (about 154 calls, 25% of all buttons) map to Figma Brand + Outlined. The brief already did the same for Toast's neutral secondary button. Not rendered side by side by me; the theme CSS defines the neutral border from a gray ramp and brand-outlined from blue-50, so if dev ever sees a difference in the running app, revisit.
+- [x] **Icon Button:** same decision, so icon-only default buttons use Brand + Outlined (it exists). Neutral stays Plain only, for utility actions like the More menu.
 - [ ] **Decide Warning and Success** (8 and 2 calls in code, no Figma variant): add them, or retire them in code.
 - [ ] **Danger look:** Figma draws Danger as `accent` (solid); the wrapper gives non-brand variants `appearance="filled"` unless `outlineButton` is set, so code may render a soft fill. Check the running app, then fix whichever side is wrong. Danger Outlined and Plain do not exist in Figma.
 - [ ] **Label type:** the code has one button label token, `label-button` (14px / 20px / 500). Figma Button labels have **no text style** and use raw 12 / 16 / 20px by size. Confirm whether wa-button scales the font by size (then add per-size styles), or bind to Label/Button.
@@ -120,7 +120,7 @@ Found by page and component name in the old library; each needs a decision (rebu
 - [ ] Document Strip's tile focus ring (qe2 only) uses a 2px `border-strong` outline; the standard is the Focus/Ring style. Moot until the component merges.
 
 **Style guide v2 actions**
-- [ ] Button page: show Neutral Outlined as the default, mark `primary` / `text` / `default` deprecated, document `warning` / `success` or remove them, and add pill / caret / custom width if they stay.
+- [ ] Button page: show the outlined look as the default (code `default` / `neutral`; Figma uses Brand + Outlined), mark `primary` / `text` / `default` deprecated, document `warning` / `success` or remove them, and add pill / caret / custom width if they stay.
 
 ### H. qe1 and qe2 style guides disagree (found 2026-10-20)
 Same `#/styleGuideV2` page, two builds (qe1 `main-OZLZUUIK.js`, qe2 `main-HBQSRVNM.js`). Comparing the sidebars:

@@ -100,8 +100,7 @@ Matching is by page and component name only. A component may have been rebuilt i
 1. Find out why qe1 and qe2 differ and whether Document Viewer, Document Strip and Tabs are merged (section 1).
 2. Figma designs for Copy Button and Report Tree, the two v2 components with no design.
 3. v2 doc pages for the components that are designed but undocumented, starting with Card, Toast, Drawer and Popover (already registered in the WA imports).
-4. Add a Neutral + Outlined variant to Button and Icon Button, the missing default button look (see the Button review in `COMPONENT-STATUS.md`).
-5. Decide which of Avatar, Carousel, Scroller, Pagination, Stepper, Slider and Rating the product needs. None is tracked today.
-6. Decide the fate of the old-guide-only custom components (header-info, list-item, page-content, action-select, multi-unit selectors, toast-action-bar).
-7. Decide what happens to the old library's Navigation, Page Header, Menu, Audit/History Log and Financial Reporting Card. These look like core product chrome (the code has matching components) and have no home in 0.1 yet.
-8. Open the old library pages I skipped before treating section 5 as complete.
+4. Decide which of Avatar, Carousel, Scroller, Pagination, Stepper, Slider and Rating the product needs. None is tracked today.
+5. Decide the fate of the old-guide-only custom components (header-info, list-item, page-content, action-select, multi-unit selectors, toast-action-bar).
+6. Decide what happens to the old library's Navigation, Page Header, Menu, Audit/History Log and Financial Reporting Card. These look like core product chrome (the code has matching components) and have no home in 0.1 yet.
+7. Open the old library pages I skipped before treating section 5 as complete.
