@@ -39,7 +39,7 @@ Why they differ is not being investigated (decided 2026-10-21). A Figma first pa
 **WA component, in Figma, no v2 page:** Card, Popover, Toast, Drawer, Progress Bar, Number Input (Quantity Selector), Split Panel, Skeleton, Date Input and Date Picker, File Input, Data Grid (BOSS Table). Tab Group moved out of this list: v2 has Tabs now.
 
 **WA component, in neither v2 nor Figma:**
-- Likely relevant: Avatar, Carousel, Scroller, Button Group (deprioritized to last), Progress Ring (back of the line), Page (story filed: BOPD-877), Pagination (exists only as Table Pager), Stepper, Slider, Rating, Tag Input, Time Input, OTP Input, Checkbox Group, Color Picker.
+- Likely relevant: Accordion (the grouped `wa-accordion` with single and multiple modes, since WA 3.8; the existing Accordion / Details is the single `wa-details`), Avatar, Carousel, Scroller, Button Group (deprioritized to last), Progress Ring (back of the line), Page (story filed: BOPD-877), Pagination (exists only as Table Pager), Stepper, Slider, Rating, Tag Input, Time Input, OTP Input, Checkbox Group, Color Picker.
 - Probably not relevant: charts, QR Code, Video, Video Playlist, Zoomable Frame, Markdown, Comparison, Animated Image, and the observer, formatter and include utilities.
 
 **v2 components with no WA match:** Report Tree, plus Document Viewer and Document Strip (qe2). Popup is a utility that wraps `wa-popup`.
