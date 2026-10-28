@@ -19,7 +19,7 @@ Both files live in the Claude work folder / project knowledge:
 
 - `restaurantui-token-system-for-ux 1 (1).md` — source of truth for all tokens (color, typography, spacing, component APIs). Critical sections: §0 WA gotchas, §2 color, §3 typography, §4 spacing/radius, §5 form-control sizing, §7 button variants, §9 component catalog.
 - `BOSS_PD.md` — UX/UI craft standards, design heuristics, anti-patterns, Figma file organization, component governance, token values.
-- `tokens.json` — **machine-readable token export synced from real code** (`orderlyapp/orderly`, package `RestaurantUI`; `meta.ref` and `meta.synced` record the branch/commit and date — first sync 2026-10-05 from `thorn/sidebar-wa-refresh@a689fc70d03`). Generated from `_roles.scss`, `_colors.scss`, `_sizing.scss`, `_text.scss`. Contents: `color` (76 `--boss-color-*` roles from code, resolved to hex, each with a `usage` note; light theme only, as the product has no dark mode; plus 2 **Figma-only** entries added by hand 2026-10-06, `boss-color-bg-control-checked` and `boss-color-border-control-checked`, whose `usage` starts with "FIGMA-ONLY" because code has no matching role yet; plus 3 overlay entries added by hand 2026-10-28, `boss-color-bg-overlay-default` / `-loading` (FIGMA-ONLY, from the colour review) and `boss-color-bg-overlay-subtle` (NEW, not yet in Figma or code), 81 colour tokens in all), `type` (Roboto, `heading-1`…`subtitle-2` etc. with size/line-height/weight/tracking), `spacing` (11-step Sass ladder; no `--boss-*` spacing roles exist yet), `radius` (5), `control` (heights + inline padding for the five control sizes). **Use this as the first check for a token value** before the markdown token doc, which is hand-written and can lag code. Values only, no Figma variable IDs: still read Figma variables live when checking for drift.
+- `tokens.json` — **machine-readable token export synced from real code** (`orderlyapp/orderly`, package `RestaurantUI`; `meta.ref` and `meta.synced` record the branch/commit and date — first sync 2026-10-05 from `thorn/sidebar-wa-refresh@a689fc70d03`). Generated from `_roles.scss`, `_colors.scss`, `_sizing.scss`, `_text.scss`. Contents: `color` (76 `--boss-color-*` roles from code, resolved to hex, each with a `usage` note; light theme only, as the product has no dark mode; plus 2 **Figma-only** entries added by hand 2026-10-06, `boss-color-bg-control-checked` and `boss-color-border-control-checked`, whose `usage` starts with "FIGMA-ONLY" because code has no matching role yet; plus 3 overlay entries added by hand 2026-10-28, `boss-color-bg-overlay-default` / `-loading` (already in `_roles.scss` on master; they were missing from the 2026-10-05 sync file) and `boss-color-bg-overlay-subtle` (black 20%, on Mason Voorhees's branch, Figma `color/bg/overlay/subtle`), 81 colour tokens in all; drop the hand-added overlay entries once a fresh export includes them), `type` (Roboto, `heading-1`…`subtitle-2` etc. with size/line-height/weight/tracking), `spacing` (11-step Sass ladder; no `--boss-*` spacing roles exist yet), `radius` (5), `control` (heights + inline padding for the five control sizes). **Use this as the first check for a token value** before the markdown token doc, which is hand-written and can lag code. Values only, no Figma variable IDs: still read Figma variables live when checking for drift.
 - `manifest.json` — index of the "Back Office Design System" package (namespace `BackOffice`): the 14 documented components with group + one-line summary and the real tag each wraps (e.g. Button → `orderly-button`, Callout → `boss-callout`, Combobox → `boss-combobox`/`boss-multi-combobox`), plus the Logos asset group (`back-office-wordmark.png`, `back-office-mark.png`). Use it to confirm a component's real tag name and grouping before building or documenting it.
 - Both JSON files are the canonical copies. The `.rtf` files next to them are the original TextEdit saves; don't read or edit those. When a newer export arrives, replace the `.json` contents (saved as **plain text**, not RTF) and update the counts above. **Re-add any "FIGMA-ONLY" entries the new export doesn't include**, or drop them once code ships the matching role.
 
@@ -175,7 +175,7 @@ Codebase has no dark theme — dark values were designed net-new:
 
 ## What's already built in the Figma file
 
-### Variables (Primitives 60, Color 91 as of 2026-10-08; table counts below are from 07-30)
+### Variables (Primitives 61, Color 92 as of 2026-10-28; table counts below are from 07-30)
 
 **Primitives collection** (`VariableCollectionId:1:2`, mode `1:0`)
 - 42 COLOR variables, all `scopes=[]` (hidden from pickers), WA CSS var code syntax
@@ -206,6 +206,12 @@ gray/10. Needs a design decision.
 **2026-10-08 colour role review: +10 Primitives (50 → 60), +13 Color variables (78 → 91), and 2 Light
 value changes** (`color/text/danger`, `color/text/warning`). They are folded into the tables below; details in
 "Colour role review (2026-10-08)".
+
+**2026-10-28 (BOPD-2134): +1 Primitive (60 → 61, `alpha/black-20`) and +1 Color variable (91 → 92,
+`color/bg/overlay/subtle`).** Both created live and read back (Light and Dark alias `alpha/black-20`; scopes
+`FRAME_FILL`/`SHAPE_FILL`; WEB syntax `var(--boss-color-bg-overlay-subtle)`). The name is Mason Voorhees's
+request, to match `overlay/default` and `overlay/loading`. It is the dim behind the assistant walkthrough, and the
+code role is on his branch. `overlay/default` and `overlay/loading` are already in `_roles.scss` on master.
 
 **Full semantic Color token reference** (verified live 2026-07-30 — supersedes any earlier partial
 table). "Light"/"Dark" columns name the **Primitives** variable each mode aliases to, not raw hex —
@@ -249,6 +255,7 @@ look up the primitive in the Primitives list below if you need the actual value.
 | `color/bg/option-hover` | gray/option-hover | gray/30 |
 | `color/bg/overlay/default` | alpha/black-50 | alpha/black-50 |
 | `color/bg/overlay/loading` | alpha/white-60 | alpha/black-50 |
+| `color/bg/overlay/subtle` | alpha/black-20 | alpha/black-20 |
 | `color/bg/on-filled-subtle` | alpha/white-20 | alpha/white-20 |
 
 *Text*
@@ -339,7 +346,7 @@ by name in Figma if you need the exact hex: `blue/95`, `blue/90`, `blue/secondar
 `gray/combobox-disabled`, `gray/tooltip-bg`, `gray/tag-resting`, `blue/button-disabled`.
 Added 2026-10-08: `orange/30` #a85800 (warning text), `gray/55` #737380 (tertiary text). Their code syntax holds
 proposed SCSS names (`$brand-warning-text-orange`, `$brand-tertiary-grey`) that are not yet in `_colors.scss`.
-Alpha primitives: `alpha/black-10|25|30|50`, `alpha/white-20|60`, `alpha/focus-40` (#49a4da),
+Alpha primitives: `alpha/black-10|20|25|30|50`, `alpha/white-20|60`, `alpha/focus-40` (#49a4da),
 `alpha/danger-30` (#fa1616).
 
 **Spacing collection** (`VariableCollectionId:3:2`, mode `3:0`) — **control height/padding re-synced
