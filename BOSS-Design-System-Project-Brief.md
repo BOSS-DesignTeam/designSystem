@@ -1752,6 +1752,38 @@ COMPONENT-STATUS.md.
 4. `await figma.setCurrentPageAsync(page)` — never use sync setter.
 5. Always `return` all created node IDs.
 6. Screenshot + user checkpoint before moving to the next component.
+7. Meet WCAG 2.1 AA on every new or changed component (see "Accessibility standard" below) and say in the checkpoint how each point was checked.
+
+---
+
+## Accessibility standard
+
+**Target: WCAG 2.1 Level AA** ([spec](https://www.w3.org/TR/WCAG21/)), effective 2026-10-29. All new design and
+build work must meet it, in Figma and in code. Components built before this date have not been audited
+against it yet (see Open questions: Phase 4 QA + accessibility audit).
+
+What this means when building a component or screen (success criterion in brackets):
+
+- **Text contrast:** 4.5:1 against its background, 3:1 for large text (18pt, or 14pt bold) [1.4.3]. Check the
+  semantic role pairs in both Light and Dark.
+- **Non-text contrast:** 3:1 for control boundaries, state indicators (checked, selected, focus) and meaningful
+  icons against what they sit on [1.4.11].
+- **Colour is never the only signal:** errors, status, required and selected states also need text, an icon or a
+  shape change [1.4.1].
+- **Focus is visible** on every interactive element, and the focus indicator meets 3:1 [2.4.7, 1.4.11]. Design a
+  focus state for every interactive component, not just inputs.
+- **Keyboard:** every action works without a mouse, in a logical order, with no keyboard trap [2.1.1, 2.1.2, 2.4.3].
+- **Names, roles and values:** controls have a visible label or an accessible name; state is exposed (expanded,
+  checked, disabled, invalid) [1.3.1, 3.3.2, 4.1.2]. Annotate this on the component docs.
+- **Errors and status messages:** say what is wrong and how to fix it, and announce updates without moving
+  focus [3.3.1, 3.3.3, 4.1.3].
+- **Hover and focus content** (tooltips, popovers) is dismissible, hoverable and persistent [1.4.13].
+- **Resize and reflow:** text can scale to 200% and content reflows at 320px wide without losing function
+  [1.4.4, 1.4.10]; text spacing overrides don't break layouts [1.4.12].
+
+Known gaps against this standard (found in earlier work, not yet fixed):
+- `boss-color-border-focus` is below the 3:1 floor on white (noted in `tokens.json`); it is kept exact from the code
+  source, so fixing it is a code change for the dev team.
 
 ---
 

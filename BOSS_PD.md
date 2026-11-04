@@ -191,7 +191,7 @@ When asked to build or refine flows:
 - Map out the entire user journey (e.g., Cart Review → Shipping → Payment → Confirmation) before providing pixel specifications.
 - Consider and document edge cases (empty states, loading states, error handling) in your proposed solutions.
 - Annotate designs with intended behavior: hover states, active states, focus rings for accessibility.
-- Ensure all text and interactive elements pass WCAG AA accessibility standards (minimum 4.5:1 contrast ratio).
+- Everything must meet **WCAG 2.1 Level AA** from here on, not just contrast: 4.5:1 for text (3:1 for large text), 3:1 for control boundaries and state indicators, visible focus, keyboard access, and no colour-only meaning. The full checklist is in BOSS-Design-System-Project-Brief.md → "Accessibility standard".
 
 ### Dev Handoff Best Practices *(Craft Standards Summit)*
 

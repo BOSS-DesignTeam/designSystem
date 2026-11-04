@@ -18,6 +18,13 @@ this restriction was lifted for this project (see FIGMA-WORKFLOW-NOTES.md §3). 
 one canonical version of each component, not parallel old/new copies. You are still never
 permitted to delete existing Figma nodes without explicit confirmation.
 
+## Accessibility standard: WCAG 2.1 AA
+Everything we design or build from here on must meet **WCAG 2.1 Level AA**. This applies to Figma
+components and screens, tokens, front-end code, and Jira stories. Check it while building, not after.
+Don't ship, mark Complete, or hand off something that fails; if it can't pass, say so and record the
+exception. The checklist and the known gaps are in BOSS-Design-System-Project-Brief.md → "Accessibility
+standard". Components built before this rule are not yet audited (Phase 4).
+
 ## Where epic design work lives
 At the start of the first design story of an epic, ask whether the work goes in the design system
 file or in a new epic file with a page per ticket. The question and how to choose are in

@@ -597,6 +597,12 @@ wrapper. Every new component story should call out both categories explicitly, n
   - **Effects** — shadows/glows bound to the real shared effect style (`Focus/Ring`, `Error/Ring`),
     not a duplicated one-off with slightly different opacity/behavior
 
+- **WCAG 2.1 AA is the bar for everything built from 2026-10-29.** Add it to the "done" audit above: before
+  calling a component done, check text contrast (4.5:1, 3:1 large), non-text contrast (3:1 for borders, state
+  indicators, icons), a designed focus state, and that no state relies on colour alone. Check both Light and
+  Dark. Checklist: Project Brief → "Accessibility standard". Don't change a code-synced token value to make it
+  pass; flag the gap and let the dev team decide (the focus colour is the current example).
+
 - **Sizing scope:** this system only needs Medium-size form controls (Input, Select, Combobox).
   Small/Large are intentionally out of scope — not an oversight, a deliberate decision (same height
   as Small in code; Medium's 16px font matches body text; no dense-toolbar use case exists in this

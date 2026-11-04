@@ -15,6 +15,9 @@ stale list; that's exactly the problem this file replaced.
 (designed + documented) and still be running old Shoelace internals underneath, or vice versa.
 Check that file separately for that question.
 
+**Accessibility:** new and changed work must meet WCAG 2.1 AA (see the Project Brief → "Accessibility standard").
+A component counts as Complete only if it does. Components finished before 2026-10-29 have not been audited yet.
+
 Full historical build detail for the Figma side (node/page IDs, per-component decisions, drift
 notes) stays in [BOSS-Design-System-Project-Brief.md](./BOSS-Design-System-Project-Brief.md) —
 this file is just the status.
