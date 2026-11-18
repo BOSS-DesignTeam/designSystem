@@ -1784,6 +1784,17 @@ What this means when building a component or screen (success criterion in bracke
 Known gaps against this standard (found in earlier work, not yet fixed):
 - `boss-color-border-focus` is below the 3:1 floor on white (noted in `tokens.json`); it is kept exact from the code
   source, so fixing it is a code change for the dev team.
+- **Green text fails text contrast (found 2026-11-17, BOPD-42 Period close designs).** `color/text/success`
+  resolves to (0, 0.663, 0.365), the same as green/50: 3.07:1 on white and 2.52:1 on the grey `E8E8EE`,
+  below the 4.5:1 text floor [1.4.3]. The Primitives have no green that passes as text (green/40 is 3.8:1,
+  green/90 is 1.25:1). Fix needed in the library: a darker `color/text/success` (same approach as the darker
+  danger and warning text roles), likely a new green primitive around green/30. Interim handling in the
+  Period close designs (Figma file `EqTRvuzLa6XppX82bd613h`, round-2 sections): the green Outlined badge keeps
+  its green border and icon (3.07:1 meets the 3:1 non-text rule [1.4.11]) and its label uses `color/text/primary`
+  (17.56:1 on white). Applied to the "AP: Open" and "GL: Open" badges on the location view, group view, GL
+  transactions page and State pattern. **Still failing, not yet changed:** other green outlined text ("Nothing
+  blocking", "Ended 03/31/2027") and the filled green "Passing" badges (white text on green, 3.07:1). Exception
+  recorded; these must be fixed once the token is darkened, before the screens are handed off.
 
 ---
 
