@@ -9,8 +9,8 @@ Sources for this update, and how each was checked:
 - The BOPD-42 description, read live on 2026-11-18. It was last edited at 14:45 ET that day.
 - Tim Thornburgh's answers on BOPD-42, read live on 2026-11-18. They are comments 1128430, 1128431, 1128433 and
   1128434, posted 2026-11-17.
-- The Figma review comments applied on 2026-11-17 and 2026-11-18. These come from the session notes; the Figma file
-  wasn't re-read today.
+- The Figma review comments applied on 2026-11-17 and 2026-11-18. The last 10 (posted 2026-11-18, 20:46 to 21:21 UTC)
+  were read live; the earlier ones come from the session notes.
 - Whether each 10-15 item is settled or superseded is my reading of the ticket text, so it is inference. Items marked
   **Confirm** need someone to agree.
 
@@ -83,6 +83,22 @@ still use the old wording.
 - [x] **The calendar's "Override and save" is a Brand button,** not Danger.
 - [x] **Reports show changes as plain text, not badges,** and change amounts link to the transactions.
 - [x] **The "Moved from P3" badges are gone** from the GL transactions list.
+- [x] **No disabled buttons** (round 6, 11-18):
+      - If the user doesn't have the permission, hide the action and say why in the page callout or hint.
+      - If the period's state blocks it (unapproved transactions, a failing check), keep the button enabled; clicking
+        it says what to fix.
+
+      Applied to Close period, dialogs 1 and 1b, Daily Sales, Inventory, Bank Rec Unmatch, the journal entry
+      drawers, and section 4 of the state pattern.
+- [x] **Bulk actions use the DS 0.1 Floating Action Bar** while rows are selected (group view, AP All Invoices).
+- [x] **A bulk action's success message is a toast,** not a callout banner, and **the selection clears** afterwards.
+- [x] **Choices use DS components:**
+      - A Radio Group for option lists. With more than 3 options, use DS Radio components, because the Radio Group
+        holds 3.
+      - Selectable Cards for the closed-period choice, with the option as the card title and no radio.
+- [x] **Drawer actions sit in the drawer header.**
+- [x] **No "(new)" markers in UI text.** That marking belongs in the design notes.
+- [x] **The group table has no "›" column;** the location name is the link.
 
 ## Still open
 
@@ -92,9 +108,8 @@ still use the old wording.
       is 4-4-5 or another week-based calendar, the dates differ and the screens need re-dating.
 - [ ] **AP prototype, row B drawer copy.** Row B is the closer or "Post during AP closing" path. I wrote this copy
       myself, because the file only had the version for someone without the permission.
-- [ ] **Bulk prototype selection is assumed:**
-      - After Change GL date, only the skipped invoice stays selected.
-      - After Move posting, the selection clears.
+- [x] **Bulk prototype selection: decided 11-18** ("don't leave this selected after the fact"). The selection clears
+      after each bulk action. To move the skipped posting, the user selects 7781-22 again (new prototype step D3b).
 - [ ] **Two places where I interpreted Tim's answers:** the calendar override callout wording, and closed-period dialog
       6 defaulting to "First day of P4".
 - [ ] **Green success text fails contrast.** `color/text/success` is 3.07:1 on white, below WCAG 2.1 AA, and the
@@ -105,6 +120,10 @@ still use the old wording.
 - [ ] **DS 0.1 table gaps:**
       - There is no select-all header cell. A Content Cell stands in for it.
       - The cell fill hides the Selected row state.
+- [ ] **DS 0.1 radio gaps:**
+      - The Radio Group holds at most 3 options, so the 4-option backpost dialog uses separate DS Radio components.
+      - The Radio has no description line. Each option's detail (date and period) is a smaller second line in the
+        label, and its contrast hasn't been checked.
 - [ ] **BOPD-1355 and BOPD-1363 haven't been read in full.** Tim's answers quote them.
 
 ### Cross-cutting (from the 10-15 list)
@@ -123,19 +142,19 @@ still use the old wording.
 - [x] **Post-period-end adjustment: superseded by the changed-after-close flag.** The flag is informational and the
       period stays closed. It links to the post-close changes report. Only closers clear it, and clearing is logged.
       (BOPD-1114, 1117)
-- [ ] **Who can reopen, approve or re-date: mostly settled.**
+- [x] **Who can reopen, approve or re-date: settled.**
       - Reopening and correcting are for closers only.
       - "Post during AP closing" holders move AP items with the bulk GL date change.
       - The closed-period dialog shows only the options the user may use.
       - There is no approval queue (see BOPD-1114).
 
-      Still open: whether other screens hide or disable an action the user lacks permission for. (BOPD-1113, 1114,
-      1115)
+      Settled 11-18 for the other screens too: an action the user lacks permission for is hidden, never disabled.
+      (BOPD-1113, 1114, 1115)
 - [x] **Notifications: settled.** Alerts appear on the close dashboard, and there is no separate notification system.
       (BOPD-1114)
 
 ### BOPD-1110 States and messaging pattern (page: State pattern)
-- [ ] Tooltip on a disabled control: dev check needed
+- [x] **Superseded 11-18:** tooltip on a disabled control. There are no disabled buttons (see the rule above).
 - [ ] Callout limited to one action; 993px default width
 - [ ] Dev review of the copy (BOPD-304 error / hold table)
 - Decided 2026-10-13: callout banners keep status colours, and the Badge End icon stays.
@@ -155,8 +174,7 @@ still use the old wording.
       own, and automatic reopening of later periods is out of scope.
 - [x] **Superseded:** re-verify with a confirm checkbox. The ticket has no needs-review or re-verify state; the
       changed-after-close flag replaces it.
-- [ ] No button, rather than a disabled one, without the permission. This is settled for the closed-period dialog,
-      which shows only the options the user may use. It's still open for other screens.
+- [x] **Settled 11-18:** no button, rather than a disabled one, without the permission, on every screen.
 - Deferred, and confirmed by the ticket's "Not included yet": automatic reopening of later periods.
 
 ### BOPD-1114 Closer approval queue and notifications
@@ -245,3 +263,5 @@ The ticket defines three reports: First-close snapshot, Close activity report, a
 - The old App sidebar is still on the AP, GL, Sales and Reports screens. The dashboards use the new nav.
 - The pagination footers in the converted tables are still hand-built.
 - The answered Figma comments still need resolving in Figma.
+- The reversing-entry checkbox in the journal entry drawers is still disabled with its reason. It's a checkbox, not a
+  button, so confirm whether the no-disabled rule covers it.
