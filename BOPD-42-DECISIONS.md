@@ -1,16 +1,17 @@
 # BOPD-42 Period close: decisions
 
-Updated 2026-11-18. First compiled 2026-10-15 from the "Decisions to confirm", "Open" and "Open questions" notes in
+Updated 2026-11-19. First compiled 2026-10-15 from the "Decisions to confirm", "Open" and "Open questions" notes in
 `COMPONENT-STATUS.md`, for the old epic file `zbs8jTlxXJzIXwFhJE0G8b`. That file is superseded. The designs now live in
 **Period Close – Designs** (`EqTRvuzLa6XppX82bd613h`), which the ticket links, and each story's Figma page is named
 below. Tick a line when it is decided and update the page.
 
 Sources for this update, and how each was checked:
-- The BOPD-42 description, read live on 2026-11-18. It was last edited at 14:45 ET that day.
+- The BOPD-42 description, read live on 2026-11-19. It was last edited at 11:37 ET that day. The six edits after
+  11-18 14:45 ET were compared through the ticket history.
 - Tim Thornburgh's answers on BOPD-42, read live on 2026-11-18. They are comments 1128430, 1128431, 1128433 and
-  1128434, posted 2026-11-17.
+  1128434, posted 2026-11-17. No newer comments on 2026-11-19.
 - The Figma review comments applied on 2026-11-17 and 2026-11-18. The last 10 (posted 2026-11-18, 20:46 to 21:21 UTC)
-  were read live; the earlier ones come from the session notes.
+  were read live; the earlier ones come from the session notes. No new comments on 2026-11-19.
 - Whether each 10-15 item is settled or superseded is my reading of the ticket text, so it is inference. Items marked
   **Confirm** need someone to agree.
 
@@ -19,8 +20,9 @@ them. Their current titles weren't checked.
 
 ## Changed in the ticket since the designs were drawn
 
-The ticket was rewritten between 11-11 and 11-18. I compared today's text with the copy read on 11-11. The designs
-still use the old wording.
+### Rewrite between 11-11 and 11-18
+
+I compared the 11-18 text with the copy read on 11-11.
 
 - [x] **"Soft close" is now "closing".** AP and the GL are each open, closing or closed. Relabelled 2026-11-18 in
       round-5 sections on 9 pages (copies of the latest version of each frame), and in place in the two prototypes so
@@ -32,11 +34,37 @@ still use the old wording.
 
       Copy that said "AP soft close holder" or "soft close permission" now uses these names (same round 5).
 - **Permissions are granted through roles.** On 11-11 the ticket said they weren't tied to roles. No existing role
-  includes them by default, and internal admins have all three. This is a note only.
+  includes them by default, and internal admins have all three. This is a note only. Which roles get them for
+  existing customers is now an open question (Rollout, 11-19).
 - **The bulk GL date change has three options:** each invoice's date, the last day of a period, or one chosen date.
   This matches Tim's answer on "Last day of P3" below.
 - **"Move posting" is in scope.** The "Not included yet" item about changing how unapprove and edit write to the
   ledger now makes an exception for it (BOPD-1363).
+
+### Edits on 11-18 (evening) and 11-19
+
+Six edits after 11-18 14:45 ET: two by Stephen Baytop (11-18 17:51 and 11-19 11:37) and four by Tim Thornburgh (11-19,
+10:40 to 11:07). I compared the 14:45 text with the 11:37 text. A text search of 6 Figma pages on 11-19 (Location,
+Dialogs, AP screens, Sales/Bank Rec/Inventory, Reports, Calendar) found no design text that depends on these edits.
+State pattern, Group, JE, AP bulk and Shell weren't searched.
+
+- **Shared bank accounts no longer say "same FEIN only".** The engineering question about whether that rule is
+  enforced (BOPD-308) is gone too. The cross-cutting item below is now settled.
+- **The post-close changes report no longer says "including deletions".** The engineering question about whether
+  deletions are recorded today (BOPD-1100) is gone too. Nothing on the Reports page mentions deletions.
+- **New Rollout section: BackpostToGL stays until closing starts.**
+  - Until a closer first starts closing AP or the GL for a period, prior-period posting in that area works as today,
+    including the week-1 grace. After that the period close rules decide, including after a reopen (BOPD-304).
+  - The goal is to retire BackpostToGL once every location using accounting is on period close (BOPD-2882).
+  - Still being worked out with support, and now an open question in the ticket: how earlier periods are closed for
+    existing customers (for example, the date "close through date" is run to), and which roles get the three
+    permissions.
+  - QA has a matching line: before a closer has started closing a period, prior-period posting works as today.
+- **Go-live: history loads into open periods only.** An upload with any entry dated in a closed period is rejected in
+  full. To add history to a closed period, reopen it first.
+- **Open questions changed.** Year-end re-runs (BOPD-1103) is now a product question: may re-runs from manual and
+  calendar triggers post into closed periods? The engineering follow-up on Sales daily/weekly posting and $0 days
+  (BOPD-307) is gone.
 
 ## Decided since 10-15
 
@@ -125,17 +153,24 @@ still use the old wording.
       - The Radio has no description line. Each option's detail (date and period) is a smaller second line in the
         label, and its contrast hasn't been checked.
 - [ ] **BOPD-1355 and BOPD-1363 haven't been read in full.** Tim's answers quote them.
+- [ ] **When a period moves from BackpostToGL to the period close rules** (Rollout, 11-19). The designs show only
+      periods where closing has started. Whether a screen should show that a period still follows BackpostToGL, or
+      tell the closer that starting to close ends it, isn't decided. This is my question, not the ticket's.
+- [ ] **Transition for existing customers** (open question in the ticket, with support): how their earlier periods get
+      closed, for example the date "close through date" is run to, and which roles get the three permissions. Close
+      through date is drawn as dialog 8 on the Dialogs page (section 70:2427).
 
 ### Cross-cutting (from the 10-15 list)
 
 - [x] **Who can sign off AP and Payroll: superseded.** There is no sign-off per module. Closers control every lock.
       Payroll has no check, only an info card with the last payroll distribution. (BOPD-1111, 1115, 1116)
-- [ ] **Shared bank accounts: mostly settled by the ticket.**
-      - Accounts can be shared only between locations with the same FEIN.
-      - When one location closes, the others can still approve the reconciliation report.
+- [x] **Shared bank accounts: settled by the ticket.**
+      - When one location closes, the others can still approve the reconciliation report without touching the closed
+        location's books.
       - A location reopens only its own period, and Bank Rec entries on a shared account are single-location.
 
-      Still open: whether the same-FEIN rule is enforced today (engineering, BOPD-308). (BOPD-1111, 1116)
+      The ticket dropped "same FEIN only" on 11-19, along with the engineering question about whether that rule is
+      enforced (BOPD-308). (BOPD-1111, 1116)
 - [ ] **Confirm: reasons have no minimum length.** The ticket requires a free-text reason for corrections, reopens and
       check overrides, and Tim's answer adds the calendar override. None of these states a minimum. The 10-character
       minimum for reopen (BOPD-1113) has no basis in the ticket.
@@ -161,7 +196,7 @@ still use the old wording.
 - Changed 2026-11-17: badges are Outlined, not colourless, and table statuses are plain text (see above).
 
 ### BOPD-1111 Close dashboard: location view (page: Close dashboard – Location)
-- See cross-cutting: sign-off is superseded, and shared bank accounts are mostly settled.
+- See cross-cutting: sign-off is superseded, and shared bank accounts are settled.
 
 ### BOPD-1112 Close dashboard: group view (page: Close dashboard – Group)
 - [ ] Which period a row shows: the oldest period not yet closed, or one fiscal period. The ticket doesn't say.
@@ -242,8 +277,11 @@ The ticket defines three reports: First-close snapshot, Close activity report, a
       included yet". Year end has before-closing and after-closing views.
 - [ ] Sign convention
 - [x] **Superseded:** compare opens latest against previous. The snapshot is compared with current balances.
-- [ ] Re-run label and net effect. Year-end re-runs are an engineering follow-up (BOPD-1103).
+- [ ] Re-run label and net effect. Whether year-end re-runs from manual and calendar triggers may post into closed
+      periods is an open question in the ticket (BOPD-1103). Until 11-19 it was an engineering follow-up.
 - [ ] The post-close changes report (formerly the adjustments report) covers every location the user can see
+- The post-close changes report no longer says "including deletions" (ticket edit, 11-19). No Reports screen mentions
+  deletions (text search, 11-19).
 - [ ] Who may see the reports
 - [ ] Drill-down to what changed is now in the ticket for the snapshot. Check that it's drawn.
 - [ ] Not drawn: the empty state for periods closed before snapshots shipped (from the 10-15 note, not re-checked).
@@ -263,5 +301,7 @@ The ticket defines three reports: First-close snapshot, Close activity report, a
 - The old App sidebar is still on the AP, GL, Sales and Reports screens. The dashboards use the new nav.
 - The pagination footers in the converted tables are still hand-built.
 - The answered Figma comments still need resolving in Figma.
+- Not drawn: the rejection of a history upload with an entry dated in a closed period (Go-live, 11-19). The 11-19
+  text search found no history upload or import screen on the 6 pages searched; the JE page wasn't searched.
 - The reversing-entry checkbox in the journal entry drawers is still disabled with its reason. It's a checkbox, not a
   button, so confirm whether the no-disabled rule covers it.
